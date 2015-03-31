@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RTコンポーネントにおけるトルク指令の入力 &mdash; jvrc software 0.0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="jvrc software 0.0.1 ドキュメント" href="../index.html"/>
+        <link rel="up" title="シミュレーションの基本" href="index.html"/>
+        <link rel="next" title="シミュレーションの応用" href="../advanced/index.html"/>
+        <link rel="prev" title="RTコンポーネントのコントローラの接続" href="rt-controller.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> jvrc software</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">インストール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#choreonoid">Choreonoidのインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#id2">モデルファイルのインストール</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">シミュレーションの基本</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="howto-exec-simulation.html">シミュレーションの実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rt-controller.html">RTコンポーネントのコントローラの接続</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">RTコンポーネントにおけるトルク指令の入力</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">シミュレーションの応用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/sensors.html">センサの接続</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">jvrc software</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">シミュレーションの基本</a> &raquo;</li>
+      
+    <li>RTコンポーネントにおけるトルク指令の入力</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/basics/torque.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="rt">
+<h1>RTコンポーネントにおけるトルク指令の入力<a class="headerlink" href="#rt" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここでは、トルク指令を出力するようにRTコンポーネントを拡張し、ロボットが直立を
+維持できるようにします。</p>
+<div class="section" id="id1">
+<h2>プロジェクトを開く<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク
+トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス
+トール」でダウンロードしたリポジトリの「model/robot/samples/sample2.cnoid」です。</p>
+</div>
+<div class="section" id="id2">
+<h2>コントローラのソースコード<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。</p>
+<div class="highlight-python"><div class="highlight"><pre>/**
+   Sample Robot motion controller for the JVRC robot model.
+   This program was ported from the &quot;RobotTorqueController.h&quot; sample of Choreonoid.
+*/
+
+#ifndef RobotTorqueControllerRTC_H
+#define RobotTorqueControllerRTC_H
+
+#include &lt;rtm/idl/BasicDataTypeSkel.h&gt;
+#include &lt;rtm/Manager.h&gt;
+#include &lt;rtm/DataFlowComponentBase.h&gt;
+#include &lt;rtm/CorbaPort.h&gt;
+#include &lt;rtm/DataInPort.h&gt;
+#include &lt;rtm/DataOutPort.h&gt;
+#include &lt;cnoid/MultiValueSeq&gt;
+#include &lt;vector&gt;
+
+class RobotTorqueControllerRTC : public RTC::DataFlowComponentBase
+{
+public:
+    RobotTorqueControllerRTC(RTC::Manager* manager);
+    ~RobotTorqueControllerRTC();
+
+    virtual RTC::ReturnCode_t onInitialize();
+    virtual RTC::ReturnCode_t onActivated(RTC::UniqueId ec_id);
+    virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
+    virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
+
+protected:
+    // DataInPort declaration
+    RTC::TimedDoubleSeq m_angle;
+    RTC::InPort&lt;RTC::TimedDoubleSeq&gt; m_angleIn;
+
+    // DataOutPort declaration
+    RTC::TimedDoubleSeq m_torque;
+    RTC::OutPort&lt;RTC::TimedDoubleSeq&gt; m_torqueOut;
+
+private:
+    cnoid::MultiValueSeqPtr qseq;
+    std::vector&lt;double&gt; q0;
+    cnoid::MultiValueSeq::Frame oldFrame;
+    int currentFrame;
+    double timeStep_;
+};
+
+extern &quot;C&quot;
+{
+    DLL_EXPORT void RobotTorqueControllerRTCInit(RTC::Manager* manager);
+};
+
+#endif
+</pre></div>
+</div>
+<p>今回はトルクの出力をしなければならないので、出力ポートのための設定が増加しています。
+<cite>RTC::OutPort&lt;RTC::TimedDoubleSeq&gt;</cite> はRTCの出力ポートを表す型であり、出力ポートを操作するにはこれを利用します。</p>
+<p>コントローラのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.cppを基にしています。</p>
+<div class="highlight-python"><div class="highlight"><pre>/**
+   Sample Robot motion controller for the JVRC robot model.
+   This program was ported from the &quot;SR1WalkControllerRTC.cpp&quot; sample of
+   Choreonoid.
+*/
+
+#include &quot;RobotTorqueControllerRTC.h&quot;
+#include &lt;cnoid/BodyMotion&gt;
+#include &lt;cnoid/ExecutablePath&gt;
+#include &lt;cnoid/FileUtil&gt;
+
+using namespace std;
+using namespace cnoid;
+
+namespace {
+
+static const double pgain[] = {
+    50000.0, 30000.0, 30000.0, 30000.0, 30000.0,
+    80000.0, 80000.0, 10000.0, 3000.0, 30000.0,
+    30000.0, 80000.0, 3000.0, 30000.0, 10000.0,
+    3000.0, 3000.0, 30000.0, 30000.0, 10000.0,
+    3000.0, 30000.0, 3000.0, 3000.0, 3000.0,
+    3000.0, 3000.0, 3000.0, 3000.0, 3000.0,
+    3000.0, 3000.0, 10000.0, 3000.0, 3000.0,
+    30000.0, 3000.0, 3000.0, 3000.0, 3000.0,
+    3000.0, 3000.0, 3000.0, 3000.0,
+    };
+
+static const double dgain[] = {
+    100.0, 100.0, 100.0, 100.0, 100.0,
+    100.0, 100.0, 100.0, 100.0, 100.0,
+    100.0, 100.0, 100.0, 100.0, 100.0,
+    100.0, 100.0, 100.0, 100.0, 100.0,
+    100.0, 100.0, 100.0, 100.0, 100.0,
+    100.0, 100.0, 100.0, 100.0, 100.0,
+    100.0, 100.0, 100.0, 100.0, 100.0,
+    100.0, 100.0, 100.0, 100.0, 100.0,
+    100.0, 100.0, 100.0, 100.0,
+    };
+
+const char* samplepd_spec[] =
+{
+    &quot;implementation_id&quot;, &quot;RobotTorqueControllerRTC&quot;,
+    &quot;type_name&quot;,         &quot;RobotTorqueControllerRTC&quot;,
+    &quot;description&quot;,       &quot;Robot TorqueController component&quot;,
+    &quot;version&quot;,           &quot;0.1&quot;,
+    &quot;vendor&quot;,            &quot;AIST&quot;,
+    &quot;category&quot;,          &quot;Generic&quot;,
+    &quot;activity_type&quot;,     &quot;DataFlowComponent&quot;,
+    &quot;max_instance&quot;,      &quot;10&quot;,
+    &quot;language&quot;,          &quot;C++&quot;,
+    &quot;lang_type&quot;,         &quot;compile&quot;,
+    &quot;&quot;
+};
+}
+
+
+RobotTorqueControllerRTC::RobotTorqueControllerRTC(RTC::Manager* manager)
+    : RTC::DataFlowComponentBase(manager),
+      m_angleIn(&quot;q&quot;, m_angle),
+      m_torqueOut(&quot;u&quot;, m_torque)
+{
+}
+
+RobotTorqueControllerRTC::~RobotTorqueControllerRTC()
+{
+
+}
+
+
+RTC::ReturnCode_t RobotTorqueControllerRTC::onInitialize()
+{
+    // Set InPort buffers
+    addInPort(&quot;q&quot;, m_angleIn);
+
+    // Set OutPort buffer
+    addOutPort(&quot;u&quot;, m_torqueOut);
+
+    return RTC::RTC_OK;
+}
+
+RTC::ReturnCode_t RobotTorqueControllerRTC::onActivated(RTC::UniqueId ec_id)
+{
+    if(!qseq){
+        string filename = getNativePathString(
+            boost::filesystem::path(shareDirectory())
+            / &quot;motion&quot; / &quot;RobotPattern.yaml&quot;);
+
+        BodyMotion motion;
+
+        if(!motion.loadStandardYAMLformat(filename)){
+            cout &lt;&lt; motion.seqMessage() &lt;&lt; endl;
+            return RTC::RTC_ERROR;
+        }
+        qseq = motion.jointPosSeq();
+        if(qseq-&gt;numFrames() == 0){
+            cout &lt;&lt; &quot;Empty motion data.&quot; &lt;&lt; endl;
+            return RTC::RTC_ERROR;
+        }
+        q0.resize(qseq-&gt;numParts());
+        timeStep_ = qseq-&gt;getTimeStep();
+    }
+
+    m_torque.data.length(qseq-&gt;numParts());
+
+    if(m_angleIn.isNew()){
+        m_angleIn.read();
+    }
+    for(int i=0; i &lt; qseq-&gt;numParts(); ++i){
+        q0[i] = m_angle.data[i];
+    }
+    oldFrame = qseq-&gt;frame(0);
+    currentFrame = 0;
+
+    return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RobotTorqueControllerRTC::onDeactivated(RTC::UniqueId ec_id)
+{
+    return RTC::RTC_OK;
+}
+
+RTC::ReturnCode_t RobotTorqueControllerRTC::onExecute(RTC::UniqueId ec_id)
+{
+    if(m_angleIn.isNew()){
+            m_angleIn.read();
+    }
+
+    if(currentFrame &gt; qseq-&gt;numFrames()){
+            m_torqueOut.write();
+            return RTC::RTC_OK;
+    }
+
+    MultiValueSeq::Frame frame = qseq-&gt;frame(currentFrame++);
+
+    for(int i=0; i &lt; frame.size(); i++){
+            double q_ref = frame[i];
+            double q = m_angle.data[i];
+            double dq_ref = (q_ref - oldFrame[i]) / timeStep_;
+            double dq = (q - q0[i]) / timeStep_;
+            m_torque.data[i] = (q_ref - q) * pgain[i]/100.0 + (dq_ref - dq) * dgain[i]/100.0;
+            q0[i] = q;
+
+            cout &lt;&lt; &quot;i = &quot; &lt;&lt; i &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; &quot;q_ref = &quot; &lt;&lt; frame[i] &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; &quot;q = &quot; &lt;&lt; q &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; &quot;dq_ref = &quot; &lt;&lt; dq_ref &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; &quot;dq = &quot; &lt;&lt; dq &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; &quot;torque = &quot; &lt;&lt; m_torque.data[i] &lt;&lt; endl;
+    }
+    oldFrame = frame;
+
+    m_torqueOut.write();
+
+    return RTC::RTC_OK;
+}
+
+
+extern &quot;C&quot;
+{
+    DLL_EXPORT void RobotTorqueControllerRTCInit(RTC::Manager* manager)
+    {
+        coil::Properties profile(samplepd_spec);
+        manager-&gt;registerFactory(profile,
+                                 RTC::Create&lt;RobotTorqueControllerRTC&gt;,
+                                 RTC::Delete&lt;RobotTorqueControllerRTC&gt;);
+    }
+};
+</pre></div>
+</div>
+<p>出力ポートに関する設定は、入力ポートの場合と関数名が異なるだけでよく似ています。</p>
+<p>onActivated() のときの処理に注目しましょう。この関数はRTCが有効化された際に一度だけ呼ばれます。
+ここで、Choreonoidの共有ディレクトリからRobotPattern.yamlを読み出しています。
+これはロボットの全関節角度の軌道を記述した動作パターンファイルです。 <cite>motion.loadStandardYAMLformat()</cite> によりモーションデータに変換します。
+onActivated()では初期値の設定も行っています。</p>
+<p>onExecute()ではトルクの計算と出力の処理が追加されました。
+関節角度を読み込む部分のコードはこれまでと同じですが、 <cite>m_torque.data[i]</cite> に計算したトルクの値を代入しています。
+ここでは簡単なPD制御によりトルクの値を求めています。
+各関節毎のPgainとDgainはソースコードの先頭付近に固定値で定義されています。
+ロボットがうまく制御できない場合はこの値を調整する必要があります。
+<cite>m_torque.data</cite> にセットした値は <cite>m_torqueOut.write()</cite> により実際のロボットの制御トルクとして出力されます。
+出力ポートは値をセットするだけなので入力ポートよりも簡単です。</p>
+<p>これらのソースコードは 「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotTorqueControllerRTC.cpp」と 「model/robot/RTC/RobotTorqueControllerRTC.h」に保存されています。</p>
+</div>
+<div class="section" id="id3">
+<h2>コントローラの設定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotTorqueControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。
+さらに、プロパティビューの「自動ポート接続」を true にします。</p>
+<img alt="../_images/property_torque.png" src="../_images/property_torque.png" />
+</div>
+<div class="section" id="id4">
+<h2>シミュレーション用動作パターンの作成<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ロボットの関節の制御を行うRTコンポーネントの実行周期に合わせて、ロボットの動作パターンを生成するための設定を行います。RTコンポーネントは1[ms]周期で実行されるので、Choreonoidの内部フレームレートを1000に設定します。</p>
+<p>タイムバーの設定画面を開きます。</p>
+<img alt="../_images/timebar.png" src="../_images/timebar.png" />
+<p>「内部フレームレート」の項目を下記のように「1000」に設定します。</p>
+<img alt="../_images/timebar_config.png" src="../_images/timebar_config.png" />
+<p>このフレームレートは1秒間に何回実行するかを表しています。
+これが1000で1ミリ秒の間隔となり、100で10ミリ秒間隔となります。</p>
+</div>
+<div class="section" id="id5">
+<h2>ポーズ列の追加<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>まずアイテムビューで「JVRC」を選択します。
+次に、「メニュー」の「ファイル」「新規」より「ポーズ列」を選択し「SampleMotion」という名前で追加します。</p>
+<img alt="../_images/motion.png" src="../_images/motion.png" />
+<p>次に、「表示」の「ビューの表示」から「ポーズロール」を選択します。次の画面が表示されるはずです。</p>
+<img alt="../_images/pose_role.png" src="../_images/pose_role.png" />
+<p>基準の姿勢を作るため、アイテムビューで「JVRC」を選択し、ツールバーにある「選択ボディを初期姿勢に」のボタンを押します。</p>
+<img alt="../_images/pose_toolbar.png" src="../_images/pose_toolbar.png" />
+<p>ポーズロールにおいて、1.0 を選択して「挿入」を押します。
+同様に 2.0, 3.0, 4.0 を選択して「挿入」を押します。</p>
+<p>ポーズロールは次のようになるはずです。</p>
+<img alt="../_images/pose_role2.png" src="../_images/pose_role2.png" />
+<p>あとはこれを繰り返し、15.0まで生成します。</p>
+<p>ポーズロールで作成したのはキーフレームと呼びます。これより、プログラムで使用するモーションを生成させます。
+ツールバーから「ボディモーションの生成」ボタンを押します。</p>
+<img alt="../_images/motion_toolbar.png" src="../_images/motion_toolbar.png" />
+<p>モーションはツールバーのボタンで手動で生成しなくても、キーフレームの更新時に自動生成することができます。
+これを有効にするにはツールバーの「自動更新モード」のボタンをオンにしてください。</p>
+<img alt="../_images/motion_toolbar2.png" src="../_images/motion_toolbar2.png" />
+<p>SampleMotion の子供に motion があるので、これを選択し名前を付けて保存ボタンを押します。</p>
+<img alt="../_images/item_motion.png" src="../_images/item_motion.png" />
+<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに「RobotMotion.yaml」というファイルで保存します。</p>
+</div>
+<div class="section" id="id6">
+<h2>コントローラのビルド<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに移動し、次のコマンドを実行します。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">make</span>
+</pre></div>
+</div>
+<p>これにより、「model/robot/RTC/」ディレクトリに「RobotTorqueControllerRTC.so」というファイルが作成されるはずです。</p>
+<p>その後、次のコマンドを実行します。</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo make install DESTDIR=/usr
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>シミュレーションを実行する<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>シミュレーションツールバーの「シミュレーション開始ボタン」を押します。
+シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、シミュレーション時間で15秒間の間立ったままの状態になったはずです。
+これは、JVRCの制御を行うためのモーションデータが15秒ぶんしか用意していないためです。</p>
+<img alt="../_images/simulation_controller.png" src="../_images/simulation_controller.png" />
+</div>
+<div class="section" id="id8">
+<h2>サンプルプロジェクトについて<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウン ロードしたリポジトリの「model/robot/samples/sample3.cnoid」に保存されています。</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../advanced/index.html" class="btn btn-neutral float-right" title="シミュレーションの応用">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rt-controller.html" class="btn btn-neutral" title="RTコンポーネントのコントローラの接続"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, AIST.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

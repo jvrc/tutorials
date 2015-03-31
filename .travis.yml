@@ -6,6 +6,7 @@ env:
   global:
     - secure: "eFOiluYgSM+x9ikhqmP3B/aPOqI9iJFb65NIkXoArjX9zNmmc4XQY4WPnBTj+VKNhKtxSKnXRUU4PCKNnT1m9sropxQ71MU+gW67GXNZXj3BXUhhsEiPfvC7yRE4lgNACuFNv9UwynyoPQWiSOZOchY9psz73OqhaAU7/QINcgo="
 script: source .travis.sh
+sudo: required
 after_success:
   - set +x
   - export GIT_COMMITTER_NAME=$GIT_NAME

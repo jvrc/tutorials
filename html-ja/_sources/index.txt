@@ -14,6 +14,7 @@ Contents:
    install
    basics/index
    advanced/index
+   links
 
 
 Indices and tables

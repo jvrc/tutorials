@@ -24,15 +24,15 @@ msgstr ""
 msgid "端末上で次のコマンドを実行し、Choreonoid と周辺ツールをインストールします。 ::"
 msgstr ""
 
-#: ../../install.rst:19
+#: ../../install.rst:33
 msgid "モデルファイルのインストール"
 msgstr ""
 
-#: ../../install.rst:23
+#: ../../install.rst:37
 msgid "https://jvrc.org/download.html"
 msgstr ""
 
-#: ../../install.rst:21
+#: ../../install.rst:35
 msgid ""
 "モデルファイルはJVRC公式HP上で公開されているJVRC-"
 "1のモデルを使用します。次のページからダウンロードし、ダウンロードしたファイルを適当なディレクトリに展開して下さい。"
@@ -42,6 +42,24 @@ msgstr ""
 msgid ""
 "この章では Choreonoid とモデルファイルのインストール方法について解説します。 インストールを実行するのは Ubuntu 14.04 x64 "
 "版とします。"
+msgstr ""
+
+#: ../../install.rst:19
+msgid "サンプルファイルの取得"
+msgstr ""
+
+#: ../../install.rst:21
+msgid ""
+"このチュートリアルで使用するファイルを取得します。 ファイルの取得にあたってはgitコマンドが必要です。Ubuntu "
+"環境では以下のコマンドでgitをインストールできます。 ::"
+msgstr ""
+
+#: ../../install.rst:26
+msgid "サンプルファイルのリポジトリは以下のコマンドを実行することで取得できます。 ::"
+msgstr ""
+
+#: ../../install.rst:30
+msgid "これによってサンプルファイルのリポジトリを格納した \"samples\" というディレクトリが生成されます。"
 msgstr ""
 
 #~ msgid ""

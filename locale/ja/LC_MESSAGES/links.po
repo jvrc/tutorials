@@ -1,0 +1,87 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: jvrc software 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-31 21:15+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../links.rst:5
+msgid "Choreonoid"
+msgstr ""
+
+#: ../../links.rst:6 ../../links.rst:27
+msgid "Manual"
+msgstr ""
+
+#: ../../links.rst:8
+msgid "http://www.choreonoid.org"
+msgstr ""
+
+#: ../../links.rst:10 ../../links.rst:33
+msgid "Source"
+msgstr ""
+
+#: ../../links.rst:12
+msgid "http://github.com/s-nakaoka/choreonoid"
+msgstr ""
+
+#: ../../links.rst:15
+msgid "Choreonoid plugin"
+msgstr ""
+
+#: ../../links.rst:16
+msgid "Model editor"
+msgstr ""
+
+#: ../../links.rst:18 ../../links.rst:22
+msgid "under development"
+msgstr ""
+
+#: ../../links.rst:20
+msgid "New simulation engine"
+msgstr ""
+
+#: ../../links.rst:26
+msgid "RTM based control software development environment \"hrpsys-base\""
+msgstr ""
+
+#: ../../links.rst:29
+msgid "http://fkanehiro.github.com/hrpsys-manual/html/index.html"
+msgstr ""
+
+#: ../../links.rst:30
+msgid "Tutorials"
+msgstr ""
+
+#: ../../links.rst:32
+msgid "http://fkanehiro.github.com/hrpsys-tutorials/html/index.html"
+msgstr ""
+
+#: ../../links.rst:35
+msgid "http://github.com/fkanehiro/hrpsys-base"
+msgstr ""
+
+#: ../../links.rst:36
+msgid "Simulation model file convertor \"simtrans\""
+msgstr ""
+
+#: ../../links.rst:38
+msgid "http://fkanehiro.github.com/simtrans/html/index.html"
+msgstr ""
+
+#: ../../links.rst:2
+msgid "Links"
+msgstr ""
+
+#: ../../links.rst:25
+msgid "Other software"
+msgstr ""
+
+#~ msgid "Related software"
+#~ msgstr ""

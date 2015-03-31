@@ -50,7 +50,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'jvrc software'
+project = u'jvrc tutorials'
 copyright = u'2014, AIST'
 
 # The version info for the project you're documenting, acts as replacement for

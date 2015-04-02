@@ -183,14 +183,6 @@ msgstr ""
 msgid "Run simulation"
 msgstr "シミュレーションを実行する"
 
-#: ../../advanced/sensors.rst:483
-msgid ""
-"シミュレーションツールバーの「シミュレーション開始ボタン」を押します。 "
-"シミュレーションを実行するとchoreonoidを実行している端末にセンサの値が出力されています。 "
-"「RTコンポーネントのコントローラの接続」のときとは違い、関節角度(m_angle)だけではなく、 "
-"加速度センサ(m_gsensor)、ジャイロセンサ(m_gyrometer)、……の値が表示されるはずです。"
-msgstr ""
-
 #: ../../advanced/sensors.rst:491
 msgid "A sample project used in this tutorial"
 msgstr "サンプルプロジェクトについて"
@@ -206,7 +198,9 @@ msgid ""
 msgstr ""
 
 #: ../../advanced/index.rst:4
-msgid "This chapter explains how to run advanced simulations such as utilization of range sensors using a JVRC-1 model as an example."
+msgid ""
+"This chapter explains how to run advanced simulations such as utilization of"
+" range sensors using a JVRC-1 model as an example."
 msgstr "この章ではJVRCモデルファイルを用いた応用的なシミュレーションの例について解説します。"
 
 #: ../../advanced/sensors.rst:16
@@ -251,17 +245,45 @@ msgid ""
 "これにより、「samples/tutorials/rtc/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。"
 msgstr ""
 
-#: ../../advanced/sensors.rst:493
-msgid ""
-"このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample4.cnoid」に保存されています。"
-msgstr ""
-
 #: ../../advanced/sensors.rst:10
 msgid ""
 "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
 "トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス "
 "トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。"
 msgstr ""
+
+#: ../../advanced/sensors.rst:493
+msgid ""
+"You can find a sample project file created by this tutorial in "
+"samples/tutorials/cnoid/sample3.cnoid."
+msgstr ""
+
+#: ../../advanced/sensors.rst:483
+msgid ""
+"Press \\\"Start simulation\\\" button on the simulation tool bar. While "
+"simulation is running, sensor outputs are displayed in the terminal you "
+"launched Choreonoid. In addition to joint angles(m_angle), you can see "
+"outputs from accelerometers(m_gsensor), gyrometers(m_gyrometer) and other "
+"sensors."
+msgstr ""
+
+#~ msgid ""
+#~ "Press \"Start simulation\" button on the simulation tool bar. While "
+#~ "simulation is running, sensor outputs are displayed in the terminal you "
+#~ "launched Choreonoid. In addition to joint angles(m_angle), you can see "
+#~ "outputs from accelerometers(m_gsensor), gyrometers(m_gyrometer) and other "
+#~ "sensors."
+#~ msgstr ""
+#~ "シミュレーションツールバーの「シミュレーション開始ボタン」を押します。 "
+#~ "シミュレーションを実行するとchoreonoidを実行している端末にセンサの値が出力されています。 "
+#~ "「RTコンポーネントのコントローラの接続」のときとは違い、関節角度(m_angle)だけではなく、 "
+#~ "加速度センサ(m_gsensor)、ジャイロセンサ(m_gyrometer)、……の値が表示されるはずです。"
+
+#~ msgid ""
+#~ "You can find a sample project file created by this tutorial in "
+#~ "samples/tutorials/cnoid/sample4.cnoid."
+#~ msgstr ""
+#~ "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample4.cnoid」に保存されています。"
 
 #~ msgid ""
 #~ "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "

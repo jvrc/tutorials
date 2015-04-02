@@ -480,7 +480,7 @@ Enable cameras and range sensors
 Run simulation
 --------------
 
-Press \"Start simulation\" button on the simulation tool bar.
+Press "Start simulation" button on the simulation tool bar.
 While simulation is running, sensor outputs are displayed in the terminal you launched Choreonoid.
 In addition to joint angles(m_angle), you can see outputs from accelerometers(m_gsensor), gyrometers(m_gyrometer) and other sensors.
 

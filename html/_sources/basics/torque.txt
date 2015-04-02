@@ -8,14 +8,12 @@ This section extentds the RT component developed in the previous section to keep
 Open a project file
 -------------------
 
-「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク
-トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス
-トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample2.cnoid」です。
+Choose \"Open\" in \"File\" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample2.cnoid.
 
 Source code of a controller
 ---------------------------
 
-コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。 ::
+A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid. ::
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -69,10 +67,9 @@ Source code of a controller
    
    #endif
 
-今回はトルクの出力をしなければならないので、出力ポートのための設定が増加しています。
-`RTC::OutPort<RTC::TimedDoubleSeq>` はRTCの出力ポートを表す型であり、出力ポートを操作するにはこれを利用します。
+An output data port is added to output joint torques. `RTC::OutPort<RTC::TimedDoubleSeq>`  is the definition of the output port.
 
-コントローラのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.cppを基にしています。 ::
+Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid. ::
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -246,27 +243,23 @@ Source code of a controller
 
 The procedure to add an output port is similar to adding an input port.
 
-onActivated() のときの処理に注目しましょう。この関数はRTCが有効化された際に一度だけ呼ばれます。
-ここで、Choreonoidの共有ディレクトリからRobotPattern.yamlを読み出しています。
-これはロボットの全関節角度の軌道を記述した動作パターンファイルです。 `motion.loadStandardYAMLformat()` によりモーションデータに変換します。
-onActivated()では初期値の設定も行っています。
+Let's look at implementation of onActivated(). This function is called only once when a RT component is activated. This function reads RobotPattern.yaml in shared data directory of Choreonoid. This file contains joint angle trajectories and it can be loaded by calling `motion.loadStandardYAMLformat()`. onActivated() initializes other variables.
 
 Computation of joint torques is added to onExecute(). After reading joint angles, joint torques are computed and stored to m_torque.data[i]. In this tutorial, joint torques are computed by simple PD control. Position gains and derivative gains are defined at the top of the source code. If we can't control joints property, we need to adjust those values. Values stored in `m_torque.data`" are output by calling `m_torqueOut.write()`.
 
-これらのソースコードは 「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotTorqueControllerRTC.cpp」と 「samples/tutorials/rtc/RobotTorqueControllerRTC.h」に保存されています。
+You can find both of RobotTorqueCOntrollerRTC.h and RobotTorqueControllerRTC.cpp in samples/tutorials.
 
 Setup of the controller
 -----------------------
 
-アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotTorqueControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。
-さらに、プロパティビューの「自動ポート接続」を true にします。
+Choose BodyRTC in the item view and change the value of \"Controller module name\" property to \"RobotTorqueControllerRTC\". This value corresponds to the filename of the RT component. Change the value of \"Automatic connection\" to \"true\".
 
 .. image:: images/property_torque.png
 
 Create a pose sequence
 ----------------------
 
-ロボットの関節の制御を行うRTコンポーネントの実行周期に合わせて、ロボットの動作パターンを生成するための設定を行います。RTコンポーネントは1[ms]周期で実行されるので、Choreonoidの内部フレームレートを1000に設定します。
+Since a joint conrol RT component is executed at 1000[Hz], set the internal framerate of Choreonoid to the same value, 1000In order to set a framerate of a motion pattern to the same value with execution period of a joint control RT component, set the value to 1000.
 
 Open a configuration panel of the time bar.
 
@@ -281,8 +274,7 @@ This frame rate defines how many times computation is executed. If its value is 
 Create a pose sequence item
 ---------------------------
 
-まずアイテムビューで「JVRC」を選択します。
-次に、「メニュー」の「ファイル」「新規」より「ポーズ列」を選択し「SampleMotion」という名前で追加します。
+Choose JVRC in the item view first. Then create a pose sequence item named SimpleMotion by choosing \"Pose Sequence\" menu followed by \"File\", \"New\" menus.
 
 .. image:: images/motion.png
 
@@ -294,8 +286,7 @@ Choose \"JVRC\" in the item view and Press \"initial pose\" button on the tool b
 
 .. image:: images/pose_toolbar.png
 
-ポーズロールにおいて、1.0 を選択して「挿入」を押します。
-同様に 2.0, 3.0, 4.0 を選択して「挿入」を押します。
+Select 1.0 in the pose roll and press \"insert\". Select 2.0, 3.0 and 4.0 and press \"insert\" as well.
 
 The pose roll should be as follows.
 
@@ -303,13 +294,11 @@ The pose roll should be as follows.
 
 Repeat this procedure until length of the motion becomes 15[s].
 
-ポーズロールで作成したのはキーフレームと呼びます。これより、プログラムで使用するモーションを生成させます。
-ツールバーから「ボディモーションの生成」ボタンを押します。
+What we created using the pose roll are called key frames. They are used to generate a robot motion. Press \"create body motion\" button on the tool bar.
 
 .. image:: images/motion_toolbar.png
 
-モーションはツールバーのボタンで手動で生成しなくても、キーフレームの更新時に自動生成することができます。
-これを有効にするにはツールバーの「自動更新モード」のボタンをオンにしてください。
+It is possible to update the robot motion automatically when key frames are updated. It can be enabled by checking  \"automatic update mode\" button on the tool bar.
 
 .. image:: images/motion_toolbar2.png
 
@@ -317,18 +306,18 @@ You can find a \"motion\" item as a child of \"SampleMotion\" item. Select this 
 
 .. image:: images/item_motion.png
 
-「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに「RobotMotion.yaml」というファイルで保存します。
+Save the robot motion as RobotMotion.yaml in samples/tutorials/rtc directory.
 
 Build the controller
 --------------------
 
-「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。 ::
+Go to samples/tutorials/rtc directory and execute the following command. ::
 
    make
 
-これにより、「samples/tutorials/rtc/」ディレクトリに「RobotTorqueControllerRTC.so」というファイルが作成されるはずです。
+This command generates RobotTorqueControllerRTC.so in samples/tutorials/rtc directory.
 
-その後、次のコマンドを実行します。 ::
+And then, execute the following command. ::
 
    sudo make install DESTDIR=/usr
 
@@ -336,9 +325,7 @@ Build the controller
 Run simulation
 --------------
 
-シミュレーションツールバーの「シミュレーション開始ボタン」を押します。
-シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、シミュレーション時間で15秒間の間立ったままの状態になったはずです。
-これは、JVRCの制御を行うためのモーションデータが15秒分しか用意していないためです。
+Press \"start simulation\" button on the simulation tool bar. The robot doesn't fall down for 15[s] but after that, it falls down. Because duration of the robot motion is 15[s].
 
 .. image:: images/simulation_controller.png
 

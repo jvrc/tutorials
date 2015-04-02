@@ -126,8 +126,7 @@
             
   <div class="section" id="joint-control-using-a-rt-component">
 <h1>RTコンポーネントにおけるトルク指令の入力<a class="headerlink" href="#joint-control-using-a-rt-component" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>ここでは、トルク指令を出力するようにRTコンポーネントを拡張し、ロボットが直立を
-維持できるようにします。</p>
+<p>ここでは、トルク指令を出力するようにRTコンポーネントを拡張し、ロボットが直立を 維持できるようにします。</p>
 <div class="section" id="open-a-project-file">
 <h2>プロジェクトを開く<a class="headerlink" href="#open-a-project-file" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク
@@ -369,13 +368,7 @@ extern &quot;C&quot;
 ここで、Choreonoidの共有ディレクトリからRobotPattern.yamlを読み出しています。
 これはロボットの全関節角度の軌道を記述した動作パターンファイルです。 <cite>motion.loadStandardYAMLformat()</cite> によりモーションデータに変換します。
 onActivated()では初期値の設定も行っています。</p>
-<p>onExecute()ではトルクの計算と出力の処理が追加されました。
-関節角度を読み込む部分のコードはこれまでと同じですが、 <cite>m_torque.data[i]</cite> に計算したトルクの値を代入しています。
-ここでは簡単なPD制御によりトルクの値を求めています。
-各関節毎のPgainとDgainはソースコードの先頭付近に固定値で定義されています。
-ロボットがうまく制御できない場合はこの値を調整する必要があります。
-<cite>m_torque.data</cite> にセットした値は <cite>m_torqueOut.write()</cite> により実際のロボットの制御トルクとして出力されます。
-出力ポートは値をセットするだけなので入力ポートよりも簡単です。</p>
+<p>Computation of joint torques is added to onExecute(). After reading joint angles, joint torques are computed and stored to m_torque.data[i]. In this tutorial, joint torques are computed by simple PD control. Position gains and derivative gains are defined at the top of the source code. If we can&#8217;t control joints property, we need to adjust those values. Values stored in <cite>m_torque.data</cite>&#8221; are output by calling <cite>m_torqueOut.write()</cite>.</p>
 <p>これらのソースコードは 「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotTorqueControllerRTC.cpp」と 「samples/tutorials/rtc/RobotTorqueControllerRTC.h」に保存されています。</p>
 </div>
 <div class="section" id="setup-of-the-controller">
@@ -389,19 +382,18 @@ onActivated()では初期値の設定も行っています。</p>
 <p>ロボットの関節の制御を行うRTコンポーネントの実行周期に合わせて、ロボットの動作パターンを生成するための設定を行います。RTコンポーネントは1[ms]周期で実行されるので、Choreonoidの内部フレームレートを1000に設定します。</p>
 <p>タイムバーの設定画面を開きます。</p>
 <img alt="../_images/timebar.png" src="../_images/timebar.png" />
-<p>「内部フレームレート」の項目を下記のように「1000」に設定します。</p>
+<p>Set 1000 to the value of &#8220;internal frame rate&#8221;.</p>
 <img alt="../_images/timebar_config.png" src="../_images/timebar_config.png" />
-<p>このフレームレートは1秒間に何回実行するかを表しています。
-これが1000で1ミリ秒の間隔となり、100で10ミリ秒間隔となります。</p>
+<p>このフレームレートは1秒間に何回実行するかを表しています。 これが1000で1ミリ秒の間隔となり、100で10ミリ秒間隔となります。</p>
 </div>
 <div class="section" id="create-a-pose-sequence-item">
 <h2>ポーズ列の追加<a class="headerlink" href="#create-a-pose-sequence-item" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>まずアイテムビューで「JVRC」を選択します。
 次に、「メニュー」の「ファイル」「新規」より「ポーズ列」を選択し「SampleMotion」という名前で追加します。</p>
 <img alt="../_images/motion.png" src="../_images/motion.png" />
-<p>次に、「表示」の「ビューの表示」から「ポーズロール」を選択します。次の画面が表示されるはずです。</p>
+<p>Then choose &#8220;Pose roll&#8221; followed by &#8220;Display&#8221;, &#8220;Display View&#8221; menus. You will see a window as follows.</p>
 <img alt="../_images/pose_role.png" src="../_images/pose_role.png" />
-<p>基準の姿勢を作るため、アイテムビューで「JVRC」を選択し、ツールバーにある「選択ボディを初期姿勢に」のボタンを押します。</p>
+<p>Choose &#8220;JVRC&#8221; in the item view and Press &#8220;initial pose&#8221; button on the tool bar to make the robot to be in the initial posture.</p>
 <img alt="../_images/pose_toolbar.png" src="../_images/pose_toolbar.png" />
 <p>ポーズロールにおいて、1.0 を選択して「挿入」を押します。
 同様に 2.0, 3.0, 4.0 を選択して「挿入」を押します。</p>
@@ -414,7 +406,7 @@ onActivated()では初期値の設定も行っています。</p>
 <p>モーションはツールバーのボタンで手動で生成しなくても、キーフレームの更新時に自動生成することができます。
 これを有効にするにはツールバーの「自動更新モード」のボタンをオンにしてください。</p>
 <img alt="../_images/motion_toolbar2.png" src="../_images/motion_toolbar2.png" />
-<p>SampleMotion の子供に motion があるので、これを選択し名前を付けて保存ボタンを押します。</p>
+<p>You can find a &#8220;motion&#8221; item as a child of &#8220;SampleMotion&#8221; item. Select this item and save its contents by choosing &#8220;Save as&#8221; menu.</p>
 <img alt="../_images/item_motion.png" src="../_images/item_motion.png" />
 <p>「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに「RobotMotion.yaml」というファイルで保存します。</p>
 </div>

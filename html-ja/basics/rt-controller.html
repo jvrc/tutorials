@@ -126,15 +126,15 @@
             
   <div class="section" id="connecting-a-rt-component">
 <h1>RTコンポーネントのコントローラの接続<a class="headerlink" href="#connecting-a-rt-component" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>ここではJVRC-1のモデルにRTコンポーネントのコントローラを接続し、ロボットの関節角度を取得できるようにします。</p>
+<p>This section explains how to connect Choreonoid and a RT component by developing an example component which read joint angles.</p>
 <div class="section" id="open-a-project-file">
 <h2>プロジェクトを開く<a class="headerlink" href="#open-a-project-file" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>「メニュー」の「プロジェクトの読み込み」からJVRC-1用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。</p>
+<p>Open a project file by choosing &#8220;Open a project file&#8221; menu of &#8220;File&#8221; menu.The file name is samples/tutorials/cnoid/sample1.cnoid.</p>
 </div>
 <div class="section" id="add-a-controller">
 <h2>コントローラの追加<a class="headerlink" href="#add-a-controller" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>まずアイテムビューで「JVRC-1」を選択します。
-次に、「メニュー」の「ファイル」「新規」より「BodyRTC」を選択し「BodyRTC」という名前で追加します。</p>
+<p>Select &#8220;JVRC&#8221; first in the item view.
+Then create a BodyRTC item by choosing &#8220;BodyRTC&#8221; menu followed by &#8220;File&#8221;, &#8220;New&#8221; menus.</p>
 </div>
 <div class="section" id="source-code-of-a-controller">
 <h2>コントローラのソースコード<a class="headerlink" href="#source-code-of-a-controller" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -180,11 +180,8 @@ extern &quot;C&quot;
 #endif
 </pre></div>
 </div>
-<p><cite>RTC::TimedDoubleSeq</cite> というのは、時刻情報とdouble型の実際の値を持つOpenRTM固有の複合型です。
-SeqはOpenRTMにおける配列型のように扱います。
-OpenRTMにおけるdouble[]型と考えておけばよいでしょう。</p>
-<p><cite>RTC::InPort&lt;RTC::TimedDoubleSeq&gt;</cite> はRTCの入力ポートを表す型であり、入力ポートを操作するにはこれを利用します。
-m_angleは入力ポートから関節角度を受けとるための変数です。m_angleInで取得した値はm_angleで参照します。</p>
+<p><cite>RTC::TimedDoubleSeq</cite> is a type which contains time and double precision values. Seq means a sequence of values just like double[].</p>
+<p><cite>RTC::InPort&lt;RTC::TimedDoubleSeq&gt;</cite> はRTCの入力ポートを表す型であり、入力ポートを操作するにはこれを利用します。 m_angleは入力ポートから関節角度を受けとるための変数です。m_angleInで取得した値はm_angleで参照します。</p>
 <p>コントローラのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.cppを基にしています。</p>
 <div class="highlight-python"><div class="highlight"><pre>/**
    Sample Robot motion controller for the JVRC robot model.
@@ -280,18 +277,13 @@ extern &quot;C&quot;
 </div>
 <p>RobotControllerRTCのコンストラクタで、 m_angleIn と m_angle を関連付けています。</p>
 <p>RTCの初期化時に呼ばれるonInitialize()で、m_angleInをRTCの入力ポートqと関連づけています。</p>
-<p>onExecute()はRTCの実行中に定期的に呼ばれます。ここでは関節角度を取得し標準出力に表示する処理を行っています。
-m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。
-onExecute()の実行時にはデータが到着しているかどうかが分からないので、ここでチェックしています。新しいデータが来ていた場合にはm_angleIn.read()でデータを読み込みます。読み込んだデータは自動的にm_angleに格納され、m_angle.dataとして取得できます。
-m_angle.dataは各関節毎に配列の値となっています。</p>
+<p>onExecute()はRTCの実行中に定期的に呼ばれます。ここでは関節角度を取得し標準出力に表示する処理を行っています。 m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。 onExecute()の実行時にはデータが到着しているかどうかが分からないので、ここでチェックしています。新しいデータが来ていた場合にはm_angleIn.read()でデータを読み込みます。読み込んだデータは自動的にm_angleに格納され、m_angle.dataとして取得できます。 m_angle.dataは各関節毎に配列の値となっています。</p>
 <p>これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotControllerRTC.cpp」と「samples/tutorials/rtc/RobotControllerRTC.h」に保存されています。</p>
 </div>
 <div class="section" id="setup-the-controller">
 <h2>コントローラの設定<a class="headerlink" href="#setup-the-controller" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>プロジェクト上でRTコンポーネント(RTC)を作成しただけでは、ロボットの制御を行うことができません。</p>
-<p>アイテムビューで「BodyRTC」を選択するとプロパティのタブ(プロパティビューと言います)にRTCの設定が表示されます。
-プロパティビューの「コントローラのモジュール名」を「RobotControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。
-さらに、プロパティビューの「自動ポート接続」を true にします。</p>
+<p>When you select BodyRTC item, its properties are displayed in the tab which is called &#8220;property view&#8221;. Set &#8220;RobotControllerRTC&#8221; to the value of &#8220;Controller module name&#8221;. This corresponds to the filename of the RT component. Set true to the value of &#8220;Automatic port connection&#8221;.</p>
 <img alt="../_images/property_rtc.png" src="../_images/property_rtc.png" />
 </div>
 <div class="section" id="build-the-controller">
@@ -305,12 +297,11 @@ m_angle.dataは各関節毎に配列の値となっています。</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo make install DESTDIR=/usr
 </pre></div>
 </div>
-<p>Choreonoidでは読み込むRTCコントローラのモジュールはChoreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。&#8221;make install&#8221;ではこの処理を自動的に行ってくれます。</p>
+<p>In order to use RT components from Choreonoid, we need to put them in the shared directory of Choreonoid(/usr/lib/choreonoid-1.5/rtc). &#8220;make install&#8221; command does this automatically.</p>
 </div>
 <div class="section" id="run-simulation">
 <h2>シミュレーションを実行する<a class="headerlink" href="#run-simulation" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>シミュレーションツールバーの「シミュレーション開始ボタン」を押します。
-シミュレーションを実行するとchoreonoidを実行している端末に関節角度(m_angle)の値が表示されるはずです。</p>
+<p>Press &#8220;start simulation&#8221; button on the simulation tool bar. While the simulation is running, joint angles stored in m_angle are displayed in the terminal you launched Choreonoid.</p>
 <img alt="../_images/output.png" src="../_images/output.png" />
 <p>このようにして得られる関節角度を基にトルクをロボットに入力することでロボットの制御を行うことができます。この後のサンプルで詳しく解説します。</p>
 </div>

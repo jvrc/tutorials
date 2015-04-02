@@ -2,8 +2,8 @@ Joint control using a RT component
 ==================================
 
 
-ここでは、トルク指令を出力するようにRTコンポーネントを拡張し、ロボットが直立を
-維持できるようにします。
+This section extentds the RT component developed in the previous section to keep the robot standing position.
+
 
 Open a project file
 -------------------
@@ -244,20 +244,14 @@ Source code of a controller
        }
    };
 
-出力ポートに関する設定は、入力ポートの場合と関数名が異なるだけでよく似ています。
+The procedure to add an output port is similar to adding an input port.
 
 onActivated() のときの処理に注目しましょう。この関数はRTCが有効化された際に一度だけ呼ばれます。
 ここで、Choreonoidの共有ディレクトリからRobotPattern.yamlを読み出しています。
 これはロボットの全関節角度の軌道を記述した動作パターンファイルです。 `motion.loadStandardYAMLformat()` によりモーションデータに変換します。
 onActivated()では初期値の設定も行っています。
 
-onExecute()ではトルクの計算と出力の処理が追加されました。
-関節角度を読み込む部分のコードはこれまでと同じですが、 `m_torque.data[i]` に計算したトルクの値を代入しています。
-ここでは簡単なPD制御によりトルクの値を求めています。
-各関節毎のPgainとDgainはソースコードの先頭付近に固定値で定義されています。
-ロボットがうまく制御できない場合はこの値を調整する必要があります。
-`m_torque.data` にセットした値は `m_torqueOut.write()` により実際のロボットの制御トルクとして出力されます。
-出力ポートは値をセットするだけなので入力ポートよりも簡単です。
+Computation of joint torques is added to onExecute(). After reading joint angles, joint torques are computed and stored to m_torque.data[i]. In this tutorial, joint torques are computed by simple PD control. Position gains and derivative gains are defined at the top of the source code. If we can't control joints property, we need to adjust those values. Values stored in `m_torque.data`" are output by calling `m_torqueOut.write()`.
 
 これらのソースコードは 「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotTorqueControllerRTC.cpp」と 「samples/tutorials/rtc/RobotTorqueControllerRTC.h」に保存されています。
 
@@ -274,16 +268,15 @@ Create a pose sequence
 
 ロボットの関節の制御を行うRTコンポーネントの実行周期に合わせて、ロボットの動作パターンを生成するための設定を行います。RTコンポーネントは1[ms]周期で実行されるので、Choreonoidの内部フレームレートを1000に設定します。
 
-タイムバーの設定画面を開きます。
+Open a configuration panel of the time bar.
 
 .. image:: images/timebar.png
 
-「内部フレームレート」の項目を下記のように「1000」に設定します。
+Set 1000 to the value of \"internal frame rate\".
 
 .. image:: images/timebar_config.png
 
-このフレームレートは1秒間に何回実行するかを表しています。
-これが1000で1ミリ秒の間隔となり、100で10ミリ秒間隔となります。
+This frame rate defines how many times computation is executed. If its value is 1000, computation is done every 1[ms] and if its value is 100, computation is done every 10[ms].
 
 Create a pose sequence item
 ---------------------------
@@ -293,22 +286,22 @@ Create a pose sequence item
 
 .. image:: images/motion.png
 
-次に、「表示」の「ビューの表示」から「ポーズロール」を選択します。次の画面が表示されるはずです。
+Then choose \"Pose roll\" followed by \"Display\", \"Display View\" menus. You will see a window as follows.
 
 .. image:: images/pose_role.png
 
-基準の姿勢を作るため、アイテムビューで「JVRC」を選択し、ツールバーにある「選択ボディを初期姿勢に」のボタンを押します。
+Choose \"JVRC\" in the item view and Press \"initial pose\" button on the tool bar to make the robot to be in the initial posture.
 
 .. image:: images/pose_toolbar.png
 
 ポーズロールにおいて、1.0 を選択して「挿入」を押します。
 同様に 2.0, 3.0, 4.0 を選択して「挿入」を押します。
 
-ポーズロールは次のようになるはずです。
+The pose roll should be as follows.
 
 .. image:: images/pose_role2.png
 
-あとはこれを繰り返し、15.0まで生成します。
+Repeat this procedure until length of the motion becomes 15[s].
 
 ポーズロールで作成したのはキーフレームと呼びます。これより、プログラムで使用するモーションを生成させます。
 ツールバーから「ボディモーションの生成」ボタンを押します。
@@ -320,7 +313,7 @@ Create a pose sequence item
 
 .. image:: images/motion_toolbar2.png
 
-SampleMotion の子供に motion があるので、これを選択し名前を付けて保存ボタンを押します。
+You can find a \"motion\" item as a child of \"SampleMotion\" item. Select this item and save its contents by choosing \"Save as\" menu.
 
 .. image:: images/item_motion.png
 
@@ -353,7 +346,7 @@ Run simulation
 A sample project used in this tutorial
 --------------------------------------
 
-このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウン ロードしたリポジトリの「samples/tutorials/cnoid/sample3.cnoid」に保存されています。
+You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample3.cnoid.
 
 .. toctree::
    :maxdepth: 2

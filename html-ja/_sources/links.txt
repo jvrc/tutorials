@@ -28,6 +28,7 @@ Choreonoid plugin
 Other software
 --------------
 * RTM based control software development environment "hrpsys-base"
+
  * Manual
 
    http://fkanehiro.github.com/hrpsys-manual/html/index.html
@@ -37,6 +38,8 @@ Other software
  * Source
 
    http://github.com/fkanehiro/hrpsys-base
+
 * Simulation model file convertor "simtrans"
 
   http://fkanehiro.github.com/simtrans/html/index.html
+

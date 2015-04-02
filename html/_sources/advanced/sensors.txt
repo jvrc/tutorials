@@ -480,9 +480,9 @@ Enable cameras and range sensors
 Run simulation
 --------------
 
-シミュレーションツールバーの「シミュレーション開始ボタン」を押します。
-シミュレーションを実行するとchoreonoidを実行している端末にセンサの値が出力されています。
-「RTコンポーネントのコントローラの接続」のときとは違い、関節角度(m_angle)だけではなく、 加速度センサ(m_gsensor)、ジャイロセンサ(m_gyrometer)、……の値が表示されるはずです。
+Press \"Start simulation\" button on the simulation tool bar.
+While simulation is running, sensor outputs are displayed in the terminal you launched Choreonoid.
+In addition to joint angles(m_angle), you can see outputs from accelerometers(m_gsensor), gyrometers(m_gyrometer) and other sensors.
 
 .. image:: images/output2.png
 
@@ -490,7 +490,7 @@ Run simulation
 A sample project used in this tutorial
 --------------------------------------
 
-このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample4.cnoid」に保存されています。
+You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample3.cnoid.
 
 .. toctree::
    :maxdepth: 2

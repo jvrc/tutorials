@@ -12,122 +12,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../../basics/howto-exec-simulation.rst:2
-msgid "シミュレーションの実行"
-msgstr ""
+msgid "Creating a simulation project"
+msgstr "シミュレーションの実行"
 
 #: ../../basics/howto-exec-simulation.rst:8
-msgid "Choreonoidの実行"
-msgstr ""
+msgid "Launch Choreonoid"
+msgstr "Choreonoidの実行"
 
 #: ../../basics/howto-exec-simulation.rst:10
-msgid "まずはChoreonoidを実行します。端末を開いて以下のコマンドを実行してください。 ::"
-msgstr ""
+msgid "Let's launch Choreonoid first. Type the following command in gnome-terminal. ::"
+msgstr "まずはChoreonoidを実行します。端末を開いて以下のコマンドを実行してください。 ::"
 
 #: ../../basics/howto-exec-simulation.rst:14
-msgid "以下のような画面が表示されるはずです。"
-msgstr ""
+msgid "You will see a window as follows."
+msgstr "以下のような画面が表示されるはずです。"
 
 #: ../../basics/howto-exec-simulation.rst:19
-msgid "モデルを開く"
-msgstr ""
+msgid "Open a model file"
+msgstr "モデルを開く"
 
 #: ../../basics/howto-exec-simulation.rst:21
-msgid "まず、「メニュー」の「ファイル」「新規」より「ワールド」を選択し、ワールドアイテム「World」を追加します。"
-msgstr ""
+msgid "Create a world item named \"World\" first by selecting "File", "New" and "World" menus."
+msgstr "まず、「メニュー」の「ファイル」「新規」より「ワールド」を選択し、ワールドアイテム「World」を追加します。"
 
 #: ../../basics/howto-exec-simulation.rst:32
-msgid "床を追加する"
-msgstr ""
+msgid "Add a model of the floor"
+msgstr "床を追加する"
 
 #: ../../basics/howto-exec-simulation.rst:34
-msgid "シミュレーションを行うために、床(地面)を追加します。"
-msgstr ""
+msgid "To prevent the robot from falling, let's add a model of the ground."
+msgstr "シミュレーションを行うために、床(地面)を追加します。"
 
 #: ../../basics/howto-exec-simulation.rst:36
-msgid ""
+msgid "The window of Choreonoid has a tab named \"item\". This tab is called \"item view\". Select \"World\" item first in the item view. Then choose \"OpenHRP model file\" following \"File\",\"Open\" menus and select the model file for the floor. Its filename is \"/usr/share/choreonoid-1.5/model/misc/floor.wrl\"."
+msgstr ""
 "Choreonoid の画面にはアイテムと表示されている領域がありますが、これをアイテムビューと呼びます。 "
 "まずアイテムビューで「World」を選択します。 "
 "次に、「メニュー」の「ファイル」「読み込み」より「OpenHRPモデルファイル」を選択し、床のモデルファイルを開きます。ファイル名は「/usr/share/choreonoid-1.5/model/misc/floor.wrl」です。"
-msgstr ""
 
 #: ../../basics/howto-exec-simulation.rst:41
-msgid "シミュレータアイテムを追加する"
-msgstr ""
+msgid "Add a simulator item"
+msgstr "シミュレータアイテムを追加する"
 
 #: ../../basics/howto-exec-simulation.rst:43
-msgid ""
+msgid "Choose \"World\" item in the item view. Then create a \"AISTsimulator\" item by following \"File\", \"New\" menus."
+msgstr ""
 "アイテムビューで「World」を選択します。 "
 "次に、「メニュー」の「ファイル」「新規」より「AISTシミュレータ」を選択し、AISTシミュレータ「AISTSimulator」を追加します。"
-msgstr ""
 
 #: ../../basics/howto-exec-simulation.rst:49
 #: ../../basics/rt-controller.rst:201 ../../basics/torque.rst:344
-msgid "シミュレーションを実行する"
-msgstr ""
+msgid "Run simulation"
+msgstr "シミュレーションを実行する"
 
 #: ../../basics/howto-exec-simulation.rst:51
-msgid "次に、シミュレーションツールバーの「シミュレーション開始ボタン」を押します。 これにより、画面上でモデルのシミュレーションが開始されます。"
-msgstr ""
+msgid "Next press \"Start simulation\" button in the simulation tool bar. Simulation will start."
+msgstr "次に、シミュレーションツールバーの「シミュレーション開始ボタン」を押します。 これにより、画面上でモデルのシミュレーションが開始されます。"
 
 #: ../../basics/howto-exec-simulation.rst:55
-msgid ""
-"シミュレーションを実行すると下の画像のようにロボットはすぐに崩れ落ちてしまうはずです。 "
-"再生スライダーを動かして詳細に確認すると、0.2秒の段階で足が崩れ始め、1.3秒時点で完全に崩れてしまいます。"
+msgid "Just after starting simulation, the robot falls down."
 msgstr ""
+"シミュレーションを実行すると下の画像のようにロボットはすぐに崩れ落ちてしまうはずです。 "
 
 #: ../../basics/howto-exec-simulation.rst:64
-msgid "プロジェクトの保存"
-msgstr ""
+msgid "Save a project"
+msgstr "プロジェクトの保存"
 
 #: ../../basics/howto-exec-simulation.rst:66
-msgid ""
-"シミュレーションの実行が終わったら、プロジェクトを保存しておきましょう。「ファイル」の「名前を付けてプロジェクトを保存」を選択し、適当なファイル名を付けて保存します。"
+msgid "After running simulation, let's save the project. Choose \"Save as\" menu in \"File\" menu and name the project file."
 msgstr ""
+"シミュレーションの実行が終わったら、プロジェクトを保存しておきましょう。「ファイル」の「名前を付けてプロジェクトを保存」を選択し、適当なファイル名を付けて保存します。"
 
 #: ../../basics/howto-exec-simulation.rst:69
 #: ../../basics/rt-controller.rst:211 ../../basics/torque.rst:354
-msgid "サンプルプロジェクトについて"
-msgstr ""
-
-#: ../../basics/howto-exec-simulation.rst:71
-msgid ""
-"このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/samples/sample1.cnoid」に保存されています。"
-msgstr ""
+msgid "A sample project used in this tutorial"
+msgstr "サンプルプロジェクトについて"
 
 #: ../../basics/index.rst:2
-msgid "シミュレーションの基本"
-msgstr ""
+msgid "Basic simulations"
+msgstr "シミュレーションの基本"
 
 #: ../../basics/rt-controller.rst:2
-msgid "RTコンポーネントのコントローラの接続"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:5
-msgid "ここではJVRCモデルにRTコンポーネントのコントローラを接続し、ロボットの関節角度を取得できるようにします。"
-msgstr ""
+msgid "Connecting a RT component"
+msgstr "RTコンポーネントのコントローラの接続"
 
 #: ../../basics/rt-controller.rst:8 ../../basics/torque.rst:9
-msgid "プロジェクトを開く"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:10
-msgid ""
-"「メニュー」の「プロジェクトの読み込み」からJVRCモデルファイル用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/samples/sample1.cnoid」です。"
-msgstr ""
+msgid "Open a project file"
+msgstr "プロジェクトを開く"
 
 #: ../../basics/rt-controller.rst:13
-msgid "コントローラの追加"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:15
-msgid ""
-"まずアイテムビューで「JVRC」を選択します。 "
-"次に、「メニュー」の「ファイル」「新規」より「BodyRTC」を選択し「BodyRTC」という名前で追加します。"
-msgstr ""
+msgid "Add a controller"
+msgstr "コントローラの追加"
 
 #: ../../basics/rt-controller.rst:19 ../../basics/torque.rst:16
-msgid "コントローラのソースコード"
-msgstr ""
+msgid "Source code of a controller"
+msgstr "コントローラのソースコード"
 
 #: ../../basics/rt-controller.rst:21 ../../basics/torque.rst:18
 msgid ""
@@ -169,14 +148,9 @@ msgid ""
 " m_angle.dataは各関節毎に配列の値となっています。"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:172
-msgid ""
-"これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotControllerRTC.cpp」と「model/robot/RTC/RobotControllerRTC.h」に保存されています。"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:175 ../../basics/torque.rst:265
-msgid "コントローラの設定"
-msgstr ""
+#: ../../basics/rt-controller.rst:175
+msgid "Setup the controller"
+msgstr "コントローラの設定"
 
 #: ../../basics/rt-controller.rst:177
 msgid "プロジェクト上でRTコンポーネント(RTC)を作成しただけでは、ロボットの制御を行うことができません。"
@@ -190,18 +164,8 @@ msgid ""
 msgstr ""
 
 #: ../../basics/rt-controller.rst:186 ../../basics/torque.rst:330
-msgid "コントローラのビルド"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:188 ../../basics/torque.rst:332
-msgid ""
-"「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに移動し、次のコマンドを実行します。 ::"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:192
-msgid ""
-"これにより、「model/robot/RTC/」ディレクトリに「RobotControllerRTC.so」というファイルが作成されるはずです。"
-msgstr ""
+msgid "Build the controller"
+msgstr "コントローラのビルド"
 
 #: ../../basics/rt-controller.rst:194 ../../basics/torque.rst:338
 msgid "その後、次のコマンドを実行します。 ::"
@@ -223,24 +187,12 @@ msgstr ""
 msgid "このようにして得られる関節角度を基にトルクをロボットに入力することでロボットの制御を行うことができます。この後のサンプルで詳しく解説します。"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:213
-msgid ""
-"このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/samples/sample2.cnoid」に保存されています。"
-msgstr ""
-
 #: ../../basics/torque.rst:2
-msgid "RTコンポーネントにおけるトルク指令の入力"
-msgstr ""
+msgid "Joint control using a RT component"
+msgstr "RTコンポーネントにおけるトルク指令の入力"
 
 #: ../../basics/torque.rst:5
 msgid "ここでは、トルク指令を出力するようにRTコンポーネントを拡張し、ロボットが直立を 維持できるようにします。"
-msgstr ""
-
-#: ../../basics/torque.rst:11
-msgid ""
-"「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
-"トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス "
-"トール」でダウンロードしたリポジトリの「model/robot/samples/sample2.cnoid」です。"
 msgstr ""
 
 #: ../../basics/torque.rst:72
@@ -262,13 +214,6 @@ msgid ""
 "出力ポートは値をセットするだけなので入力ポートよりも簡単です。"
 msgstr ""
 
-#: ../../basics/torque.rst:262
-msgid ""
-"これらのソースコードは "
-"「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotTorqueControllerRTC.cpp」と"
-" 「model/robot/RTC/RobotTorqueControllerRTC.h」に保存されています。"
-msgstr ""
-
 #: ../../basics/torque.rst:267
 msgid ""
 "アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotTorqueControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。"
@@ -288,8 +233,8 @@ msgid "このフレームレートは1秒間に何回実行するかを表して
 msgstr ""
 
 #: ../../basics/torque.rst:289
-msgid "ポーズ列の追加"
-msgstr ""
+msgid "Create a pose sequence item"
+msgstr "ポーズ列の追加"
 
 #: ../../basics/torque.rst:291
 msgid ""
@@ -333,52 +278,23 @@ msgstr ""
 msgid "SampleMotion の子供に motion があるので、これを選択し名前を付けて保存ボタンを押します。"
 msgstr ""
 
-#: ../../basics/torque.rst:327
-msgid ""
-"「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに「RobotMotion.yaml」というファイルで保存します。"
-msgstr ""
-
-#: ../../basics/torque.rst:336
-msgid ""
-"これにより、「model/robot/RTC/」ディレクトリに「RobotTorqueControllerRTC.so」というファイルが作成されるはずです。"
-msgstr ""
-
-#: ../../basics/torque.rst:356
-msgid ""
-"このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウン "
-"ロードしたリポジトリの「model/robot/samples/sample3.cnoid」に保存されています。"
-msgstr ""
-
-#: ../../basics/torque.rst:346
-msgid ""
-"シミュレーションツールバーの「シミュレーション開始ボタン」を押します。 "
-"シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、シミュレーション時間で15秒間の間立ったままの状態になったはずです。 "
-"これは、JVRCの制御を行うためのモーションデータが15秒ぶんしか用意していないためです。"
-msgstr ""
-
 #: ../../basics/index.rst:4
-msgid "この章ではJVRCモデルファイルを用いた基本的なシミュレーションの実行方法について解説します。"
-msgstr ""
+msgid "This chapter explains how to setup the simulation world and run basic simulations using a JVRC-1 model as an example."
+msgstr "この章ではJVRCモデルファイルを用いた基本的なシミュレーションの実行方法について解説します。"
 
 #: ../../basics/howto-exec-simulation.rst:5
-msgid "この節ではサンプルシミュレーションの実行方法について解説します。"
-msgstr ""
-
-#: ../../basics/howto-exec-simulation.rst:23
-msgid ""
-"そのまま「メニュー」の「ファイル」「読み込み」より「OpenHRPモデルファイル」を選択し、JVRC-"
-"1のモデルファイルを読み込みます。ファイル名はモデルファイルを展開したディレクトリのmain.wrlです。"
-msgstr ""
+msgid "This section explains how to create and run a simple simulation."
+msgstr "この節ではサンプルシミュレーションの実行方法について解説します。"
 
 #: ../../basics/howto-exec-simulation.rst:25
-msgid ""
+msgid "When you check the checkbox named \"JVRC\", JVRC-1 will be displayed in the scene view as follows."
+msgstr ""
 "モデルを読み込んだだけではロボットは表示されません。 「アイテム」と書かれたリストのJVRC-1にチェックを入れてください。 "
 "すると、以下のようにロボットが表示されるはずです。"
-msgstr ""
 
 #: ../../basics/howto-exec-simulation.rst:60
-msgid "これは全く関節の制御をしていないためです。 これからロボットを制御するプログラムを記述し、ロボットが崩れ落ちないようにしていきます。"
-msgstr ""
+msgid "Because all joints are not controlled but free. We will control joints in the next section to keep the standing position."
+msgstr "これは全く関節の制御をしていないためです。 これからロボットを制御するプログラムを記述し、ロボットが崩れ落ちないようにしていきます。"
 
 #: ../../basics/torque.rst:249
 msgid ""
@@ -389,13 +305,231 @@ msgid ""
 msgstr ""
 
 #: ../../basics/torque.rst:273
-msgid "シミュレーション用動作パターンの作成"
-msgstr ""
+msgid "Create a pose sequence"
+msgstr "シミュレーション用動作パターンの作成"
 
 #: ../../basics/torque.rst:275
 msgid ""
 "ロボットの関節の制御を行うRTコンポーネントの実行周期に合わせて、ロボットの動作パターンを生成するための設定を行います。RTコンポーネントは1[ms]周期で実行されるので、Choreonoidの内部フレームレートを1000に設定します。"
 msgstr ""
+
+#: ../../basics/rt-controller.rst:5
+msgid "ここではJVRC-1のモデルにRTコンポーネントのコントローラを接続し、ロボットの関節角度を取得できるようにします。"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:15
+msgid ""
+"まずアイテムビューで「JVRC-1」を選択します。 "
+"次に、「メニュー」の「ファイル」「新規」より「BodyRTC」を選択し「BodyRTC」という名前で追加します。"
+msgstr ""
+
+#: ../../basics/torque.rst:346
+msgid ""
+"シミュレーションツールバーの「シミュレーション開始ボタン」を押します。 "
+"シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、シミュレーション時間で15秒間の間立ったままの状態になったはずです。 "
+"これは、JVRCの制御を行うためのモーションデータが15秒分しか用意していないためです。"
+msgstr ""
+
+#: ../../basics/howto-exec-simulation.rst:23
+msgid "Then load a model file of JVRC-1 by choosing \"OpenHRP model file\" followed by \"File\", \"Open\" menus. The filename is samles/tutorials/JVRC-1/main.wrl."
+msgstr ""
+"そのまま「メニュー」の「ファイル」「読み込み」より「OpenHRPモデルファイル」を選択し、JVRC-"
+"1のモデルファイルを読み込みます。ファイル名はsamples/tutorials/JVRC-1/main.wrlです。"
+
+#: ../../basics/howto-exec-simulation.rst:71
+msgid "You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample1.cnoid."
+msgstr ""
+"このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」に保存されています。"
+
+#: ../../basics/rt-controller.rst:10
+msgid ""
+"「メニュー」の「プロジェクトの読み込み」からJVRC-"
+"1用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:172
+msgid ""
+"これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotControllerRTC.cpp」と「samples/tutorials/rtc/RobotControllerRTC.h」に保存されています。"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:188 ../../basics/torque.rst:332
+msgid ""
+"「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。"
+" ::"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:192
+msgid ""
+"これにより、「samples/tutorials/rtc/」ディレクトリに「RobotControllerRTC.so」というファイルが作成されるはずです。"
+msgstr ""
+
+#: ../../basics/torque.rst:262
+msgid ""
+"これらのソースコードは "
+"「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotTorqueControllerRTC.cpp」と"
+" 「samples/tutorials/rtc/RobotTorqueControllerRTC.h」に保存されています。"
+msgstr ""
+
+#: ../../basics/torque.rst:327
+msgid ""
+"「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに「RobotMotion.yaml」というファイルで保存します。"
+msgstr ""
+
+#: ../../basics/torque.rst:336
+msgid ""
+"これにより、「samples/tutorials/rtc/」ディレクトリに「RobotTorqueControllerRTC.so」というファイルが作成されるはずです。"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:213
+msgid ""
+"このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample2.cnoid」に保存されています。"
+msgstr ""
+
+#: ../../basics/torque.rst:11
+msgid ""
+"「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
+"トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス "
+"トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample2.cnoid」です。"
+msgstr ""
+
+#: ../../basics/torque.rst:356
+msgid ""
+"このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウン "
+"ロードしたリポジトリの「samples/tutorials/cnoid/sample3.cnoid」に保存されています。"
+msgstr ""
+
+#: ../../basics/torque.rst:265
+msgid "Setup of the controller"
+msgstr ""
+
+#~ msgid "シミュレーションを実行する"
+#~ msgstr ""
+
+#~ msgid "サンプルプロジェクトについて"
+#~ msgstr ""
+
+#~ msgid "プロジェクトを開く"
+#~ msgstr ""
+
+#~ msgid "コントローラのソースコード"
+#~ msgstr ""
+
+#~ msgid "コントローラの設定"
+#~ msgstr ""
+
+#~ msgid "コントローラのビルド"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample2.cnoid」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
+#~ "トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス "
+#~ "トール」でダウンロードしたリポジトリの「samples/cnoid/sample2.cnoid」です。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウン "
+#~ "ロードしたリポジトリの「samples/cnoid/sample3.cnoid」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotControllerRTC.cpp」と「model/robot/RTC/RobotControllerRTC.h」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに移動し、次のコマンドを実行します。 ::"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "これにより、「model/robot/RTC/」ディレクトリに「RobotControllerRTC.so」というファイルが作成されるはずです。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "これらのソースコードは "
+#~ "「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotTorqueControllerRTC.cpp」と"
+#~ " 「model/robot/RTC/RobotTorqueControllerRTC.h」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに「RobotMotion.yaml」というファイルで保存します。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "これにより、「model/robot/RTC/」ディレクトリに「RobotTorqueControllerRTC.so」というファイルが作成されるはずです。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "そのまま「メニュー」の「ファイル」「読み込み」より「OpenHRPモデルファイル」を選択し、JVRC-"
+#~ "1のモデルファイルを読み込みます。ファイル名はモデルファイルを展開したディレクトリのmain.wrlです。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample1.cnoid」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」からJVRC-"
+#~ "1用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample1.cnoid」です。"
+#~ msgstr ""
+
+#~ msgid "ここではJVRCモデルにRTコンポーネントのコントローラを接続し、ロボットの関節角度を取得できるようにします。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "まずアイテムビューで「JVRC」を選択します。 "
+#~ "次に、「メニュー」の「ファイル」「新規」より「BodyRTC」を選択し「BodyRTC」という名前で追加します。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "シミュレーションツールバーの「シミュレーション開始ボタン」を押します。 "
+#~ "シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、シミュレーション時間で15秒間の間立ったままの状態になったはずです。 "
+#~ "これは、JVRCの制御を行うためのモーションデータが15秒ぶんしか用意していないためです。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」からJVRCモデルファイル用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample1.cnoid」です。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample2.cnoid」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
+#~ "トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス "
+#~ "トール」でダウンロードしたリポジトリの「samples/cnoid/sample2.cnoid」です。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウン "
+#~ "ロードしたリポジトリの「samples/cnoid/sample3.cnoid」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/samples/sample1.cnoid」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」からJVRCモデルファイル用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/samples/sample1.cnoid」です。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/samples/sample2.cnoid」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
+#~ "トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス "
+#~ "トール」でダウンロードしたリポジトリの「model/robot/samples/sample2.cnoid」です。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウン "
+#~ "ロードしたリポジトリの「model/robot/samples/sample3.cnoid」に保存されています。"
+#~ msgstr ""
 
 #~ msgid ""
 #~ "onActivated() のときの処理に注目しましょう。この関数はRTCが有効化された際に一度だけ呼ばれます。 "

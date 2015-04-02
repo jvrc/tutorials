@@ -1,19 +1,19 @@
-センサの接続
-============
+Connecting sensors
+==================
 
 
 ここではJVRCモデルに搭載された各種センサのデータを取得できるようにします。
 
-プロジェクトを開く
-------------------
-
-「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス トール」でダウンロードしたリポジトリの「samples/cnoid/sample1.cnoid」です。
-
-
-JVRC モデルのセンサ
+Open a project file
 -------------------
 
-JVRC モデルに搭載されているセンサは、テキストエディタでリポジトリの「model/robot/main.wrl」ファイルを開くと確認することができます。
+「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。
+
+
+Sensors defined in JVRC-1 model
+-------------------------------
+
+JVRC-1 モデルに搭載されているセンサは、テキストエディタで「samples/tutorials/JVRC-1/main.wrl」ファイルを開くと確認することができます。
 モデルファイルを開くと次のように記述されており、加速度センサ gsensor とジャイロセンサ gyrometer が搭載されていることがわかります。 ::
 
    DEF JVRC Humanoid {
@@ -105,11 +105,11 @@ JVRC モデルに搭載されているセンサは、テキストエディタで
 
 http://www.openrtp.jp/openhrp3/jp/controller_bridge.html
 
-加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の関節角度の二回微分(加速度)が格納されています。
+加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の並進加速度が格納されています。
 
-ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルのジャイロ(角速度)が格納されています。
+ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルの角速度が格納されています。
 
-力センサの値は要素数24のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。
+力センサの値は要素数6のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。
 
 カメラの値はImg::TimedCameraImage型になります。
 
@@ -169,8 +169,8 @@ width x heightの各ピクセルの色情報が1ピクセル当たりformatと�
 距離の値は何かに干渉が発生する限り出力されますが、干渉がない場合は0になります。 ::
 
 
-コントローラのソースコード
---------------------------
+Source code of a controller
+---------------------------
 
 コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。 ::
 
@@ -401,15 +401,15 @@ width x heightの各ピクセルの色情報が1ピクセル当たりformatと�
 行っている処理については、「RTコンポーネントのコントローラの接続」とほとんど同じで、センサが増えただけです。
 ただし、それぞれのセンサの型は異なるので注意してください。
 
-これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotSensorsControllerRTC.cpp」と「model/robot/RTC/RobotSensorsControllerRTC.h」に保存されています。
+これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotSensorsControllerRTC.cpp」と「samples/tutorials/rtc/RobotSensorsControllerRTC.h」に保存されています。
 
-RTCの設定ファイル
------------------
+A configuration file for RTC
+----------------------------
 
 これまではChoreonoidの自動設定の機能を用いてRTCのポートを生成していました。
 しかし、これはサンプル実行用のもので、単純なRTCのポート定義にしか使えません。
 
-今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「model/robot/RTC/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。 ::
+今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「samples/tutorials/rtc/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。 ::
 
    out-port = q:JOINT_VALUE
    out-port = gsensor:ACCELERATION_SENSOR
@@ -437,14 +437,14 @@ connectionとはRTCのポート接続の設定となります。例えば、「q
 
 http://www.openrtp.jp/openhrp3/jp/controller_bridge.html
 
-コントローラのビルド
+Build the controller
 --------------------
 
-「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに移動し、次のコマンドを実行します。 ::
+「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。 ::
 
    make
 
-これにより、「model/robot/RTC/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。
+これにより、「samples/tutorials/rtc/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。
 
 その後、次のコマンドを実行します。 ::
 
@@ -452,16 +452,16 @@ http://www.openrtp.jp/openhrp3/jp/controller_bridge.html
 
 ChoreonoidではRTCの設定ファイルはChoreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。"make install"ではこの処理を自動的に行ってくれます。
 
-コントローラの設定
-------------------
+Setup the controller
+--------------------
 
 アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotSensorsControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。
 更に、「設定モード」を「設定ファイルを使用」にし、「設定ファイル名」を「RobotSensorsJVRC.conf」とします。
 
 .. image:: images/sensor_config.png
 
-カメラ、距離センサの有効化
---------------------------
+Enable cameras and range sensors
+--------------------------------
 
 シミュレーションにおいてカメラや距離センサを有効にするため、以下の作業を行います。
 
@@ -477,8 +477,8 @@ ChoreonoidではRTCの設定ファイルはChoreonoidのインストール先の
 
 .. image:: images/vision_property.png
 
-シミュレーションを実行する
---------------------------
+Run simulation
+--------------
 
 シミュレーションツールバーの「シミュレーション開始ボタン」を押します。
 シミュレーションを実行するとchoreonoidを実行している端末にセンサの値が出力されています。
@@ -487,10 +487,10 @@ ChoreonoidではRTCの設定ファイルはChoreonoidのインストール先の
 .. image:: images/output2.png
 
 
-サンプルプロジェクトについて
-----------------------------
+A sample project used in this tutorial
+--------------------------------------
 
-このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample4.cnoid」に保存されています。
+このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample4.cnoid」に保存されています。
 
 .. toctree::
    :maxdepth: 2

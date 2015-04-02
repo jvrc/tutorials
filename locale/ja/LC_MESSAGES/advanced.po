@@ -12,39 +12,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../../advanced/index.rst:2
-msgid "シミュレーションの応用"
-msgstr ""
+msgid "Advanced simulations"
+msgstr "シミュレーションの応用"
 
 #: ../../advanced/sensors.rst:2
-msgid "センサの接続"
-msgstr ""
+msgid "Connecting sensors"
+msgstr "センサの接続"
 
 #: ../../advanced/sensors.rst:5
 msgid "ここではJVRCモデルに搭載された各種センサのデータを取得できるようにします。"
 msgstr ""
 
 #: ../../advanced/sensors.rst:8
-msgid "プロジェクトを開く"
-msgstr ""
-
-#: ../../advanced/sensors.rst:10
-msgid ""
-"「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
-"トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス "
-"トール」でダウンロードしたリポジトリの「model/robot/samples/sample1.cnoid」です。"
-msgstr ""
+msgid "Open a project file"
+msgstr "プロジェクトを開く"
 
 #: ../../advanced/sensors.rst:14
-msgid "JVRC モデルのセンサ"
-msgstr ""
-
-#: ../../advanced/sensors.rst:16
-msgid ""
-"JVRC "
-"モデルに搭載されているセンサは、テキストエディタでリポジトリの「model/robot/main.wrl」ファイルを開くと確認することができます。 "
-"モデルファイルを開くと次のように記述されており、加速度センサ gsensor とジャイロセンサ gyrometer が搭載されていることがわかります。 "
-"::"
-msgstr ""
+msgid "Sensors defined in JVRC-1 model"
+msgstr "JVRC モデルのセンサ"
 
 #: ../../advanced/sensors.rst:40
 msgid "他にも、力センサ rfsensor, lfsensorが搭載されていることが分かります。 ::"
@@ -60,18 +45,6 @@ msgstr ""
 
 #: ../../advanced/sensors.rst:106 ../../advanced/sensors.rst:438
 msgid "http://www.openrtp.jp/openhrp3/jp/controller_bridge.html"
-msgstr ""
-
-#: ../../advanced/sensors.rst:108
-msgid "加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の関節角度の二回微分(加速度)が格納されています。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:110
-msgid "ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルのジャイロ(角速度)が格納されています。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:112
-msgid "力センサの値は要素数24のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。"
 msgstr ""
 
 #: ../../advanced/sensors.rst:114
@@ -104,8 +77,8 @@ msgid ""
 msgstr ""
 
 #: ../../advanced/sensors.rst:173
-msgid "コントローラのソースコード"
-msgstr ""
+msgid "Source code of a controller"
+msgstr "コントローラのソースコード"
 
 #: ../../advanced/sensors.rst:175
 msgid ""
@@ -125,25 +98,14 @@ msgid ""
 "ただし、それぞれのセンサの型は異なるので注意してください。"
 msgstr ""
 
-#: ../../advanced/sensors.rst:404
-msgid ""
-"これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotSensorsControllerRTC.cpp」と「model/robot/RTC/RobotSensorsControllerRTC.h」に保存されています。"
-msgstr ""
-
 #: ../../advanced/sensors.rst:407
-msgid "RTCの設定ファイル"
-msgstr ""
+msgid "A configuration file for RTC"
+msgstr "RTCの設定ファイル"
 
 #: ../../advanced/sensors.rst:409
 msgid ""
 "これまではChoreonoidの自動設定の機能を用いてRTCのポートを生成していました。 "
 "しかし、これはサンプル実行用のもので、単純なRTCのポート定義にしか使えません。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:412
-msgid ""
-"今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「model/robot/RTC/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。"
-" ::"
 msgstr ""
 
 #: ../../advanced/sensors.rst:427
@@ -169,18 +131,8 @@ msgid "この設定ファイルの仕様は OpenHRP3 をベースにしている
 msgstr ""
 
 #: ../../advanced/sensors.rst:441
-msgid "コントローラのビルド"
-msgstr ""
-
-#: ../../advanced/sensors.rst:443
-msgid ""
-"「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに移動し、次のコマンドを実行します。 ::"
-msgstr ""
-
-#: ../../advanced/sensors.rst:447
-msgid ""
-"これにより、「model/robot/RTC/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。"
-msgstr ""
+msgid "Build the controller"
+msgstr "コントローラのビルド"
 
 #: ../../advanced/sensors.rst:449
 msgid "その後、次のコマンドを実行します。 ::"
@@ -193,8 +145,8 @@ msgid ""
 msgstr ""
 
 #: ../../advanced/sensors.rst:456
-msgid "コントローラの設定"
-msgstr ""
+msgid "Setup the controller"
+msgstr "コントローラの設定"
 
 #: ../../advanced/sensors.rst:458
 msgid ""
@@ -203,8 +155,8 @@ msgid ""
 msgstr ""
 
 #: ../../advanced/sensors.rst:464
-msgid "カメラ、距離センサの有効化"
-msgstr ""
+msgid "Enable cameras and range sensors"
+msgstr "カメラ、距離センサの有効化"
 
 #: ../../advanced/sensors.rst:466
 msgid "シミュレーションにおいてカメラや距離センサを有効にするため、以下の作業を行います。"
@@ -228,8 +180,8 @@ msgid "「対象センサ」を「ranger」"
 msgstr ""
 
 #: ../../advanced/sensors.rst:481
-msgid "シミュレーションを実行する"
-msgstr ""
+msgid "Run simulation"
+msgstr "シミュレーションを実行する"
 
 #: ../../advanced/sensors.rst:483
 msgid ""
@@ -240,13 +192,8 @@ msgid ""
 msgstr ""
 
 #: ../../advanced/sensors.rst:491
-msgid "サンプルプロジェクトについて"
-msgstr ""
-
-#: ../../advanced/sensors.rst:493
-msgid ""
-"このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/samples/sample4.cnoid」に保存されています。"
-msgstr ""
+msgid "A sample project used in this tutorial"
+msgstr "サンプルプロジェクトについて"
 
 #: ../../advanced/sensors_control.rst:2
 msgid "センサによる制御"
@@ -259,8 +206,121 @@ msgid ""
 msgstr ""
 
 #: ../../advanced/index.rst:4
-msgid "この章ではJVRCモデルファイルを用いた応用的なシミュレーションの例について解説します。"
+msgid "This chapter explains how to run advanced simulations such as utilization of range sensors using a JVRC-1 model as an example."
+msgstr "この章ではJVRCモデルファイルを用いた応用的なシミュレーションの例について解説します。"
+
+#: ../../advanced/sensors.rst:16
+msgid ""
+"JVRC-1 "
+"モデルに搭載されているセンサは、テキストエディタで「samples/tutorials/JVRC-1/main.wrl」ファイルを開くと確認することができます。"
+" モデルファイルを開くと次のように記述されており、加速度センサ gsensor とジャイロセンサ gyrometer が搭載されていることがわかります。"
+" ::"
 msgstr ""
+
+#: ../../advanced/sensors.rst:108
+msgid "加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の並進加速度が格納されています。"
+msgstr ""
+
+#: ../../advanced/sensors.rst:110
+msgid "ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルの角速度が格納されています。"
+msgstr ""
+
+#: ../../advanced/sensors.rst:112
+msgid "力センサの値は要素数6のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。"
+msgstr ""
+
+#: ../../advanced/sensors.rst:404
+msgid ""
+"これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotSensorsControllerRTC.cpp」と「samples/tutorials/rtc/RobotSensorsControllerRTC.h」に保存されています。"
+msgstr ""
+
+#: ../../advanced/sensors.rst:412
+msgid ""
+"今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「samples/tutorials/rtc/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。"
+" ::"
+msgstr ""
+
+#: ../../advanced/sensors.rst:443
+msgid ""
+"「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。"
+" ::"
+msgstr ""
+
+#: ../../advanced/sensors.rst:447
+msgid ""
+"これにより、「samples/tutorials/rtc/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。"
+msgstr ""
+
+#: ../../advanced/sensors.rst:493
+msgid ""
+"このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample4.cnoid」に保存されています。"
+msgstr ""
+
+#: ../../advanced/sensors.rst:10
+msgid ""
+"「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
+"トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス "
+"トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。"
+msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
+#~ "トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス "
+#~ "トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
+#~ "トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス "
+#~ "トール」でダウンロードしたリポジトリの「samples/cnoid/sample1.cnoid」です。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample4.cnoid」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "JVRC "
+#~ "モデルに搭載されているセンサは、テキストエディタでリポジトリの「model/robot/main.wrl」ファイルを開くと確認することができます。 "
+#~ "モデルファイルを開くと次のように記述されており、加速度センサ gsensor とジャイロセンサ gyrometer が搭載されていることがわかります。 "
+#~ "::"
+#~ msgstr ""
+
+#~ msgid "加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の関節角度の二回微分(加速度)が格納されています。"
+#~ msgstr ""
+
+#~ msgid "ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルのジャイロ(角速度)が格納されています。"
+#~ msgstr ""
+
+#~ msgid "力センサの値は要素数24のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotSensorsControllerRTC.cpp」と「model/robot/RTC/RobotSensorsControllerRTC.h」に保存されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「model/robot/RTC/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。"
+#~ " ::"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに移動し、次のコマンドを実行します。 ::"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "これにより、「model/robot/RTC/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
+#~ "トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス "
+#~ "トール」でダウンロードしたリポジトリの「model/robot/samples/sample1.cnoid」です。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/samples/sample4.cnoid」に保存されています。"
+#~ msgstr ""
 
 #~ msgid "本ドキュメントではJVRCモデルファイルを用いた応用的なシミュレーションの例について解説します。"
 #~ msgstr ""

@@ -32,8 +32,8 @@ msgid "Contents:"
 msgstr "目次"
 
 #: ../../index.rst:7
-msgid "JVRCチュートリアル"
-msgstr ""
+msgid "JVRC tutorials"
+msgstr "JVRCチュートリアル"
 
 #~ msgid "Choreonoid"
 #~ msgstr ""

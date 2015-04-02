@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>インストール &mdash; jvrc tutorials 0.0.1 documentation</title>
+  <title>Install &mdash; jvrc tutorials 0.0.1 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="jvrc tutorials 0.0.1 documentation" href="index.html"/>
-        <link rel="next" title="シミュレーションの基本" href="basics/index.html"/>
-        <link rel="prev" title="JVRCチュートリアル" href="index.html"/> 
+        <link rel="next" title="Basic simulations" href="basics/index.html"/>
+        <link rel="prev" title="JVRC tutorials" href="index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -64,20 +64,20 @@
           
           
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">インストール</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#choreonoid">Choreonoidのインストール</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">サンプルファイルの取得</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">モデルファイルのインストール</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-of-choreonoid">Installation of Choreonoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-sample-files">Downloading sample files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-a-model-file">Downloading a model file</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="basics/index.html">シミュレーションの基本</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="basics/howto-exec-simulation.html">シミュレーションの実行</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basics/rt-controller.html">RTコンポーネントのコントローラの接続</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basics/torque.html">RTコンポーネントにおけるトルク指令の入力</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics/index.html">Basic simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics/howto-exec-simulation.html">Creating a simulation project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics/rt-controller.html">Connecting a RT component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics/torque.html">Joint control using a RT component</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">シミュレーションの応用</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="advanced/sensors.html">センサの接続</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">Advanced simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced/sensors.html">Connecting sensors</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="links.html">Links</a><ul>
@@ -110,7 +110,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>インストール</li>
+    <li>Install</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/install.txt" rel="nofollow"> View page source</a>
@@ -121,35 +121,33 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="id1">
-<h1>インストール<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>この章では Choreonoid とモデルファイルのインストール方法について解説します。
-インストールを実行するのは Ubuntu 14.04 x64 版とします。</p>
-<div class="section" id="choreonoid">
-<h2>Choreonoidのインストール<a class="headerlink" href="#choreonoid" title="Permalink to this headline">¶</a></h2>
-<p>端末上で次のコマンドを実行し、Choreonoid と周辺ツールをインストールします。</p>
+  <div class="section" id="install">
+<h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
+<p>This chapter explains how to install a software package, download a mode and sample files used in the tutorials. The verion of OS used in the tutorials is Ubuntu 14.04LTS(64bit).</p>
+<div class="section" id="installation-of-choreonoid">
+<h2>Installation of Choreonoid<a class="headerlink" href="#installation-of-choreonoid" title="Permalink to this headline">¶</a></h2>
+<p>Execute the following commands in gnome-terminal. Chorenoid and required packages are installed.</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo add-apt-repository ppa:hrg/daily
 sudo apt-get update
 sudo apt-get install choreonoid openrtm-aist
 </pre></div>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>サンプルファイルの取得<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>このチュートリアルで使用するファイルを取得します。
-ファイルの取得にあたってはgitコマンドが必要です。Ubuntu 環境では以下のコマンドでgitをインストールできます。</p>
+<div class="section" id="downloading-sample-files">
+<h2>Downloading sample files<a class="headerlink" href="#downloading-sample-files" title="Permalink to this headline">¶</a></h2>
+<p>Download sample files used in the tutorials. Git command is used to download the files. Git command can be installed by the next command</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo apt-get install git
 </pre></div>
 </div>
-<p>サンプルファイルのリポジトリは以下のコマンドを実行することで取得できます。</p>
+<p>The sample files can be downloaded by the next command.</p>
 <div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/jvrc/samples
 </pre></div>
 </div>
-<p>これによってサンプルファイルのリポジトリを格納した &#8220;samples&#8221; というディレクトリが生成されます。</p>
+<p>&#8220;samples&#8221; directory created by the command above contains a git repository for sample files.</p>
 </div>
-<div class="section" id="id3">
-<h2>モデルファイルのインストール<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>モデルファイルはJVRC公式HP上で公開されているJVRC-1のモデルを使用します。次のページからダウンロードし、ダウンロードしたファイルを適当なディレクトリに展開して下さい。</p>
+<div class="section" id="downloading-a-model-file">
+<h2>Downloading a model file<a class="headerlink" href="#downloading-a-model-file" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s use a model file of JVRC-1 which is available on the official website of JVRC. Please download the model file from the follwing webpage and extract the file under samples/tutorials.</p>
 <blockquote>
 <div><a class="reference external" href="https://jvrc.org/download.html">https://jvrc.org/download.html</a></div></blockquote>
 </div>
@@ -161,10 +159,10 @@ sudo apt-get install choreonoid openrtm-aist
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="basics/index.html" class="btn btn-neutral float-right" title="シミュレーションの基本">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="basics/index.html" class="btn btn-neutral float-right" title="Basic simulations">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="JVRCチュートリアル"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="JVRC tutorials"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

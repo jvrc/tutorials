@@ -65,9 +65,9 @@
           
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">インストール</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#choreonoid">Choreonoidのインストール</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">サンプルファイルの取得</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">モデルファイルのインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-of-choreonoid">Choreonoidのインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-sample-files">サンプルファイルの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-a-model-file">モデルファイルのインストール</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="basics/index.html">シミュレーションの基本</a><ul>
@@ -80,10 +80,10 @@
 <li class="toctree-l2"><a class="reference internal" href="advanced/sensors.html">センサの接続</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="links.html">Links</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="links.html">リンク</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="links.html#choreonoid">Choreonoid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="links.html#choreonoid-plugin">Choreonoid plugin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="links.html#other-software">Other software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="links.html#choreonoid-plugin">Choreonoidプラグイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="links.html#other-software">その他のソフトウェア</a></li>
 </ul>
 </li>
 </ul>
@@ -121,12 +121,11 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="id1">
-<h1>インストール<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>この章では Choreonoid とモデルファイルのインストール方法について解説します。
-インストールを実行するのは Ubuntu 14.04 x64 版とします。</p>
-<div class="section" id="choreonoid">
-<h2>Choreonoidのインストール<a class="headerlink" href="#choreonoid" title="このヘッドラインへのパーマリンク">¶</a></h2>
+  <div class="section" id="install">
+<h1>インストール<a class="headerlink" href="#install" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>この章では本チュートリアルで使用するソフトウェアやモデルファイルのインストール方法について解説します。 インストールを実行するのは Ubuntu 14.04 x64 版とします。</p>
+<div class="section" id="installation-of-choreonoid">
+<h2>Choreonoidのインストール<a class="headerlink" href="#installation-of-choreonoid" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>端末上で次のコマンドを実行し、Choreonoid と周辺ツールをインストールします。</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo add-apt-repository ppa:hrg/daily
 sudo apt-get update
@@ -134,10 +133,9 @@ sudo apt-get install choreonoid openrtm-aist
 </pre></div>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>サンプルファイルの取得<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>このチュートリアルで使用するファイルを取得します。
-ファイルの取得にあたってはgitコマンドが必要です。Ubuntu 環境では以下のコマンドでgitをインストールできます。</p>
+<div class="section" id="downloading-sample-files">
+<h2>サンプルファイルの取得<a class="headerlink" href="#downloading-sample-files" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>このチュートリアルで使用するサンプルファイルを取得します。 ファイルの取得にあたってはgitコマンドが必要です。Ubuntu 環境では以下のコマンドでgitをインストールできます。</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo apt-get install git
 </pre></div>
 </div>
@@ -147,9 +145,9 @@ sudo apt-get install choreonoid openrtm-aist
 </div>
 <p>これによってサンプルファイルのリポジトリを格納した &#8220;samples&#8221; というディレクトリが生成されます。</p>
 </div>
-<div class="section" id="id3">
-<h2>モデルファイルのインストール<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>モデルファイルはJVRC公式HP上で公開されているJVRC-1のモデルを使用します。次のページからダウンロードし、ダウンロードしたファイルを適当なディレクトリに展開して下さい。</p>
+<div class="section" id="downloading-a-model-file">
+<h2>モデルファイルのインストール<a class="headerlink" href="#downloading-a-model-file" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>モデルファイルはJVRC公式HP上で公開されているJVRC-1のモデルを使用します。次のページからダウンロードし、ダウンロードしたファイルをsamples/tutorialsの下に展開して下さい。</p>
 <blockquote>
 <div><a class="reference external" href="https://jvrc.org/download.html">https://jvrc.org/download.html</a></div></blockquote>
 </div>

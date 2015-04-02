@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>RTコンポーネントにおけるトルク指令の入力 &mdash; jvrc tutorials 0.0.1 documentation</title>
+  <title>Joint control using a RT component &mdash; jvrc tutorials 0.0.1 documentation</title>
   
 
   
@@ -31,9 +31,9 @@
 
   
     <link rel="top" title="jvrc tutorials 0.0.1 documentation" href="../index.html"/>
-        <link rel="up" title="シミュレーションの基本" href="index.html"/>
-        <link rel="next" title="シミュレーションの応用" href="../advanced/index.html"/>
-        <link rel="prev" title="RTコンポーネントのコントローラの接続" href="rt-controller.html"/> 
+        <link rel="up" title="Basic simulations" href="index.html"/>
+        <link rel="next" title="Advanced simulations" href="../advanced/index.html"/>
+        <link rel="prev" title="Connecting a RT component" href="rt-controller.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -65,20 +65,20 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../install.html">インストール</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#choreonoid">Choreonoidのインストール</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#id2">サンプルファイルの取得</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#id3">モデルファイルのインストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#installation-of-choreonoid">Installation of Choreonoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#downloading-sample-files">Downloading sample files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#downloading-a-model-file">Downloading a model file</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">シミュレーションの基本</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="howto-exec-simulation.html">シミュレーションの実行</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rt-controller.html">RTコンポーネントのコントローラの接続</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">RTコンポーネントにおけるトルク指令の入力</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Basic simulations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="howto-exec-simulation.html">Creating a simulation project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rt-controller.html">Connecting a RT component</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Joint control using a RT component</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">シミュレーションの応用</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../advanced/sensors.html">センサの接続</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/sensors.html">Connecting sensors</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../links.html">Links</a><ul>
@@ -111,9 +111,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">シミュレーションの基本</a> &raquo;</li>
+          <li><a href="index.html">Basic simulations</a> &raquo;</li>
       
-    <li>RTコンポーネントにおけるトルク指令の入力</li>
+    <li>Joint control using a RT component</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="../_sources/basics/torque.txt" rel="nofollow"> View page source</a>
@@ -124,18 +124,18 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="rt">
-<h1>RTコンポーネントにおけるトルク指令の入力<a class="headerlink" href="#rt" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="joint-control-using-a-rt-component">
+<h1>Joint control using a RT component<a class="headerlink" href="#joint-control-using-a-rt-component" title="Permalink to this headline">¶</a></h1>
 <p>ここでは、トルク指令を出力するようにRTコンポーネントを拡張し、ロボットが直立を
 維持できるようにします。</p>
-<div class="section" id="id1">
-<h2>プロジェクトを開く<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="open-a-project-file">
+<h2>Open a project file<a class="headerlink" href="#open-a-project-file" title="Permalink to this headline">¶</a></h2>
 <p>「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク
-トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス
-トール」でダウンロードしたリポジトリの「samples/cnoid/sample2.cnoid」です。</p>
+トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス
+トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample2.cnoid」です。</p>
 </div>
-<div class="section" id="id2">
-<h2>コントローラのソースコード<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="source-code-of-a-controller">
+<h2>Source code of a controller<a class="headerlink" href="#source-code-of-a-controller" title="Permalink to this headline">¶</a></h2>
 <p>コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。</p>
 <div class="highlight-python"><div class="highlight"><pre>/**
    Sample Robot motion controller for the JVRC robot model.
@@ -376,16 +376,16 @@ onActivated()では初期値の設定も行っています。</p>
 ロボットがうまく制御できない場合はこの値を調整する必要があります。
 <cite>m_torque.data</cite> にセットした値は <cite>m_torqueOut.write()</cite> により実際のロボットの制御トルクとして出力されます。
 出力ポートは値をセットするだけなので入力ポートよりも簡単です。</p>
-<p>これらのソースコードは 「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotTorqueControllerRTC.cpp」と 「model/robot/RTC/RobotTorqueControllerRTC.h」に保存されています。</p>
+<p>これらのソースコードは 「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotTorqueControllerRTC.cpp」と 「samples/tutorials/rtc/RobotTorqueControllerRTC.h」に保存されています。</p>
 </div>
-<div class="section" id="id3">
-<h2>コントローラの設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setup-of-the-controller">
+<h2>Setup of the controller<a class="headerlink" href="#setup-of-the-controller" title="Permalink to this headline">¶</a></h2>
 <p>アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotTorqueControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。
 さらに、プロパティビューの「自動ポート接続」を true にします。</p>
 <img alt="../_images/property_torque.png" src="../_images/property_torque.png" />
 </div>
-<div class="section" id="id4">
-<h2>シミュレーション用動作パターンの作成<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-a-pose-sequence">
+<h2>Create a pose sequence<a class="headerlink" href="#create-a-pose-sequence" title="Permalink to this headline">¶</a></h2>
 <p>ロボットの関節の制御を行うRTコンポーネントの実行周期に合わせて、ロボットの動作パターンを生成するための設定を行います。RTコンポーネントは1[ms]周期で実行されるので、Choreonoidの内部フレームレートを1000に設定します。</p>
 <p>タイムバーの設定画面を開きます。</p>
 <img alt="../_images/timebar.png" src="../_images/timebar.png" />
@@ -394,8 +394,8 @@ onActivated()では初期値の設定も行っています。</p>
 <p>このフレームレートは1秒間に何回実行するかを表しています。
 これが1000で1ミリ秒の間隔となり、100で10ミリ秒間隔となります。</p>
 </div>
-<div class="section" id="id5">
-<h2>ポーズ列の追加<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-a-pose-sequence-item">
+<h2>Create a pose sequence item<a class="headerlink" href="#create-a-pose-sequence-item" title="Permalink to this headline">¶</a></h2>
 <p>まずアイテムビューで「JVRC」を選択します。
 次に、「メニュー」の「ファイル」「新規」より「ポーズ列」を選択し「SampleMotion」という名前で追加します。</p>
 <img alt="../_images/motion.png" src="../_images/motion.png" />
@@ -416,30 +416,30 @@ onActivated()では初期値の設定も行っています。</p>
 <img alt="../_images/motion_toolbar2.png" src="../_images/motion_toolbar2.png" />
 <p>SampleMotion の子供に motion があるので、これを選択し名前を付けて保存ボタンを押します。</p>
 <img alt="../_images/item_motion.png" src="../_images/item_motion.png" />
-<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに「RobotMotion.yaml」というファイルで保存します。</p>
+<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに「RobotMotion.yaml」というファイルで保存します。</p>
 </div>
-<div class="section" id="id6">
-<h2>コントローラのビルド<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに移動し、次のコマンドを実行します。</p>
+<div class="section" id="build-the-controller">
+<h2>Build the controller<a class="headerlink" href="#build-the-controller" title="Permalink to this headline">¶</a></h2>
+<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">make</span>
 </pre></div>
 </div>
-<p>これにより、「model/robot/RTC/」ディレクトリに「RobotTorqueControllerRTC.so」というファイルが作成されるはずです。</p>
+<p>これにより、「samples/tutorials/rtc/」ディレクトリに「RobotTorqueControllerRTC.so」というファイルが作成されるはずです。</p>
 <p>その後、次のコマンドを実行します。</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo make install DESTDIR=/usr
 </pre></div>
 </div>
 </div>
-<div class="section" id="id7">
-<h2>シミュレーションを実行する<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-simulation">
+<h2>Run simulation<a class="headerlink" href="#run-simulation" title="Permalink to this headline">¶</a></h2>
 <p>シミュレーションツールバーの「シミュレーション開始ボタン」を押します。
 シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、シミュレーション時間で15秒間の間立ったままの状態になったはずです。
-これは、JVRCの制御を行うためのモーションデータが15秒ぶんしか用意していないためです。</p>
+これは、JVRCの制御を行うためのモーションデータが15秒分しか用意していないためです。</p>
 <img alt="../_images/simulation_controller.png" src="../_images/simulation_controller.png" />
 </div>
-<div class="section" id="id8">
-<h2>サンプルプロジェクトについて<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
-<p>このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウン ロードしたリポジトリの「samples/cnoid/sample3.cnoid」に保存されています。</p>
+<div class="section" id="a-sample-project-used-in-this-tutorial">
+<h2>A sample project used in this tutorial<a class="headerlink" href="#a-sample-project-used-in-this-tutorial" title="Permalink to this headline">¶</a></h2>
+<p>このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウン ロードしたリポジトリの「samples/tutorials/cnoid/sample3.cnoid」に保存されています。</p>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
@@ -453,10 +453,10 @@ onActivated()では初期値の設定も行っています。</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../advanced/index.html" class="btn btn-neutral float-right" title="シミュレーションの応用">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../advanced/index.html" class="btn btn-neutral float-right" title="Advanced simulations">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="rt-controller.html" class="btn btn-neutral" title="RTコンポーネントのコントローラの接続"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="rt-controller.html" class="btn btn-neutral" title="Connecting a RT component"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

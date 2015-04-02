@@ -3,9 +3,13 @@ Links
 
 Choreonoid
 ----------
-* Manual  
+* Homepage
 
   http://www.choreonoid.org
+
+* Manual  
+
+  http://www.choreonoid.org/ja/manuals/1.5/index.html
 
 * Source
 

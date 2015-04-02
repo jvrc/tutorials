@@ -1,8 +1,7 @@
-シミュレーションの基本
-======================
+Basic simulations
+=================
 
-この章ではJVRCモデルファイルを用いた基本的なシミュレーションの実行方法について解説します。
-
+This chapter explains how to setup the simulation world and run basic simulations using a JVRC-1 model as an example.
 
 .. toctree::
    :maxdepth: 2

@@ -1,74 +1,67 @@
-シミュレーションの実行
-======================
+Creating a simulation project
+=============================
 
 
-この節ではサンプルシミュレーションの実行方法について解説します。
+This section explains how to create and run a simple simulation.
 
-Choreonoidの実行
-----------------
+Launch Choreonoid
+-----------------
 
-まずはChoreonoidを実行します。端末を開いて以下のコマンドを実行してください。 ::
+Let's launch Choreonoid first. Type the following command in gnome-terminal. ::
 
  choreonoid
 
-以下のような画面が表示されるはずです。
+You will see a window as follows.
 
 .. image:: images/choreonoid.png
 
-モデルを開く
-------------
+Open a model file
+-----------------
 
-まず、「メニュー」の「ファイル」「新規」より「ワールド」を選択し、ワールドアイテム「World」を追加します。
+Create a world item named \"World\" first by selecting "File", "New" and "World" menus.
 
-そのまま「メニュー」の「ファイル」「読み込み」より「OpenHRPモデルファイル」を選択し、JVRC-1のモデルファイルを読み込みます。ファイル名はモデルファイルを展開したディレクトリのmain.wrlです。
+Then load a model file of JVRC-1 by choosing \"OpenHRP model file\" followed by \"File\", \"Open\" menus. The filename is samles/tutorials/JVRC-1/main.wrl.
 
-モデルを読み込んだだけではロボットは表示されません。
-「アイテム」と書かれたリストのJVRC-1にチェックを入れてください。
-すると、以下のようにロボットが表示されるはずです。
+When you check the checkbox named \"JVRC\", JVRC-1 will be displayed in the scene view as follows.
 
 .. image:: images/model.png
 
-床を追加する
-------------
+Add a model of the floor
+------------------------
 
-シミュレーションを行うために、床(地面)を追加します。
+To prevent the robot from falling, let's add a model of the ground.
 
-Choreonoid の画面にはアイテムと表示されている領域がありますが、これをアイテムビューと呼びます。
-まずアイテムビューで「World」を選択します。
-次に、「メニュー」の「ファイル」「読み込み」より「OpenHRPモデルファイル」を選択し、床のモデルファイルを開きます。ファイル名は「/usr/share/choreonoid-1.5/model/misc/floor.wrl」です。
+The window of Choreonoid has a tab named \"item\". This tab is called \"item view\". Select \"World\" item first in the item view. Then choose \"OpenHRP model file\" following \"File\",\"Open\" menus and select the model file for the floor. Its filename is \"/usr/share/choreonoid-1.5/model/misc/floor.wrl\".
 
-シミュレータアイテムを追加する
-------------------------------
+Add a simulator item
+--------------------
 
-アイテムビューで「World」を選択します。
-次に、「メニュー」の「ファイル」「新規」より「AISTシミュレータ」を選択し、AISTシミュレータ「AISTSimulator」を追加します。
+Choose \"World\" item in the item view. Then create a \"AISTSimulator\" item by following \"File\", \"New\" menus.
 
 .. image:: images/aist_simulator.png
 
-シミュレーションを実行する
---------------------------
+Run simulation
+--------------
 
-次に、シミュレーションツールバーの「シミュレーション開始ボタン」を押します。 これにより、画面上でモデルのシミュレーションが開始されます。
+Next press \"Start simulation\" button in the simulation tool bar. Simulation will start.
 
 .. image:: images/simulation_start.png
 
-シミュレーションを実行すると下の画像のようにロボットはすぐに崩れ落ちてしまうはずです。
-再生スライダーを動かして詳細に確認すると、0.2秒の段階で足が崩れ始め、1.3秒時点で完全に崩れてしまいます。
+Just after starting simulation, the robot falls down.
 
 .. image:: images/simulation_no_controller.png
 
-これは全く関節の制御をしていないためです。
-これからロボットを制御するプログラムを記述し、ロボットが崩れ落ちないようにしていきます。
+Because all joints are not controlled but free. We will control joints in the next section to keep the standing position.
 
-プロジェクトの保存
-------------------
+Save a project
+--------------
 
-シミュレーションの実行が終わったら、プロジェクトを保存しておきましょう。「ファイル」の「名前を付けてプロジェクトを保存」を選択し、適当なファイル名を付けて保存します。
+After running simulation, let's save the project. Choose \"Save as\" menu in \"File\" menu and name the project file.
 
-サンプルプロジェクトについて
-----------------------------
+A sample project used in this tutorial
+--------------------------------------
 
-このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample1.cnoid」に保存されています。
+You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample1.cnoid.
 
 .. toctree::
    :maxdepth: 2

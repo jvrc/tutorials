@@ -1,7 +1,7 @@
-シミュレーションの応用
-======================
+Advanced simulations
+====================
 
-この章ではJVRCモデルファイルを用いた応用的なシミュレーションの例について解説します。
+This chapter explains how to run advanced simulations such as utilization of range sensors using a JVRC-1 model as an example.
 
 
 .. toctree::

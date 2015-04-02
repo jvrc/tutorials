@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>シミュレーションの応用 &mdash; jvrc tutorials 0.0.1 documentation</title>
+  <title>Advanced simulations &mdash; jvrc tutorials 0.0.1 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="jvrc tutorials 0.0.1 documentation" href="../index.html"/>
-        <link rel="next" title="センサの接続" href="sensors.html"/>
-        <link rel="prev" title="RTコンポーネントにおけるトルク指令の入力" href="../basics/torque.html"/> 
+        <link rel="next" title="Connecting sensors" href="sensors.html"/>
+        <link rel="prev" title="Joint control using a RT component" href="../basics/torque.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -64,20 +64,20 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../install.html">インストール</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#choreonoid">Choreonoidのインストール</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#id2">サンプルファイルの取得</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#id3">モデルファイルのインストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#installation-of-choreonoid">Installation of Choreonoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#downloading-sample-files">Downloading sample files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#downloading-a-model-file">Downloading a model file</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">シミュレーションの基本</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basics/howto-exec-simulation.html">シミュレーションの実行</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basics/rt-controller.html">RTコンポーネントのコントローラの接続</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basics/torque.html">RTコンポーネントにおけるトルク指令の入力</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">Basic simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basics/howto-exec-simulation.html">Creating a simulation project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/rt-controller.html">Connecting a RT component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/torque.html">Joint control using a RT component</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">シミュレーションの応用</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html">センサの接続</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Advanced simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html">Connecting sensors</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../links.html">Links</a><ul>
@@ -110,7 +110,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>シミュレーションの応用</li>
+    <li>Advanced simulations</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="../_sources/advanced/index.txt" rel="nofollow"> View page source</a>
@@ -121,21 +121,21 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="id1">
-<h1>シミュレーションの応用<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>この章ではJVRCモデルファイルを用いた応用的なシミュレーションの例について解説します。</p>
+  <div class="section" id="advanced-simulations">
+<h1>Advanced simulations<a class="headerlink" href="#advanced-simulations" title="Permalink to this headline">¶</a></h1>
+<p>This chapter explains how to run advanced simulations such as utilization of range sensors using a JVRC-1 model as an example.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sensors.html">センサの接続</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#id2">プロジェクトを開く</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#jvrc">JVRC モデルのセンサ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#id3">コントローラのソースコード</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#rtc">RTCの設定ファイル</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#id4">コントローラのビルド</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#id5">コントローラの設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#id6">カメラ、距離センサの有効化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#id7">シミュレーションを実行する</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#id8">サンプルプロジェクトについて</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Connecting sensors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#open-a-project-file">Open a project file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#sensors-defined-in-jvrc-1-model">Sensors defined in JVRC-1 model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#source-code-of-a-controller">Source code of a controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#a-configuration-file-for-rtc">A configuration file for RTC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#build-the-controller">Build the controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#setup-the-controller">Setup the controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#enable-cameras-and-range-sensors">Enable cameras and range sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#run-simulation">Run simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#a-sample-project-used-in-this-tutorial">A sample project used in this tutorial</a></li>
 </ul>
 </li>
 </ul>
@@ -148,10 +148,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sensors.html" class="btn btn-neutral float-right" title="センサの接続">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sensors.html" class="btn btn-neutral float-right" title="Connecting sensors">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../basics/torque.html" class="btn btn-neutral" title="RTコンポーネントにおけるトルク指令の入力"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../basics/torque.html" class="btn btn-neutral" title="Joint control using a RT component"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

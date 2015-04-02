@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>センサの接続 &mdash; jvrc tutorials 0.0.1 documentation</title>
+  <title>Connecting sensors &mdash; jvrc tutorials 0.0.1 documentation</title>
   
 
   
@@ -31,9 +31,9 @@
 
   
     <link rel="top" title="jvrc tutorials 0.0.1 documentation" href="../index.html"/>
-        <link rel="up" title="シミュレーションの応用" href="index.html"/>
+        <link rel="up" title="Advanced simulations" href="index.html"/>
         <link rel="next" title="Links" href="../links.html"/>
-        <link rel="prev" title="シミュレーションの応用" href="index.html"/> 
+        <link rel="prev" title="Advanced simulations" href="index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -65,20 +65,20 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../install.html">インストール</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#choreonoid">Choreonoidのインストール</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#id2">サンプルファイルの取得</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#id3">モデルファイルのインストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#installation-of-choreonoid">Installation of Choreonoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#downloading-sample-files">Downloading sample files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#downloading-a-model-file">Downloading a model file</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">シミュレーションの基本</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basics/howto-exec-simulation.html">シミュレーションの実行</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basics/rt-controller.html">RTコンポーネントのコントローラの接続</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basics/torque.html">RTコンポーネントにおけるトルク指令の入力</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">Basic simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basics/howto-exec-simulation.html">Creating a simulation project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/rt-controller.html">Connecting a RT component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/torque.html">Joint control using a RT component</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">シミュレーションの応用</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">センサの接続</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced simulations</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Connecting sensors</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../links.html">Links</a><ul>
@@ -111,9 +111,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">シミュレーションの応用</a> &raquo;</li>
+          <li><a href="index.html">Advanced simulations</a> &raquo;</li>
       
-    <li>センサの接続</li>
+    <li>Connecting sensors</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="../_sources/advanced/sensors.txt" rel="nofollow"> View page source</a>
@@ -124,16 +124,16 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="id1">
-<h1>センサの接続<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="connecting-sensors">
+<h1>Connecting sensors<a class="headerlink" href="#connecting-sensors" title="Permalink to this headline">¶</a></h1>
 <p>ここではJVRCモデルに搭載された各種センサのデータを取得できるようにします。</p>
-<div class="section" id="id2">
-<h2>プロジェクトを開く<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク トファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインス トール」でダウンロードしたリポジトリの「samples/cnoid/sample1.cnoid」です。</p>
+<div class="section" id="open-a-project-file">
+<h2>Open a project file<a class="headerlink" href="#open-a-project-file" title="Permalink to this headline">¶</a></h2>
+<p>「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。</p>
 </div>
-<div class="section" id="jvrc">
-<h2>JVRC モデルのセンサ<a class="headerlink" href="#jvrc" title="Permalink to this headline">¶</a></h2>
-<p>JVRC モデルに搭載されているセンサは、テキストエディタでリポジトリの「model/robot/main.wrl」ファイルを開くと確認することができます。
+<div class="section" id="sensors-defined-in-jvrc-1-model">
+<h2>Sensors defined in JVRC-1 model<a class="headerlink" href="#sensors-defined-in-jvrc-1-model" title="Permalink to this headline">¶</a></h2>
+<p>JVRC-1 モデルに搭載されているセンサは、テキストエディタで「samples/tutorials/JVRC-1/main.wrl」ファイルを開くと確認することができます。
 モデルファイルを開くと次のように記述されており、加速度センサ gsensor とジャイロセンサ gyrometer が搭載されていることがわかります。</p>
 <div class="highlight-python"><div class="highlight"><pre>DEF JVRC Humanoid {
   humanoidBody [
@@ -223,9 +223,9 @@ DEF lfsensor ForceSensor {
 <p>各センサの仕様について解説します。
 おおまかな仕様はこちらで確認することができますが、記述がかなり古く不正確です。</p>
 <p><a class="reference external" href="http://www.openrtp.jp/openhrp3/jp/controller_bridge.html">http://www.openrtp.jp/openhrp3/jp/controller_bridge.html</a></p>
-<p>加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の関節角度の二回微分(加速度)が格納されています。</p>
-<p>ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルのジャイロ(角速度)が格納されています。</p>
-<p>力センサの値は要素数24のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。</p>
+<p>加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の並進加速度が格納されています。</p>
+<p>ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルの角速度が格納されています。</p>
+<p>力センサの値は要素数6のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。</p>
 <p>カメラの値はImg::TimedCameraImage型になります。</p>
 <p><a class="reference external" href="https://github.com/s-nakaoka/choreonoid/blob/master/src/OpenRTMPlugin/corba/CameraImage.idl">https://github.com/s-nakaoka/choreonoid/blob/master/src/OpenRTMPlugin/corba/CameraImage.idl</a></p>
 <p>Img::TimedCameraImageの型の定義は以下のようになっています。</p>
@@ -278,8 +278,8 @@ struct RangeData
 <p>シーケンスに計測方向に向かって右からスキャンした距離データが格納されています。
 距離の値は何かに干渉が発生する限り出力されますが、干渉がない場合は0になります。</p>
 </div>
-<div class="section" id="id3">
-<h2>コントローラのソースコード<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="source-code-of-a-controller">
+<h2>Source code of a controller<a class="headerlink" href="#source-code-of-a-controller" title="Permalink to this headline">¶</a></h2>
 <p>コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。</p>
 <div class="highlight-python"><div class="highlight"><pre>/**
    Sample Robot motion controller for the JVRC robot model.
@@ -508,13 +508,13 @@ extern &quot;C&quot;
 </div>
 <p>行っている処理については、「RTコンポーネントのコントローラの接続」とほとんど同じで、センサが増えただけです。
 ただし、それぞれのセンサの型は異なるので注意してください。</p>
-<p>これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotSensorsControllerRTC.cpp」と「model/robot/RTC/RobotSensorsControllerRTC.h」に保存されています。</p>
+<p>これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotSensorsControllerRTC.cpp」と「samples/tutorials/rtc/RobotSensorsControllerRTC.h」に保存されています。</p>
 </div>
-<div class="section" id="rtc">
-<h2>RTCの設定ファイル<a class="headerlink" href="#rtc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-configuration-file-for-rtc">
+<h2>A configuration file for RTC<a class="headerlink" href="#a-configuration-file-for-rtc" title="Permalink to this headline">¶</a></h2>
 <p>これまではChoreonoidの自動設定の機能を用いてRTCのポートを生成していました。
 しかし、これはサンプル実行用のもので、単純なRTCのポート定義にしか使えません。</p>
-<p>今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「model/robot/RTC/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。</p>
+<p>今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「samples/tutorials/rtc/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。</p>
 <div class="highlight-python"><div class="highlight"><pre>out-port = q:JOINT_VALUE
 out-port = gsensor:ACCELERATION_SENSOR
 out-port = gyrometer:RATE_GYRO_SENSOR
@@ -537,27 +537,27 @@ connection = ranger:RobotSensorsControllerRTC0:ranger
 ただし、下記の資料は記述が古いです。</p>
 <p><a class="reference external" href="http://www.openrtp.jp/openhrp3/jp/controller_bridge.html">http://www.openrtp.jp/openhrp3/jp/controller_bridge.html</a></p>
 </div>
-<div class="section" id="id4">
-<h2>コントローラのビルド<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに移動し、次のコマンドを実行します。</p>
+<div class="section" id="build-the-controller">
+<h2>Build the controller<a class="headerlink" href="#build-the-controller" title="Permalink to this headline">¶</a></h2>
+<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">make</span>
 </pre></div>
 </div>
-<p>これにより、「model/robot/RTC/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。</p>
+<p>これにより、「samples/tutorials/rtc/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。</p>
 <p>その後、次のコマンドを実行します。</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo make install DESTDIR=/usr
 </pre></div>
 </div>
 <p>ChoreonoidではRTCの設定ファイルはChoreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。&#8221;make install&#8221;ではこの処理を自動的に行ってくれます。</p>
 </div>
-<div class="section" id="id5">
-<h2>コントローラの設定<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setup-the-controller">
+<h2>Setup the controller<a class="headerlink" href="#setup-the-controller" title="Permalink to this headline">¶</a></h2>
 <p>アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotSensorsControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。
 更に、「設定モード」を「設定ファイルを使用」にし、「設定ファイル名」を「RobotSensorsJVRC.conf」とします。</p>
 <img alt="../_images/sensor_config.png" src="../_images/sensor_config.png" />
 </div>
-<div class="section" id="id6">
-<h2>カメラ、距離センサの有効化<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enable-cameras-and-range-sensors">
+<h2>Enable cameras and range sensors<a class="headerlink" href="#enable-cameras-and-range-sensors" title="Permalink to this headline">¶</a></h2>
 <p>シミュレーションにおいてカメラや距離センサを有効にするため、以下の作業を行います。</p>
 <p>アイテムビューで「AISTSimulator」を選択し、「新規」より「GL視覚センサシミュレータ」を選択し、「GLVisionSimulator」という名前で追加します。</p>
 <img alt="../_images/vision.png" src="../_images/vision.png" />
@@ -566,16 +566,16 @@ connection = ranger:RobotSensorsControllerRTC0:ranger
 <p>「対象センサ」を「ranger」</p>
 <img alt="../_images/vision_property.png" src="../_images/vision_property.png" />
 </div>
-<div class="section" id="id7">
-<h2>シミュレーションを実行する<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-simulation">
+<h2>Run simulation<a class="headerlink" href="#run-simulation" title="Permalink to this headline">¶</a></h2>
 <p>シミュレーションツールバーの「シミュレーション開始ボタン」を押します。
 シミュレーションを実行するとchoreonoidを実行している端末にセンサの値が出力されています。
 「RTコンポーネントのコントローラの接続」のときとは違い、関節角度(m_angle)だけではなく、 加速度センサ(m_gsensor)、ジャイロセンサ(m_gyrometer)、……の値が表示されるはずです。</p>
 <img alt="../_images/output2.png" src="../_images/output2.png" />
 </div>
-<div class="section" id="id8">
-<h2>サンプルプロジェクトについて<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
-<p>このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample4.cnoid」に保存されています。</p>
+<div class="section" id="a-sample-project-used-in-this-tutorial">
+<h2>A sample project used in this tutorial<a class="headerlink" href="#a-sample-project-used-in-this-tutorial" title="Permalink to this headline">¶</a></h2>
+<p>このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample4.cnoid」に保存されています。</p>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
@@ -592,7 +592,7 @@ connection = ranger:RobotSensorsControllerRTC0:ranger
         <a href="../links.html" class="btn btn-neutral float-right" title="Links">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="シミュレーションの応用"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Advanced simulations"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>RTコンポーネントのコントローラの接続 &mdash; jvrc tutorials 0.0.1 documentation</title>
+  <title>Connecting a RT component &mdash; jvrc tutorials 0.0.1 documentation</title>
   
 
   
@@ -31,9 +31,9 @@
 
   
     <link rel="top" title="jvrc tutorials 0.0.1 documentation" href="../index.html"/>
-        <link rel="up" title="シミュレーションの基本" href="index.html"/>
-        <link rel="next" title="RTコンポーネントにおけるトルク指令の入力" href="torque.html"/>
-        <link rel="prev" title="シミュレーションの実行" href="howto-exec-simulation.html"/> 
+        <link rel="up" title="Basic simulations" href="index.html"/>
+        <link rel="next" title="Joint control using a RT component" href="torque.html"/>
+        <link rel="prev" title="Creating a simulation project" href="howto-exec-simulation.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -65,20 +65,20 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../install.html">インストール</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#choreonoid">Choreonoidのインストール</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#id2">サンプルファイルの取得</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../install.html#id3">モデルファイルのインストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#installation-of-choreonoid">Installation of Choreonoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#downloading-sample-files">Downloading sample files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#downloading-a-model-file">Downloading a model file</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">シミュレーションの基本</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="howto-exec-simulation.html">シミュレーションの実行</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">RTコンポーネントのコントローラの接続</a></li>
-<li class="toctree-l2"><a class="reference internal" href="torque.html">RTコンポーネントにおけるトルク指令の入力</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Basic simulations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="howto-exec-simulation.html">Creating a simulation project</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Connecting a RT component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="torque.html">Joint control using a RT component</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">シミュレーションの応用</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../advanced/sensors.html">センサの接続</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/sensors.html">Connecting sensors</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../links.html">Links</a><ul>
@@ -111,9 +111,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">シミュレーションの基本</a> &raquo;</li>
+          <li><a href="index.html">Basic simulations</a> &raquo;</li>
       
-    <li>RTコンポーネントのコントローラの接続</li>
+    <li>Connecting a RT component</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="../_sources/basics/rt-controller.txt" rel="nofollow"> View page source</a>
@@ -124,20 +124,20 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="rt">
-<h1>RTコンポーネントのコントローラの接続<a class="headerlink" href="#rt" title="Permalink to this headline">¶</a></h1>
-<p>ここではJVRCモデルにRTコンポーネントのコントローラを接続し、ロボットの関節角度を取得できるようにします。</p>
-<div class="section" id="id1">
-<h2>プロジェクトを開く<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>「メニュー」の「プロジェクトの読み込み」からJVRCモデルファイル用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample1.cnoid」です。</p>
+  <div class="section" id="connecting-a-rt-component">
+<h1>Connecting a RT component<a class="headerlink" href="#connecting-a-rt-component" title="Permalink to this headline">¶</a></h1>
+<p>ここではJVRC-1のモデルにRTコンポーネントのコントローラを接続し、ロボットの関節角度を取得できるようにします。</p>
+<div class="section" id="open-a-project-file">
+<h2>Open a project file<a class="headerlink" href="#open-a-project-file" title="Permalink to this headline">¶</a></h2>
+<p>「メニュー」の「プロジェクトの読み込み」からJVRC-1用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。</p>
 </div>
-<div class="section" id="id2">
-<h2>コントローラの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>まずアイテムビューで「JVRC」を選択します。
+<div class="section" id="add-a-controller">
+<h2>Add a controller<a class="headerlink" href="#add-a-controller" title="Permalink to this headline">¶</a></h2>
+<p>まずアイテムビューで「JVRC-1」を選択します。
 次に、「メニュー」の「ファイル」「新規」より「BodyRTC」を選択し「BodyRTC」という名前で追加します。</p>
 </div>
-<div class="section" id="id3">
-<h2>コントローラのソースコード<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="source-code-of-a-controller">
+<h2>Source code of a controller<a class="headerlink" href="#source-code-of-a-controller" title="Permalink to this headline">¶</a></h2>
 <p>コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。</p>
 <div class="highlight-python"><div class="highlight"><pre>/**
    Sample Robot motion controller for the JVRC robot model.
@@ -284,39 +284,39 @@ extern &quot;C&quot;
 m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。
 onExecute()の実行時にはデータが到着しているかどうかが分からないので、ここでチェックしています。新しいデータが来ていた場合にはm_angleIn.read()でデータを読み込みます。読み込んだデータは自動的にm_angleに格納され、m_angle.dataとして取得できます。
 m_angle.dataは各関節毎に配列の値となっています。</p>
-<p>これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/RobotControllerRTC.cpp」と「model/robot/RTC/RobotControllerRTC.h」に保存されています。</p>
+<p>これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotControllerRTC.cpp」と「samples/tutorials/rtc/RobotControllerRTC.h」に保存されています。</p>
 </div>
-<div class="section" id="id4">
-<h2>コントローラの設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setup-the-controller">
+<h2>Setup the controller<a class="headerlink" href="#setup-the-controller" title="Permalink to this headline">¶</a></h2>
 <p>プロジェクト上でRTコンポーネント(RTC)を作成しただけでは、ロボットの制御を行うことができません。</p>
 <p>アイテムビューで「BodyRTC」を選択するとプロパティのタブ(プロパティビューと言います)にRTCの設定が表示されます。
 プロパティビューの「コントローラのモジュール名」を「RobotControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。
 さらに、プロパティビューの「自動ポート接続」を true にします。</p>
 <img alt="../_images/property_rtc.png" src="../_images/property_rtc.png" />
 </div>
-<div class="section" id="id5">
-<h2>コントローラのビルド<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「model/robot/RTC/」ディレクトリに移動し、次のコマンドを実行します。</p>
+<div class="section" id="build-the-controller">
+<h2>Build the controller<a class="headerlink" href="#build-the-controller" title="Permalink to this headline">¶</a></h2>
+<p>「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">make</span>
 </pre></div>
 </div>
-<p>これにより、「model/robot/RTC/」ディレクトリに「RobotControllerRTC.so」というファイルが作成されるはずです。</p>
+<p>これにより、「samples/tutorials/rtc/」ディレクトリに「RobotControllerRTC.so」というファイルが作成されるはずです。</p>
 <p>その後、次のコマンドを実行します。</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo make install DESTDIR=/usr
 </pre></div>
 </div>
 <p>Choreonoidでは読み込むRTCコントローラのモジュールはChoreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。&#8221;make install&#8221;ではこの処理を自動的に行ってくれます。</p>
 </div>
-<div class="section" id="id6">
-<h2>シミュレーションを実行する<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-simulation">
+<h2>Run simulation<a class="headerlink" href="#run-simulation" title="Permalink to this headline">¶</a></h2>
 <p>シミュレーションツールバーの「シミュレーション開始ボタン」を押します。
 シミュレーションを実行するとchoreonoidを実行している端末に関節角度(m_angle)の値が表示されるはずです。</p>
 <img alt="../_images/output.png" src="../_images/output.png" />
 <p>このようにして得られる関節角度を基にトルクをロボットに入力することでロボットの制御を行うことができます。この後のサンプルで詳しく解説します。</p>
 </div>
-<div class="section" id="id7">
-<h2>サンプルプロジェクトについて<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<p>このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/cnoid/sample2.cnoid」に保存されています。</p>
+<div class="section" id="a-sample-project-used-in-this-tutorial">
+<h2>A sample project used in this tutorial<a class="headerlink" href="#a-sample-project-used-in-this-tutorial" title="Permalink to this headline">¶</a></h2>
+<p>このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample2.cnoid」に保存されています。</p>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
@@ -330,10 +330,10 @@ m_angle.dataは各関節毎に配列の値となっています。</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="torque.html" class="btn btn-neutral float-right" title="RTコンポーネントにおけるトルク指令の入力">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="torque.html" class="btn btn-neutral float-right" title="Joint control using a RT component">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="howto-exec-simulation.html" class="btn btn-neutral" title="シミュレーションの実行"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="howto-exec-simulation.html" class="btn btn-neutral" title="Creating a simulation project"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -133,8 +133,7 @@
 </div>
 <div class="section" id="sensors-defined-in-jvrc-1-model">
 <h2>JVRC モデルのセンサ<a class="headerlink" href="#sensors-defined-in-jvrc-1-model" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>JVRC-1 モデルに搭載されているセンサは、テキストエディタで「samples/tutorials/JVRC-1/main.wrl」ファイルを開くと確認することができます。
-モデルファイルを開くと次のように記述されており、加速度センサ gsensor とジャイロセンサ gyrometer が搭載されていることがわかります。</p>
+<p>JVRC-1 モデルに搭載されているセンサは、テキストエディタで「samples/tutorials/JVRC-1/main.wrl」ファイルを開くと確認することができます。 モデルファイルを開くと次のように記述されており、加速度センサ gsensor とジャイロセンサ gyrometer が搭載されていることがわかります。</p>
 <div class="highlight-python"><div class="highlight"><pre>DEF JVRC Humanoid {
   humanoidBody [
     DEF PELVIS Joint {
@@ -220,8 +219,7 @@ DEF lfsensor ForceSensor {
 } # NECK_P
 </pre></div>
 </div>
-<p>各センサの仕様について解説します。
-おおまかな仕様はこちらで確認することができますが、記述がかなり古く不正確です。</p>
+<p>各センサの仕様について解説します。 おおまかな仕様はこちらで確認することができますが、記述がかなり古く不正確です。</p>
 <p><a class="reference external" href="http://www.openrtp.jp/openhrp3/jp/controller_bridge.html">http://www.openrtp.jp/openhrp3/jp/controller_bridge.html</a></p>
 <p>加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の並進加速度が格納されています。</p>
 <p>ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルの角速度が格納されています。</p>
@@ -258,8 +256,7 @@ struct TimedCameraImage
 };
 </pre></div>
 </div>
-<p>width x heightの各ピクセルの色情報が1ピクセル当たりformatとしてdata.image.raw_date部分に格納されます。
-今回のカメラの場合、width = 640, height = 480と定義されているので、640x480のデータとなります。</p>
+<p>width x heightの各ピクセルの色情報が1ピクセル当たりformatとしてdata.image.raw_date部分に格納されます。 今回のカメラの場合、width = 640, height = 480と定義されているので、640x480のデータとなります。</p>
 <p>距離センサの値はRangeData型になります。</p>
 <div class="highlight-python"><div class="highlight"><pre>typedef sequence&lt;double&gt; RangeList;
 struct RangeData
@@ -275,8 +272,7 @@ struct RangeData
 };
 </pre></div>
 </div>
-<p>シーケンスに計測方向に向かって右からスキャンした距離データが格納されています。
-距離の値は何かに干渉が発生する限り出力されますが、干渉がない場合は0になります。</p>
+<p>シーケンスに計測方向に向かって右からスキャンした距離データが格納されています。 距離の値は何かに干渉が発生する限り出力されますが、干渉がない場合は0になります。</p>
 </div>
 <div class="section" id="source-code-of-a-controller">
 <h2>コントローラのソースコード<a class="headerlink" href="#source-code-of-a-controller" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -506,14 +502,12 @@ extern &quot;C&quot;
 };
 </pre></div>
 </div>
-<p>行っている処理については、「RTコンポーネントのコントローラの接続」とほとんど同じで、センサが増えただけです。
-ただし、それぞれのセンサの型は異なるので注意してください。</p>
+<p>行っている処理については、「RTコンポーネントのコントローラの接続」とほとんど同じで、センサが増えただけです。 ただし、それぞれのセンサの型は異なるので注意してください。</p>
 <p>これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotSensorsControllerRTC.cpp」と「samples/tutorials/rtc/RobotSensorsControllerRTC.h」に保存されています。</p>
 </div>
 <div class="section" id="a-configuration-file-for-rtc">
 <h2>RTCの設定ファイル<a class="headerlink" href="#a-configuration-file-for-rtc" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>これまではChoreonoidの自動設定の機能を用いてRTCのポートを生成していました。
-しかし、これはサンプル実行用のもので、単純なRTCのポート定義にしか使えません。</p>
+<p>これまではChoreonoidの自動設定の機能を用いてRTCのポートを生成していました。 しかし、これはサンプル実行用のもので、単純なRTCのポート定義にしか使えません。</p>
 <p>今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「samples/tutorials/rtc/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。</p>
 <div class="highlight-python"><div class="highlight"><pre>out-port = q:JOINT_VALUE
 out-port = gsensor:ACCELERATION_SENSOR
@@ -529,12 +523,11 @@ connection = rfsensor:RobotSensorsControllerRTC0:rfsensor
 connection = ranger:RobotSensorsControllerRTC0:ranger
 </pre></div>
 </div>
-<p>out-portとは、RTCの出力ポートの定義です。「ポート名：型」の形式で定義します。</p>
+<p>out-port means defintion of a output data port. Its right hand value consists of two values separated by comma. The first value is name of port and the second value is data type.</p>
 <p>これがin-portになると入力ポートの定義となります。今回はトルクの計算がないため使用していません。</p>
 <p>connectionとはRTCのポート接続の設定となります。例えば、「q:RobotSensorsControllerRTC0:q」とはこのRTCのポートqとRobotSensorsControllerRTC0コントローラとの接続設定になります。</p>
 <p>ちなみに、コントローラのポート設定に関しては、コントローラのソースコード中で動的に生成と設定がされるので設定ファイルを用いる必要はありません。</p>
-<p>この設定ファイルの仕様は OpenHRP3 をベースにしているので以下を参考にしてください。
-ただし、下記の資料は記述が古いです。</p>
+<p>この設定ファイルの仕様は OpenHRP3 をベースにしているので以下を参考にしてください。 ただし、下記の資料は記述が古いです。</p>
 <p><a class="reference external" href="http://www.openrtp.jp/openhrp3/jp/controller_bridge.html">http://www.openrtp.jp/openhrp3/jp/controller_bridge.html</a></p>
 </div>
 <div class="section" id="build-the-controller">
@@ -552,8 +545,7 @@ connection = ranger:RobotSensorsControllerRTC0:ranger
 </div>
 <div class="section" id="setup-the-controller">
 <h2>コントローラの設定<a class="headerlink" href="#setup-the-controller" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotSensorsControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。
-更に、「設定モード」を「設定ファイルを使用」にし、「設定ファイル名」を「RobotSensorsJVRC.conf」とします。</p>
+<p>アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotSensorsControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。 更に、「設定モード」を「設定ファイルを使用」にし、「設定ファイル名」を「RobotSensorsJVRC.conf」とします。</p>
 <img alt="../_images/sensor_config.png" src="../_images/sensor_config.png" />
 </div>
 <div class="section" id="enable-cameras-and-range-sensors">

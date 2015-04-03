@@ -9,7 +9,7 @@ Choreonoid
 
 * Manual  
 
-  http://www.choreonoid.org/ja/manuals/1.5/index.html
+  http://www.choreonoid.org/en/manuals/1.5/index.html
 
 * Source
 

@@ -53,7 +53,7 @@ msgstr "RTミドルウェアを用いた制御ソフトウェア開発環境\"hr
 
 #: ../../links.rst:34
 msgid "http://fkanehiro.github.com/hrpsys-manual/html/index.html"
-msgstr ""
+msgstr "http://fkanehiro.github.com/hrpsys-manual/html-ja/index.html"
 
 #: ../../links.rst:35
 msgid "Tutorials"
@@ -61,7 +61,7 @@ msgstr "チュートリアル"
 
 #: ../../links.rst:37
 msgid "http://fkanehiro.github.com/hrpsys-tutorials/html/index.html"
-msgstr ""
+msgstr "http://fkanehiro.github.com/hrpsys-tutorials/html-ja/index.html"
 
 #: ../../links.rst:40
 msgid "http://github.com/fkanehiro/hrpsys-base"
@@ -73,7 +73,7 @@ msgstr "シミュレーションモデルのファイル形式変換ツール\"s
 
 #: ../../links.rst:44
 msgid "http://fkanehiro.github.com/simtrans/html/index.html"
-msgstr ""
+msgstr "http://fkanehiro.github.com/simtrans/html-ja/index.html"
 
 #: ../../links.rst:2
 msgid "Links"
@@ -88,8 +88,8 @@ msgid "Homepage"
 msgstr ""
 
 #: ../../links.rst:12
-msgid "http://www.choreonoid.org/ja/manuals/1.5/index.html"
-msgstr ""
+msgid "http://www.choreonoid.org/en/manuals/1.5/index.html"
+msgstr "http://www.choreonoid.org/ja/manuals/1.5/index.html"
 
 #~ msgid "Related software"
 #~ msgstr ""

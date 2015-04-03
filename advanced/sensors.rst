@@ -2,19 +2,19 @@ Connecting sensors
 ==================
 
 
-ここではJVRCモデルに搭載された各種センサのデータを取得できるようにします。
+This section explains how to read sensors on JVRC-1 model.
 
 Open a project file
 -------------------
 
-「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。
+Choose "Open" in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample1.cnoid.
 
 
 Sensors defined in JVRC-1 model
 -------------------------------
 
-JVRC-1 モデルに搭載されているセンサは、テキストエディタで「samples/tutorials/JVRC-1/main.wrl」ファイルを開くと確認することができます。
-モデルファイルを開くと次のように記述されており、加速度センサ gsensor とジャイロセンサ gyrometer が搭載されていることがわかります。 ::
+You can find sensors defined in the JVRC-1 model by opening samples/tutorials/JVRC-1/main.wrl with a text editor.
+For example, you can find an accelerometer and a gyrometer as follows. ::
 
    DEF JVRC Humanoid {
      humanoidBody [
@@ -37,7 +37,7 @@ JVRC-1 モデルに搭載されているセンサは、テキストエディタ�
    	  ]
    	}
 
-他にも、力センサ rfsensor, lfsensorが搭載されていることが分かります。 ::
+We can find force sensors, named rfsensor, lfsensor and so on. ::
 
    				DEF rfsensor ForceSensor {
    				  sensorId 0
@@ -47,7 +47,7 @@ JVRC-1 モデルに搭載されているセンサは、テキストエディタ�
    				  sensorId 1
    				}
 
-カメラ rcamera, lcamera、距離センサ ranger も確認することができます。 ::
+We can find cameras named rcamera and lcamera, and a range sensor named ranger. ::
 
    			    DEF NECK_P Joint {
    			      jointType "rotate"
@@ -100,22 +100,21 @@ JVRC-1 モデルに搭載されているセンサは、テキストエディタ�
    			      ]
    			    } # NECK_P
 
-各センサの仕様について解説します。
-おおまかな仕様はこちらで確認することができますが、記述がかなり古く不正確です。
+You can find data types for each sensor in the following webpage. But the webpage is rather old and some of data types are obsolete.
 
 http://www.openrtp.jp/openhrp3/jp/controller_bridge.html
 
-加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の並進加速度が格納されています。
+Data type for an accelerometer is TimedDoubleSeq and its length is 3. It contains accelerations in x,y and z directions.
 
-ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルの角速度が格納されています。
+Data type for a gyrometer is TimedDoubleSeq and its length is 3. It contains angular velocities in x,y and z directions.
 
-力センサの値は要素数6のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。
+Data type for a force/torque sensor is TimedDoubleSeq and its length is 6. 3 components out of 6 are for forces in x,y and z directions and the other 3 are for torques around x,y and z axes.
 
-カメラの値はImg::TimedCameraImage型になります。
+Data type of the camera image is Img::TimedCameraImage.
 
 https://github.com/s-nakaoka/choreonoid/blob/master/src/OpenRTMPlugin/corba/CameraImage.idl
 
-Img::TimedCameraImageの型の定義は以下のようになっています。 ::
+Img::TimedCameraImage is defined as follows. ::
 
    enum ColorFormat
    {
@@ -146,10 +145,10 @@ Img::TimedCameraImageの型の定義は以下のようになっています。 :
    };
 
 
-width x heightの各ピクセルの色情報が1ピクセル当たりformatとしてdata.image.raw_date部分に格納されます。
-今回のカメラの場合、width = 640, height = 480と定義されているので、640x480のデータとなります。
+data.image.raw_date contains width x height pixels. Definition of a pixel depends on the pixel format specified by format field.
+Cameras on JVRC-1 have 640 pixel width and 480 pixel height. Therefore raw_data contains data for 640x480 pixels.
 
-距離センサの値はRangeData型になります。 ::
+Data type of a range sensor is RTC::RangeData. ::
 
     typedef sequence<double> RangeList;
     struct RangeData
@@ -164,15 +163,13 @@ width x heightの各ピクセルの色情報が1ピクセル当たりformatと�
         RangerConfig config;
     };
 
-
-シーケンスに計測方向に向かって右からスキャンした距離データが格納されています。
-距離の値は何かに干渉が発生する限り出力されますが、干渉がない場合は0になります。 ::
+Measured distances from right to left are stored in ranges. If measurement of distance fails 0 is stored. ::
 
 
 Source code of a controller
 ---------------------------
 
-コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。 ::
+A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid. ::
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -231,7 +228,7 @@ Source code of a controller
    
    #endif
 
-コントローラのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.cppを基にしています。 ::
+Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid. ::
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -398,18 +395,16 @@ Source code of a controller
        }
    };
 
-行っている処理については、「RTコンポーネントのコントローラの接続」とほとんど同じで、センサが増えただけです。
-ただし、それぞれのセンサの型は異なるので注意してください。
+Contents are almost same with the source in the previous tutorial. Input data ports for sensors are just added. Notice that data types are different depending on sensor types.
 
-これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotSensorsControllerRTC.cpp」と「samples/tutorials/rtc/RobotSensorsControllerRTC.h」に保存されています。
+You can find both of RobotSensorsControllerRTC.h and RobotSensorsControllerRTC.cpp in samples/tutorials.
 
 A configuration file for RTC
 ----------------------------
 
-これまではChoreonoidの自動設定の機能を用いてRTCのポートを生成していました。
-しかし、これはサンプル実行用のもので、単純なRTCのポート定義にしか使えません。
+In the previous tutorials, data ports are connected automatically Choreonoid. But this function only works with simple port configurations.
 
-今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「samples/tutorials/rtc/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。 ::
+Since the port configuration of RTC used in this tutorials is complex, we need to create a configuration file. Please create a file that contains the following lines and name it "RobotSensorsJVRC.conf". And put it in samples/tutorials/rtc. The file will be installed with RTCs. ::
 
    out-port = q:JOINT_VALUE
    out-port = gsensor:ACCELERATION_SENSOR
@@ -424,56 +419,54 @@ A configuration file for RTC
    connection = rfsensor:RobotSensorsControllerRTC0:rfsensor
    connection = ranger:RobotSensorsControllerRTC0:ranger
 
-out-portとは、RTCの出力ポートの定義です。「ポート名：型」の形式で定義します。
+out-port means defintion of a output data port. Its right hand value consists of two values separated by comma. The first value is name of port and the second value is data type.
 
-これがin-portになると入力ポートの定義となります。今回はトルクの計算がないため使用していません。
+in-port means definition of an input data port. No input port is defined in this example.
 
-connectionとはRTCのポート接続の設定となります。例えば、「q:RobotSensorsControllerRTC0:q」とはこのRTCのポートqとRobotSensorsControllerRTC0コントローラとの接続設定になります。
+connection defines a connection between data ports. For instance, q:RobotSensorsControllerRTC0:q means to connect this RT component and RobotSensorsControllerRTC0.
 
-ちなみに、コントローラのポート設定に関しては、コントローラのソースコード中で動的に生成と設定がされるので設定ファイルを用いる必要はありません。
+This configuration file is used to create data ports of BodyRTC. Data ports of usual RT components are statically defined in their source codes.
 
-この設定ファイルの仕様は OpenHRP3 をベースにしているので以下を参考にしてください。
-ただし、下記の資料は記述が古いです。
+Since this configuration file format is similar with OpenHRP, you can refer the following webpage. But please note that the format differs slightly.
 
 http://www.openrtp.jp/openhrp3/jp/controller_bridge.html
 
 Build the controller
 --------------------
 
-「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。 ::
+Go to samples/tutorials/rtc directory and execute the following command. ::
 
    make
 
-これにより、「samples/tutorials/rtc/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。
+This command generates RobotSensorsControllerRTC.so in samples/tutorials/rtc directory.
 
-その後、次のコマンドを実行します。 ::
+And then, execute the following command. ::
 
    sudo make install DESTDIR=/usr
 
-ChoreonoidではRTCの設定ファイルはChoreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。"make install"ではこの処理を自動的に行ってくれます。
+Configuration files for RTC must be placed in shared data directory of Choreonoid(/usr/lib/choreonoid-1.5/rtc). "make install" puts configuration file in the directory.
 
 Setup the controller
 --------------------
 
-アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotSensorsControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。
-更に、「設定モード」を「設定ファイルを使用」にし、「設定ファイル名」を「RobotSensorsJVRC.conf」とします。
+Select BodyRTC in the item view and set value of its property, "controller module name" to RobotSensorsControllerRTC. This value corresponds to the filename of the RT component. Set values of properties, "setup mode" and "configuration file name" to "use configuration file" and "RobotSensorsJVRC.conf" respectively.
 
 .. image:: images/sensor_config.png
 
 Enable cameras and range sensors
 --------------------------------
 
-シミュレーションにおいてカメラや距離センサを有効にするため、以下の作業を行います。
+To enable cameras and range sensors in simulation, do the following settings.
 
-アイテムビューで「AISTSimulator」を選択し、「新規」より「GL視覚センサシミュレータ」を選択し、「GLVisionSimulator」という名前で追加します。
+Select AISTSimulator in the item view and create a GLVisionSensorSimulator item and name it GLVisionSimulator.
 
 .. image:: images/vision.png
 
-「GLVisionSimulator」を選択し、プロパティを以下のように変更します。
+Select GLVisionSimulator item and set its properties as follows.
 
-「対象ボディ」を「JVRC」
+Target body to JVRC.
 
-「対象センサ」を「ranger」
+Target sensor to ranger.
 
 .. image:: images/vision_property.png
 

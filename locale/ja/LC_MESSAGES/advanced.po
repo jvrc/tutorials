@@ -20,8 +20,8 @@ msgid "Connecting sensors"
 msgstr "センサの接続"
 
 #: ../../advanced/sensors.rst:5
-msgid "ここではJVRCモデルに搭載された各種センサのデータを取得できるようにします。"
-msgstr ""
+msgid "This section explains how to read sensors on JVRC-1 model."
+msgstr "ここではJVRCモデルに搭載された各種センサのデータを取得できるようにします。"
 
 #: ../../advanced/sensors.rst:8
 msgid "Open a project file"
@@ -32,158 +32,194 @@ msgid "Sensors defined in JVRC-1 model"
 msgstr "JVRC モデルのセンサ"
 
 #: ../../advanced/sensors.rst:40
-msgid "他にも、力センサ rfsensor, lfsensorが搭載されていることが分かります。 ::"
-msgstr ""
+msgid "We can find force sensors, named rfsensor, lfsensor and so on. ::"
+msgstr "他にも、力センサ rfsensor, lfsensorが搭載されていることが分かります。 ::"
 
 #: ../../advanced/sensors.rst:50
-msgid "カメラ rcamera, lcamera、距離センサ ranger も確認することができます。 ::"
-msgstr ""
+msgid ""
+"We can find cameras named rcamera and lcamera, and a range sensor named "
+"ranger. ::"
+msgstr "カメラ rcamera, lcamera、距離センサ ranger も確認することができます。 ::"
 
 #: ../../advanced/sensors.rst:103
-msgid "各センサの仕様について解説します。 おおまかな仕様はこちらで確認することができますが、記述がかなり古く不正確です。"
-msgstr ""
+msgid ""
+"You can find data types for each sensor in the following webpage. But the "
+"webpage is rather old and some of data types are obsolete."
+msgstr "各センサの仕様について解説します。 おおまかな仕様はこちらで確認することができますが、記述がかなり古く不正確です。"
 
-#: ../../advanced/sensors.rst:106 ../../advanced/sensors.rst:438
+#: ../../advanced/sensors.rst:105 ../../advanced/sensors.rst:432
 msgid "http://www.openrtp.jp/openhrp3/jp/controller_bridge.html"
 msgstr ""
 
-#: ../../advanced/sensors.rst:114
-msgid "カメラの値はImg::TimedCameraImage型になります。"
-msgstr ""
+#: ../../advanced/sensors.rst:113
+msgid "Data type of the camera image is Img::TimedCameraImage."
+msgstr "カメラの値はImg::TimedCameraImage型になります。"
 
-#: ../../advanced/sensors.rst:116
+#: ../../advanced/sensors.rst:115
 msgid ""
 "https://github.com/s-nakaoka/choreonoid/blob/master/src/OpenRTMPlugin/corba/CameraImage.idl"
 msgstr ""
 
-#: ../../advanced/sensors.rst:118
-msgid "Img::TimedCameraImageの型の定義は以下のようになっています。 ::"
-msgstr ""
+#: ../../advanced/sensors.rst:117
+msgid "Img::TimedCameraImage is defined as follows. ::"
+msgstr "Img::TimedCameraImageの型の定義は以下のようになっています。 ::"
 
-#: ../../advanced/sensors.rst:149
+#: ../../advanced/sensors.rst:148
 msgid ""
+"data.image.raw_date contains width x height pixels. Definition of a pixel "
+"depends on the pixel format specified by format field. Cameras on JVRC-1 "
+"have 640 pixel width and 480 pixel height. Therefore raw_data contains data "
+"for 640x480 pixels."
+msgstr ""
 "width x heightの各ピクセルの色情報が1ピクセル当たりformatとしてdata.image.raw_date部分に格納されます。 "
 "今回のカメラの場合、width = 640, height = 480と定義されているので、640x480のデータとなります。"
-msgstr ""
 
-#: ../../advanced/sensors.rst:152
-msgid "距離センサの値はRangeData型になります。 ::"
-msgstr ""
+#: ../../advanced/sensors.rst:151
+msgid "Data type of a range sensor is RTC::RangeData. ::"
+msgstr "距離センサの値はRangeData型になります。 ::"
 
-#: ../../advanced/sensors.rst:168
+#: ../../advanced/sensors.rst:166
 msgid ""
+"Measured distances from right to left are stored in ranges. If measurement "
+"of distance fails 0 is stored. ::"
+msgstr ""
 "シーケンスに計測方向に向かって右からスキャンした距離データが格納されています。 "
 "距離の値は何かに干渉が発生する限り出力されますが、干渉がない場合は0になります。 ::"
-msgstr ""
 
-#: ../../advanced/sensors.rst:173
+#: ../../advanced/sensors.rst:170
 msgid "Source code of a controller"
 msgstr "コントローラのソースコード"
 
-#: ../../advanced/sensors.rst:175
+#: ../../advanced/sensors.rst:172
 msgid ""
+"A header file of the controller is as follows. This file was created by "
+"modifying SR1WalkControllerRTC.h which is included in Choreonoid. ::"
+msgstr ""
 "コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。"
 " ::"
-msgstr ""
 
-#: ../../advanced/sensors.rst:234
+#: ../../advanced/sensors.rst:231
 msgid ""
+"Source codes of the controller are as follows. This file was created by "
+"modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid. ::"
+msgstr ""
 "コントローラのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.cppを基にしています。 "
 "::"
-msgstr ""
 
-#: ../../advanced/sensors.rst:401
+#: ../../advanced/sensors.rst:398
 msgid ""
+"Contents are almost same with the source in the previous tutorial. Input "
+"data ports for sensors are just added. Notice that data types are different "
+"depending on sensor types."
+msgstr ""
 "行っている処理については、「RTコンポーネントのコントローラの接続」とほとんど同じで、センサが増えただけです。 "
 "ただし、それぞれのセンサの型は異なるので注意してください。"
-msgstr ""
 
-#: ../../advanced/sensors.rst:407
+#: ../../advanced/sensors.rst:403
 msgid "A configuration file for RTC"
 msgstr "RTCの設定ファイル"
 
-#: ../../advanced/sensors.rst:409
+#: ../../advanced/sensors.rst:405
 msgid ""
+"In the previous tutorials, data ports are connected automatically "
+"Choreonoid. But this function only works with simple port configurations."
+msgstr ""
 "これまではChoreonoidの自動設定の機能を用いてRTCのポートを生成していました。 "
 "しかし、これはサンプル実行用のもので、単純なRTCのポート定義にしか使えません。"
-msgstr ""
 
-#: ../../advanced/sensors.rst:427
-msgid "out-portとは、RTCの出力ポートの定義です。「ポート名：型」の形式で定義します。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:429
-msgid "これがin-portになると入力ポートの定義となります。今回はトルクの計算がないため使用していません。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:431
+#: ../../advanced/sensors.rst:424
 msgid ""
+"in-port means definition of an input data port. No input port is defined in "
+"this example."
+msgstr "これがin-portになると入力ポートの定義となります。今回はトルクの計算がないため使用していません。"
+
+#: ../../advanced/sensors.rst:426
+msgid ""
+"connection defines a connection between data ports. For instance, "
+"q:RobotSensorsControllerRTC0:q means to connect this RT component and "
+"RobotSensorsControllerRTC0."
+msgstr ""
 "connectionとはRTCのポート接続の設定となります。例えば、「q:RobotSensorsControllerRTC0:q」とはこのRTCのポートqとRobotSensorsControllerRTC0コントローラとの接続設定になります。"
-msgstr ""
 
-#: ../../advanced/sensors.rst:433
+#: ../../advanced/sensors.rst:428
 msgid ""
-"ちなみに、コントローラのポート設定に関しては、コントローラのソースコード中で動的に生成と設定がされるので設定ファイルを用いる必要はありません。"
+"This configuration file is used to create data ports of BodyRTC. Data ports "
+"of usual RT components are statically defined in their source codes."
 msgstr ""
+"ちなみに、コントローラのポート設定に関しては、コントローラのソースコード中で動的に生成と設定がされるので設定ファイルを用いる必要はありません。"
+
+#: ../../advanced/sensors.rst:430
+msgid ""
+"Since this configuration file format is similar with OpenHRP, you can refer "
+"the following webpage. But please note that the format differs slightly."
+msgstr "この設定ファイルの仕様は OpenHRP3 をベースにしているので以下を参考にしてください。 ただし、下記の資料は記述が古いです。"
 
 #: ../../advanced/sensors.rst:435
-msgid "この設定ファイルの仕様は OpenHRP3 をベースにしているので以下を参考にしてください。 ただし、下記の資料は記述が古いです。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:441
 msgid "Build the controller"
 msgstr "コントローラのビルド"
 
-#: ../../advanced/sensors.rst:449
-msgid "その後、次のコマンドを実行します。 ::"
-msgstr ""
+#: ../../advanced/sensors.rst:443
+msgid "And then, execute the following command. ::"
+msgstr "その後、次のコマンドを実行します。 ::"
 
-#: ../../advanced/sensors.rst:453
+#: ../../advanced/sensors.rst:447
 msgid ""
+"Configuration files for RTC must be placed in shared data directory of "
+"Choreonoid(/usr/lib/choreonoid-1.5/rtc). \"make install\" puts configuration"
+" file in the directory."
+msgstr ""
 "ChoreonoidではRTCの設定ファイルはChoreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。\"make"
 " install\"ではこの処理を自動的に行ってくれます。"
-msgstr ""
 
-#: ../../advanced/sensors.rst:456
+#: ../../advanced/sensors.rst:450
 msgid "Setup the controller"
 msgstr "コントローラの設定"
 
-#: ../../advanced/sensors.rst:458
+#: ../../advanced/sensors.rst:452
 msgid ""
+"Select BodyRTC in the item view and set value of its property, \"controller "
+"module name\" to RobotSensorsControllerRTC. This value corresponds to the "
+"filename of the RT component. Set values of properties, \"setup mode\" and "
+"\"configuration file name\" to \"use configuration file\" and "
+"\"RobotSensorsJVRC.conf\" respectively."
+msgstr ""
 "アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotSensorsControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。"
 " 更に、「設定モード」を「設定ファイルを使用」にし、「設定ファイル名」を「RobotSensorsJVRC.conf」とします。"
-msgstr ""
 
-#: ../../advanced/sensors.rst:464
+#: ../../advanced/sensors.rst:457
 msgid "Enable cameras and range sensors"
 msgstr "カメラ、距離センサの有効化"
 
-#: ../../advanced/sensors.rst:466
-msgid "シミュレーションにおいてカメラや距離センサを有効にするため、以下の作業を行います。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:468
+#: ../../advanced/sensors.rst:459
 msgid ""
-"アイテムビューで「AISTSimulator」を選択し、「新規」より「GL視覚センサシミュレータ」を選択し、「GLVisionSimulator」という名前で追加します。"
-msgstr ""
+"To enable cameras and range sensors in simulation, do the following "
+"settings."
+msgstr "シミュレーションにおいてカメラや距離センサを有効にするため、以下の作業を行います。"
 
-#: ../../advanced/sensors.rst:472
-msgid "「GLVisionSimulator」を選択し、プロパティを以下のように変更します。"
+#: ../../advanced/sensors.rst:461
+msgid ""
+"Select AISTSimulator in the item view and create a GLVisionSensorSimulator "
+"item and name it GLVisionSimulator."
 msgstr ""
+"アイテムビューで「AISTSimulator」を選択し、「新規」より「GL視覚センサシミュレータ」を選択し、「GLVisionSimulator」という名前で追加します。"
+
+#: ../../advanced/sensors.rst:465
+msgid "Select GLVisionSimulator item and set its properties as follows."
+msgstr "「GLVisionSimulator」を選択し、プロパティを以下のように変更します。"
+
+#: ../../advanced/sensors.rst:467
+msgid "Target body to JVRC."
+msgstr "「対象ボディ」を「JVRC」"
+
+#: ../../advanced/sensors.rst:469
+msgid "Target sensor to ranger."
+msgstr "「対象センサ」を「ranger」"
 
 #: ../../advanced/sensors.rst:474
-msgid "「対象ボディ」を「JVRC」"
-msgstr ""
-
-#: ../../advanced/sensors.rst:476
-msgid "「対象センサ」を「ranger」"
-msgstr ""
-
-#: ../../advanced/sensors.rst:481
 msgid "Run simulation"
 msgstr "シミュレーションを実行する"
 
-#: ../../advanced/sensors.rst:491
+#: ../../advanced/sensors.rst:484
 msgid "A sample project used in this tutorial"
 msgstr "サンプルプロジェクトについて"
 
@@ -205,61 +241,82 @@ msgstr "この章ではJVRCモデルファイルを用いた応用的なシミ�
 
 #: ../../advanced/sensors.rst:16
 msgid ""
+"You can find sensors defined in the JVRC-1 model by opening "
+"samples/tutorials/JVRC-1/main.wrl with a text editor. For example, you can "
+"find an accelerometer and a gyrometer as follows. ::"
+msgstr ""
 "JVRC-1 "
 "モデルに搭載されているセンサは、テキストエディタで「samples/tutorials/JVRC-1/main.wrl」ファイルを開くと確認することができます。"
 " モデルファイルを開くと次のように記述されており、加速度センサ gsensor とジャイロセンサ gyrometer が搭載されていることがわかります。"
 " ::"
-msgstr ""
 
-#: ../../advanced/sensors.rst:108
-msgid "加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の並進加速度が格納されています。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:110
-msgid "ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルの角速度が格納されています。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:112
-msgid "力センサの値は要素数6のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。"
-msgstr ""
-
-#: ../../advanced/sensors.rst:404
+#: ../../advanced/sensors.rst:107
 msgid ""
+"Data type for an accelerometer is TimedDoubleSeq and its length is 3. It "
+"contains accelerations in x,y and z directions."
+msgstr "加速度センサの値は要素数3のTimedDoubleSeq型になります。それぞれの方向の並進加速度が格納されています。"
+
+#: ../../advanced/sensors.rst:109
+msgid ""
+"Data type for a gyrometer is TimedDoubleSeq and its length is 3. It contains"
+" angular velocities in x,y and z directions."
+msgstr "ジャイロセンサの値は要素数3のTimedDoubleSeq型になります。三次元ベクトルの角速度が格納されています。"
+
+#: ../../advanced/sensors.rst:111
+msgid ""
+"Data type for a force/torque sensor is TimedDoubleSeq and its length is 6. 3"
+" components out of 6 are for forces in x,y and z directions and the other 3 "
+"are for torques around x,y and z axes."
+msgstr "力センサの値は要素数6のTimedDoubleSeq型になります。3次元ベクトルの力と3次元ベクトルのトルクが格納されています。"
+
+#: ../../advanced/sensors.rst:400
+msgid ""
+"You can find both of RobotSensorsControllerRTC.h and "
+"RobotSensorsControllerRTC.cpp in samples/tutorials."
+msgstr ""
 "これらのソースコードは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotSensorsControllerRTC.cpp」と「samples/tutorials/rtc/RobotSensorsControllerRTC.h」に保存されています。"
-msgstr ""
 
-#: ../../advanced/sensors.rst:412
+#: ../../advanced/sensors.rst:407
 msgid ""
+"Since the port configuration of RTC used in this tutorials is complex, we "
+"need to create a configuration file. Please create a file that contains the "
+"following lines and name it \"RobotSensorsJVRC.conf\". And put it in "
+"samples/tutorials/rtc. The file will be installed with RTCs. ::"
+msgstr ""
 "今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「samples/tutorials/rtc/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。"
 " ::"
-msgstr ""
 
-#: ../../advanced/sensors.rst:443
+#: ../../advanced/sensors.rst:437
 msgid ""
+"Go to samples/tutorials/rtc directory and execute the following command. ::"
+msgstr ""
 "「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。"
 " ::"
-msgstr ""
 
-#: ../../advanced/sensors.rst:447
+#: ../../advanced/sensors.rst:441
 msgid ""
-"これにより、「samples/tutorials/rtc/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。"
+"This command generates RobotSensorsControllerRTC.so in samples/tutorials/rtc"
+" directory."
 msgstr ""
+"これにより、「samples/tutorials/rtc/」ディレクトリに「RobotSensorsControllerRTC.so」というファイルが作成されるはずです。"
 
 #: ../../advanced/sensors.rst:10
 msgid ""
+"Choose \"Open\" in \"File\" menu and select a project file for JVRC-1. Its "
+"name is samples/tutorials/cnoid/sample1.cnoid."
+msgstr ""
 "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
 "トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス "
 "トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。"
-msgstr ""
 
-#: ../../advanced/sensors.rst:493
+#: ../../advanced/sensors.rst:486
 msgid ""
 "You can find a sample project file created by this tutorial in "
 "samples/tutorials/cnoid/sample3.cnoid."
 msgstr ""
 "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample4.cnoid」に保存されています。"
 
-#: ../../advanced/sensors.rst:483
+#: ../../advanced/sensors.rst:476
 msgid ""
 "Press \"Start simulation\" button on the simulation tool bar. While "
 "simulation is running, sensor outputs are displayed in the terminal you "
@@ -271,6 +328,16 @@ msgstr ""
 "シミュレーションを実行するとchoreonoidを実行している端末にセンサの値が出力されています。 "
 "「RTコンポーネントのコントローラの接続」のときとは違い、関節角度(m_angle)だけではなく、 "
 "加速度センサ(m_gsensor)、ジャイロセンサ(m_gyrometer)、……の値が表示されるはずです。"
+
+#: ../../advanced/sensors.rst:422
+msgid ""
+"out-port means defintion of a output data port. Its right hand value "
+"consists of two values separated by comma. The first value is name of port "
+"and the second value is data type."
+msgstr ""
+
+#~ msgid "out-portとは、RTCの出力ポートの定義です。「ポート名：型」の形式で定義します。"
+#~ msgstr ""
 
 #~ msgid ""
 #~ "Press \\\"Start simulation\\\" button on the simulation tool bar. While "

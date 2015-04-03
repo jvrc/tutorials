@@ -8,7 +8,7 @@ This section extentds the RT component developed in the previous section to keep
 Open a project file
 -------------------
 
-Choose "Open" in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample2.cnoid.
+Choose "Open..." in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample2.cnoid.
 
 Source code of a controller
 ---------------------------
@@ -252,7 +252,7 @@ You can find both of RobotTorqueCOntrollerRTC.h and RobotTorqueControllerRTC.cpp
 Setup of the controller
 -----------------------
 
-Choose BodyRTC in the item view and change the value of "Controller module name" property to "RobotTorqueControllerRTC". This value corresponds to the filename of the RT component. Change the value of "Automatic connection" to "true".
+Choose BodyRTC in the item view and change the value of "Controller module name" property to "RobotTorqueControllerRTC". This value corresponds to the filename of the RT component. Change the value of "Auto Connect" to "true".
 
 .. image:: images/property_torque.png
 
@@ -265,7 +265,7 @@ Open a configuration panel of the time bar.
 
 .. image:: images/timebar.png
 
-Set 1000 to the value of "internal frame rate".
+Set 1000 to the value of "Internal frame rate".
 
 .. image:: images/timebar_config.png
 
@@ -274,19 +274,19 @@ This frame rate defines how many times computation is executed. If its value is 
 Create a pose sequence item
 ---------------------------
 
-Choose JVRC in the item view first. Then create a pose sequence item named SimpleMotion by choosing "Pose Sequence" menu followed by "File", "New" menus.
+Choose JVRC in the item view first. Then create a pose sequence item named SimpleMotion by choosing "PoseSeq" menu followed by "File", "New..." menus.
 
 .. image:: images/motion.png
 
-Then choose "Pose roll" followed by "Display", "Display View" menus. You will see a window as follows.
+Then choose "Pose Roll" followed by "View", "Show View" menus. You will see a window as follows.
 
 .. image:: images/pose_role.png
 
-Choose "JVRC" in the item view and Press "initial pose" button on the tool bar to make the robot to be in the initial posture.
+Choose "JVRC" in the item view and Press "Set the present initial pose to the selected bodies" button on the tool bar to make the robot to be in the initial posture.
 
 .. image:: images/pose_toolbar.png
 
-Select 1.0 in the pose roll and press "insert". Select 2.0, 3.0 and 4.0 and press "insert" as well.
+Select 1.0 in the pose roll and press "Insert". Select 2.0, 3.0 and 4.0 and press "Insert" as well.
 
 The pose roll should be as follows.
 
@@ -294,15 +294,15 @@ The pose roll should be as follows.
 
 Repeat this procedure until length of the motion becomes 15[s].
 
-What we created using the pose roll are called key frames. They are used to generate a robot motion. Press "create body motion" button on the tool bar.
+What we created using the pose roll are called key frames. They are used to generate a robot motion. Press "Generate body motions" button on the tool bar.
 
 .. image:: images/motion_toolbar.png
 
-It is possible to update the robot motion automatically when key frames are updated. It can be enabled by checking  "automatic update mode" button on the tool bar.
+It is possible to update the robot motion automatically when key frames are updated. It can be enabled by checking  "Automatic Balance Adjustment Mode" button on the tool bar.
 
 .. image:: images/motion_toolbar2.png
 
-You can find a "motion" item as a child of "SampleMotion" item. Select this item and save its contents by choosing "Save as" menu.
+You can find a "motion" item as a child of "SampleMotion" item. Select this item and save its contents by choosing "Save Selected Items As" menu.
 
 .. image:: images/item_motion.png
 
@@ -325,7 +325,7 @@ And then, execute the following command. ::
 Run simulation
 --------------
 
-Press "start simulation" button on the simulation tool bar. The robot doesn't fall down for 15[s] but after that, it falls down. Because duration of the robot motion is 15[s].
+Press "Start simulation from the beginning" button on the simulation tool bar. The robot doesn't fall down for 15[s] but after that, it falls down. Because duration of the robot motion is 15[s].
 
 .. image:: images/simulation_controller.png
 

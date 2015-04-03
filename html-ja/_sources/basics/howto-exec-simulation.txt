@@ -18,9 +18,9 @@ You will see a window as follows.
 Open a model file
 -----------------
 
-Create a world item named "World" first by selecting "File", "New" and "World" menus.
+Create a world item named "World" first by selecting "File", "New..." and "World" menus.
 
-Then load a model file of JVRC-1 by choosing "OpenHRP model file" followed by "File", "Open" menus. The filename is samles/tutorials/JVRC-1/main.wrl.
+Then load a model file of JVRC-1 by choosing "OpenHRP Model File" followed by "File", "Open..." menus. The filename is samles/tutorials/JVRC-1/main.wrl.
 
 When you check the checkbox named "JVRC", JVRC-1 will be displayed in the scene view as follows.
 
@@ -31,19 +31,19 @@ Add a model of the floor
 
 To prevent the robot from falling, let's add a model of the ground.
 
-The window of Choreonoid has a tab named "item". This tab is called "item view". Select "World" item first in the item view. Then choose "OpenHRP model file" following "File","Open" menus and select the model file for the floor. Its filename is "/usr/share/choreonoid-1.5/model/misc/floor.wrl".
+The window of Choreonoid has a tab named "Items". This tab is called "item view". Select "World" item first in the item view. Then choose "OpenHRP Model File" following "File","Open..." menus and select the model file for the floor. Its filename is "/usr/share/choreonoid-1.5/model/misc/floor.wrl".
 
 Add a simulator item
 --------------------
 
-Choose "World" item in the item view. Then create a "AISTSimulator" item by following "File", "New" menus.
+Choose "World" item in the item view. Then create a "AISTSimulator" item by following "File", "New..." menus.
 
 .. image:: images/aist_simulator.png
 
 Run simulation
 --------------
 
-Next press "Start simulation" button in the simulation tool bar. Simulation will start.
+Next press "Start simulation from the beginning" button in the simulation tool bar. Simulation will start.
 
 .. image:: images/simulation_start.png
 
@@ -56,7 +56,7 @@ Because all joints are not controlled but free. We will control joints in the ne
 Save a project
 --------------
 
-After running simulation, let's save the project. Choose "Save as" menu in "File" menu and name the project file.
+After running simulation, let's save the project. Choose "Save Project As" menu in "File" menu and name the project file.
 
 A sample project used in this tutorial
 --------------------------------------

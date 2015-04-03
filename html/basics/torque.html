@@ -129,7 +129,7 @@
 <p>This section extentds the RT component developed in the previous section to keep the robot standing position.</p>
 <div class="section" id="open-a-project-file">
 <h2>Open a project file<a class="headerlink" href="#open-a-project-file" title="Permalink to this headline">¶</a></h2>
-<p>Choose &#8220;Open&#8221; in &#8220;File&#8221; menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample2.cnoid.</p>
+<p>Choose &#8220;Open...&#8221; in &#8220;File&#8221; menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample2.cnoid.</p>
 </div>
 <div class="section" id="source-code-of-a-controller">
 <h2>Source code of a controller<a class="headerlink" href="#source-code-of-a-controller" title="Permalink to this headline">¶</a></h2>
@@ -367,7 +367,7 @@ extern &quot;C&quot;
 </div>
 <div class="section" id="setup-of-the-controller">
 <h2>Setup of the controller<a class="headerlink" href="#setup-of-the-controller" title="Permalink to this headline">¶</a></h2>
-<p>Choose BodyRTC in the item view and change the value of &#8220;Controller module name&#8221; property to &#8220;RobotTorqueControllerRTC&#8221;. This value corresponds to the filename of the RT component. Change the value of &#8220;Automatic connection&#8221; to &#8220;true&#8221;.</p>
+<p>Choose BodyRTC in the item view and change the value of &#8220;Controller module name&#8221; property to &#8220;RobotTorqueControllerRTC&#8221;. This value corresponds to the filename of the RT component. Change the value of &#8220;Auto Connect&#8221; to &#8220;true&#8221;.</p>
 <img alt="../_images/property_torque.png" src="../_images/property_torque.png" />
 </div>
 <div class="section" id="create-a-pose-sequence">
@@ -375,27 +375,27 @@ extern &quot;C&quot;
 <p>Since a joint conrol RT component is executed at 1000[Hz], set the internal framerate of Choreonoid to the same value, 1000In order to set a framerate of a motion pattern to the same value with execution period of a joint control RT component, set the value to 1000.</p>
 <p>Open a configuration panel of the time bar.</p>
 <img alt="../_images/timebar.png" src="../_images/timebar.png" />
-<p>Set 1000 to the value of &#8220;internal frame rate&#8221;.</p>
+<p>Set 1000 to the value of &#8220;Internal frame rate&#8221;.</p>
 <img alt="../_images/timebar_config.png" src="../_images/timebar_config.png" />
 <p>This frame rate defines how many times computation is executed. If its value is 1000, computation is done every 1[ms] and if its value is 100, computation is done every 10[ms].</p>
 </div>
 <div class="section" id="create-a-pose-sequence-item">
 <h2>Create a pose sequence item<a class="headerlink" href="#create-a-pose-sequence-item" title="Permalink to this headline">¶</a></h2>
-<p>Choose JVRC in the item view first. Then create a pose sequence item named SimpleMotion by choosing &#8220;Pose Sequence&#8221; menu followed by &#8220;File&#8221;, &#8220;New&#8221; menus.</p>
+<p>Choose JVRC in the item view first. Then create a pose sequence item named SimpleMotion by choosing &#8220;PoseSeq&#8221; menu followed by &#8220;File&#8221;, &#8220;New...&#8221; menus.</p>
 <img alt="../_images/motion.png" src="../_images/motion.png" />
-<p>Then choose &#8220;Pose roll&#8221; followed by &#8220;Display&#8221;, &#8220;Display View&#8221; menus. You will see a window as follows.</p>
+<p>Then choose &#8220;Pose Roll&#8221; followed by &#8220;View&#8221;, &#8220;Show View&#8221; menus. You will see a window as follows.</p>
 <img alt="../_images/pose_role.png" src="../_images/pose_role.png" />
-<p>Choose &#8220;JVRC&#8221; in the item view and Press &#8220;initial pose&#8221; button on the tool bar to make the robot to be in the initial posture.</p>
+<p>Choose &#8220;JVRC&#8221; in the item view and Press &#8220;Set the present initial pose to the selected bodies&#8221; button on the tool bar to make the robot to be in the initial posture.</p>
 <img alt="../_images/pose_toolbar.png" src="../_images/pose_toolbar.png" />
-<p>Select 1.0 in the pose roll and press &#8220;insert&#8221;. Select 2.0, 3.0 and 4.0 and press &#8220;insert&#8221; as well.</p>
+<p>Select 1.0 in the pose roll and press &#8220;Insert&#8221;. Select 2.0, 3.0 and 4.0 and press &#8220;Insert&#8221; as well.</p>
 <p>The pose roll should be as follows.</p>
 <img alt="../_images/pose_role2.png" src="../_images/pose_role2.png" />
 <p>Repeat this procedure until length of the motion becomes 15[s].</p>
-<p>What we created using the pose roll are called key frames. They are used to generate a robot motion. Press &#8220;create body motion&#8221; button on the tool bar.</p>
+<p>What we created using the pose roll are called key frames. They are used to generate a robot motion. Press &#8220;Generate body motions&#8221; button on the tool bar.</p>
 <img alt="../_images/motion_toolbar.png" src="../_images/motion_toolbar.png" />
-<p>It is possible to update the robot motion automatically when key frames are updated. It can be enabled by checking  &#8220;automatic update mode&#8221; button on the tool bar.</p>
+<p>It is possible to update the robot motion automatically when key frames are updated. It can be enabled by checking  &#8220;Automatic Balance Adjustment Mode&#8221; button on the tool bar.</p>
 <img alt="../_images/motion_toolbar2.png" src="../_images/motion_toolbar2.png" />
-<p>You can find a &#8220;motion&#8221; item as a child of &#8220;SampleMotion&#8221; item. Select this item and save its contents by choosing &#8220;Save as&#8221; menu.</p>
+<p>You can find a &#8220;motion&#8221; item as a child of &#8220;SampleMotion&#8221; item. Select this item and save its contents by choosing &#8220;Save Selected Items As&#8221; menu.</p>
 <img alt="../_images/item_motion.png" src="../_images/item_motion.png" />
 <p>Save the robot motion as RobotMotion.yaml in samples/tutorials/rtc directory.</p>
 </div>
@@ -413,7 +413,7 @@ extern &quot;C&quot;
 </div>
 <div class="section" id="run-simulation">
 <h2>Run simulation<a class="headerlink" href="#run-simulation" title="Permalink to this headline">¶</a></h2>
-<p>Press &#8220;start simulation&#8221; button on the simulation tool bar. The robot doesn&#8217;t fall down for 15[s] but after that, it falls down. Because duration of the robot motion is 15[s].</p>
+<p>Press &#8220;Start simulation from the beginning&#8221; button on the simulation tool bar. The robot doesn&#8217;t fall down for 15[s] but after that, it falls down. Because duration of the robot motion is 15[s].</p>
 <img alt="../_images/simulation_controller.png" src="../_images/simulation_controller.png" />
 </div>
 <div class="section" id="a-sample-project-used-in-this-tutorial">

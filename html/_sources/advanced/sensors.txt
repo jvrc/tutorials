@@ -7,7 +7,7 @@ This section explains how to read sensors on JVRC-1 model.
 Open a project file
 -------------------
 
-Choose "Open" in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample1.cnoid.
+Choose "Open..." in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample1.cnoid.
 
 
 Sensors defined in JVRC-1 model
@@ -449,7 +449,7 @@ Configuration files for RTC must be placed in shared data directory of Choreonoi
 Setup the controller
 --------------------
 
-Select BodyRTC in the item view and set value of its property, "controller module name" to RobotSensorsControllerRTC. This value corresponds to the filename of the RT component. Set values of properties, "setup mode" and "configuration file name" to "use configuration file" and "RobotSensorsJVRC.conf" respectively.
+Select BodyRTC in the item view and set value of its property, "Controller module name" to RobotSensorsControllerRTC. This value corresponds to the filename of the RT component. Set values of properties, "Configuration mode" and "Configuration file name" to "Use Configuration File" and "RobotSensorsJVRC.conf" respectively.
 
 .. image:: images/sensor_config.png
 
@@ -473,7 +473,7 @@ Target sensor to ranger.
 Run simulation
 --------------
 
-Press "Start simulation" button on the simulation tool bar.
+Press "Start simulation from the beginning" button on the simulation tool bar.
 While simulation is running, sensor outputs are displayed in the terminal you launched Choreonoid.
 In addition to joint angles(m_angle), you can see outputs from accelerometers(m_gsensor), gyrometers(m_gyrometer) and other sensors.
 

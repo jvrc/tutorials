@@ -7,13 +7,13 @@ This section explains how to connect Choreonoid and a RT component by developing
 Open a project file
 -------------------
 
-Open a project file by choosing "Open a project file" menu of "File" menu.The file name is samples/tutorials/cnoid/sample1.cnoid.
+Open a project file by choosing "Open Project" menu of "File" menu. The file name is samples/tutorials/cnoid/sample1.cnoid.
 
 Add a controller
 ----------------
 
 Select "JVRC" first in the item view.
-Then create a BodyRTC item by choosing "BodyRTC" menu followed by "File", "New" menus.
+Then create a BodyRTC item by choosing "BodyRTC" menu followed by "File", "New..." menus.
 
 Source code of a controller
 ---------------------------
@@ -170,7 +170,7 @@ Setup the controller
 
 To connect Choreonoid and the RT component we developed, we need to configure BodyRTC item.
 
-When you select BodyRTC item, its properties are displayed in the tab which is called "property view". Set "RobotControllerRTC" to the value of "Controller module name". This corresponds to the filename of the RT component. Set true to the value of "Automatic port connection".
+When you select BodyRTC item, its properties are displayed in the tab which is called "property view". Set "RobotControllerRTC" to the value of "Controller module name". This corresponds to the filename of the RT component. Set true to the value of "Auto Connect".
 
 .. image:: images/property_rtc.png
 
@@ -192,7 +192,7 @@ In order to use RT components from Choreonoid, we need to put them in the shared
 Run simulation
 --------------
 
-Press "start simulation" button on the simulation tool bar. While the simulation is running, joint angles stored in m_angle are displayed in the terminal you launched Choreonoid.
+Press "Start simulation from the beginning" button on the simulation tool bar. While the simulation is running, joint angles stored in m_angle are displayed in the terminal you launched Choreonoid.
 
 .. image:: images/output.png
 

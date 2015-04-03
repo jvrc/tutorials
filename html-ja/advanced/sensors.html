@@ -523,7 +523,7 @@ connection = rfsensor:RobotSensorsControllerRTC0:rfsensor
 connection = ranger:RobotSensorsControllerRTC0:ranger
 </pre></div>
 </div>
-<p>out-port means defintion of a output data port. Its right hand value consists of two values separated by comma. The first value is name of port and the second value is data type.</p>
+<p>out-portとは、RTCの出力ポートの定義です。「ポート名：型」の形式で定義します。</p>
 <p>これがin-portになると入力ポートの定義となります。今回はトルクの計算がないため使用していません。</p>
 <p>connectionとはRTCのポート接続の設定となります。例えば、「q:RobotSensorsControllerRTC0:q」とはこのRTCのポートqとRobotSensorsControllerRTC0コントローラとの接続設定になります。</p>
 <p>ちなみに、コントローラのポート設定に関しては、コントローラのソースコード中で動的に生成と設定がされるので設定ファイルを用いる必要はありません。</p>

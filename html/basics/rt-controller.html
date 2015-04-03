@@ -129,12 +129,12 @@
 <p>This section explains how to connect Choreonoid and a RT component by developing an example component which read joint angles.</p>
 <div class="section" id="open-a-project-file">
 <h2>Open a project file<a class="headerlink" href="#open-a-project-file" title="Permalink to this headline">¶</a></h2>
-<p>Open a project file by choosing &#8220;Open a project file&#8221; menu of &#8220;File&#8221; menu.The file name is samples/tutorials/cnoid/sample1.cnoid.</p>
+<p>Open a project file by choosing &#8220;Open Project&#8221; menu of &#8220;File&#8221; menu. The file name is samples/tutorials/cnoid/sample1.cnoid.</p>
 </div>
 <div class="section" id="add-a-controller">
 <h2>Add a controller<a class="headerlink" href="#add-a-controller" title="Permalink to this headline">¶</a></h2>
 <p>Select &#8220;JVRC&#8221; first in the item view.
-Then create a BodyRTC item by choosing &#8220;BodyRTC&#8221; menu followed by &#8220;File&#8221;, &#8220;New&#8221; menus.</p>
+Then create a BodyRTC item by choosing &#8220;BodyRTC&#8221; menu followed by &#8220;File&#8221;, &#8220;New...&#8221; menus.</p>
 </div>
 <div class="section" id="source-code-of-a-controller">
 <h2>Source code of a controller<a class="headerlink" href="#source-code-of-a-controller" title="Permalink to this headline">¶</a></h2>
@@ -283,7 +283,7 @@ extern &quot;C&quot;
 <div class="section" id="setup-the-controller">
 <h2>Setup the controller<a class="headerlink" href="#setup-the-controller" title="Permalink to this headline">¶</a></h2>
 <p>To connect Choreonoid and the RT component we developed, we need to configure BodyRTC item.</p>
-<p>When you select BodyRTC item, its properties are displayed in the tab which is called &#8220;property view&#8221;. Set &#8220;RobotControllerRTC&#8221; to the value of &#8220;Controller module name&#8221;. This corresponds to the filename of the RT component. Set true to the value of &#8220;Automatic port connection&#8221;.</p>
+<p>When you select BodyRTC item, its properties are displayed in the tab which is called &#8220;property view&#8221;. Set &#8220;RobotControllerRTC&#8221; to the value of &#8220;Controller module name&#8221;. This corresponds to the filename of the RT component. Set true to the value of &#8220;Auto Connect&#8221;.</p>
 <img alt="../_images/property_rtc.png" src="../_images/property_rtc.png" />
 </div>
 <div class="section" id="build-the-controller">
@@ -301,7 +301,7 @@ extern &quot;C&quot;
 </div>
 <div class="section" id="run-simulation">
 <h2>Run simulation<a class="headerlink" href="#run-simulation" title="Permalink to this headline">¶</a></h2>
-<p>Press &#8220;start simulation&#8221; button on the simulation tool bar. While the simulation is running, joint angles stored in m_angle are displayed in the terminal you launched Choreonoid.</p>
+<p>Press &#8220;Start simulation from the beginning&#8221; button on the simulation tool bar. While the simulation is running, joint angles stored in m_angle are displayed in the terminal you launched Choreonoid.</p>
 <img alt="../_images/output.png" src="../_images/output.png" />
 <p>Applying joint torques computed using joint angles, we can control joint positions. The next tutorial explains how to do that.</p>
 </div>

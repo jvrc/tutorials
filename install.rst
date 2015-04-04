@@ -7,23 +7,29 @@ This chapter explains how to install a software package, download a mode and sam
 Installation of Choreonoid
 --------------------------
 
-Execute the following commands in gnome-terminal. Chorenoid and required packages are installed. ::
+Execute the following commands in gnome-terminal. Chorenoid and required packages are installed.
 
- sudo add-apt-repository ppa:hrg/daily
- sudo apt-get update
- sudo apt-get install choreonoid openrtm-aist
+.. code-block:: bash
+
+ $ sudo add-apt-repository ppa:hrg/daily
+ $ sudo apt-get update
+ $ sudo apt-get install choreonoid openrtm-aist
 
 
 Downloading sample files
 ------------------------
 
-Download sample files used in the tutorials. Git command is used to download the files. Git command can be installed by the next command ::
+Download sample files used in the tutorials. Git command is used to download the files. Git command can be installed by the next command.
 
- sudo apt-get install git
+.. code-block:: bash
 
-The sample files can be downloaded by the next command. ::
+ $ sudo apt-get install git
 
- git clone https://github.com/jvrc/samples
+The sample files can be downloaded by the next command.
+
+.. code-block:: bash
+
+ $ git clone https://github.com/jvrc/samples
 
 "samples" directory created by the command above contains a git repository for sample files.
 

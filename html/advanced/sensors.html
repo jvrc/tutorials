@@ -228,48 +228,48 @@ DEF lfsensor ForceSensor {
 <p>Data type of the camera image is Img::TimedCameraImage.</p>
 <p><a class="reference external" href="https://github.com/s-nakaoka/choreonoid/blob/master/src/OpenRTMPlugin/corba/CameraImage.idl">https://github.com/s-nakaoka/choreonoid/blob/master/src/OpenRTMPlugin/corba/CameraImage.idl</a></p>
 <p>Img::TimedCameraImage is defined as follows.</p>
-<div class="highlight-python"><div class="highlight"><pre>enum ColorFormat
+<div class="highlight-idl"><div class="highlight"><pre>enum ColorFormat
 {
   CF_UNKNOWN, CF_GRAY, CF_RGB,
-  CF_GRAY_JPEG, CF_RGB_JPEG // local extension
+  CF_GRAY_JPEG, CF_RGB_JPEG <span class="o">//</span> local extension
 };
 
 struct ImageData
 {
-  long width;
-  long height;
+  <span class="nb">long</span> width;
+  <span class="nb">long</span> height;
   ColorFormat format;
-  sequence&lt;octet&gt; raw_data;
+  sequence<span class="o">&lt;</span>octet<span class="o">&gt;</span> raw_data;
 };
 
 struct CameraImage
 {
-  RTC::Time captured_time;
-  ImageData image;
+  RTC<span class="o">::</span>Time captured_time;
+  ImageData <span class="nb">image</span>;
   CameraIntrinsicParameter intrinsic;
   Mat44 extrinsic;
 };
 struct TimedCameraImage
 {
-  RTC::Time tm;
+  RTC<span class="o">::</span>Time tm;
   CameraImage data;
-  long error_code;
+  <span class="nb">long</span> error_code;
 };
 </pre></div>
 </div>
 <p>data.image.raw_date contains width x height pixels. Definition of a pixel depends on the pixel format specified by format field.
 Cameras on JVRC-1 have 640 pixel width and 480 pixel height. Therefore raw_data contains data for 640x480 pixels.</p>
 <p>Data type of a range sensor is RTC::RangeData.</p>
-<div class="highlight-python"><div class="highlight"><pre>typedef sequence&lt;double&gt; RangeList;
+<div class="highlight-idl"><div class="highlight"><pre>typedef sequence<span class="o">&lt;</span><span class="nb">double</span><span class="o">&gt;</span> RangeList;
 struct RangeData
 {
-    /// Time stamp.
+    <span class="o">///</span> Time stamp.
     Time tm;
-    /// Range values in metres.
+    <span class="o">///</span> Range values in metres.
     RangeList ranges;
-    /// Geometry of the ranger at the time the scan data was measured.
+    <span class="o">///</span> Geometry <span class="k">of</span> the ranger at the time the scan data was measured.
     RangerGeometry geometry;
-    /// Configuration of the ranger at the time the scan data was measured.
+    <span class="o">///</span> Configuration <span class="k">of</span> the ranger at the time the scan data was measured.
     RangerConfig config;
 };
 </pre></div>
@@ -279,229 +279,229 @@ struct RangeData
 <div class="section" id="source-code-of-a-controller">
 <h2>Source code of a controller<a class="headerlink" href="#source-code-of-a-controller" title="Permalink to this headline">¶</a></h2>
 <p>A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid.</p>
-<div class="highlight-python"><div class="highlight"><pre>/**
-   Sample Robot motion controller for the JVRC robot model.
-   This program was ported from the &quot;SR1WalkControllerRTC.h&quot; sample of Choreonoid.
-*/
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm">   Sample Robot motion controller for the JVRC robot model.</span>
+<span class="cm">   This program was ported from the &quot;SR1WalkControllerRTC.h&quot; sample of Choreonoid.</span>
+<span class="cm">*/</span>
 
-#ifndef RobotSensorsControllerRTC_H
-#define RobotSensorsControllerRTC_H
+<span class="cp">#ifndef RobotSensorsControllerRTC_H</span>
+<span class="cp">#define RobotSensorsControllerRTC_H</span>
 
-#include &lt;rtm/idl/BasicDataTypeSkel.h&gt;
-#include &lt;rtm/idl/ExtendedDataTypes.hh&gt;
-#include &lt;rtm/idl/InterfaceDataTypes.hh&gt;
-#include &lt;rtm/Manager.h&gt;
-#include &lt;rtm/DataFlowComponentBase.h&gt;
-#include &lt;rtm/CorbaPort.h&gt;
-#include &lt;rtm/DataInPort.h&gt;
-#include &lt;rtm/DataOutPort.h&gt;
-#include &lt;cnoid/MultiValueSeq&gt;
-// #include &lt;cnoid/corba/CameraImage.hh&gt;
+<span class="cp">#include &lt;rtm/idl/BasicDataTypeSkel.h&gt;</span>
+<span class="cp">#include &lt;rtm/idl/ExtendedDataTypes.hh&gt;</span>
+<span class="cp">#include &lt;rtm/idl/InterfaceDataTypes.hh&gt;</span>
+<span class="cp">#include &lt;rtm/Manager.h&gt;</span>
+<span class="cp">#include &lt;rtm/DataFlowComponentBase.h&gt;</span>
+<span class="cp">#include &lt;rtm/CorbaPort.h&gt;</span>
+<span class="cp">#include &lt;rtm/DataInPort.h&gt;</span>
+<span class="cp">#include &lt;rtm/DataOutPort.h&gt;</span>
+<span class="cp">#include &lt;cnoid/MultiValueSeq&gt;</span>
+<span class="c1">// #include &lt;cnoid/corba/CameraImage.hh&gt;</span>
 
-class RobotSensorsControllerRTC : public RTC::DataFlowComponentBase
-{
-public:
-    RobotSensorsControllerRTC(RTC::Manager* manager);
-    ~RobotSensorsControllerRTC();
+<span class="k">class</span> <span class="nc">RobotSensorsControllerRTC</span> <span class="o">:</span> <span class="k">public</span> <span class="n">RTC</span><span class="o">::</span><span class="n">DataFlowComponentBase</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">RobotSensorsControllerRTC</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">);</span>
+    <span class="o">~</span><span class="n">RobotSensorsControllerRTC</span><span class="p">();</span>
 
-    virtual RTC::ReturnCode_t onInitialize();
-    virtual RTC::ReturnCode_t onActivated(RTC::UniqueId ec_id);
-    virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
-    virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onInitialize</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onActivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onDeactivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onExecute</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
 
-protected:
-    // DataInPort declaration
-    RTC::TimedDoubleSeq m_angle;
-    RTC::InPort&lt;RTC::TimedDoubleSeq&gt; m_angleIn;
-    RTC::TimedDoubleSeq m_gsensor;
-    RTC::InPort&lt;RTC::TimedDoubleSeq&gt; m_gsensorIn;
-    RTC::TimedDoubleSeq m_gyrometer;
-    RTC::InPort&lt;RTC::TimedDoubleSeq&gt; m_gyrometerIn;
-    RTC::TimedDoubleSeq m_lfsensor;
-    RTC::InPort&lt;RTC::TimedDoubleSeq&gt; m_lfsensorIn;
-    RTC::TimedDoubleSeq m_rfsensor;
-    RTC::InPort&lt;RTC::TimedDoubleSeq&gt; m_rfsensorIn;
-    // Img::TimedCameraImage m_lcamera;
-    // RTC::InPort&lt;Img::TimedCameraImage&gt; m_lcameraIn;
-    // Img::TimedCameraImage m_rcamera;
-    // RTC::InPort&lt;Img::TimedCameraImage&gt; m_rcameraIn;
-    RTC::RangeData m_ranger;
-    RTC::InPort&lt;RTC::RangeData&gt; m_rangerIn;
-};
+<span class="k">protected</span><span class="o">:</span>
+    <span class="c1">// DataInPort declaration</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span> <span class="n">m_angle</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">InPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span><span class="o">&gt;</span> <span class="n">m_angleIn</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span> <span class="n">m_gsensor</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">InPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span><span class="o">&gt;</span> <span class="n">m_gsensorIn</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span> <span class="n">m_gyrometer</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">InPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span><span class="o">&gt;</span> <span class="n">m_gyrometerIn</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span> <span class="n">m_lfsensor</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">InPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span><span class="o">&gt;</span> <span class="n">m_lfsensorIn</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span> <span class="n">m_rfsensor</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">InPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span><span class="o">&gt;</span> <span class="n">m_rfsensorIn</span><span class="p">;</span>
+    <span class="c1">// Img::TimedCameraImage m_lcamera;</span>
+    <span class="c1">// RTC::InPort&lt;Img::TimedCameraImage&gt; m_lcameraIn;</span>
+    <span class="c1">// Img::TimedCameraImage m_rcamera;</span>
+    <span class="c1">// RTC::InPort&lt;Img::TimedCameraImage&gt; m_rcameraIn;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">RangeData</span> <span class="n">m_ranger</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">InPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">RangeData</span><span class="o">&gt;</span> <span class="n">m_rangerIn</span><span class="p">;</span>
+<span class="p">};</span>
 
-extern &quot;C&quot;
-{
-    DLL_EXPORT void RobotSensorsControllerRTCInit(RTC::Manager* manager);
-};
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span>
+<span class="p">{</span>
+    <span class="n">DLL_EXPORT</span> <span class="kt">void</span> <span class="n">RobotSensorsControllerRTCInit</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">);</span>
+<span class="p">};</span>
 
-#endif
+<span class="cp">#endif</span>
 </pre></div>
 </div>
 <p>Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid.</p>
-<div class="highlight-python"><div class="highlight"><pre>/**
-   Sample Robot motion controller for the JVRC robot model.
-   This program was ported from the &quot;SR1WalkControllerRTC.cpp&quot; sample of
-   Choreonoid.
-*/
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm">   Sample Robot motion controller for the JVRC robot model.</span>
+<span class="cm">   This program was ported from the &quot;SR1WalkControllerRTC.cpp&quot; sample of</span>
+<span class="cm">   Choreonoid.</span>
+<span class="cm">*/</span>
 
-#include &quot;RobotSensorsControllerRTC.h&quot;
-#include &lt;cnoid/BodyMotion&gt;
-#include &lt;cnoid/ExecutablePath&gt;
-#include &lt;cnoid/FileUtil&gt;
-#include &lt;iostream&gt;
+<span class="cp">#include &quot;RobotSensorsControllerRTC.h&quot;</span>
+<span class="cp">#include &lt;cnoid/BodyMotion&gt;</span>
+<span class="cp">#include &lt;cnoid/ExecutablePath&gt;</span>
+<span class="cp">#include &lt;cnoid/FileUtil&gt;</span>
+<span class="cp">#include &lt;iostream&gt;</span>
 
-using namespace std;
-using namespace cnoid;
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cnoid</span><span class="p">;</span>
 
-namespace {
+<span class="k">namespace</span> <span class="p">{</span>
 
-const char* samplepd_spec[] =
-{
-    &quot;implementation_id&quot;, &quot;RobotSensorsControllerRTC&quot;,
-    &quot;type_name&quot;,         &quot;RobotSensorsControllerRTC&quot;,
-    &quot;description&quot;,       &quot;Robot Controller component&quot;,
-    &quot;version&quot;,           &quot;0.1&quot;,
-    &quot;vendor&quot;,            &quot;AIST&quot;,
-    &quot;category&quot;,          &quot;Generic&quot;,
-    &quot;activity_type&quot;,     &quot;DataFlowComponent&quot;,
-    &quot;max_instance&quot;,      &quot;10&quot;,
-    &quot;language&quot;,          &quot;C++&quot;,
-    &quot;lang_type&quot;,         &quot;compile&quot;,
-    &quot;&quot;
-};
-}
-
-
-RobotSensorsControllerRTC::RobotSensorsControllerRTC(RTC::Manager* manager)
-    : RTC::DataFlowComponentBase(manager),
-      m_angleIn(&quot;q&quot;, m_angle),
-      m_gsensorIn(&quot;gsensor&quot;, m_gsensor),
-      m_gyrometerIn(&quot;gyrometer&quot;, m_gyrometer),
-      m_lfsensorIn(&quot;lfsensor&quot;, m_lfsensor),
-      m_rfsensorIn(&quot;rfsensor&quot;, m_rfsensor),
-      m_rangerIn(&quot;ranger&quot;, m_ranger)
-      // m_lcameraIn(&quot;lcamera&quot;, m_lcamera),
-      // m_rcameraIn(&quot;rcamera&quot;, m_rcamera),
-      // m_rangerIn(&quot;ranger&quot;, m_ranger)
-{
-
-}
-
-RobotSensorsControllerRTC::~RobotSensorsControllerRTC()
-{
-
-}
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">samplepd_spec</span><span class="p">[]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="s">&quot;implementation_id&quot;</span><span class="p">,</span> <span class="s">&quot;RobotSensorsControllerRTC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;type_name&quot;</span><span class="p">,</span>         <span class="s">&quot;RobotSensorsControllerRTC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;description&quot;</span><span class="p">,</span>       <span class="s">&quot;Robot Controller component&quot;</span><span class="p">,</span>
+    <span class="s">&quot;version&quot;</span><span class="p">,</span>           <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
+    <span class="s">&quot;vendor&quot;</span><span class="p">,</span>            <span class="s">&quot;AIST&quot;</span><span class="p">,</span>
+    <span class="s">&quot;category&quot;</span><span class="p">,</span>          <span class="s">&quot;Generic&quot;</span><span class="p">,</span>
+    <span class="s">&quot;activity_type&quot;</span><span class="p">,</span>     <span class="s">&quot;DataFlowComponent&quot;</span><span class="p">,</span>
+    <span class="s">&quot;max_instance&quot;</span><span class="p">,</span>      <span class="s">&quot;10&quot;</span><span class="p">,</span>
+    <span class="s">&quot;language&quot;</span><span class="p">,</span>          <span class="s">&quot;C++&quot;</span><span class="p">,</span>
+    <span class="s">&quot;lang_type&quot;</span><span class="p">,</span>         <span class="s">&quot;compile&quot;</span><span class="p">,</span>
+    <span class="s">&quot;&quot;</span>
+<span class="p">};</span>
+<span class="p">}</span>
 
 
-RTC::ReturnCode_t RobotSensorsControllerRTC::onInitialize()
-{
-    // Set InPort buffers
-    addInPort(&quot;q&quot;, m_angleIn);
-    addInPort(&quot;gsensor&quot;, m_gsensorIn);
-    addInPort(&quot;gyrometer&quot;, m_gyrometerIn);
-    addInPort(&quot;lfsensor&quot;, m_lfsensorIn);
-    addInPort(&quot;rfsensor&quot;, m_rfsensorIn);
-    // addInPort(&quot;lcamera&quot;, m_lcameraIn);
-    // addInPort(&quot;rcamera&quot;, m_rcameraIn);
-    addInPort(&quot;ranger&quot;, m_rangerIn);
+<span class="n">RobotSensorsControllerRTC</span><span class="o">::</span><span class="n">RobotSensorsControllerRTC</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">RTC</span><span class="o">::</span><span class="n">DataFlowComponentBase</span><span class="p">(</span><span class="n">manager</span><span class="p">),</span>
+      <span class="n">m_angleIn</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angle</span><span class="p">),</span>
+      <span class="n">m_gsensorIn</span><span class="p">(</span><span class="s">&quot;gsensor&quot;</span><span class="p">,</span> <span class="n">m_gsensor</span><span class="p">),</span>
+      <span class="n">m_gyrometerIn</span><span class="p">(</span><span class="s">&quot;gyrometer&quot;</span><span class="p">,</span> <span class="n">m_gyrometer</span><span class="p">),</span>
+      <span class="n">m_lfsensorIn</span><span class="p">(</span><span class="s">&quot;lfsensor&quot;</span><span class="p">,</span> <span class="n">m_lfsensor</span><span class="p">),</span>
+      <span class="n">m_rfsensorIn</span><span class="p">(</span><span class="s">&quot;rfsensor&quot;</span><span class="p">,</span> <span class="n">m_rfsensor</span><span class="p">),</span>
+      <span class="n">m_rangerIn</span><span class="p">(</span><span class="s">&quot;ranger&quot;</span><span class="p">,</span> <span class="n">m_ranger</span><span class="p">)</span>
+      <span class="c1">// m_lcameraIn(&quot;lcamera&quot;, m_lcamera),</span>
+      <span class="c1">// m_rcameraIn(&quot;rcamera&quot;, m_rcamera),</span>
+      <span class="c1">// m_rangerIn(&quot;ranger&quot;, m_ranger)</span>
+<span class="p">{</span>
 
-    cout &lt;&lt; &quot;hoge&quot; &lt;&lt; endl;
+<span class="p">}</span>
 
-    return RTC::RTC_OK;
-}
+<span class="n">RobotSensorsControllerRTC</span><span class="o">::~</span><span class="n">RobotSensorsControllerRTC</span><span class="p">()</span>
+<span class="p">{</span>
 
-RTC::ReturnCode_t RobotSensorsControllerRTC::onActivated(RTC::UniqueId ec_id)
-{
-    return RTC::RTC_OK;
-}
+<span class="p">}</span>
 
 
-RTC::ReturnCode_t RobotSensorsControllerRTC::onDeactivated(RTC::UniqueId ec_id)
-{
-    return RTC::RTC_OK;
-}
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotSensorsControllerRTC</span><span class="o">::</span><span class="n">onInitialize</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Set InPort buffers</span>
+    <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angleIn</span><span class="p">);</span>
+    <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;gsensor&quot;</span><span class="p">,</span> <span class="n">m_gsensorIn</span><span class="p">);</span>
+    <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;gyrometer&quot;</span><span class="p">,</span> <span class="n">m_gyrometerIn</span><span class="p">);</span>
+    <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;lfsensor&quot;</span><span class="p">,</span> <span class="n">m_lfsensorIn</span><span class="p">);</span>
+    <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;rfsensor&quot;</span><span class="p">,</span> <span class="n">m_rfsensorIn</span><span class="p">);</span>
+    <span class="c1">// addInPort(&quot;lcamera&quot;, m_lcameraIn);</span>
+    <span class="c1">// addInPort(&quot;rcamera&quot;, m_rcameraIn);</span>
+    <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;ranger&quot;</span><span class="p">,</span> <span class="n">m_rangerIn</span><span class="p">);</span>
 
-RTC::ReturnCode_t RobotSensorsControllerRTC::onExecute(RTC::UniqueId ec_id)
-{
-    if(m_angleIn.isNew()){
-            m_angleIn.read();
-    }
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;hoge&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 
-    for(size_t i=0; i &lt; m_angle.data.length(); ++i){
-            // cout &lt;&lt; &quot;m_angle.data[&quot; &lt;&lt; i &lt;&lt; &quot;] is &quot; &lt;&lt; m_angle.data[i] &lt;&lt; std::endl;
-    }
+    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
 
-    if(m_gsensorIn.isNew()){
-            m_gsensorIn.read();
-    }
-
-    for(size_t i=0; i &lt; m_gsensor.data.length(); ++i){
-            cout &lt;&lt; &quot;m_gsensor.data[&quot; &lt;&lt; i &lt;&lt; &quot;] is &quot; &lt;&lt; m_gsensor.data[i] &lt;&lt; std::endl;
-    }
-
-    if(m_gyrometerIn.isNew()){
-            m_gyrometerIn.read();
-    }
-
-    for(size_t i=0; i &lt; m_gyrometer.data.length(); ++i){
-            cout &lt;&lt; &quot;m_gyrometer.data[&quot; &lt;&lt; i &lt;&lt; &quot;] is &quot; &lt;&lt; m_gyrometer.data[i] &lt;&lt; std::endl;
-    }
-
-    if(m_lfsensorIn.isNew()){
-            m_lfsensorIn.read();
-    }
-
-    for(size_t i=0; i &lt; m_lfsensor.data.length(); ++i){
-            cout &lt;&lt; &quot;m_lfsensorIn.data[&quot; &lt;&lt; i &lt;&lt; &quot;] is &quot; &lt;&lt; m_lfsensor.data[i] &lt;&lt; std::endl;
-    }
-
-    if(m_rfsensorIn.isNew()){
-            m_rfsensorIn.read();
-    }
-
-    for(size_t i=0; i &lt; m_rfsensor.data.length(); ++i){
-            cout &lt;&lt; &quot;m_rfsensorIn.data[&quot; &lt;&lt; i &lt;&lt; &quot;] is &quot; &lt;&lt; m_rfsensor.data[i] &lt;&lt; std::endl;
-    }
-
-    // if(m_lcameraIn.isNew()){
-    //     m_lcameraIn.read();
-    // }
-    //
-    // for(size_t i=0; i &lt; m_lcamera.data.image.raw_data.length(); ++i){
-    //         cout &lt;&lt; &quot;m_lcameraIn.data.image.raw_data[&quot; &lt;&lt; i &lt;&lt;
-    //                 &quot;] is &quot; &lt;&lt; m_lcamera.data.image.raw_data[i] &lt;&lt; std::endl;
-    // }
-    //
-    // if(m_rcameraIn.isNew()){
-    //     m_rcameraIn.read();
-    // }
-    //
-    // for(size_t i=0; i &lt; m_rcamera.data.image.raw_data.length(); ++i){
-    //         cout &lt;&lt; &quot;m_rcameraIn.data.image.raw_data[&quot; &lt;&lt; i &lt;&lt;
-    //                 &quot;] is &quot; &lt;&lt; m_rcamera.data.image.raw_data[i] &lt;&lt; std::endl;
-    // }
-
-    if(m_rangerIn.isNew()){
-            m_rangerIn.read();
-    }
-
-    for(size_t i=0; i &lt; m_ranger.ranges.length(); ++i){
-            cout &lt;&lt; &quot;m_rangerIn.ranges[&quot; &lt;&lt; i &lt;&lt; &quot;] is &quot; &lt;&lt; m_ranger.ranges[i] &lt;&lt; std::endl;
-    }
-    return RTC::RTC_OK;
-}
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotSensorsControllerRTC</span><span class="o">::</span><span class="n">onActivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
 
 
-extern &quot;C&quot;
-{
-    DLL_EXPORT void RobotSensorsControllerRTCInit(RTC::Manager* manager)
-    {
-        coil::Properties profile(samplepd_spec);
-        manager-&gt;registerFactory(profile,
-                                 RTC::Create&lt;RobotSensorsControllerRTC&gt;,
-                                 RTC::Delete&lt;RobotSensorsControllerRTC&gt;);
-    }
-};
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotSensorsControllerRTC</span><span class="o">::</span><span class="n">onDeactivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotSensorsControllerRTC</span><span class="o">::</span><span class="n">onExecute</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">m_angleIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
+            <span class="n">m_angleIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m_angle</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="c1">// cout &lt;&lt; &quot;m_angle.data[&quot; &lt;&lt; i &lt;&lt; &quot;] is &quot; &lt;&lt; m_angle.data[i] &lt;&lt; std::endl;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">m_gsensorIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
+            <span class="n">m_gsensorIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m_gsensor</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;m_gsensor.data[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;] is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_gsensor</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">m_gyrometerIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
+            <span class="n">m_gyrometerIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m_gyrometer</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;m_gyrometer.data[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;] is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_gyrometer</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">m_lfsensorIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
+            <span class="n">m_lfsensorIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m_lfsensor</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;m_lfsensorIn.data[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;] is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_lfsensor</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">m_rfsensorIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
+            <span class="n">m_rfsensorIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m_rfsensor</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;m_rfsensorIn.data[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;] is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_rfsensor</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// if(m_lcameraIn.isNew()){</span>
+    <span class="c1">//     m_lcameraIn.read();</span>
+    <span class="c1">// }</span>
+    <span class="c1">//</span>
+    <span class="c1">// for(size_t i=0; i &lt; m_lcamera.data.image.raw_data.length(); ++i){</span>
+    <span class="c1">//         cout &lt;&lt; &quot;m_lcameraIn.data.image.raw_data[&quot; &lt;&lt; i &lt;&lt;</span>
+    <span class="c1">//                 &quot;] is &quot; &lt;&lt; m_lcamera.data.image.raw_data[i] &lt;&lt; std::endl;</span>
+    <span class="c1">// }</span>
+    <span class="c1">//</span>
+    <span class="c1">// if(m_rcameraIn.isNew()){</span>
+    <span class="c1">//     m_rcameraIn.read();</span>
+    <span class="c1">// }</span>
+    <span class="c1">//</span>
+    <span class="c1">// for(size_t i=0; i &lt; m_rcamera.data.image.raw_data.length(); ++i){</span>
+    <span class="c1">//         cout &lt;&lt; &quot;m_rcameraIn.data.image.raw_data[&quot; &lt;&lt; i &lt;&lt;</span>
+    <span class="c1">//                 &quot;] is &quot; &lt;&lt; m_rcamera.data.image.raw_data[i] &lt;&lt; std::endl;</span>
+    <span class="c1">// }</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">m_rangerIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
+            <span class="n">m_rangerIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m_ranger</span><span class="p">.</span><span class="n">ranges</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;m_rangerIn.ranges[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;] is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_ranger</span><span class="p">.</span><span class="n">ranges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span>
+<span class="p">{</span>
+    <span class="n">DLL_EXPORT</span> <span class="kt">void</span> <span class="n">RobotSensorsControllerRTCInit</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">coil</span><span class="o">::</span><span class="n">Properties</span> <span class="n">profile</span><span class="p">(</span><span class="n">samplepd_spec</span><span class="p">);</span>
+        <span class="n">manager</span><span class="o">-&gt;</span><span class="n">registerFactory</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span>
+                                 <span class="n">RTC</span><span class="o">::</span><span class="n">Create</span><span class="o">&lt;</span><span class="n">RobotSensorsControllerRTC</span><span class="o">&gt;</span><span class="p">,</span>
+                                 <span class="n">RTC</span><span class="o">::</span><span class="n">Delete</span><span class="o">&lt;</span><span class="n">RobotSensorsControllerRTC</span><span class="o">&gt;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>Contents are almost same with the source in the previous tutorial. Input data ports for sensors are just added. Notice that data types are different depending on sensor types.</p>
@@ -535,12 +535,12 @@ connection = ranger:RobotSensorsControllerRTC0:ranger
 <div class="section" id="build-the-controller">
 <h2>Build the controller<a class="headerlink" href="#build-the-controller" title="Permalink to this headline">¶</a></h2>
 <p>Go to samples/tutorials/rtc directory and execute the following command.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">make</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>make
 </pre></div>
 </div>
 <p>This command generates RobotSensorsControllerRTC.so in samples/tutorials/rtc directory.</p>
 <p>And then, execute the following command.</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo make install DESTDIR=/usr
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo make install <span class="nv">DESTDIR</span><span class="o">=</span>/usr
 </pre></div>
 </div>
 <p>Configuration files for RTC must be placed in shared data directory of Choreonoid(/usr/lib/choreonoid-1.5/rtc). &#8220;make install&#8221; puts configuration file in the directory.</p>

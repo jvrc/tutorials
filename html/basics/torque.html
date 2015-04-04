@@ -134,230 +134,230 @@
 <div class="section" id="source-code-of-a-controller">
 <h2>Source code of a controller<a class="headerlink" href="#source-code-of-a-controller" title="Permalink to this headline">¶</a></h2>
 <p>A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid.</p>
-<div class="highlight-python"><div class="highlight"><pre>/**
-   Sample Robot motion controller for the JVRC robot model.
-   This program was ported from the &quot;RobotTorqueController.h&quot; sample of Choreonoid.
-*/
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm">   Sample Robot motion controller for the JVRC robot model.</span>
+<span class="cm">   This program was ported from the &quot;RobotTorqueController.h&quot; sample of Choreonoid.</span>
+<span class="cm">*/</span>
 
-#ifndef RobotTorqueControllerRTC_H
-#define RobotTorqueControllerRTC_H
+<span class="cp">#ifndef RobotTorqueControllerRTC_H</span>
+<span class="cp">#define RobotTorqueControllerRTC_H</span>
 
-#include &lt;rtm/idl/BasicDataTypeSkel.h&gt;
-#include &lt;rtm/Manager.h&gt;
-#include &lt;rtm/DataFlowComponentBase.h&gt;
-#include &lt;rtm/CorbaPort.h&gt;
-#include &lt;rtm/DataInPort.h&gt;
-#include &lt;rtm/DataOutPort.h&gt;
-#include &lt;cnoid/MultiValueSeq&gt;
-#include &lt;vector&gt;
+<span class="cp">#include &lt;rtm/idl/BasicDataTypeSkel.h&gt;</span>
+<span class="cp">#include &lt;rtm/Manager.h&gt;</span>
+<span class="cp">#include &lt;rtm/DataFlowComponentBase.h&gt;</span>
+<span class="cp">#include &lt;rtm/CorbaPort.h&gt;</span>
+<span class="cp">#include &lt;rtm/DataInPort.h&gt;</span>
+<span class="cp">#include &lt;rtm/DataOutPort.h&gt;</span>
+<span class="cp">#include &lt;cnoid/MultiValueSeq&gt;</span>
+<span class="cp">#include &lt;vector&gt;</span>
 
-class RobotTorqueControllerRTC : public RTC::DataFlowComponentBase
-{
-public:
-    RobotTorqueControllerRTC(RTC::Manager* manager);
-    ~RobotTorqueControllerRTC();
+<span class="k">class</span> <span class="nc">RobotTorqueControllerRTC</span> <span class="o">:</span> <span class="k">public</span> <span class="n">RTC</span><span class="o">::</span><span class="n">DataFlowComponentBase</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">RobotTorqueControllerRTC</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">);</span>
+    <span class="o">~</span><span class="n">RobotTorqueControllerRTC</span><span class="p">();</span>
 
-    virtual RTC::ReturnCode_t onInitialize();
-    virtual RTC::ReturnCode_t onActivated(RTC::UniqueId ec_id);
-    virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
-    virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onInitialize</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onActivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onDeactivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onExecute</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
 
-protected:
-    // DataInPort declaration
-    RTC::TimedDoubleSeq m_angle;
-    RTC::InPort&lt;RTC::TimedDoubleSeq&gt; m_angleIn;
+<span class="k">protected</span><span class="o">:</span>
+    <span class="c1">// DataInPort declaration</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span> <span class="n">m_angle</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">InPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span><span class="o">&gt;</span> <span class="n">m_angleIn</span><span class="p">;</span>
 
-    // DataOutPort declaration
-    RTC::TimedDoubleSeq m_torque;
-    RTC::OutPort&lt;RTC::TimedDoubleSeq&gt; m_torqueOut;
+    <span class="c1">// DataOutPort declaration</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span> <span class="n">m_torque</span><span class="p">;</span>
+    <span class="n">RTC</span><span class="o">::</span><span class="n">OutPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span><span class="o">&gt;</span> <span class="n">m_torqueOut</span><span class="p">;</span>
 
-private:
-    cnoid::MultiValueSeqPtr qseq;
-    std::vector&lt;double&gt; q0;
-    cnoid::MultiValueSeq::Frame oldFrame;
-    int currentFrame;
-    double timeStep_;
-};
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">cnoid</span><span class="o">::</span><span class="n">MultiValueSeqPtr</span> <span class="n">qseq</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">q0</span><span class="p">;</span>
+    <span class="n">cnoid</span><span class="o">::</span><span class="n">MultiValueSeq</span><span class="o">::</span><span class="n">Frame</span> <span class="n">oldFrame</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">currentFrame</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">timeStep_</span><span class="p">;</span>
+<span class="p">};</span>
 
-extern &quot;C&quot;
-{
-    DLL_EXPORT void RobotTorqueControllerRTCInit(RTC::Manager* manager);
-};
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span>
+<span class="p">{</span>
+    <span class="n">DLL_EXPORT</span> <span class="kt">void</span> <span class="n">RobotTorqueControllerRTCInit</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">);</span>
+<span class="p">};</span>
 
-#endif
+<span class="cp">#endif</span>
 </pre></div>
 </div>
 <p>An output data port is added to output joint torques. <cite>RTC::OutPort&lt;RTC::TimedDoubleSeq&gt;</cite>  is the definition of the output port.</p>
 <p>Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid.</p>
-<div class="highlight-python"><div class="highlight"><pre>/**
-   Sample Robot motion controller for the JVRC robot model.
-   This program was ported from the &quot;SR1WalkControllerRTC.cpp&quot; sample of
-   Choreonoid.
-*/
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm">   Sample Robot motion controller for the JVRC robot model.</span>
+<span class="cm">   This program was ported from the &quot;SR1WalkControllerRTC.cpp&quot; sample of</span>
+<span class="cm">   Choreonoid.</span>
+<span class="cm">*/</span>
 
-#include &quot;RobotTorqueControllerRTC.h&quot;
-#include &lt;cnoid/BodyMotion&gt;
-#include &lt;cnoid/ExecutablePath&gt;
-#include &lt;cnoid/FileUtil&gt;
+<span class="cp">#include &quot;RobotTorqueControllerRTC.h&quot;</span>
+<span class="cp">#include &lt;cnoid/BodyMotion&gt;</span>
+<span class="cp">#include &lt;cnoid/ExecutablePath&gt;</span>
+<span class="cp">#include &lt;cnoid/FileUtil&gt;</span>
 
-using namespace std;
-using namespace cnoid;
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cnoid</span><span class="p">;</span>
 
-namespace {
+<span class="k">namespace</span> <span class="p">{</span>
 
-static const double pgain[] = {
-    50000.0, 30000.0, 30000.0, 30000.0, 30000.0,
-    80000.0, 80000.0, 10000.0, 3000.0, 30000.0,
-    30000.0, 80000.0, 3000.0, 30000.0, 10000.0,
-    3000.0, 3000.0, 30000.0, 30000.0, 10000.0,
-    3000.0, 30000.0, 3000.0, 3000.0, 3000.0,
-    3000.0, 3000.0, 3000.0, 3000.0, 3000.0,
-    3000.0, 3000.0, 10000.0, 3000.0, 3000.0,
-    30000.0, 3000.0, 3000.0, 3000.0, 3000.0,
-    3000.0, 3000.0, 3000.0, 3000.0,
-    };
+<span class="k">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">pgain</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mf">50000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">,</span>
+    <span class="mf">80000.0</span><span class="p">,</span> <span class="mf">80000.0</span><span class="p">,</span> <span class="mf">10000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">,</span>
+    <span class="mf">30000.0</span><span class="p">,</span> <span class="mf">80000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">,</span> <span class="mf">10000.0</span><span class="p">,</span>
+    <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">,</span> <span class="mf">10000.0</span><span class="p">,</span>
+    <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span>
+    <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span>
+    <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">10000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span>
+    <span class="mf">30000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span>
+    <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span>
+    <span class="p">};</span>
 
-static const double dgain[] = {
-    100.0, 100.0, 100.0, 100.0, 100.0,
-    100.0, 100.0, 100.0, 100.0, 100.0,
-    100.0, 100.0, 100.0, 100.0, 100.0,
-    100.0, 100.0, 100.0, 100.0, 100.0,
-    100.0, 100.0, 100.0, 100.0, 100.0,
-    100.0, 100.0, 100.0, 100.0, 100.0,
-    100.0, 100.0, 100.0, 100.0, 100.0,
-    100.0, 100.0, 100.0, 100.0, 100.0,
-    100.0, 100.0, 100.0, 100.0,
-    };
+<span class="k">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">dgain</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="p">};</span>
 
-const char* samplepd_spec[] =
-{
-    &quot;implementation_id&quot;, &quot;RobotTorqueControllerRTC&quot;,
-    &quot;type_name&quot;,         &quot;RobotTorqueControllerRTC&quot;,
-    &quot;description&quot;,       &quot;Robot TorqueController component&quot;,
-    &quot;version&quot;,           &quot;0.1&quot;,
-    &quot;vendor&quot;,            &quot;AIST&quot;,
-    &quot;category&quot;,          &quot;Generic&quot;,
-    &quot;activity_type&quot;,     &quot;DataFlowComponent&quot;,
-    &quot;max_instance&quot;,      &quot;10&quot;,
-    &quot;language&quot;,          &quot;C++&quot;,
-    &quot;lang_type&quot;,         &quot;compile&quot;,
-    &quot;&quot;
-};
-}
-
-
-RobotTorqueControllerRTC::RobotTorqueControllerRTC(RTC::Manager* manager)
-    : RTC::DataFlowComponentBase(manager),
-      m_angleIn(&quot;q&quot;, m_angle),
-      m_torqueOut(&quot;u&quot;, m_torque)
-{
-}
-
-RobotTorqueControllerRTC::~RobotTorqueControllerRTC()
-{
-
-}
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">samplepd_spec</span><span class="p">[]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="s">&quot;implementation_id&quot;</span><span class="p">,</span> <span class="s">&quot;RobotTorqueControllerRTC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;type_name&quot;</span><span class="p">,</span>         <span class="s">&quot;RobotTorqueControllerRTC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;description&quot;</span><span class="p">,</span>       <span class="s">&quot;Robot TorqueController component&quot;</span><span class="p">,</span>
+    <span class="s">&quot;version&quot;</span><span class="p">,</span>           <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
+    <span class="s">&quot;vendor&quot;</span><span class="p">,</span>            <span class="s">&quot;AIST&quot;</span><span class="p">,</span>
+    <span class="s">&quot;category&quot;</span><span class="p">,</span>          <span class="s">&quot;Generic&quot;</span><span class="p">,</span>
+    <span class="s">&quot;activity_type&quot;</span><span class="p">,</span>     <span class="s">&quot;DataFlowComponent&quot;</span><span class="p">,</span>
+    <span class="s">&quot;max_instance&quot;</span><span class="p">,</span>      <span class="s">&quot;10&quot;</span><span class="p">,</span>
+    <span class="s">&quot;language&quot;</span><span class="p">,</span>          <span class="s">&quot;C++&quot;</span><span class="p">,</span>
+    <span class="s">&quot;lang_type&quot;</span><span class="p">,</span>         <span class="s">&quot;compile&quot;</span><span class="p">,</span>
+    <span class="s">&quot;&quot;</span>
+<span class="p">};</span>
+<span class="p">}</span>
 
 
-RTC::ReturnCode_t RobotTorqueControllerRTC::onInitialize()
-{
-    // Set InPort buffers
-    addInPort(&quot;q&quot;, m_angleIn);
+<span class="n">RobotTorqueControllerRTC</span><span class="o">::</span><span class="n">RobotTorqueControllerRTC</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">RTC</span><span class="o">::</span><span class="n">DataFlowComponentBase</span><span class="p">(</span><span class="n">manager</span><span class="p">),</span>
+      <span class="n">m_angleIn</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angle</span><span class="p">),</span>
+      <span class="n">m_torqueOut</span><span class="p">(</span><span class="s">&quot;u&quot;</span><span class="p">,</span> <span class="n">m_torque</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
 
-    // Set OutPort buffer
-    addOutPort(&quot;u&quot;, m_torqueOut);
+<span class="n">RobotTorqueControllerRTC</span><span class="o">::~</span><span class="n">RobotTorqueControllerRTC</span><span class="p">()</span>
+<span class="p">{</span>
 
-    return RTC::RTC_OK;
-}
-
-RTC::ReturnCode_t RobotTorqueControllerRTC::onActivated(RTC::UniqueId ec_id)
-{
-    if(!qseq){
-        string filename = getNativePathString(
-            boost::filesystem::path(shareDirectory())
-            / &quot;motion&quot; / &quot;RobotPattern.yaml&quot;);
-
-        BodyMotion motion;
-
-        if(!motion.loadStandardYAMLformat(filename)){
-            cout &lt;&lt; motion.seqMessage() &lt;&lt; endl;
-            return RTC::RTC_ERROR;
-        }
-        qseq = motion.jointPosSeq();
-        if(qseq-&gt;numFrames() == 0){
-            cout &lt;&lt; &quot;Empty motion data.&quot; &lt;&lt; endl;
-            return RTC::RTC_ERROR;
-        }
-        q0.resize(qseq-&gt;numParts());
-        timeStep_ = qseq-&gt;getTimeStep();
-    }
-
-    m_torque.data.length(qseq-&gt;numParts());
-
-    if(m_angleIn.isNew()){
-        m_angleIn.read();
-    }
-    for(int i=0; i &lt; qseq-&gt;numParts(); ++i){
-        q0[i] = m_angle.data[i];
-    }
-    oldFrame = qseq-&gt;frame(0);
-    currentFrame = 0;
-
-    return RTC::RTC_OK;
-}
+<span class="p">}</span>
 
 
-RTC::ReturnCode_t RobotTorqueControllerRTC::onDeactivated(RTC::UniqueId ec_id)
-{
-    return RTC::RTC_OK;
-}
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotTorqueControllerRTC</span><span class="o">::</span><span class="n">onInitialize</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Set InPort buffers</span>
+    <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angleIn</span><span class="p">);</span>
 
-RTC::ReturnCode_t RobotTorqueControllerRTC::onExecute(RTC::UniqueId ec_id)
-{
-    if(m_angleIn.isNew()){
-            m_angleIn.read();
-    }
+    <span class="c1">// Set OutPort buffer</span>
+    <span class="n">addOutPort</span><span class="p">(</span><span class="s">&quot;u&quot;</span><span class="p">,</span> <span class="n">m_torqueOut</span><span class="p">);</span>
 
-    if(currentFrame &gt; qseq-&gt;numFrames()){
-            m_torqueOut.write();
-            return RTC::RTC_OK;
-    }
+    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
 
-    MultiValueSeq::Frame frame = qseq-&gt;frame(currentFrame++);
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotTorqueControllerRTC</span><span class="o">::</span><span class="n">onActivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">qseq</span><span class="p">){</span>
+        <span class="n">string</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">getNativePathString</span><span class="p">(</span>
+            <span class="n">boost</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span><span class="p">(</span><span class="n">shareDirectory</span><span class="p">())</span>
+            <span class="o">/</span> <span class="s">&quot;motion&quot;</span> <span class="o">/</span> <span class="s">&quot;RobotPattern.yaml&quot;</span><span class="p">);</span>
 
-    for(int i=0; i &lt; frame.size(); i++){
-            double q_ref = frame[i];
-            double q = m_angle.data[i];
-            double dq_ref = (q_ref - oldFrame[i]) / timeStep_;
-            double dq = (q - q0[i]) / timeStep_;
-            m_torque.data[i] = (q_ref - q) * pgain[i]/100.0 + (dq_ref - dq) * dgain[i]/100.0;
-            q0[i] = q;
+        <span class="n">BodyMotion</span> <span class="n">motion</span><span class="p">;</span>
 
-            cout &lt;&lt; &quot;i = &quot; &lt;&lt; i &lt;&lt; &quot; &quot;;
-            cout &lt;&lt; &quot;q_ref = &quot; &lt;&lt; frame[i] &lt;&lt; &quot; &quot;;
-            cout &lt;&lt; &quot;q = &quot; &lt;&lt; q &lt;&lt; &quot; &quot;;
-            cout &lt;&lt; &quot;dq_ref = &quot; &lt;&lt; dq_ref &lt;&lt; &quot; &quot;;
-            cout &lt;&lt; &quot;dq = &quot; &lt;&lt; dq &lt;&lt; &quot; &quot;;
-            cout &lt;&lt; &quot;torque = &quot; &lt;&lt; m_torque.data[i] &lt;&lt; endl;
-    }
-    oldFrame = frame;
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">motion</span><span class="p">.</span><span class="n">loadStandardYAMLformat</span><span class="p">(</span><span class="n">filename</span><span class="p">)){</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">motion</span><span class="p">.</span><span class="n">seqMessage</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_ERROR</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">qseq</span> <span class="o">=</span> <span class="n">motion</span><span class="p">.</span><span class="n">jointPosSeq</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">qseq</span><span class="o">-&gt;</span><span class="n">numFrames</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Empty motion data.&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_ERROR</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">q0</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">qseq</span><span class="o">-&gt;</span><span class="n">numParts</span><span class="p">());</span>
+        <span class="n">timeStep_</span> <span class="o">=</span> <span class="n">qseq</span><span class="o">-&gt;</span><span class="n">getTimeStep</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    m_torqueOut.write();
+    <span class="n">m_torque</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="n">qseq</span><span class="o">-&gt;</span><span class="n">numParts</span><span class="p">());</span>
 
-    return RTC::RTC_OK;
-}
+    <span class="k">if</span><span class="p">(</span><span class="n">m_angleIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
+        <span class="n">m_angleIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">qseq</span><span class="o">-&gt;</span><span class="n">numParts</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+        <span class="n">q0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">m_angle</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">oldFrame</span> <span class="o">=</span> <span class="n">qseq</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">currentFrame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
 
 
-extern &quot;C&quot;
-{
-    DLL_EXPORT void RobotTorqueControllerRTCInit(RTC::Manager* manager)
-    {
-        coil::Properties profile(samplepd_spec);
-        manager-&gt;registerFactory(profile,
-                                 RTC::Create&lt;RobotTorqueControllerRTC&gt;,
-                                 RTC::Delete&lt;RobotTorqueControllerRTC&gt;);
-    }
-};
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotTorqueControllerRTC</span><span class="o">::</span><span class="n">onDeactivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotTorqueControllerRTC</span><span class="o">::</span><span class="n">onExecute</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">m_angleIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
+            <span class="n">m_angleIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">currentFrame</span> <span class="o">&gt;</span> <span class="n">qseq</span><span class="o">-&gt;</span><span class="n">numFrames</span><span class="p">()){</span>
+            <span class="n">m_torqueOut</span><span class="p">.</span><span class="n">write</span><span class="p">();</span>
+            <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">MultiValueSeq</span><span class="o">::</span><span class="n">Frame</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">qseq</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">(</span><span class="n">currentFrame</span><span class="o">++</span><span class="p">);</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="kt">double</span> <span class="n">q_ref</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="kt">double</span> <span class="n">q</span> <span class="o">=</span> <span class="n">m_angle</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="kt">double</span> <span class="n">dq_ref</span> <span class="o">=</span> <span class="p">(</span><span class="n">q_ref</span> <span class="o">-</span> <span class="n">oldFrame</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="n">timeStep_</span><span class="p">;</span>
+            <span class="kt">double</span> <span class="n">dq</span> <span class="o">=</span> <span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="n">q0</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="n">timeStep_</span><span class="p">;</span>
+            <span class="n">m_torque</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">q_ref</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">pgain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mf">100.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">dq_ref</span> <span class="o">-</span> <span class="n">dq</span><span class="p">)</span> <span class="o">*</span> <span class="n">dgain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mf">100.0</span><span class="p">;</span>
+            <span class="n">q0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>
+
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;i = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;q_ref = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">frame</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;q = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">q</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;dq_ref = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">dq_ref</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;dq = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">dq</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;torque = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_torque</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">oldFrame</span> <span class="o">=</span> <span class="n">frame</span><span class="p">;</span>
+
+    <span class="n">m_torqueOut</span><span class="p">.</span><span class="n">write</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span>
+<span class="p">{</span>
+    <span class="n">DLL_EXPORT</span> <span class="kt">void</span> <span class="n">RobotTorqueControllerRTCInit</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">coil</span><span class="o">::</span><span class="n">Properties</span> <span class="n">profile</span><span class="p">(</span><span class="n">samplepd_spec</span><span class="p">);</span>
+        <span class="n">manager</span><span class="o">-&gt;</span><span class="n">registerFactory</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span>
+                                 <span class="n">RTC</span><span class="o">::</span><span class="n">Create</span><span class="o">&lt;</span><span class="n">RobotTorqueControllerRTC</span><span class="o">&gt;</span><span class="p">,</span>
+                                 <span class="n">RTC</span><span class="o">::</span><span class="n">Delete</span><span class="o">&lt;</span><span class="n">RobotTorqueControllerRTC</span><span class="o">&gt;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>The procedure to add an output port is similar to adding an input port.</p>
@@ -402,12 +402,12 @@ extern &quot;C&quot;
 <div class="section" id="build-the-controller">
 <h2>Build the controller<a class="headerlink" href="#build-the-controller" title="Permalink to this headline">¶</a></h2>
 <p>Go to samples/tutorials/rtc directory and execute the following command.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">make</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>make
 </pre></div>
 </div>
 <p>This command generates RobotTorqueControllerRTC.so in samples/tutorials/rtc directory.</p>
 <p>And then, execute the following command.</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo make install DESTDIR=/usr
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo make install <span class="nv">DESTDIR</span><span class="o">=</span>/usr
 </pre></div>
 </div>
 </div>

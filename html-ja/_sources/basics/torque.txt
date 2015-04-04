@@ -13,7 +13,9 @@ Choose "Open..." in "File" menu and select a project file for JVRC-1. Its name i
 Source code of a controller
 ---------------------------
 
-A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid. ::
+A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid.
+
+.. code-block:: cpp
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -69,7 +71,9 @@ A header file of the controller is as follows. This file was created by modifyin
 
 An output data port is added to output joint torques. `RTC::OutPort<RTC::TimedDoubleSeq>`  is the definition of the output port.
 
-Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid. ::
+Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid.
+
+.. code-block:: cpp
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -311,15 +315,19 @@ Save the robot motion as RobotMotion.yaml in samples/tutorials/rtc directory.
 Build the controller
 --------------------
 
-Go to samples/tutorials/rtc directory and execute the following command. ::
+Go to samples/tutorials/rtc directory and execute the following command.
 
-   make
+.. code-block:: bash
+
+   $ make
 
 This command generates RobotTorqueControllerRTC.so in samples/tutorials/rtc directory.
 
-And then, execute the following command. ::
+And then, execute the following command.
 
-   sudo make install DESTDIR=/usr
+.. code-block:: bash
+
+   $ sudo make install DESTDIR=/usr
 
 
 Run simulation

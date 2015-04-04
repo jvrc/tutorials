@@ -7,9 +7,11 @@ This section explains how to create and run a simple simulation.
 Launch Choreonoid
 -----------------
 
-Let's launch Choreonoid first. Type the following command in gnome-terminal. ::
+Let's launch Choreonoid first. Type the following command in gnome-terminal.
 
- choreonoid
+.. code-block:: bash
+
+ $ choreonoid
 
 You will see a window as follows.
 

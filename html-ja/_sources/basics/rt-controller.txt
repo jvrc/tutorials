@@ -18,7 +18,9 @@ Then create a BodyRTC item by choosing "BodyRTC" menu followed by "File", "New..
 Source code of a controller
 ---------------------------
 
-Contents of the header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid. ::
+Contents of the header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid.
+
+.. code-block:: cpp
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -64,7 +66,9 @@ Contents of the header file of the controller is as follows. This file was creat
 
 `RTC::InPort<RTC::TimedDoubleSeq>` defines an input data port. m_angle is a buffer to receive joint angles. Joint angles read through m_angleIn are stored in m_angle.
 
-The following shows source code of the controller. It was developed based on SR1WalkControllerRTC.cpp which is included in Choreonoid. ::
+The following shows source code of the controller. It was developed based on SR1WalkControllerRTC.cpp which is included in Choreonoid.
+
+.. code-block:: cpp
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -177,15 +181,19 @@ When you select BodyRTC item, its properties are displayed in the tab which is c
 Build the controller
 --------------------
 
-Go to samples/tutorials/rtc directory and execute the following command. ::
+Go to samples/tutorials/rtc directory and execute the following command.
 
-   make
+.. code-block:: bash 
+
+   $ make
 
 This command generates RobotControllerRTC.so under samples/tutorials/rtc directory.
 
-Then execute the following command. ::
+Then execute the following command.
 
-   sudo make install DESTDIR=/usr
+.. code-block:: bash 
+
+   $ sudo make install DESTDIR=/usr
 
 In order to use RT components from Choreonoid, we need to put them in the shared directory of Choreonoid(/usr/lib/choreonoid-1.5/rtc). "make install" command does this automatically.
 

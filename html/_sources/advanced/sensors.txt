@@ -14,7 +14,9 @@ Sensors defined in JVRC-1 model
 -------------------------------
 
 You can find sensors defined in the JVRC-1 model by opening samples/tutorials/JVRC-1/main.wrl with a text editor.
-For example, you can find an accelerometer and a gyrometer as follows. ::
+For example, you can find an accelerometer and a gyrometer as follows.
+
+::
 
    DEF JVRC Humanoid {
      humanoidBody [
@@ -114,7 +116,9 @@ Data type of the camera image is Img::TimedCameraImage.
 
 https://github.com/s-nakaoka/choreonoid/blob/master/src/OpenRTMPlugin/corba/CameraImage.idl
 
-Img::TimedCameraImage is defined as follows. ::
+Img::TimedCameraImage is defined as follows.
+
+.. code-block:: idl
 
    enum ColorFormat
    {
@@ -148,7 +152,9 @@ Img::TimedCameraImage is defined as follows. ::
 data.image.raw_date contains width x height pixels. Definition of a pixel depends on the pixel format specified by format field.
 Cameras on JVRC-1 have 640 pixel width and 480 pixel height. Therefore raw_data contains data for 640x480 pixels.
 
-Data type of a range sensor is RTC::RangeData. ::
+Data type of a range sensor is RTC::RangeData.
+
+.. code-block:: idl
 
     typedef sequence<double> RangeList;
     struct RangeData
@@ -163,13 +169,15 @@ Data type of a range sensor is RTC::RangeData. ::
         RangerConfig config;
     };
 
-Measured distances from right to left are stored in ranges. If measurement of distance fails 0 is stored. ::
+Measured distances from right to left are stored in ranges. If measurement of distance fails 0 is stored.
 
 
 Source code of a controller
 ---------------------------
 
-A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid. ::
+A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid.
+
+.. code-block:: cpp
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -228,7 +236,9 @@ A header file of the controller is as follows. This file was created by modifyin
    
    #endif
 
-Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid. ::
+Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid.
+
+.. code-block:: cpp
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -434,15 +444,19 @@ http://www.openrtp.jp/openhrp3/jp/controller_bridge.html
 Build the controller
 --------------------
 
-Go to samples/tutorials/rtc directory and execute the following command. ::
+Go to samples/tutorials/rtc directory and execute the following command.
 
-   make
+.. code-block:: bash
+
+   $ make
 
 This command generates RobotSensorsControllerRTC.so in samples/tutorials/rtc directory.
 
-And then, execute the following command. ::
+And then, execute the following command.
 
-   sudo make install DESTDIR=/usr
+.. code-block:: bash
+
+   $ sudo make install DESTDIR=/usr
 
 Configuration files for RTC must be placed in shared data directory of Choreonoid(/usr/lib/choreonoid-1.5/rtc). "make install" puts configuration file in the directory.
 

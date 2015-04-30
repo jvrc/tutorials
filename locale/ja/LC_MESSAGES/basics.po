@@ -518,7 +518,7 @@ msgid ""
 "choosing \"BodyRTC\" menu followed by \"File\", \"New...\" menus."
 msgstr ""
 "まずアイテムビューで「JVRC」を選択します。 "
-"次に、「メニュー」の「ファイル」「新規」より「ポーズ列」を選択し「SampleMotion」という名前で追加します。"
+"次に、「メニュー」の「ファイル」「新規」より「BodyRTC」を選択し「BodyRTC」という名前で追加します。"
 
 #: ../../basics/torque.rst:281
 msgid ""

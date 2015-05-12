@@ -13,7 +13,7 @@ Execute the following commands in gnome-terminal. Chorenoid and required package
 
  $ sudo add-apt-repository ppa:hrg/daily
  $ sudo apt-get update
- $ sudo apt-get install choreonoid openrtm-aist
+ $ sudo apt-get install choreonoid libcnoid-dev openrtm-aist openrtm-aist-dev doxygen
 
 
 Downloading sample files

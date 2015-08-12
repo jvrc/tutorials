@@ -421,6 +421,8 @@ Since the port configuration of RTC used in this tutorials is complex, we need t
    out-port = gyrometer:RATE_GYRO_SENSOR
    out-port = lfsensor:FORCE_SENSOR
    out-port = rfsensor:FORCE_SENSOR
+   out-port = rcamera:rcamera:CAMERA_IMAGE
+   out-port = lcamera:lcamera:CAMERA_IMAGE
    out-port = ranger:RANGE_SENSOR
    connection = q:RobotSensorsControllerRTC0:q
    connection = gsensor:RobotSensorsControllerRTC0:gsensor

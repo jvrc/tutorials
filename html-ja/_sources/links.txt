@@ -24,7 +24,7 @@ Choreonoid plugin
     http://github.com/fkanehiro/choreonoid-editor
   * Manual
 
-    http://github.com/fkanehiro/choreonoid-editor-doc
+    http://fkanehiro.github.com/choreonoid-editor-doc/html/index.html
 
 * JVRC manager
 

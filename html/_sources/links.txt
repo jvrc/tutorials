@@ -19,11 +19,16 @@ Choreonoid plugin
 -----------------
 * Model editor
 
-  under development
+  * Source
 
-* New simulation engine
+    http://github.com/fkanehiro/choreonoid-editor
+  * Manual
 
-  under development
+    http://github.com/fkanehiro/choreonoid-editor-doc
+
+* JVRC manager
+
+  http://github.com/jvrc/JVRCPlugin
 
 Other software
 --------------

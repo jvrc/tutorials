@@ -1,21 +1,22 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: jvrc software 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-31 21:15+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-09-09 09:21+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../../links.rst:5
 msgid "Choreonoid"
 msgstr ""
 
-#: ../../links.rst:10 ../../links.rst:32
+#: ../../links.rst:10 ../../links.rst:25 ../../links.rst:37
 msgid "Manual"
 msgstr "マニュアル"
 
@@ -23,7 +24,7 @@ msgstr "マニュアル"
 msgid "http://www.choreonoid.org"
 msgstr ""
 
-#: ../../links.rst:14 ../../links.rst:38
+#: ../../links.rst:14 ../../links.rst:22 ../../links.rst:43
 msgid "Source"
 msgstr "ソース"
 
@@ -39,39 +40,31 @@ msgstr "Choreonoidプラグイン"
 msgid "Model editor"
 msgstr "モデル編集プラグイン"
 
-#: ../../links.rst:22 ../../links.rst:26
-msgid "under development"
-msgstr "開発中"
-
-#: ../../links.rst:24
-msgid "New simulation engine"
-msgstr "JVRCで使用予定の新しい動力学計算エンジン"
-
-#: ../../links.rst:30
+#: ../../links.rst:35
 msgid "RTM based control software development environment \"hrpsys-base\""
 msgstr "RTミドルウェアを用いた制御ソフトウェア開発環境\"hrpsys-base\""
 
-#: ../../links.rst:34
+#: ../../links.rst:39
 msgid "http://fkanehiro.github.com/hrpsys-manual/html/index.html"
 msgstr "http://fkanehiro.github.com/hrpsys-manual/html-ja/index.html"
 
-#: ../../links.rst:35
+#: ../../links.rst:40
 msgid "Tutorials"
 msgstr "チュートリアル"
 
-#: ../../links.rst:37
+#: ../../links.rst:42
 msgid "http://fkanehiro.github.com/hrpsys-tutorials/html/index.html"
 msgstr "http://fkanehiro.github.com/hrpsys-tutorials/html-ja/index.html"
 
-#: ../../links.rst:40
+#: ../../links.rst:45
 msgid "http://github.com/fkanehiro/hrpsys-base"
 msgstr ""
 
-#: ../../links.rst:42
+#: ../../links.rst:47
 msgid "Simulation model file convertor \"simtrans\""
 msgstr "シミュレーションモデルのファイル形式変換ツール\"simtrans\""
 
-#: ../../links.rst:44
+#: ../../links.rst:49
 msgid "http://fkanehiro.github.com/simtrans/html/index.html"
 msgstr "http://fkanehiro.github.com/simtrans/html-ja/index.html"
 
@@ -79,17 +72,36 @@ msgstr "http://fkanehiro.github.com/simtrans/html-ja/index.html"
 msgid "Links"
 msgstr "リンク"
 
-#: ../../links.rst:29
+#: ../../links.rst:34
 msgid "Other software"
 msgstr "その他のソフトウェア"
 
 #: ../../links.rst:6
 msgid "Homepage"
-msgstr ""
+msgstr "ホームページ"
 
 #: ../../links.rst:12
 msgid "http://www.choreonoid.org/en/manuals/1.5/index.html"
 msgstr "http://www.choreonoid.org/ja/manuals/1.5/index.html"
 
-#~ msgid "Related software"
-#~ msgstr ""
+#: ../../links.rst:24
+msgid "http://github.com/fkanehiro/choreonoid-editor"
+msgstr ""
+
+#: ../../links.rst:27
+msgid "http://github.com/fkanehiro/choreonoid-editor-doc"
+msgstr ""
+
+#: ../../links.rst:29
+msgid "JVRC manager"
+msgstr "JVRC審判支援プラグイン"
+
+#: ../../links.rst:31
+msgid "http://github.com/jvrc/JVRCPlugin"
+msgstr ""
+
+#~ msgid "under development"
+#~ msgstr "開発中"
+
+#~ msgid "New simulation engine"
+#~ msgstr "JVRCで使用予定の新しい動力学計算エンジン"

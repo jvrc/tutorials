@@ -439,9 +439,9 @@ connection defines a connection between data ports. For instance, q:RobotSensors
 
 This configuration file is used to create data ports of BodyRTC. Data ports of usual RT components are statically defined in their source codes.
 
-Since this configuration file format is similar with OpenHRP, you can refer the following webpage. But please note that the format differs slightly.
+You can find details of the configuration file format in the following page.
 
-http://www.openrtp.jp/openhrp3/jp/controller_bridge.html
+:doc:`RTCconf`
 
 Build the controller
 --------------------

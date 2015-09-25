@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: jvrc software 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-31 21:15+0900\n"
-"PO-Revision-Date: 2015-09-09 09:21+0900\n"
+"PO-Revision-Date: 2015-09-09 12:26+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -88,10 +88,6 @@ msgstr "http://www.choreonoid.org/ja/manuals/1.5/index.html"
 msgid "http://github.com/fkanehiro/choreonoid-editor"
 msgstr ""
 
-#: ../../links.rst:27
-msgid "http://github.com/fkanehiro/choreonoid-editor-doc"
-msgstr ""
-
 #: ../../links.rst:29
 msgid "JVRC manager"
 msgstr "JVRC審判支援プラグイン"
@@ -99,6 +95,10 @@ msgstr "JVRC審判支援プラグイン"
 #: ../../links.rst:31
 msgid "http://github.com/jvrc/JVRCPlugin"
 msgstr ""
+
+#: ../../links.rst:27
+msgid "http://fkanehiro.github.com/choreonoid-editor-doc/html/index.html"
+msgstr "http://fkanehiro.github.com/choreonoid-editor-doc/html-ja/index.html"
 
 #~ msgid "under development"
 #~ msgstr "開発中"

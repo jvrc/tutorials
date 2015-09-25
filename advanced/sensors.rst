@@ -104,7 +104,7 @@ We can find cameras named rcamera and lcamera, and a range sensor named ranger. 
 
 You can find data types for each sensor in the following webpage. But the webpage is rather old and some of data types are obsolete.
 
-http://www.openrtp.jp/openhrp3/jp/controller_bridge.html
+http://fkanehiro.github.com/openhrp3-doc/jp/controller_bridge.html
 
 Data type for an accelerometer is TimedDoubleSeq and its length is 3. It contains accelerations in x,y and z directions.
 
@@ -441,7 +441,11 @@ This configuration file is used to create data ports of BodyRTC. Data ports of u
 
 You can find details of the configuration file format in the following page.
 
+<<<<<<< HEAD
 :doc:`RTCconf`
+=======
+http://fkanehiro.github.com/openhrp3-doc/jp/controller_bridge.html
+>>>>>>> 325a54f83d878aa021719ad6a27d015ba9eadb46
 
 Build the controller
 --------------------

@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RTCの設定ファイル &mdash; jvrc tutorials 0.0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="jvrc tutorials 0.0.1 ドキュメント" href="../index.html"/>
+        <link rel="up" title="シミュレーションの応用" href="index.html"/>
+        <link rel="next" title="リンク" href="../links.html"/>
+        <link rel="prev" title="センサの接続" href="sensors.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> jvrc tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">シミュレーションの基本</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">シミュレーションの応用</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sensors.html">センサの接続</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">RTCの設定ファイル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">入力ポートの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">出力ポートの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">接続の設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">プロパティ一覧</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../links.html">リンク</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">jvrc tutorials</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">シミュレーションの応用</a> &raquo;</li>
+      
+    <li>RTCの設定ファイル</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/advanced/RTCconf.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rtc">
+<h1>RTCの設定ファイル<a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここでは、BodyRTCの設定ファイルについて解説します。</p>
+<p>設定ファイルには、BodyRTCの入力ポート、出力ポートの設定と、接続先を記述します。</p>
+<div class="section" id="id1">
+<h2>入力ポートの設定<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">in-port</span> <span class="o">=</span> <span class="s">ポート名[:識別名]:プロパティ名</span>
+</pre></div>
+</div>
+<p>入力ポート名を与え、そのポートのプロパティを指定します。識別名を諸略すると、対象となるデータ全てに入力します。例えば、</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">in-port</span> <span class="o">=</span> <span class="s">tau:JOINT_TORQUE</span>
+</pre></div>
+</div>
+<p>これは、名前「tau」の入力ポートは、データをJointIdの順に関節トルクに入力することを設定しています。</p>
+<p>識別名を指定すれば特定の部位にだけ入力します。識別名はVRMLモデルのノード名を指定します。</p>
+<p>識別名はコンマ(,)で区切って複数指定することができます。データは指定した順番で入力します。例えば、</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">in-port</span> <span class="o">=</span> <span class="s">arm_elbow:RARM_ELBOW,LARM_ELBOW:JOINT_VALUE</span>
+</pre></div>
+</div>
+<p>これは、名前「arm_elbow」の入力ポートは、データをRARM_ELBOWとLARM_ELBOWリンクの関節角度に入力することを設定しています。</p>
+</div>
+<div class="section" id="id2">
+<h2>出力ポートの設定<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">out-port</span> <span class="o">=</span> <span class="s">ポート名[:識別名]:プロパティ名</span>
+</pre></div>
+</div>
+<p>出力ポート名を与え、そのポートのプロパティを指定します。識別名を諸略すると、対象となるデータ全てを出力します。例えば、</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">out-port</span> <span class="o">=</span> <span class="s">q:JOINT_VALUE</span>
+</pre></div>
+</div>
+<p>これは、名前「ｑ」の出力ポートは、JointIdの順に並べた関節角度を出力することを設定しています。</p>
+<p>識別名を指定すれば特定の部位の値だけ出力します。識別名はVRMLモデルのノード名を指定します。</p>
+<p>識別名は(,)で区切って複数指定することができます。ただし、識別名が1つしか指定できないプロパティもあります。</p>
+<p>指定した順番でデータは出力されます。例えば、</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">out-port</span> <span class="o">=</span> <span class="s">camerac:CAMERA_C:CAMERA_IMAGE</span>
+</pre></div>
+</div>
+<p>これは、名前「camerac」の出力ポートは、VisionSensor CAMERA_C のセンサデータを出力することを設定しています。</p>
+</div>
+<div class="section" id="id3">
+<h2>接続の設定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">connection</span> <span class="o">=</span> <span class="s">ポート名[:コントローラインスタンス名]:コントローラポート名</span>
+</pre></div>
+</div>
+<p>入出力ポート間の接続を指定します。左はBodyRTCのポート名、右はコントローラのポート名を指定しコロンで区切ります。例えば、</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">connection</span> <span class="o">=</span> <span class="s">q:PDservo0:q</span>
+</pre></div>
+</div>
+<p>これは、BodyRTCのポートqとPDservo0コントローラのポートqを接続することを設定しています。</p>
+<p>コントローラインスタンス名を省略すると、BodyRTCアイテムのプロパティで指定したコントローラを対象にします。</p>
+</div>
+<div class="section" id="id4">
+<h2>プロパティ一覧<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ポート設定で使用するプロパティは以下の通りです。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">プロパティ名</th>
+<th class="head">In Port/Out Port</th>
+<th class="head">データ型</th>
+<th class="head">データ長/識別名</th>
+<th class="head">説明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>JOINT_VALUE</td>
+<td>yes/yes</td>
+<td>TimedDoubleSeq</td>
+<td>1</td>
+<td>関節角度または関節位置</td>
+</tr>
+<tr class="row-odd"><td>JOINT_VELOCITY</td>
+<td>yes/yes</td>
+<td>TimedDoubleSeq</td>
+<td>1</td>
+<td>同上微分</td>
+</tr>
+<tr class="row-even"><td>JOINT_ACCELERATION</td>
+<td>yes/yes</td>
+<td>TimedDoubleSeq</td>
+<td>1</td>
+<td>同上２階微分</td>
+</tr>
+<tr class="row-odd"><td>JOINT_TORQUE</td>
+<td>yes/yes</td>
+<td>TimedDoubleSeq</td>
+<td>1</td>
+<td>関節トルク</td>
+</tr>
+<tr class="row-even"><td>EXTERNAL_FORCE</td>
+<td>yes(<a href="#id5"><span class="problematic" id="id6">*</span></a>1)/no</td>
+<td>TimedDoubleSeq</td>
+<td>6</td>
+<td>力(3次元ベクトル), トルク(3次元ベクトル)</td>
+</tr>
+<tr class="row-odd"><td>ABS_TRANSFORM</td>
+<td>yes(<a href="#id7"><span class="problematic" id="id8">*</span></a>1)/yes(<a href="#id9"><span class="problematic" id="id10">*</span></a>1)</td>
+<td>TimedDoubleSeq</td>
+<td>12</td>
+<td>ワールド座標系における位置姿勢(最初の3要素が位置ベクトル、9要素が姿勢行列)</td>
+</tr>
+<tr class="row-even"><td>ABS_VELOCITY</td>
+<td>yes(<a href="#id11"><span class="problematic" id="id12">*</span></a>1)/yes(<a href="#id13"><span class="problematic" id="id14">*</span></a>1)</td>
+<td>TimedDoubleSeq</td>
+<td>6</td>
+<td>ワールド座標系における速度(3次元ベクトル)と角速度(3次元ベクトル)</td>
+</tr>
+<tr class="row-odd"><td>FORCE_SENSOR</td>
+<td>no/yes</td>
+<td>TimedDoubleSeq</td>
+<td>6</td>
+<td>力(3次元ベクトル), トルク(3次元ベクトル)</td>
+</tr>
+<tr class="row-even"><td>RATE_GYRO_SENSOR</td>
+<td>no/yes</td>
+<td>TimedDoubleSeq</td>
+<td>3</td>
+<td>ジャイロセンサ</td>
+</tr>
+<tr class="row-odd"><td>ACCELERATION_SENSOR</td>
+<td>no/yes</td>
+<td>TimedDoubleSeq</td>
+<td>3</td>
+<td>加速度センサ</td>
+</tr>
+<tr class="row-even"><td>RANGE_SENSOR</td>
+<td>no/yes(<a href="#id15"><span class="problematic" id="id16">*</span></a>3)</td>
+<td>RangeData</td>
+<td>&nbsp;</td>
+<td>レンジセンサ</td>
+</tr>
+<tr class="row-odd"><td>CONSTRAINT_FORCE</td>
+<td>no/yes(<a href="#id17"><span class="problematic" id="id18">*</span></a>2)</td>
+<td>TimedDoubleSeq</td>
+<td>6*接触点数</td>
+<td>ワールド座標系における接触位置(3次元ベクトル)と力(3次元ベクトル)</td>
+</tr>
+<tr class="row-even"><td>RATE_GYRO_SENSOR2</td>
+<td>no/yes(<a href="#id19"><span class="problematic" id="id20">*</span></a>2)</td>
+<td>TimedAngularVelocity3D</td>
+<td>&nbsp;</td>
+<td>ジャイロセンサ　TimedAngularVelocity3D型で出力</td>
+</tr>
+<tr class="row-odd"><td>ACCELERATION_SENSOR2</td>
+<td>no/yes(<a href="#id21"><span class="problematic" id="id22">*</span></a>2)</td>
+<td>TimedAcceleration3D</td>
+<td>&nbsp;</td>
+<td>加速度センサ　TimedAcceleration3Dで出力</td>
+</tr>
+<tr class="row-even"><td>ABS_TRANSFORM2</td>
+<td>yes(<a href="#id23"><span class="problematic" id="id24">*</span></a>2)/yes(<a href="#id25"><span class="problematic" id="id26">*</span></a>2)</td>
+<td>TimedPose3D</td>
+<td>&nbsp;</td>
+<td>位置姿勢　TimedPose3Dで入出力</td>
+</tr>
+<tr class="row-odd"><td>LIGHT</td>
+<td>yes(<a href="#id27"><span class="problematic" id="id28">*</span></a>1)/yes(<a href="#id29"><span class="problematic" id="id30">*</span></a>1)</td>
+<td>TimedBooleanSeq</td>
+<td>1</td>
+<td>ライトOn/Offの制御と、状態出力</td>
+</tr>
+<tr class="row-even"><td>CAMERA_IMAGE</td>
+<td>no/yes(<a href="#id31"><span class="problematic" id="id32">*</span></a>3)</td>
+<td>TimedCameraImage</td>
+<td>&nbsp;</td>
+<td>ビジョンセンサ</td>
+</tr>
+<tr class="row-odd"><td>CAMERA_RANGE</td>
+<td>no/yes(<a href="#id33"><span class="problematic" id="id34">*</span></a>3)</td>
+<td>PointCloud</td>
+<td>&nbsp;</td>
+<td>ビジョンセンサ</td>
+</tr>
+</tbody>
+</table>
+<p>(<a href="#id35"><span class="problematic" id="id36">*</span></a>1) 識別名を指定した場合に有効。</p>
+<p>(<a href="#id37"><span class="problematic" id="id38">*</span></a>2) 識別名を一つ指定した場合に有効。</p>
+<p>(<a href="#id39"><span class="problematic" id="id40">*</span></a>3) 識別名を一つ指定するか、指定しない場合に有効。（指定しないと、Id=0のセンサを指定したことと同じになる。）</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../links.html" class="btn btn-neutral float-right" title="リンク" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sensors.html" class="btn btn-neutral" title="センサの接続" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, AIST.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

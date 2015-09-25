@@ -8,4 +8,4 @@ This chapter explains how to run advanced simulations such as utilization of ran
    :maxdepth: 2
 
    sensors
-..   sensors_control
+   RTCconf

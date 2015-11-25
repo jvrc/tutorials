@@ -137,15 +137,15 @@ msgid ""
 msgstr ""
 "ちなみに、コントローラのポート設定に関しては、コントローラのソースコード中で動的に生成と設定がされるので設定ファイルを用いる必要はありません。"
 
-#: ../../advanced/sensors.rst:451
+#: ../../advanced/sensors.rst:447
 msgid "Build the controller"
 msgstr "コントローラのビルド"
 
-#: ../../advanced/sensors.rst:461
+#: ../../advanced/sensors.rst:457
 msgid "And then, execute the following command."
 msgstr "その後、次のコマンドを実行します。"
 
-#: ../../advanced/sensors.rst:467
+#: ../../advanced/sensors.rst:463
 msgid ""
 "Configuration files for RTC must be placed in shared data directory of "
 "Choreonoid(/usr/lib/choreonoid-1.5/rtc). \"make install\" puts configuration"
@@ -154,44 +154,44 @@ msgstr ""
 "ChoreonoidではRTCの設定ファイルはChoreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。\"make"
 " install\"ではこの処理を自動的に行ってくれます。"
 
-#: ../../advanced/sensors.rst:470
+#: ../../advanced/sensors.rst:466
 msgid "Setup the controller"
 msgstr "コントローラの設定"
 
-#: ../../advanced/sensors.rst:477
+#: ../../advanced/sensors.rst:473
 msgid "Enable cameras and range sensors"
 msgstr "カメラ、距離センサの有効化"
 
-#: ../../advanced/sensors.rst:479
+#: ../../advanced/sensors.rst:475
 msgid ""
 "To enable cameras and range sensors in simulation, do the following "
 "settings."
 msgstr "シミュレーションにおいてカメラや距離センサを有効にするため、以下の作業を行います。"
 
-#: ../../advanced/sensors.rst:481
+#: ../../advanced/sensors.rst:477
 msgid ""
 "Select AISTSimulator in the item view and create a GLVisionSensorSimulator "
 "item and name it GLVisionSimulator."
 msgstr ""
 "アイテムビューで「AISTSimulator」を選択し、「新規」より「GL視覚センサシミュレータ」を選択し、「GLVisionSimulator」という名前で追加します。"
 
-#: ../../advanced/sensors.rst:485
+#: ../../advanced/sensors.rst:481
 msgid "Select GLVisionSimulator item and set its properties as follows."
 msgstr "「GLVisionSimulator」を選択し、プロパティを以下のように変更します。"
 
-#: ../../advanced/sensors.rst:487
+#: ../../advanced/sensors.rst:483
 msgid "Target body to JVRC."
 msgstr "「対象ボディ」を「JVRC」"
 
-#: ../../advanced/sensors.rst:489
+#: ../../advanced/sensors.rst:485
 msgid "Target sensor to ranger."
 msgstr "「対象センサ」を「ranger」"
 
-#: ../../advanced/sensors.rst:494
+#: ../../advanced/sensors.rst:490
 msgid "Run simulation"
 msgstr "シミュレーションを実行する"
 
-#: ../../advanced/sensors.rst:504
+#: ../../advanced/sensors.rst:500
 msgid "A sample project used in this tutorial"
 msgstr "サンプルプロジェクトについて"
 
@@ -257,13 +257,13 @@ msgstr ""
 "今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「samples/tutorials/rtc/」ディレクトリに置くとコントローラのビルド後のインストール作業においてインストールされます。"
 " ::"
 
-#: ../../advanced/sensors.rst:453
+#: ../../advanced/sensors.rst:449
 msgid ""
 "Go to samples/tutorials/rtc directory and execute the following command."
 msgstr ""
 "「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。"
 
-#: ../../advanced/sensors.rst:459
+#: ../../advanced/sensors.rst:455
 msgid ""
 "This command generates RobotSensorsControllerRTC.so in samples/tutorials/rtc"
 " directory."
@@ -279,14 +279,14 @@ msgstr ""
 "トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス "
 "トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。"
 
-#: ../../advanced/sensors.rst:506
+#: ../../advanced/sensors.rst:502
 msgid ""
 "You can find a sample project file created by this tutorial in "
 "samples/tutorials/cnoid/sample3.cnoid."
 msgstr ""
 "このサンプルのプロジェクトファイルは「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample4.cnoid」に保存されています。"
 
-#: ../../advanced/sensors.rst:496
+#: ../../advanced/sensors.rst:492
 msgid ""
 "Press \"Start simulation from the beginning\" button on the simulation tool "
 "bar. While simulation is running, sensor outputs are displayed in the "
@@ -306,7 +306,7 @@ msgid ""
 "and the second value is data type."
 msgstr "out-portとは、RTCの出力ポートの定義です。「ポート名：型」の形式で定義します。"
 
-#: ../../advanced/sensors.rst:472
+#: ../../advanced/sensors.rst:468
 msgid ""
 "Select BodyRTC in the item view and set value of its property, \"Controller "
 "module name\" to RobotSensorsControllerRTC. This value corresponds to the "
@@ -683,16 +683,16 @@ msgid "http://fkanehiro.github.com/openhrp3-doc/jp/controller_bridge.html"
 msgstr ""
 
 #: ../../advanced/sensors.rst:444
-msgid ""
-"<<<<<<< HEAD :doc:`RTCconf` ======= "
-"http://fkanehiro.github.com/openhrp3-doc/jp/controller_bridge.html >>>>>>> "
-"325a54f83d878aa021719ad6a27d015ba9eadb46"
+msgid ":doc:`RTCconf`"
 msgstr ""
 
-#~ msgid "http://www.openrtp.jp/openhrp3/jp/controller_bridge.html"
+#~ msgid ""
+#~ "<<<<<<< HEAD :doc:`RTCconf` ======= "
+#~ "http://fkanehiro.github.com/openhrp3-doc/jp/controller_bridge.html >>>>>>> "
+#~ "325a54f83d878aa021719ad6a27d015ba9eadb46"
 #~ msgstr ""
 
-#~ msgid ":doc:`RTCconf`"
+#~ msgid "http://www.openrtp.jp/openhrp3/jp/controller_bridge.html"
 #~ msgstr ""
 
 #~ msgid ""

@@ -32,6 +32,10 @@ Choreonoid plugin
 
 Other software
 --------------
+* OpenRTM-aist official website
+
+  http://www.openrtm.org
+
 * RTM based control software development environment "hrpsys-base"
 
  * Manual

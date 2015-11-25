@@ -441,11 +441,7 @@ This configuration file is used to create data ports of BodyRTC. Data ports of u
 
 You can find details of the configuration file format in the following page.
 
-<<<<<<< HEAD
 :doc:`RTCconf`
-=======
-http://fkanehiro.github.com/openhrp3-doc/jp/controller_bridge.html
->>>>>>> 325a54f83d878aa021719ad6a27d015ba9eadb46
 
 Build the controller
 --------------------

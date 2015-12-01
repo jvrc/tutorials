@@ -15,6 +15,136 @@ Add a controller
 Select "JVRC" first in the item view.
 Then create a BodyRTC item by choosing "BodyRTC" menu followed by "File", "New..." menus.
 
+コントローラの雛形作成
+----------------------
+
+RTCBuilderを使ってコントローラのソースコードの雛形を作成します。
+
+RTCBuilderの起動
+################
+
+Eclipseを起動すると、ワークスペースの場所を尋ねられます。
+
+.. image:: images/openrtp_make_workspace.png
+
+Eclipseでは、各種作業を行うフォルダを「ワークスペース」(Work Space)とよび、原則としてすべての生成物はこのフォルダの下に保存されます。ワークスペースはアクセスできるフォルダであれば、どこに作っても構いませんが、このチュートリアルでは「/home/<ユーザ名>/workspace」をワークスペースとします。
+
+そのままOKボタンを押してください。以下のようなWelcomeページが表示されます。
+
+.. image:: images/openrtp_welcome.png
+
+Welcomeページはいまは必要ないので左上の「×」ボタンを押して閉じてください。 
+
+.. image:: images/openrtp_init_screen.png
+
+右上の「パースペクティブを開く」ボタンを押し、プルダウンの「その他(O)…」ボタンを押します。
+
+.. image:: images/openrtp_open_perspective.png
+
+「パースペクティブを開く」ダイアログが表示されるので、「RTC Builder」を選択してOKボタンを押すことで、RTCBuilderが起動します。メニューバーに「カナヅチとRT」のRTCBuilderのアイコンが現れます。
+           
+新規プロジェクトの作成
+######################
+
+RTコンポーネントを作成するために、RTCBuilderで新規プロジェクトを作成する必要が有ります。プロジェクトを作成する方法は2種類あります。
+
+1. 画面上部のメニューから[ファイル]－[新規]－[プロジェクト]を選択 (Eclipse共通)
+
+   * 「新規プロジェクト」画面において，[その他]－[RTC Builder]を選択し、[次へ]をクリック
+   
+     .. image:: images/openrtp_new_project.png
+
+2. メニューバーの「RTCBuilder」のアイコンをクリック
+
+どちらの方法でも、次のようなプロジェクト作成ウィザードが開始されます。「プロジェクト名」欄に作成するプロジェクト名(ここでは"RobotControllerRTC")を入力して「完了」を押します。
+
+.. image:: images/openrtp_make_project.png
+
+指定した名称のプロジェクトが生成され、パッケージエクスプローラ内に追加されます。
+
+生成したプロジェクト内には、デフォルト値が設定されたRTCプロファイルXML(RTC.xml)が自動的に生成されます。
+
+.. RTCプロファイルエディタの起動
+.. #############################
+
+プロファイル情報入力とコードの生成
+##################################
+
+RTCBuilderのエディタで、いちばん左の「基本」タブを選択し、基本情報を入力します。RTコンポーネントの仕様(名前)の他に、概要やバージョン等を入力します。ラベルが赤字の項目は必須項目です。その他はデフォルトで構いません。
+
+===================  ==========================
+モジュール名:        RobotControllerRTC
+モジュール概要:      Robot Controller component
+バージョン:          1.0.0
+ベンダ名:            AIST
+モジュールカテゴリ:  Generic
+コンポーネント型:    STATIC
+アクティビティ型:    PERIODIC
+コンポーネント種類:  DataFlow (DataFlowComponent)
+最大インスタンス数:  1
+実行型:              PeriodicExecutionContext
+実行周期:            1000.0
+===================  ==========================
+
+.. image:: images/rtcbuilder_basic.png
+
+次に「アクティビティ」タブを選択し、使用するアクションコールバックを指定します。
+
+本コンポーネントでは、onActivated(), onDeactivated(), onExecute() コールバックを使用します。下図のように(1)コールバックをクリック後に(2)のラジオボタン"ON"にチェックを入れます。使用するコールバックごとに同様の手順で"ON"にしていきます。
+
+.. image:: images/rtcbuilder_activity.png
+
+さらに、「データポート」タブを選択し、データポートの情報を入力します。 以下のように入力します。なお、変数名や表示位置はオプションなのでデフォルトのままで構いません。
+
+* InPort プロファイル:
+
+  =========  ==========================
+  ポート名:  neck
+  データ型:  RTC::TimeDoubleSeq
+  変数名:    
+  表示位置:  LEFT
+  =========  ==========================
+
+* OutPort プロファイル:
+
+  なし
+  
+.. image:: images/rtcbuilder_dataport.png
+
+次に、「言語・環境」タブを選択し、プログラミング言語を選択します。 ここでは、「C++」を選択します。なお、言語・環境はデフォルト等が設定されておらず、指定し忘れるとコード生成時にエラーになりますので、必ず言語の指定を行うようにしてください。
+
+また、C++の場合デフォルトではCMakeを利用してビルドすることになっていますが、旧式のVCのプロジェクトやソリューションを直接RTCBuilderが生成する方法を利用したい場合は Use old build environment をチェックしてください。
+
+.. image:: images/rtcbuilder_lang.png
+
+最後に、「基本」タブにある「コード生成」ボタンをクリックし、コンポーネントの雛型を生成します。
+
+.. image:: images/rtcbuilder_basic_generate.png
+
+※ 生成されるコード群は、eclipse起動時に指定したワークスペースフォルダの中に生成されます。現在のワークスペースは、「ファイル(F)」 > 「ワークスペースの切り替え(W)...」で確認することができます。
+
+仮ビルド
+########
+
+さて、ここまででRTコンポーネントのソースコードの雛形が生成されました。処理の中身は実装されていないので、InPortに入力があっても何も出力されませんが、生成直後のソースコードだけでもコンパイルおよび実行は可能です。
+
+※サービスポートとプロバイダを持つコンポーネントの場合、実装を行わないとビルドが通らないものもあります。
+
+では、まずCMakeを利用してビルド環境のConfigureを行います。RTコンポーネントのソースが生成されたディレクトリで以下を実行すると、Configureおよびビルドが完了するはずです。
+
+.. code-block:: bash
+
+ $ cd $HOME/workspace/RobotControllerRTC
+ $ mkdir build
+ $ cd build
+ $ cmake ..
+ $ make
+
+ビルド終了後、空のRobotControllerRTCCompを起動してみましょう。
+
+起動後、RTSystemEditorなどでアクセスしてみてください。RobotControllerRTC0というコンポーネントが表示されているはずです。
+
+
 Source code of a controller
 ---------------------------
 

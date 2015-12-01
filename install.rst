@@ -61,3 +61,10 @@ Let's use a model file of JVRC-1 which is available on the official website of J
 
   https://jvrc.org/download.html
 
+RTCBuilderのインストール
+------------------------
+
+RTCBuilder は以下のページを参考に OpenRTP (Open RT Platform) をインストールして下さい。
+
+  http://www.openrtm.org/openrtm/ja/node/5778
+

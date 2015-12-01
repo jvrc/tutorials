@@ -8,4 +8,3 @@ Choreonoidの解説
 
    about
    howto-use
-   tips

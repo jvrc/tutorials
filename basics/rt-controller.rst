@@ -23,7 +23,13 @@ RTCBuilderを使ってコントローラのソースコードの雛形を作成�
 RTCBuilderの起動
 ################
 
-Eclipseを起動すると、ワークスペースの場所を尋ねられます。
+以下を実行してRTCBuilder(OpenRTP, Eclipseベース)を起動します。
+
+.. code-block:: bash
+
+ $ openrtp
+
+Eclipseが起動すると、ワークスペースの場所を尋ねられます。
 
 .. image:: images/openrtp_make_workspace.png
 
@@ -42,7 +48,30 @@ Welcomeページはいまは必要ないので左上の「×」ボタンを押�
 .. image:: images/openrtp_open_perspective.png
 
 「パースペクティブを開く」ダイアログが表示されるので、「RTC Builder」を選択してOKボタンを押すことで、RTCBuilderが起動します。メニューバーに「カナヅチとRT」のRTCBuilderのアイコンが現れます。
-           
+
+.. note::
+
+  RTCBuilderを起動した端末に以下のメッセージが出てRTCBuilderを起動できない場合があります。
+   
+  .. code-block:: bash
+
+    java.io.IOException: Couldn't get lock for rtcbuilder%u.log
+
+  既知のバグが影響している可能性があるので、対処方法として以下を行ってください。
+
+  * logger.properties ファイルを作成して以下のようにログファイルパターンを記載しておく。
+
+    .. code-block:: bash
+
+     jp.go.aist.rtm.rtcbuilder.RTCBLogHandler.pattern=%h/.rtcb%u.log
+     jp.go.aist.rtm.systemeditor.RTSELogHandler.pattern=%h/.rtse%u.log
+
+  * 起動時のオプションでこのファイルをロガークラスのコンフィギュレーションとして読み込ませて"openrtp"を起動する。
+
+    .. code-block:: bash
+
+     $ openrtp -vmargs -Djava.util.logging.config.file=$HOME/workspace/logger.properties
+
 新規プロジェクトの作成
 ######################
 
@@ -123,14 +152,256 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
 
 ※ 生成されるコード群は、eclipse起動時に指定したワークスペースフォルダの中に生成されます。現在のワークスペースは、「ファイル(F)」 > 「ワークスペースの切り替え(W)...」で確認することができます。
 
-仮ビルド
-########
+.. 仮ビルド
+.. ########
+.. 
+.. さて、ここまででRTコンポーネントのソースコードの雛形が生成されました。処理の中身は実装されていないので、InPortに入力があっても何も出力されませんが、生成直後のソースコードだけでもコンパイルおよび実行は可能です。
+.. 
+.. ※サービスポートとプロバイダを持つコンポーネントの場合、実装を行わないとビルドが通らないものもあります。
+.. 
+.. では、まずCMakeを利用してビルド環境のConfigureを行います。RTコンポーネントのソースが生成されたディレクトリで以下を実行すると、Configureおよびビルドが完了するはずです。
+.. 
+.. .. code-block:: bash
+.. 
+..  $ cd $HOME/workspace/RobotControllerRTC
+..  $ mkdir build
+..  $ cd build
+..  $ cmake ..
+..  $ make
+.. 
+.. ビルド終了後、空のRobotControllerRTCCompを起動してみましょう。
+.. 
+.. 起動後、RTSystemEditorなどでアクセスしてみてください。RobotControllerRTC0というコンポーネントが表示されているはずです。
+.. 
 
-さて、ここまででRTコンポーネントのソースコードの雛形が生成されました。処理の中身は実装されていないので、InPortに入力があっても何も出力されませんが、生成直後のソースコードだけでもコンパイルおよび実行は可能です。
+コントローラのソースコード
+--------------------------
 
-※サービスポートとプロバイダを持つコンポーネントの場合、実装を行わないとビルドが通らないものもあります。
+コード作成操作により、コントローラのソースコード一式がワークスペース内の領域「$HOME/workspace/RobotControllerRTC/」に生成されます。
 
-では、まずCMakeを利用してビルド環境のConfigureを行います。RTコンポーネントのソースが生成されたディレクトリで以下を実行すると、Configureおよびビルドが完了するはずです。
+コントローラのヘッダファイル
+############################
+
+コントローラのヘッダファイルは以下になります。
+
+  $HOME/workspace/include/RobotControllerRTC/RobotControllerRTC.h
+
+※ 一部のコメント行は除去しています。
+
+.. code-block:: cpp
+   :linenos:
+
+   /*!
+    * @file  RobotControllerRTC.h
+    * @brief Robot Controller component
+    * @date  $Date$
+    *
+    */
+   
+   #ifndef ROBOTCONTROLLERRTC_H
+   #define ROBOTCONTROLLERRTC_H
+   
+   #include <rtm/idl/BasicDataTypeSkel.h>
+   #include <rtm/idl/ExtendedDataTypesSkel.h>
+   #include <rtm/idl/InterfaceDataTypesSkel.h>
+   
+   using namespace RTC;
+   
+   #include <rtm/Manager.h>
+   #include <rtm/DataFlowComponentBase.h>
+   #include <rtm/CorbaPort.h>
+   #include <rtm/DataInPort.h>
+   #include <rtm/DataOutPort.h>
+   
+   /*!
+    * @class RobotControllerRTC
+    * @brief Robot Controller component
+    *
+    */
+   class RobotControllerRTC
+     : public RTC::DataFlowComponentBase
+   {
+    public:
+ 
+      RobotControllerRTC(RTC::Manager* manager);
+      ~RobotControllerRTC();
+ 
+      virtual RTC::ReturnCode_t onInitialize();
+      virtual RTC::ReturnCode_t onActivated(RTC::UniqueId ec_id);
+      virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
+      virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
+   
+    protected:
+      RTC::TimedDoubleSeq m_angle;
+      InPort<RTC::TimedDoubleSeq> m_angleIn;
+     
+    private:
+   
+   };
+   
+   extern "C"
+   {
+     DLL_EXPORT void RobotControllerRTCInit(RTC::Manager* manager);
+   };
+   
+   #endif // ROBOTCONTROLLERRTC_H
+
+今回、ヘッダファイルは変更しません。
+
+RTC::TimedDoubleSeq というのは、時刻情報とdouble型の実際の値を持つOpenRTM固有の複合型です。SeqはOpenRTMにおける配列型のように扱います。OpenRTMにおけるdouble[]型と考えておけばよいでしょう。
+
+InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入力ポートを操作するにはこれを利用します。m_angleは入力ポートから関節角度を受けとるための変数です。m_angleInで取得した値はm_angleで参照します。
+
+コントローラのソースコード
+##########################
+
+コントローラのソースコードは以下になります。
+
+  $HOME/workspace/RobotControllerRTC/src/RobotControllerRTC.cpp
+
+※ 一部のコメント行は除去しています。
+
+.. code-block:: cpp
+   :linenos:
+
+   /*!
+    * @file  RobotControllerRTC.cpp
+    * @brief Robot Controller component
+    * @date $Date$
+    *
+    * $Id$
+    */
+   
+   #include "RobotControllerRTC.h"
+   
+   static const char* robotcontrollerrtc_spec[] =
+     {
+       "implementation_id", "RobotControllerRTC",
+       "type_name",         "RobotControllerRTC",
+       "description",       "Robot Controller component",
+       "version",           "1.0.0",
+       "vendor",            "AIST",
+       "category",          "Generic",
+       "activity_type",     "PERIODIC",
+       "kind",              "DataFlowComponent",
+       "max_instance",      "1",
+       "language",          "C++",
+       "lang_type",         "compile",
+       ""
+     };
+   
+   RobotControllerRTC::RobotControllerRTC(RTC::Manager* manager)
+     : RTC::DataFlowComponentBase(manager),
+       m_angleIn("angle", m_angle)
+   {
+   }
+   
+   RobotControllerRTC::~RobotControllerRTC()
+   {
+   }
+   
+   RTC::ReturnCode_t RobotControllerRTC::onInitialize()
+   {
+     addInPort("angle", m_angleIn);
+     return RTC::RTC_OK;
+   }
+   
+   RTC::ReturnCode_t RobotControllerRTC::onActivated(RTC::UniqueId ec_id)
+   {
+     return RTC::RTC_OK;
+   }
+   
+   RTC::ReturnCode_t RobotControllerRTC::onDeactivated(RTC::UniqueId ec_id)
+   {
+     return RTC::RTC_OK;
+   }
+   
+   RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
+   {
+     return RTC::RTC_OK;
+   }
+   
+   extern "C"
+   {
+     void RobotControllerRTCInit(RTC::Manager* manager)
+     {
+       coil::Properties profile(robotcontrollerrtc_spec);
+       manager->registerFactory(profile,
+                                RTC::Create<RobotControllerRTC>,
+                                RTC::Delete<RobotControllerRTC>);
+     }
+   };
+
+これはコントローラの雛形なので、onExecute() コールバックなどに処理を追加します。
+
+雛形に追加するコードの差分(diff)は以下の通りです。
+
+.. code-block:: cpp
+   :linenos:
+
+   @@ -7,6 +7,9 @@
+     */
+    
+    #include "RobotControllerRTC.h"
+   +#include <iostream>
+   +
+   +using namespace std;
+    
+    static const char* robotcontrollerrtc_spec[] =
+      {
+   @@ -26,7 +29,7 @@
+    
+    RobotControllerRTC::RobotControllerRTC(RTC::Manager* manager)
+      : RTC::DataFlowComponentBase(manager),
+   -    m_angleIn("angle", m_angle)
+   +    m_angleIn("q", m_angle)
+    {
+    }
+    
+   @@ -36,7 +39,7 @@
+    
+    RTC::ReturnCode_t RobotControllerRTC::onInitialize()
+    {
+   -  addInPort("angle", m_angleIn);
+   +  addInPort("q", m_angleIn);
+      return RTC::RTC_OK;
+    }
+    
+   @@ -52,6 +55,14 @@
+    
+    RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
+    {
+   +  if(m_angleIn.isNew()){
+   +    m_angleIn.read();
+   +  }
+   +
+   +  for(size_t i=0; i < m_angle.data.length(); ++i){
+   +    cout << "m_angle.data[" << i << "] is " << m_angle.data[i] << std::endl;
+   +  }
+   +
+      return RTC::RTC_OK;
+    }
+
+RobotControllerRTCのコンストラクタで、m_angleIn と m_angle を関連付けています。
+
+RTCの初期化時に呼ばれるonInitialize()で、m_angleInをRTCの入力ポートqと関連づけています。
+
+onExecute()はRTCの実行中に定期的に呼ばれます。ここでは関節角度を取得し標準出力に表示する処理を行っています。m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。onExecute()の実行時にはデータが到着しているかどうかが分からないので、ここでチェックしています。新しいデータが来ていた場合にはm_angleIn.read()でデータを読み込みます。読み込んだデータは自動的にm_angleに格納され、m_angle.dataとして取得できます。m_angle.dataは各関節毎に配列の値となっています。
+
+
+コントローラの設定
+------------------
+
+プロジェクト上でRTコンポーネント(RTC)を作成しただけでは、ロボットの制御を行うことができません。
+
+アイテムビューで「BodyRTC」を選択するとプロパティのタブ(プロパティビューと言います)にRTCの設定が表示されます。プロパティビューの「コントローラのモジュール名」を「RobotControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。さらに、プロパティビューの「自動ポート接続」を true にします。
+
+.. image:: images/property_rtc.png
+
+コントローラのビルド
+--------------------
+
+RTコンポーネントのソースファイル一式が生成されたディレクトリで以下を実行します。CMakeを利用してビルド環境のConfigureを行ってから、makeを実行してビルドします。
 
 .. code-block:: bash
 
@@ -140,207 +411,27 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
  $ cmake ..
  $ make
 
-ビルド終了後、空のRobotControllerRTCCompを起動してみましょう。
-
-起動後、RTSystemEditorなどでアクセスしてみてください。RobotControllerRTC0というコンポーネントが表示されているはずです。
-
-
-Source code of a controller
----------------------------
-
-Contents of the header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid.
-
-.. code-block:: cpp
-
-   /**
-      Sample Robot motion controller for the JVRC robot model.
-      This program was ported from the "SR1WalkControllerRTC.h" sample of Choreonoid.
-   */
-   
-   #ifndef RobotControllerRTC_H
-   #define RobotControllerRTC_H
-   
-   #include <rtm/idl/BasicDataTypeSkel.h>
-   #include <rtm/Manager.h>
-   #include <rtm/DataFlowComponentBase.h>
-   #include <rtm/CorbaPort.h>
-   #include <rtm/DataInPort.h>
-   #include <rtm/DataOutPort.h>
-   #include <cnoid/MultiValueSeq>
-   
-   class RobotControllerRTC : public RTC::DataFlowComponentBase
-   {
-   public:
-       RobotControllerRTC(RTC::Manager* manager);
-       ~RobotControllerRTC();
-   
-       virtual RTC::ReturnCode_t onInitialize();
-       virtual RTC::ReturnCode_t onActivated(RTC::UniqueId ec_id);
-       virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
-       virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
-   
-   protected:
-       // DataInPort declaration
-       RTC::TimedDoubleSeq m_angle;
-       RTC::InPort<RTC::TimedDoubleSeq> m_angleIn;
-   };
-   
-   extern "C"
-   {
-       DLL_EXPORT void RobotControllerRTCInit(RTC::Manager* manager);
-   };
-   
-   #endif
-
-`RTC::TimedDoubleSeq` is a type which contains time and double precision values. Seq means a sequence of values just like double[]. 
-
-`RTC::InPort<RTC::TimedDoubleSeq>` defines an input data port. m_angle is a buffer to receive joint angles. Joint angles read through m_angleIn are stored in m_angle.
-
-The following shows source code of the controller. It was developed based on SR1WalkControllerRTC.cpp which is included in Choreonoid.
-
-.. code-block:: cpp
-
-   /**
-      Sample Robot motion controller for the JVRC robot model.
-      This program was ported from the "SR1WalkControllerRTC.cpp" sample of
-      Choreonoid.
-   */
-   
-   #include "RobotControllerRTC.h"
-   #include <cnoid/BodyMotion>
-   #include <cnoid/ExecutablePath>
-   #include <cnoid/FileUtil>
-   #include <iostream>
-   
-   using namespace std;
-   using namespace cnoid;
-   
-   namespace {
-   
-   const char* samplepd_spec[] =
-   {
-       "implementation_id", "RobotControllerRTC",
-       "type_name",         "RobotControllerRTC",
-       "description",       "Robot Controller component",
-       "version",           "0.1",
-       "vendor",            "AIST",
-       "category",          "Generic",
-       "activity_type",     "DataFlowComponent",
-       "max_instance",      "10",
-       "language",          "C++",
-       "lang_type",         "compile",
-       ""
-   };
-   }
-   
-   
-   RobotControllerRTC::RobotControllerRTC(RTC::Manager* manager)
-       : RTC::DataFlowComponentBase(manager),
-         m_angleIn("q", m_angle)
-   {
-   
-   }
-   
-   RobotControllerRTC::~RobotControllerRTC()
-   {
-   
-   }
-   
-   
-   RTC::ReturnCode_t RobotControllerRTC::onInitialize()
-   {
-       // Set InPort buffers
-       addInPort("q", m_angleIn);
-   
-       return RTC::RTC_OK;
-   }
-   
-   RTC::ReturnCode_t RobotControllerRTC::onActivated(RTC::UniqueId ec_id)
-   {
-       return RTC::RTC_OK;
-   }
-   
-   
-   RTC::ReturnCode_t RobotControllerRTC::onDeactivated(RTC::UniqueId ec_id)
-   {
-       return RTC::RTC_OK;
-   }
-   
-   RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
-   {
-       if(m_angleIn.isNew()){
-           m_angleIn.read();
-       }
-   
-       for(size_t i=0; i < m_angle.data.length(); ++i){
-               cout << "m_angle.data[" << i << "] is " << m_angle.data[i] << std::endl;
-       }
-   
-       return RTC::RTC_OK;
-   }
-   
-   
-   extern "C"
-   {
-       DLL_EXPORT void RobotControllerRTCInit(RTC::Manager* manager)
-       {
-           coil::Properties profile(samplepd_spec);
-           manager->registerFactory(profile,
-                                    RTC::Create<RobotControllerRTC>,
-                                    RTC::Delete<RobotControllerRTC>);
-       }
-   };
-
-m_angleIn and m_angle are associated by constructor of RobotControllerRTC.
-
-onInitialized is called right after a RT component is constructed. It registers the input port.
-
-onExecute() is a function called periodically. Its implementation of this tutorial just reads joint angles and outputs those values to standard output. m_angleIn.isNew() checks if new data arrived or not. If the arrival is detected, m_angleIn.read() reads data and stores values to m_angle. Joint angles are accesible through m_angle.data.
-
-These source codes are stored as samples/tutorials/rtc/RobotControllerRTC.cpp and samples/tutorials/rtc/RobotControllerRTC.h.
-
-Setup the controller
---------------------
-
-To connect Choreonoid and the RT component we developed, we need to configure BodyRTC item.
-
-When you select BodyRTC item, its properties are displayed in the tab which is called "property view". Set "RobotControllerRTC" to the value of "Controller module name". This corresponds to the filename of the RT component. Set true to the value of "Auto Connect".
-
-.. image:: images/property_rtc.png
-
-Build the controller
---------------------
-
-Go to samples/tutorials/rtc directory and execute the following command.
+ビルドに成功するとRTCコントローラモジュール「src/RobotControllerRTC.so」が生成されるので、以下を実行して配置します。
 
 .. code-block:: bash 
 
-   $ make
+ $ sudo mkdir -p /usr/lib/choreonoid-1.5/rtc
+ $ sudo cp -p src/RobotControllerRTC.so /usr/lib/choreonoid-1.5/rtc
 
-This command generates RobotControllerRTC.so under samples/tutorials/rtc directory.
+.. note::
+   
+  Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。
 
-Then execute the following command.
 
-.. code-block:: bash 
+シミュレーションを実行する
+--------------------------
 
-   $ sudo make install DESTDIR=/usr
-
-In order to use RT components from Choreonoid, we need to put them in the shared directory of Choreonoid(/usr/lib/choreonoid-1.5/rtc). "make install" command does this automatically.
-
-Run simulation
---------------
-
-Press "Start simulation from the beginning" button on the simulation tool bar. While the simulation is running, joint angles stored in m_angle are displayed in the terminal you launched Choreonoid.
+シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行するとchoreonoidを実行している端末に関節角度(m_angle)の値が表示されるはずです。
 
 .. image:: images/output.png
 
-Applying joint torques computed using joint angles, we can control joint positions. The next tutorial explains how to do that.
+このようにして得られる関節角度を基にトルクをロボットに入力することでロボットの制御を行うことができます。この後のサンプルで詳しく解説します。
 
-A sample project used in this tutorial
---------------------------------------
-
-You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample2.cnoid.
 
 .. toctree::
    :maxdepth: 2
-

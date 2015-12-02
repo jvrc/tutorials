@@ -1,0 +1,45 @@
+--- RobotControllerRTC.cpp.orig	2015-12-02 17:32:33.767664037 +0900
++++ RobotControllerRTC.cpp	2015-12-02 19:33:23.275613359 +0900
+@@ -8,6 +8,9 @@
+  */
+ 
+ #include "RobotControllerRTC.h"
++#include <iostream>
++
++using namespace std;
+ 
+ // Module specification
+ // <rtc-template block="module_spec">
+@@ -35,7 +38,7 @@
+ RobotControllerRTC::RobotControllerRTC(RTC::Manager* manager)
+     // <rtc-template block="initializer">
+   : RTC::DataFlowComponentBase(manager),
+-    m_angleIn("angle", m_angle)
++    m_angleIn("q", m_angle)
+ 
+     // </rtc-template>
+ {
+@@ -55,7 +58,7 @@
+   // Registration: InPort/OutPort/Service
+   // <rtc-template block="registration">
+   // Set InPort buffers
+-  addInPort("angle", m_angleIn);
++  addInPort("q", m_angleIn);
+   
+   // Set OutPort buffer
+   
+@@ -109,6 +112,14 @@
+ 
+ RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
+ {
++  if(m_angleIn.isNew()){
++    m_angleIn.read();
++  }
++
++  for(size_t i=0; i < m_angle.data.length(); ++i){
++    cout << "m_angle.data[" << i << "] is " << m_angle.data[i] << std::endl;
++  }
++
+   return RTC::RTC_OK;
+ }
+ 

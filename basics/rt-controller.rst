@@ -336,10 +336,15 @@ InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入�
 
 雛形に追加するコードの差分(diff)は以下の通りです。
 
+patch コマンドで差分を適用する場合は、こちらの
+:download:`差分ファイル <src/RobotControllerRTC.cpp.diff>` を取得してご利用ください。
+
 .. code-block:: cpp
    :linenos:
 
-   @@ -7,6 +7,9 @@
+   --- RobotControllerRTC.cpp.orig	2015-12-02 17:32:33.767664037 +0900
+   +++ RobotControllerRTC.cpp	2015-12-02 19:33:23.275613359 +0900
+   @@ -8,6 +8,9 @@
      */
     
     #include "RobotControllerRTC.h"
@@ -347,27 +352,27 @@ InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入�
    +
    +using namespace std;
     
-    static const char* robotcontrollerrtc_spec[] =
-      {
-   @@ -26,7 +29,7 @@
-    
+    // Module specification
+    // <rtc-template block="module_spec">
+   @@ -35,7 +38,7 @@
     RobotControllerRTC::RobotControllerRTC(RTC::Manager* manager)
+        // <rtc-template block="initializer">
       : RTC::DataFlowComponentBase(manager),
    -    m_angleIn("angle", m_angle)
    +    m_angleIn("q", m_angle)
-    {
-    }
     
-   @@ -36,7 +39,7 @@
-    
-    RTC::ReturnCode_t RobotControllerRTC::onInitialize()
+        // </rtc-template>
     {
+   @@ -55,7 +58,7 @@
+      // Registration: InPort/OutPort/Service
+      // <rtc-template block="registration">
+      // Set InPort buffers
    -  addInPort("angle", m_angleIn);
    +  addInPort("q", m_angleIn);
-      return RTC::RTC_OK;
-    }
-    
-   @@ -52,6 +55,14 @@
+      
+      // Set OutPort buffer
+      
+   @@ -109,6 +112,14 @@
     
     RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
     {
@@ -381,6 +386,7 @@ InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入�
    +
       return RTC::RTC_OK;
     }
+    
 
 RobotControllerRTCのコンストラクタで、m_angleIn と m_angle を関連付けています。
 

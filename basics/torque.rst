@@ -16,6 +16,7 @@ Source code of a controller
 A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid.
 
 .. code-block:: cpp
+   :linenos:
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -74,6 +75,7 @@ An output data port is added to output joint torques. `RTC::OutPort<RTC::TimedDo
 Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid.
 
 .. code-block:: cpp
+   :linenos:
 
    /**
       Sample Robot motion controller for the JVRC robot model.
@@ -290,13 +292,31 @@ Choose "JVRC" in the item view and Press "Set the present initial pose to the se
 
 .. image:: images/pose_toolbar.png
 
-Select 1.0 in the pose roll and press "Insert". Select 2.0, 3.0 and 4.0 and press "Insert" as well.
+ポーズロールにおいて、1.0 を選択して「挿入」を押します。
 
-The pose roll should be as follows.
+   .. image:: images/poserole_neck_01.png
 
-.. image:: images/pose_role2.png
+今回は首を左右に振る動作パターンを作成します。以下の手順でポーズを作成してください。
 
-Repeat this procedure until length of the motion becomes 15[s].
+1. ポーズロールにおいて 2.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 70.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_02.png
+
+2. ポーズロールにおいて 3.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 0.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_03.png
+
+3. ポーズロールにおいて 4.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を -70.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_04.png
+
+4. ポーズロールにおいて 5.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 0.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_05.png
+
+5. ポーズロールにおいて 6.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_R」を -50.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_06.png
 
 What we created using the pose roll are called key frames. They are used to generate a robot motion. Press "Generate body motions" button on the tool bar.
 
@@ -310,7 +330,14 @@ You can find a "motion" item as a child of "SampleMotion" item. Select this item
 
 .. image:: images/item_motion.png
 
-Save the robot motion as RobotMotion.yaml in samples/tutorials/rtc directory.
+「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに「RobotPattern.yaml」というファイルで保存します。
+
+同様に、SampleMotion を選択し名前を付けて保存ボタンを押します。
+
+.. image:: images/motion.png
+
+こちらは、「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/」ディレクトリに「SampleMotion.pseq」というファイルで保存します。
+
 
 Build the controller
 --------------------
@@ -333,15 +360,35 @@ And then, execute the following command.
 Run simulation
 --------------
 
-Press "Start simulation from the beginning" button on the simulation tool bar. The robot doesn't fall down for 15[s] but after that, it falls down. Because duration of the robot motion is 15[s].
+ポーズデータ「SampleMotion.pseq」をデフォルトでロードするプロジェクトファイル sample3.cnoid で choreonoid を起動します。
+プロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample3.cnoid」です。
+
+.. code-block:: bash
+
+   $ choreonoid sample3.cnoid
+
+シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、立ったままの状態になったはずです。また、先ほど作成した首振りのモーションを実行しているはずです。
 
 .. image:: images/simulation_controller.png
 
 
-A sample project used in this tutorial
---------------------------------------
+カメラ映像の表示
+################
 
-You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample3.cnoid.
+別のシーンビューを生成して、同時にカメラの映像を表示してみましょう。
+
+メインメニュー「表示」の「ビューの生成」から「シーン」を選択します。次のウィンドウが表示されるので OK をクリックします。
+
+.. image:: images/make_sceneview.png
+
+新しいシーンビュー「シーン2」が生成されます。
+「シーン2」タブをクリックして選択し、カメラの選択ボタンでロボットのカメラ「JVRC - rcamera」などに表示を切り替えます。
+
+.. image:: images/simulation_torque_2.png
+
+「シーン2」タブをドラッグして二つのシーンを同時に表示することもできます。
+           
+.. image:: images/simulation_torque_3.png
 
 .. toctree::
    :maxdepth: 2

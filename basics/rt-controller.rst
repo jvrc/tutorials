@@ -51,7 +51,13 @@ Welcomeページはいまは必要ないので左上の「×」ボタンを押�
 
 .. note::
 
-  RTCBuilderを起動した端末に以下のメッセージが出てRTCBuilderを起動できない場合があります。
+  RTCBuilderを起動する際に以下のエラーが生じることがあります。
+
+  .. code-block:: bash
+
+    パースペクティブ 'jp.go.aist.rtm.rtcbuilder.ui.perspective' のオープンで問題が発生しました。
+  
+  RTCBuilderを起動した端末には以下のメッセージが出ているかと思います。
    
   .. code-block:: bash
 
@@ -109,7 +115,7 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
 モジュールカテゴリ:  Generic
 コンポーネント型:    STATIC
 アクティビティ型:    PERIODIC
-コンポーネント種類:  DataFlow (DataFlowComponent)
+コンポーネント種類:  DataFlow
 最大インスタンス数:  1
 実行型:              PeriodicExecutionContext
 実行周期:            1000.0
@@ -128,9 +134,9 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
 * InPort プロファイル:
 
   =========  ==========================
-  ポート名:  neck
+  ポート名:  q
   データ型:  RTC::TimeDoubleSeq
-  変数名:    
+  変数名:    angle
   表示位置:  LEFT
   =========  ==========================
 
@@ -196,6 +202,7 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
     * @brief Robot Controller component
     * @date  $Date$
     *
+    * $Id$
     */
    
    #ifndef ROBOTCONTROLLERRTC_H
@@ -213,28 +220,21 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
    #include <rtm/DataInPort.h>
    #include <rtm/DataOutPort.h>
    
-   /*!
-    * @class RobotControllerRTC
-    * @brief Robot Controller component
-    *
-    */
    class RobotControllerRTC
      : public RTC::DataFlowComponentBase
    {
-    public:
- 
-      RobotControllerRTC(RTC::Manager* manager);
-      ~RobotControllerRTC();
- 
-      virtual RTC::ReturnCode_t onInitialize();
-      virtual RTC::ReturnCode_t onActivated(RTC::UniqueId ec_id);
-      virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
-      virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
+     public:
+       RobotControllerRTC(RTC::Manager* manager);
+       ~RobotControllerRTC();
+       virtual RTC::ReturnCode_t onInitialize();
+       virtual RTC::ReturnCode_t onActivated(RTC::UniqueId ec_id);
+       virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
+       virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
    
     protected:
       RTC::TimedDoubleSeq m_angle;
       InPort<RTC::TimedDoubleSeq> m_angleIn;
-     
+   
     private:
    
    };
@@ -248,9 +248,13 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
 
 今回、ヘッダファイルは変更しません。
 
-RTC::TimedDoubleSeq というのは、時刻情報とdouble型の実際の値を持つOpenRTM固有の複合型です。SeqはOpenRTMにおける配列型のように扱います。OpenRTMにおけるdouble[]型と考えておけばよいでしょう。
+RTC::TimedDoubleSeq というのは、時刻情報とdouble型の実際の値を持つOpenRTM固有の複合型です。
+SeqはOpenRTMにおける配列型のように扱います。
+OpenRTMにおけるdouble[]型と考えておけばよいでしょう。
 
-InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入力ポートを操作するにはこれを利用します。m_angleは入力ポートから関節角度を受けとるための変数です。m_angleInで取得した値はm_angleで参照します。
+InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入力ポートを操作するにはこれを利用します。
+m_angleは入力ポートから関節角度を受けとるための変数です。
+m_angleInで取得した値はm_angleで参照します。
 
 コントローラのソースコード
 ##########################
@@ -274,6 +278,7 @@ InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入�
    
    #include "RobotControllerRTC.h"
    
+   // Module specification
    static const char* robotcontrollerrtc_spec[] =
      {
        "implementation_id", "RobotControllerRTC",
@@ -292,7 +297,7 @@ InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入�
    
    RobotControllerRTC::RobotControllerRTC(RTC::Manager* manager)
      : RTC::DataFlowComponentBase(manager),
-       m_angleIn("angle", m_angle)
+       m_angleIn("q", m_angle)
    {
    }
    
@@ -302,7 +307,8 @@ InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入�
    
    RTC::ReturnCode_t RobotControllerRTC::onInitialize()
    {
-     addInPort("angle", m_angleIn);
+     addInPort("q", m_angleIn);
+     
      return RTC::RTC_OK;
    }
    
@@ -323,6 +329,7 @@ InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入�
    
    extern "C"
    {
+    
      void RobotControllerRTCInit(RTC::Manager* manager)
      {
        coil::Properties profile(robotcontrollerrtc_spec);
@@ -330,6 +337,7 @@ InPort<RTC::TimedDoubleSeq> はRTCの入力ポートを表す型であり、入�
                                 RTC::Create<RobotControllerRTC>,
                                 RTC::Delete<RobotControllerRTC>);
      }
+     
    };
 
 これはコントローラの雛形なので、onExecute() コールバックなどに処理を追加します。
@@ -342,8 +350,8 @@ patch コマンドで差分を適用する場合は、こちらの
 .. code-block:: cpp
    :linenos:
 
-   --- RobotControllerRTC.cpp.orig	2015-12-02 17:32:33.767664037 +0900
-   +++ RobotControllerRTC.cpp	2015-12-02 19:33:23.275613359 +0900
+   --- RobotControllerRTC.cpp.orig	2015-12-03 11:11:10.351220019 +0900
+   +++ RobotControllerRTC.cpp	2015-12-03 11:13:11.787219170 +0900
    @@ -8,6 +8,9 @@
      */
     
@@ -354,24 +362,6 @@ patch コマンドで差分を適用する場合は、こちらの
     
     // Module specification
     // <rtc-template block="module_spec">
-   @@ -35,7 +38,7 @@
-    RobotControllerRTC::RobotControllerRTC(RTC::Manager* manager)
-        // <rtc-template block="initializer">
-      : RTC::DataFlowComponentBase(manager),
-   -    m_angleIn("angle", m_angle)
-   +    m_angleIn("q", m_angle)
-    
-        // </rtc-template>
-    {
-   @@ -55,7 +58,7 @@
-      // Registration: InPort/OutPort/Service
-      // <rtc-template block="registration">
-      // Set InPort buffers
-   -  addInPort("angle", m_angleIn);
-   +  addInPort("q", m_angleIn);
-      
-      // Set OutPort buffer
-      
    @@ -109,6 +112,14 @@
     
     RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
@@ -386,23 +376,18 @@ patch コマンドで差分を適用する場合は、こちらの
    +
       return RTC::RTC_OK;
     }
-    
 
 RobotControllerRTCのコンストラクタで、m_angleIn と m_angle を関連付けています。
 
 RTCの初期化時に呼ばれるonInitialize()で、m_angleInをRTCの入力ポートqと関連づけています。
 
-onExecute()はRTCの実行中に定期的に呼ばれます。ここでは関節角度を取得し標準出力に表示する処理を行っています。m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。onExecute()の実行時にはデータが到着しているかどうかが分からないので、ここでチェックしています。新しいデータが来ていた場合にはm_angleIn.read()でデータを読み込みます。読み込んだデータは自動的にm_angleに格納され、m_angle.dataとして取得できます。m_angle.dataは各関節毎に配列の値となっています。
-
-
-コントローラの設定
-------------------
-
-プロジェクト上でRTコンポーネント(RTC)を作成しただけでは、ロボットの制御を行うことができません。
-
-アイテムビューで「BodyRTC」を選択するとプロパティのタブ(プロパティビューと言います)にRTCの設定が表示されます。プロパティビューの「コントローラのモジュール名」を「RobotControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。さらに、プロパティビューの「自動ポート接続」を true にします。
-
-.. image:: images/property_rtc.png
+onExecute()はRTCの実行中に定期的に呼ばれます。
+ここでは関節角度を取得し標準出力に表示する処理を行っています。
+m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。
+onExecute()の実行時にはデータが到着しているかどうかが分からないので、ここでチェックしています。
+新しいデータが来ていた場合にはm_angleIn.read()でデータを読み込みます。
+読み込んだデータは自動的にm_angleに格納され、m_angle.dataとして取得できます。
+m_angle.dataは各関節毎に配列の値となっています。
 
 コントローラのビルド
 --------------------
@@ -429,10 +414,20 @@ RTコンポーネントのソースファイル一式が生成されたディレ
   Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。
 
 
+コントローラの設定
+------------------
+
+プロジェクト上でRTコンポーネント(RTC)を作成しただけでは、ロボットの制御を行うことができません。
+
+Choreonoidの操作画面に戻って、アイテムビューで「BodyRTC」を選択するとプロパティのタブ(プロパティビューと言います)にRTCの設定が表示されます。プロパティビューの「コントローラのモジュール名」を「RobotControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。さらに、プロパティビューの「自動ポート接続」を true にします。
+
+.. image:: images/property_rtc.png
+
+
 シミュレーションを実行する
 --------------------------
 
-シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行するとchoreonoidを実行している端末に関節角度(m_angle)の値が表示されるはずです。
+シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行するとChoreonoidを実行している端末に関節角度(m_angle)の値が表示されるはずです。
 
 .. image:: images/output.png
 

@@ -5,15 +5,15 @@ This chapter explains how to install a software package, download a mode and sam
 
 .. note::
    
-  Choreonoidを動かすPCは、高性能なGPUを搭載しているに越したことはないが、最近のIntelチップセット内蔵GPUでもそれなりに動作する。
+  Choreonoidを動かすPCは、高性能なGPUを搭載しているに越したことはありませんが、最近のIntelチップセット内蔵GPUでもそれなりに動作します。
 
 .. note::
 
-  VMware, VirtualBox, Parallels 等の仮想マシンは、3Dグラフィックス周りの互換性が不十分なため、動作するが支障が生じる場合がある。
+  VMware, VirtualBox, Parallels 等の仮想マシンは、3Dグラフィックス周りの互換性が不十分なため、動作するが支障が生じる場合があります。
 
 .. note::
 
-  nVIDIAのドライバはオープンソース版ではなくプロプライエタリ版を使用するとよい。(Ubuntuなど)
+  nVIDIAのドライバはオープンソース版ではなくプロプライエタリ版を使用することを推奨します。(Ubuntuなど)
   
 
 Installation of Choreonoid
@@ -29,7 +29,7 @@ Execute the following commands in gnome-terminal. Chorenoid and required package
 
 .. note:: GIOPメッセージサイズの変更
 
-  ポリゴン数の多いモデルやポイントクラウド等大きなデータを通信する場合、設定値よりも大きいと通信されないため、giopMaxMsgSize パラメータの値を変更するとよい。
+  ポリゴン数の多いモデルやポイントクラウド等大きなデータを通信する場合、設定値よりも大きいと通信されないため、giopMaxMsgSize パラメータの値を大きな値に変更しておく必要があります。
   
   .. code-block:: bash
 
@@ -61,10 +61,10 @@ Let's use a model file of JVRC-1 which is available on the official website of J
 
   https://jvrc.org/download.html
 
-RTCBuilderのインストール
+OpenRTPのインストール
 ------------------------
 
-RTCBuilder は以下のページを参考に OpenRTP (Open RT Platform) をインストールして下さい。
+以下のページを参考に OpenRTP (Open RT Platform) をインストールして下さい。
 
   http://www.openrtm.org/openrtm/ja/node/5778
 

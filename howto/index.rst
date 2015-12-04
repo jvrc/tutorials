@@ -1,7 +1,7 @@
 Choreonoidの解説
 ================
 
-この章ではChoreonoidについて解説します。
+この章ではChoreonoidおよびその基本操作について解説します。
 
 .. toctree::
    :maxdepth: 2

@@ -411,7 +411,7 @@ RTコンポーネントのソースファイル一式が生成されたディレ
 
 .. note::
    
-  Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置しなければなりません。
+  Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置するか、絶対パスで指定する必要があります。
 
 
 コントローラの設定

@@ -8,6 +8,12 @@ This section extentds the RT component developed in the previous section to keep
 Open a project file
 -------------------
 
+Choreonoid を起動します。
+
+.. code-block:: bash
+
+ $ choreonoid
+
 Choose "Open..." in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample2.cnoid.
 
 Source code of a controller
@@ -273,7 +279,7 @@ Open a configuration panel of the time bar.
 
 Set 1000 to the value of "Internal frame rate".
 
-.. image:: images/timebar_config.png
+.. image:: images/timebar_config_framerate.png
 
 This frame rate defines how many times computation is executed. If its value is 1000, computation is done every 1[ms] and if its value is 100, computation is done every 10[ms].
 
@@ -360,12 +366,14 @@ And then, execute the following command.
 Run simulation
 --------------
 
-ポーズデータ「SampleMotion.pseq」をデフォルトでロードするプロジェクトファイル sample3.cnoid で choreonoid を起動します。
-プロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample3.cnoid」です。
+シミュレーションを実行するための Choreonoid を起動します。
 
 .. code-block:: bash
 
-   $ choreonoid sample3.cnoid
+   $ choreonoid
+
+「メニュー」の「プロジェクトの読み込み」から、先ほど作成・保存してポーズデータファイル「SampleMotion.pseq」をデフォルトでロードするプロジェクトファイル sample3.cnoid を読み込みます。
+プロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample3.cnoid」です。
 
 シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、立ったままの状態になったはずです。また、先ほど作成した首振りのモーションを実行しているはずです。
 

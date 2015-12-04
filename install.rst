@@ -61,6 +61,17 @@ Let's use a model file of JVRC-1 which is available on the official website of J
 
   https://jvrc.org/download.html
 
+タスクモデルの取得
+------------------
+
+JVRC本競技時のシミュレーション設定は、タスクモデルと共に GitHub リポジトリにて配布されます。
+
+以下のコマンドを実行することで取得できます。
+
+.. code-block:: bash
+
+ $ git clone https://github.com/jvrc/model
+
 OpenRTPのインストール
 ------------------------
 

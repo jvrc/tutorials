@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: hrpsys tutorials 0.0.1\n"
@@ -82,7 +82,7 @@ msgstr "端末上で次のコマンドを実行し、Choreonoid と周辺ツー�
 msgid "GIOPメッセージサイズの変更"
 msgstr ""
 
-#: ../../install.rst:69
+#: ../../install.rst:80
 msgid "http://www.openrtm.org/openrtm/ja/node/5778"
 msgstr ""
 
@@ -107,13 +107,31 @@ msgid ""
 "パラメータの値を大きな値に変更しておく必要があります。"
 msgstr ""
 
-#: ../../install.rst:65
+#: ../../install.rst:76
 msgid "OpenRTPのインストール"
 msgstr ""
 
-#: ../../install.rst:67
+#: ../../install.rst:78
 msgid "以下のページを参考に OpenRTP (Open RT Platform) をインストールして下さい。"
 msgstr ""
+
+#: ../../install.rst:65
+msgid "タスクモデルの取得"
+msgstr ""
+
+#: ../../install.rst:67
+msgid "JVRC本競技時のシミュレーション設定は、タスクモデルと共に GitHub リポジトリにて配布されます。"
+msgstr ""
+
+#: ../../install.rst:69
+msgid "以下のコマンドを実行することで取得できます。"
+msgstr ""
+
+#~ msgid "タスクモデルの入手"
+#~ msgstr ""
+
+#~ msgid "JVRC本競技時のシミュレーション設定は、以下のコマンドを実行することでタスクモデルと共に配布されます。"
+#~ msgstr ""
 
 #~ msgid ""
 #~ "Choreonoidを動かすPCは、高性能なGPUを搭載しているに越したことはないが、最近のIntelチップセット内蔵GPUでもそれなりに動作する。"

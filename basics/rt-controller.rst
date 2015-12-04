@@ -7,6 +7,12 @@ This section explains how to connect Choreonoid and a RT component by developing
 Open a project file
 -------------------
 
+Choreonoid を起動します。
+
+.. code-block:: bash
+
+ $ choreonoid
+
 Open a project file by choosing "Open Project" menu of "File" menu. The file name is samples/tutorials/cnoid/sample1.cnoid.
 
 Add a controller

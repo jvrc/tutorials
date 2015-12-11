@@ -7,7 +7,7 @@ This section explains how to read sensors on JVRC-1 model.
 Open a project file
 -------------------
 
-Choose "Open..." in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample1.cnoid.
+Choose "Open..." in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample3.cnoid.
 
 
 Sensors defined in JVRC-1 model
@@ -102,9 +102,9 @@ We can find cameras named rcamera and lcamera, and a range sensor named ranger. 
    			      ]
    			    } # NECK_P
 
-You can find data types for each sensor in the following webpage. But the webpage is rather old and some of data types are obsolete.
+You can find data types for each sensor in the following page. 
 
-http://fkanehiro.github.com/openhrp3-doc/jp/controller_bridge.html
+:doc:`RTCconf`
 
 Data type for an accelerometer is TimedDoubleSeq and its length is 3. It contains accelerations in x,y and z directions.
 
@@ -172,303 +172,6 @@ Data type of a range sensor is RTC::RangeData.
 Measured distances from right to left are stored in ranges. If measurement of distance fails 0 is stored.
 
 
-Source code of a controller
----------------------------
-
-A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid.
-
-.. code-block:: cpp
-
-   /**
-      Sample Robot motion controller for the JVRC robot model.
-      This program was ported from the "SR1WalkControllerRTC.h" sample of Choreonoid.
-   */
-   
-   #ifndef RobotSensorsControllerRTC_H
-   #define RobotSensorsControllerRTC_H
-   
-   #include <rtm/idl/BasicDataTypeSkel.h>
-   #include <rtm/idl/ExtendedDataTypes.hh>
-   #include <rtm/idl/InterfaceDataTypes.hh>
-   #include <rtm/Manager.h>
-   #include <rtm/DataFlowComponentBase.h>
-   #include <rtm/CorbaPort.h>
-   #include <rtm/DataInPort.h>
-   #include <rtm/DataOutPort.h>
-   #include <cnoid/MultiValueSeq>
-   // #include <cnoid/corba/CameraImage.hh>
-   
-   class RobotSensorsControllerRTC : public RTC::DataFlowComponentBase
-   {
-   public:
-       RobotSensorsControllerRTC(RTC::Manager* manager);
-       ~RobotSensorsControllerRTC();
-   
-       virtual RTC::ReturnCode_t onInitialize();
-       virtual RTC::ReturnCode_t onActivated(RTC::UniqueId ec_id);
-       virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
-       virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
-   
-   protected:
-       // DataInPort declaration
-       RTC::TimedDoubleSeq m_angle;
-       RTC::InPort<RTC::TimedDoubleSeq> m_angleIn;
-       RTC::TimedDoubleSeq m_gsensor;
-       RTC::InPort<RTC::TimedDoubleSeq> m_gsensorIn;
-       RTC::TimedDoubleSeq m_gyrometer;
-       RTC::InPort<RTC::TimedDoubleSeq> m_gyrometerIn;
-       RTC::TimedDoubleSeq m_lfsensor;
-       RTC::InPort<RTC::TimedDoubleSeq> m_lfsensorIn;
-       RTC::TimedDoubleSeq m_rfsensor;
-       RTC::InPort<RTC::TimedDoubleSeq> m_rfsensorIn;
-       // Img::TimedCameraImage m_lcamera;
-       // RTC::InPort<Img::TimedCameraImage> m_lcameraIn;
-       // Img::TimedCameraImage m_rcamera;
-       // RTC::InPort<Img::TimedCameraImage> m_rcameraIn;
-       RTC::RangeData m_ranger;
-       RTC::InPort<RTC::RangeData> m_rangerIn;
-   };
-   
-   extern "C"
-   {
-       DLL_EXPORT void RobotSensorsControllerRTCInit(RTC::Manager* manager);
-   };
-   
-   #endif
-
-Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid.
-
-.. code-block:: cpp
-
-   /**
-      Sample Robot motion controller for the JVRC robot model.
-      This program was ported from the "SR1WalkControllerRTC.cpp" sample of
-      Choreonoid.
-   */
-   
-   #include "RobotSensorsControllerRTC.h"
-   #include <cnoid/BodyMotion>
-   #include <cnoid/ExecutablePath>
-   #include <cnoid/FileUtil>
-   #include <iostream>
-   
-   using namespace std;
-   using namespace cnoid;
-   
-   namespace {
-   
-   const char* samplepd_spec[] =
-   {
-       "implementation_id", "RobotSensorsControllerRTC",
-       "type_name",         "RobotSensorsControllerRTC",
-       "description",       "Robot Controller component",
-       "version",           "0.1",
-       "vendor",            "AIST",
-       "category",          "Generic",
-       "activity_type",     "DataFlowComponent",
-       "max_instance",      "10",
-       "language",          "C++",
-       "lang_type",         "compile",
-       ""
-   };
-   }
-   
-   
-   RobotSensorsControllerRTC::RobotSensorsControllerRTC(RTC::Manager* manager)
-       : RTC::DataFlowComponentBase(manager),
-         m_angleIn("q", m_angle),
-         m_gsensorIn("gsensor", m_gsensor),
-         m_gyrometerIn("gyrometer", m_gyrometer),
-         m_lfsensorIn("lfsensor", m_lfsensor),
-         m_rfsensorIn("rfsensor", m_rfsensor),
-         m_rangerIn("ranger", m_ranger)
-         // m_lcameraIn("lcamera", m_lcamera),
-         // m_rcameraIn("rcamera", m_rcamera),
-         // m_rangerIn("ranger", m_ranger)
-   {
-   
-   }
-   
-   RobotSensorsControllerRTC::~RobotSensorsControllerRTC()
-   {
-   
-   }
-   
-   
-   RTC::ReturnCode_t RobotSensorsControllerRTC::onInitialize()
-   {
-       // Set InPort buffers
-       addInPort("q", m_angleIn);
-       addInPort("gsensor", m_gsensorIn);
-       addInPort("gyrometer", m_gyrometerIn);
-       addInPort("lfsensor", m_lfsensorIn);
-       addInPort("rfsensor", m_rfsensorIn);
-       // addInPort("lcamera", m_lcameraIn);
-       // addInPort("rcamera", m_rcameraIn);
-       addInPort("ranger", m_rangerIn);
-   
-       cout << "hoge" << endl;
-   
-       return RTC::RTC_OK;
-   }
-   
-   RTC::ReturnCode_t RobotSensorsControllerRTC::onActivated(RTC::UniqueId ec_id)
-   {
-       return RTC::RTC_OK;
-   }
-   
-   
-   RTC::ReturnCode_t RobotSensorsControllerRTC::onDeactivated(RTC::UniqueId ec_id)
-   {
-       return RTC::RTC_OK;
-   }
-   
-   RTC::ReturnCode_t RobotSensorsControllerRTC::onExecute(RTC::UniqueId ec_id)
-   {
-       if(m_angleIn.isNew()){
-               m_angleIn.read();
-       }
-   
-       for(size_t i=0; i < m_angle.data.length(); ++i){
-               // cout << "m_angle.data[" << i << "] is " << m_angle.data[i] << std::endl;
-       }
-   
-       if(m_gsensorIn.isNew()){
-               m_gsensorIn.read();
-       }
-   
-       for(size_t i=0; i < m_gsensor.data.length(); ++i){
-               cout << "m_gsensor.data[" << i << "] is " << m_gsensor.data[i] << std::endl;
-       }
-   
-       if(m_gyrometerIn.isNew()){
-               m_gyrometerIn.read();
-       }
-   
-       for(size_t i=0; i < m_gyrometer.data.length(); ++i){
-               cout << "m_gyrometer.data[" << i << "] is " << m_gyrometer.data[i] << std::endl;
-       }
-   
-       if(m_lfsensorIn.isNew()){
-               m_lfsensorIn.read();
-       }
-   
-       for(size_t i=0; i < m_lfsensor.data.length(); ++i){
-               cout << "m_lfsensorIn.data[" << i << "] is " << m_lfsensor.data[i] << std::endl;
-       }
-   
-       if(m_rfsensorIn.isNew()){
-               m_rfsensorIn.read();
-       }
-   
-       for(size_t i=0; i < m_rfsensor.data.length(); ++i){
-               cout << "m_rfsensorIn.data[" << i << "] is " << m_rfsensor.data[i] << std::endl;
-       }
-   
-       // if(m_lcameraIn.isNew()){
-       //     m_lcameraIn.read();
-       // }
-       //
-       // for(size_t i=0; i < m_lcamera.data.image.raw_data.length(); ++i){
-       //         cout << "m_lcameraIn.data.image.raw_data[" << i <<
-       //                 "] is " << m_lcamera.data.image.raw_data[i] << std::endl;
-       // }
-       //
-       // if(m_rcameraIn.isNew()){
-       //     m_rcameraIn.read();
-       // }
-       //
-       // for(size_t i=0; i < m_rcamera.data.image.raw_data.length(); ++i){
-       //         cout << "m_rcameraIn.data.image.raw_data[" << i <<
-       //                 "] is " << m_rcamera.data.image.raw_data[i] << std::endl;
-       // }
-   
-       if(m_rangerIn.isNew()){
-               m_rangerIn.read();
-       }
-   
-       for(size_t i=0; i < m_ranger.ranges.length(); ++i){
-               cout << "m_rangerIn.ranges[" << i << "] is " << m_ranger.ranges[i] << std::endl;
-       }
-       return RTC::RTC_OK;
-   }
-   
-   
-   extern "C"
-   {
-       DLL_EXPORT void RobotSensorsControllerRTCInit(RTC::Manager* manager)
-       {
-           coil::Properties profile(samplepd_spec);
-           manager->registerFactory(profile,
-                                    RTC::Create<RobotSensorsControllerRTC>,
-                                    RTC::Delete<RobotSensorsControllerRTC>);
-       }
-   };
-
-Contents are almost same with the source in the previous tutorial. Input data ports for sensors are just added. Notice that data types are different depending on sensor types.
-
-You can find both of RobotSensorsControllerRTC.h and RobotSensorsControllerRTC.cpp in samples/tutorials.
-
-A configuration file for RTC
-----------------------------
-
-In the previous tutorials, data ports are connected automatically Choreonoid. But this function only works with simple port configurations.
-
-Since the port configuration of RTC used in this tutorials is complex, we need to create a configuration file. Please create a file that contains the following lines and name it "RobotSensorsJVRC.conf". And put it in samples/tutorials/rtc. The file will be installed with RTCs. ::
-
-   out-port = q:JOINT_VALUE
-   out-port = gsensor:ACCELERATION_SENSOR
-   out-port = gyrometer:RATE_GYRO_SENSOR
-   out-port = lfsensor:FORCE_SENSOR
-   out-port = rfsensor:FORCE_SENSOR
-   out-port = rcamera:rcamera:CAMERA_IMAGE
-   out-port = lcamera:lcamera:CAMERA_IMAGE
-   out-port = ranger:RANGE_SENSOR
-   connection = q:RobotSensorsControllerRTC0:q
-   connection = gsensor:RobotSensorsControllerRTC0:gsensor
-   connection = gyrometer:RobotSensorsControllerRTC0:gyrometer
-   connection = lfsensor:RobotSensorsControllerRTC0:lfsensor
-   connection = rfsensor:RobotSensorsControllerRTC0:rfsensor
-   connection = ranger:RobotSensorsControllerRTC0:ranger
-
-out-port means defintion of a output data port. Its right hand value consists of two values separated by comma. The first value is name of port and the second value is data type.
-
-in-port means definition of an input data port. No input port is defined in this example.
-
-connection defines a connection between data ports. For instance, q:RobotSensorsControllerRTC0:q means to connect this RT component and RobotSensorsControllerRTC0.
-
-This configuration file is used to create data ports of BodyRTC. Data ports of usual RT components are statically defined in their source codes.
-
-You can find details of the configuration file format in the following page.
-
-:doc:`RTCconf`
-
-Build the controller
---------------------
-
-Go to samples/tutorials/rtc directory and execute the following command.
-
-.. code-block:: bash
-
-   $ make
-
-This command generates RobotSensorsControllerRTC.so in samples/tutorials/rtc directory.
-
-And then, execute the following command.
-
-.. code-block:: bash
-
-   $ sudo make install DESTDIR=/usr
-
-Configuration files for RTC must be placed in shared data directory of Choreonoid(/usr/lib/choreonoid-1.5/rtc). "make install" puts configuration file in the directory.
-
-Setup the controller
---------------------
-
-Select BodyRTC in the item view and set value of its property, "Controller module name" to RobotSensorsControllerRTC. This value corresponds to the filename of the RT component. Set values of properties, "Configuration mode" and "Configuration file name" to "Use Configuration File" and "RobotSensorsJVRC.conf" respectively.
-
-.. image:: images/sensor_config.png
-
 Enable cameras and range sensors
 --------------------------------
 
@@ -478,23 +181,72 @@ Select AISTSimulator in the item view and create a GLVisionSensorSimulator item 
 
 .. image:: images/vision.png
 
-Select GLVisionSimulator item and set its properties as follows.
+.. note::
 
-Target body to JVRC.
+  「対象ボディ」プロパティおよび「対象センサ」プロパティを空のままにしておくと、シミュレーション世界に存在するすべてのセンサがシミュレートされます。一方でこれらのプロパティを下図のように設定するとシミュレートするセンサを限定することができ、シミュレーション速度を向上させることができます。この例ではJVRCのrangerのみをシミュレーション対象としているため、頭部のカメラはシミュレートされないことになります。
 
-Target sensor to ranger.
+  .. image:: images/vision_property.png
 
-.. image:: images/vision_property.png
+A configuration file for RTC
+----------------------------
+
+In the previous tutorials, data ports are connected automatically Choreonoid. But this function only works with simple port configurations.
+
+Since the port configuration of RTC used in this tutorials is complex, we need to create a configuration file. Please create a file that contains the following lines and name it "RobotJVRC.conf". And put it in /usr/share/choreonoid-1.5/rtc. ::
+
+   out-port = q:JOINT_VALUE
+   out-port = gsensor:gsensor:ACCELERATION_SENSOR
+   out-port = gyrometer:gyrometer:RATE_GYRO_SENSOR
+   out-port = lfsensor:lfsensor:FORCE_SENSOR
+   out-port = rfsensor:rfsensor:FORCE_SENSOR
+   out-port = lhsensor:lhsensor:FORCE_SENSOR
+   out-port = rhsensor:rhsensor:FORCE_SENSOR
+   out-port = rcamera:rcamera:CAMERA_IMAGE
+   out-port = lcamera:lcamera:CAMERA_IMAGE
+   out-port = ranger:ranger:RANGE_SENSOR
+   in-port = u:JOINT_TORQUE
+   connection = q:RobotControllerRTC0:q
+   connection = u:RobotControllerRTC0:u
+
+out-port means defintion of a output data port. Its right hand value consists of two values separated by comma. The first value is name of port and the second value is data type.
+
+in-port means definition of an input data port. 
+
+connection defines a connection between data ports. For instance, q:RobotControllerRTC0:q means to connect this RT component and RobotControllerRTC0.
+
+You can find details of the configuration file format in the following page.
+
+:doc:`RTCconf`
+
+Setup the controller
+--------------------
+
+Select BodyRTC in the item view and set value of its property, "Controller module name" to RobotControllerRTC. This value corresponds to the filename of the RT component. Set values of properties, "Configuration mode" and "Configuration file name" to "Use Configuration File" and "RobotJVRC.conf" respectively.
+
+.. image:: images/sensor_config.png
+
+ビューアコンポーネントの起動・接続
+----------------------------------
+
+ターミナルを2つ開き、それぞれ次のコマンドを実行します。CameraImageViewerCompはカメラ画像を受け取って表示するRTC、RangeDataViewerCompはレンジセンサの距離データを受け取って表示するRTCです。
+
+.. code-block:: bash
+
+  $ CameraImageViewerComp
+
+.. code-block:: bash
+
+  $ RangeDataViewerComp
+
+RTSystemEditorを起動してName Service Viewを確認すると、CameraImageViewer0、RangeDataViewer0というRTCが見つかるはずです。これらをSystem Diagramにドラッグアンドドロップし、次図のようにデータポートを接続します。
+
+.. image:: images/openrtp_viewers.png
+
 
 Run simulation
 --------------
 
-Press "Start simulation from the beginning" button on the simulation tool bar.
-While simulation is running, sensor outputs are displayed in the terminal you launched Choreonoid.
-In addition to joint angles(m_angle), you can see outputs from accelerometers(m_gsensor), gyrometers(m_gyrometer) and other sensors.
-
-.. image:: images/output2.png
-
+シミュレーションを開始すると、ウィンドウが2つ現れ、それぞれロボットに搭載されたカメラからの画像とレンジデータが計測した距離情報が表示されます。
 
 A sample project used in this tutorial
 --------------------------------------

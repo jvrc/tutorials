@@ -55,7 +55,7 @@ The sample files can be downloaded by the next command.
 "samples" directory created by the command above contains a git repository for sample files.
 
 JVRC-1のモデル、JVRCのタスクモデルの取得
-------------------
+----------------------------------------
 
 本チュートリアルではJVRC(www.jvrc.org)で使用されたヒューマノイドロボットJVRC-1のモデル、JVRC本競技時のタスクモデル（競技環境のモデル）を使用します。これらのモデルは以下のコマンドを実行することで取得できます。
 

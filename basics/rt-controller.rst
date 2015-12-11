@@ -465,6 +465,10 @@ Choreonoidの操作画面に戻って、アイテムビューで「BodyRTC」を
 
 このようにして得られる関節角度を基にトルクをロボットに入力することでロボットの制御を行うことができます。この後のサンプルで詳しく解説します。
 
+A sample project used in this tutorial
+--------------------------------------
+
+You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample2.cnoid.
 
 .. toctree::
    :maxdepth: 2

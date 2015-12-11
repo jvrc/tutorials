@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: jvrc software 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-31 17:58+0900\n"
-"PO-Revision-Date: 2015-12-11 14:20+0900\n"
+"PO-Revision-Date: 2015-12-11 15:10+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -167,7 +167,7 @@ msgstr "コントローラのヘッダのソースコードは以下になりま
 
 #: ../../basics/torque.rst:160
 msgid "Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid."
-msgstr "コントローラのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.cppを基にしています。 "
+msgstr "コントローラのソースコードは以下になります。"
 
 #: ../../basics/torque.rst:339
 msgid "Computation of joint torques is added to onExecute(). After reading joint angles, joint torques are computed and stored to m_torque.data[i]. In this tutorial, joint torques are computed by simple PD control. Position gains and derivative gains are defined at the top of the source code. If we can't control joints property, we need to adjust those values. Values stored in `m_torque.data`\" are output by calling `m_torqueOut.write()`."

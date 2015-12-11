@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: jvrc tutorials 0.0.1\n"
@@ -168,368 +168,344 @@ msgstr ""
 msgid "起動方法"
 msgstr ""
 
-#: ../../howto/howto-use.rst:10
-msgid "端末などでChoreonoidの実行ファイル「choreonoid」を実行します。"
-msgstr ""
-
 #: ../../howto/howto-use.rst:16
-msgid "今回はサンプルプロジェクト「SR1Walk.cnoid」を同時に開くため、端末を開いて以下のコマンドを実行してください。"
-msgstr ""
-
-#: ../../howto/howto-use.rst:22
 msgid "以下のような画面が表示されます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:28
+#: ../../howto/howto-use.rst:22
 msgid "Choreonoidの起動と同時に、OpenHRP形式のモデルを開く場合には以下のようにオプションを指定して実行することが可能です。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:36
+#: ../../howto/howto-use.rst:30
 msgid ""
 "RTミドルウェアのネームサーバ「omniNames」(ネットワーク上に分散するRTCがどこにあるかを管理する仕組み)は、PCのIPアドレスが変わると古い情報が残っているせいで挙動がおかしくなる場合があります。そのような場合には以下の手順で古い情報を消去すると問題を解消することができます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:46
+#: ../../howto/howto-use.rst:40
 msgid "画面構成"
 msgstr ""
 
-#: ../../howto/howto-use.rst:48
+#: ../../howto/howto-use.rst:42
 msgid "Choreonoidを起動すると表示される「メインウィンドウ」の構成は以下のようになっています。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:53
+#: ../../howto/howto-use.rst:47
 msgid "メインメニュー"
 msgstr ""
 
-#: ../../howto/howto-use.rst:55
+#: ../../howto/howto-use.rst:49
 msgid ""
 "この例ではメインメニューはウィンドウのタイトルバーの中に表示しています。 "
 "Ubuntuの標準設定ではメニューバーの中ですが、[システム設定]-[外観]-[挙動]-[ウィンドウのメニューを表示]で変更可能です。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:59
+#: ../../howto/howto-use.rst:53
 msgid "ツールバー領域"
 msgstr ""
 
-#: ../../howto/howto-use.rst:61
+#: ../../howto/howto-use.rst:55
 msgid "各種ツールバーを表示します。表示するツールバーの種類は[メインメニュー]-[表示]-[ツールバーの表示]でOn/Offが可能です。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:64
+#: ../../howto/howto-use.rst:58
 msgid "ビュー領域"
 msgstr ""
 
-#: ../../howto/howto-use.rst:66
+#: ../../howto/howto-use.rst:60
 msgid ""
 "各種ビューを表示します。この例では「アイテム」「プロパティ」「リンク」「ボディ／リンク」「関節スライダ」「シーン」「メッセージ」「Pythonコンソール」のビューを表示しています。"
 " 複数のビューを重ねてタブで切り替えることも可能です。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:69
+#: ../../howto/howto-use.rst:63
 msgid ""
 "表示するビューの種類は[メインメニュー]-[表示]-[ビューの生成]でOn/Offが可能で、[ビューの生成]で同じビューを複数表示することが可能です。例えば、シーンビューを複数表示して、複数視点のシミュレーション世界を表示したり、ロボットのカメラ映像などを表示することができます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:72
+#: ../../howto/howto-use.rst:68
 msgid "ステータスバー"
 msgstr ""
 
-#: ../../howto/howto-use.rst:74
+#: ../../howto/howto-use.rst:70
 msgid "メインウィンドウ下部のステータスバーは、Choreonoid上で現在進行中の処理内容を簡潔なメッセージで知らせるための領域です。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:76
+#: ../../howto/howto-use.rst:72
 msgid ""
 "ステータスバーの領域は内部で２つに分かれており、基本的に左側では処理の開始や終了を告げるメッセージを表示し、右側では作業中のビューでマウスカーソルが指しているオブジェクトの状態を表示するようになっています。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:81
+#: ../../howto/howto-use.rst:77
 msgid ""
 "グラフィックスドライバとの相性問題により、まれにChoreonoid内の画面をクリックしても3D表示部分以外は反応がなくなる場合があります。そのような場合はChoreonoidのウィンドウを一旦全画面表示を解除し、再び全画面にする（あるいはその逆の手順を行う）と復活します。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:85
+#: ../../howto/howto-use.rst:81
 msgid "視点操作"
 msgstr ""
 
-#: ../../howto/howto-use.rst:87
+#: ../../howto/howto-use.rst:83
 msgid "シーンビューにマウスカーソルを合わせて、以下の操作を行うことによりシミュレーション世界の3Dグラフィックス表示を自在に操ることが可能です。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:89
+#: ../../howto/howto-use.rst:85
 msgid "左ボタンドラッグでクリックした点周りに回転"
 msgstr ""
 
-#: ../../howto/howto-use.rst:90
+#: ../../howto/howto-use.rst:86
 msgid "中ボタンドラッグで並進"
 msgstr ""
 
-#: ../../howto/howto-use.rst:91
+#: ../../howto/howto-use.rst:87
 msgid "ホイールで拡大縮小"
 msgstr ""
 
-#: ../../howto/howto-use.rst:92
+#: ../../howto/howto-use.rst:88
 msgid "Shift+左ドラッグで真横、真上などにスナップ"
 msgstr ""
 
-#: ../../howto/howto-use.rst:94
+#: ../../howto/howto-use.rst:90
 msgid ""
 "また、ツールバーの下記シーンバーにあるボタン(全ての物体が見えるように視点を移動)を押すことで全体を俯瞰する視点に設定することが可能です。 "
 "視点位置がわからなくなった場合の初期化などに利用できます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:101
+#: ../../howto/howto-use.rst:97
 msgid "カメラの切り替え方法"
 msgstr ""
 
-#: ../../howto/howto-use.rst:103
+#: ../../howto/howto-use.rst:99
 msgid ""
 "シーンビューの表示に使用するカメラは、シーンバーのプルダウンで選択します。 "
 "変更したいシーンビューをフォーカスしておき、プルダウンメニューから表示したいカメラを選択してください。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:109
+#: ../../howto/howto-use.rst:105
 msgid "デフォルトのカメラ"
 msgstr ""
 
-#: ../../howto/howto-use.rst:111
+#: ../../howto/howto-use.rst:107
 msgid "デフォルトでは以下のカメラが用意されています。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:113
+#: ../../howto/howto-use.rst:109
 msgid "System - Perspectiveは透視投影"
 msgstr ""
 
-#: ../../howto/howto-use.rst:115
+#: ../../howto/howto-use.rst:111
 msgid "System - Orthographicは平行投影"
 msgstr ""
 
-#: ../../howto/howto-use.rst:118
+#: ../../howto/howto-use.rst:114
 msgid "ロボットのカメラ"
 msgstr ""
 
-#: ../../howto/howto-use.rst:120
+#: ../../howto/howto-use.rst:116
 msgid "ロボットのカメラは以下の形式でリストアップされます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:122
+#: ../../howto/howto-use.rst:118
 msgid "<ロボット名>-<カメラ名>"
 msgstr ""
 
-#: ../../howto/howto-use.rst:125
+#: ../../howto/howto-use.rst:121
 msgid "追跡カメラ"
 msgstr ""
 
-#: ../../howto/howto-use.rst:127
+#: ../../howto/howto-use.rst:123
 msgid "カメラの視点をモデルに追従させたい場合などに、追跡視点に設定することが可能です。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:129
+#: ../../howto/howto-use.rst:125
 msgid "追従させたいモデルのBodyItemの子アイテムとて、\"BodyTrackingCameraItem\"を生成し、チェックを入れる"
 msgstr ""
 
-#: ../../howto/howto-use.rst:131
+#: ../../howto/howto-use.rst:127
 msgid "カメラ選択でこのアイテム名のカメラを選択"
 msgstr ""
 
 #: ../../howto/howto-use.rst:133
-msgid "\"Keep Relative Attitude\"プロパティをtrueにしておくと、カメラの向きもロボットに追従する"
-msgstr ""
-
-#: ../../howto/howto-use.rst:137
 msgid "シミュレーションの開始、一時停止、停止方法"
 msgstr ""
 
-#: ../../howto/howto-use.rst:139
+#: ../../howto/howto-use.rst:135
 msgid "シミュレーションを開始するには、ツールバーの「シミュレーションバー」にある以下のボタンで行います。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:143
+#: ../../howto/howto-use.rst:139
 msgid "左からそれぞれ以下のボタンになっています。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:145
+#: ../../howto/howto-use.rst:141
 msgid "初期位置からのシミュレーションを開始"
 msgstr ""
 
-#: ../../howto/howto-use.rst:146
+#: ../../howto/howto-use.rst:142
 msgid "現在位置からのシミュレーションを開始"
 msgstr ""
 
-#: ../../howto/howto-use.rst:147
+#: ../../howto/howto-use.rst:143
 msgid "シミュレーションの一時停止"
 msgstr ""
 
-#: ../../howto/howto-use.rst:148
+#: ../../howto/howto-use.rst:144
 msgid "シミュレーションの停止"
 msgstr ""
 
-#: ../../howto/howto-use.rst:150
+#: ../../howto/howto-use.rst:146
 msgid "シミュレーションを一時停止しておき、タイムバーのスライダーやシミュレーション時間を直接入力してシミュレーション結果をみることができます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:154
+#: ../../howto/howto-use.rst:150
 msgid "一時停止したシミュレーションを再開するには「シミュレーションの一時停止」ボタンをクリックします。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:158
+#: ../../howto/howto-use.rst:154
 msgid "シミュレーション結果の保存、読み込み、再生方法"
 msgstr ""
 
-#: ../../howto/howto-use.rst:160
+#: ../../howto/howto-use.rst:156
 msgid ""
 "Choreonoidでは、シミュレーション結果（動作軌道データ）を保存し、そのデータを使ってシミュレーション結果を再生することができます。 "
 "以下ではサンプルプロジェクト「PA10Pickup.cnoid」を例に説明します。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:164
+#: ../../howto/howto-use.rst:160
 msgid "シミュレーション結果の保存"
 msgstr ""
 
-#: ../../howto/howto-use.rst:166 ../../howto/howto-use.rst:196
+#: ../../howto/howto-use.rst:162
 msgid "Choreonoidを起動します。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:172
+#: ../../howto/howto-use.rst:168
 msgid ""
 "シミュレーションを開始すると、ロボット等、動く物体のBodyItemの下（あるいはコントローラの下）に “AISTSimulator-XXX” "
 "といった名前でBodyMotionアイテムが生成されます。これがシミュレーション結果を格納している動作軌道データです。以下の例では、\"PA10\"と\"box3\"アイテムにBodyMotionアイテムが生成されています。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:176
+#: ../../howto/howto-use.rst:172
 msgid "シミュレーション開始前"
 msgstr ""
 
-#: ../../howto/howto-use.rst:177
+#: ../../howto/howto-use.rst:173
 msgid "シミュレーション開始後"
 msgstr ""
 
-#: ../../howto/howto-use.rst:181
+#: ../../howto/howto-use.rst:177
 msgid ""
 "各BodyMotionアイテムを選択状態にして（まとめて選択してもOK), メニューバーの「ファイル」⇒「名前を付けて選択アイテムを保存」で保存します。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:185
+#: ../../howto/howto-use.rst:181
 msgid "保存するファイルは各BodyMotionアイテム毎になりますので、どのアイテムのデータかがわかるようなファイル名にしておきます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:189
+#: ../../howto/howto-use.rst:185
 msgid "アイテムビューで複数のBodyItemをまとめて選択するには、Ctrlキーを押しながらクリックして選択します。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:191
+#: ../../howto/howto-use.rst:187
 msgid "Shiftキーを押しながらクリックすると、リストの始点・終点間を選択することができます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:194
+#: ../../howto/howto-use.rst:190
 msgid "シミュレーション結果の読み込みと再生"
 msgstr ""
 
-#: ../../howto/howto-use.rst:202
+#: ../../howto/howto-use.rst:198
 msgid ""
 "アイテムビューで該当するBodyItemを選択した状態で対応するファイルの読み込みを行います。読み込みは、メニューバーの「ファイル」⇒「読み込み」⇒「ボディモーション」で行います。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:206
+#: ../../howto/howto-use.rst:202
 msgid "読み込み前(BodyItemを選択)"
 msgstr ""
 
-#: ../../howto/howto-use.rst:207
+#: ../../howto/howto-use.rst:203
 msgid "読み込み後"
 msgstr ""
 
-#: ../../howto/howto-use.rst:211
+#: ../../howto/howto-use.rst:207
 msgid "同様に、他のBodyItemのデータを読み込みます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:213
+#: ../../howto/howto-use.rst:209
 msgid ""
 "読み込んだ動作データを再生するには、それらを選択しておく必要があります。（複数物体がある場合は、全てのBodyMotionアイテムを選択します）"
 msgstr ""
 
-#: ../../howto/howto-use.rst:217
+#: ../../howto/howto-use.rst:213
 msgid "タイムバーの「アニメーションを開始」ボタンでシミュレーション結果を再生できます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:225
+#: ../../howto/howto-use.rst:221
 msgid "閲覧モードと編集モード"
 msgstr ""
 
-#: ../../howto/howto-use.rst:227
+#: ../../howto/howto-use.rst:223
 msgid ""
 "シーンビューでは、通常は閲覧モードでシミュレーション世界の3Dグラフィックス表示を操ることができますが、編集モードに切り替えてシミュレーション世界の物体を操作することができます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:229
-msgid "ESCキー or 背景をダブルクリックで切り替え"
-msgstr ""
-
 #: ../../howto/howto-use.rst:231
-msgid "エディットモードのときはマウスカーソルが手のアイコンになる"
-msgstr ""
-
-#: ../../howto/howto-use.rst:233
-msgid "通常は閲覧モードにしておく"
-msgstr ""
-
-#: ../../howto/howto-use.rst:235
 msgid "編集モードの時は物体を引っ張ったりできる"
 msgstr ""
 
-#: ../../howto/howto-use.rst:237
+#: ../../howto/howto-use.rst:233
 msgid "初期状態の設定（シミュレーション前）"
 msgstr ""
 
-#: ../../howto/howto-use.rst:239
+#: ../../howto/howto-use.rst:235
 msgid "ロボットに外力を加える（シミュレーション中）"
 msgstr ""
 
-#: ../../howto/howto-use.rst:243
+#: ../../howto/howto-use.rst:239
 msgid "シミュレーション結果の動画作成方法"
 msgstr ""
 
-#: ../../howto/howto-use.rst:245
+#: ../../howto/howto-use.rst:241
 msgid "動画にしたい動きをタイムバーの再生ボタンで再生できる状態にしておきます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:249
+#: ../../howto/howto-use.rst:245
 msgid "メニューバーの「ツール」⇒「Movie Generator」を実行します。すると「動画用連番ファイルの作成」ダイアログが表示されます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:253
+#: ../../howto/howto-use.rst:249
 msgid "各種パラメータを設定します。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:255
+#: ../../howto/howto-use.rst:251
 msgid "対象とする「シーン」ビューをクリックして「対象ビュー」を設定"
 msgstr ""
 
-#: ../../howto/howto-use.rst:257
+#: ../../howto/howto-use.rst:253
 msgid "「ディレクトリ」で連番画像ファイルを出力するディレクトリを設定"
 msgstr ""
 
-#: ../../howto/howto-use.rst:259
+#: ../../howto/howto-use.rst:255
 msgid "「ベースファイル名」に連番画像ファイルのベースとなる名前を設定"
 msgstr ""
 
-#: ../../howto/howto-use.rst:261
+#: ../../howto/howto-use.rst:257
 msgid "「開始時刻」、「終了時刻」を設定"
 msgstr ""
 
-#: ../../howto/howto-use.rst:263
+#: ../../howto/howto-use.rst:259
 msgid "「FPS」にフレームレートを設定"
 msgstr ""
 
-#: ../../howto/howto-use.rst:265
+#: ../../howto/howto-use.rst:261
 msgid ""
 "「画像サイズ」にチェックを入れると、画像サイズを指定できます。これについては、単に対象のビューの描画領域のサイズを一時的にそのサイズにするだけの機能です。このため注意として、もとのビューの大きさがここで指定する大きさ以上である必要があります。少し大きめにビューのサイズを変更してから実行するとよいかと思います。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:269
+#: ../../howto/howto-use.rst:265
 msgid "「生成」ボタンを押して連番画像ファイルを出力します。 指定したディレクトリに次のような連番画像ファイルが作成されます。"
 msgstr ""
 
-#: ../../howto/howto-use.rst:274
+#: ../../howto/howto-use.rst:270
 msgid "連番画像ファイルから動画を生成するコマンドを使用して動画を生成します。"
 msgstr ""
 
@@ -540,3 +516,50 @@ msgstr ""
 #: ../../howto/index.rst:4
 msgid "この章ではChoreonoidおよびその基本操作について解説します。"
 msgstr ""
+
+#: ../../howto/howto-use.rst:10
+msgid "サンプルプロジェクト「SR1Walk.cnoid」を起動と同時に開くため、端末を開いて以下のコマンドを実行してください。"
+msgstr ""
+
+#: ../../howto/howto-use.rst:65
+msgid ""
+"この例ではメッセージビューに赤字のメッセージがいくつか表示されています。Choreonoidの機能が正常に動作しない場合は、警告やエラーメッセージがメッセージビューに表示されているかもしれませんので確認して見てください。（この例ではODEやBulletなどのシミュレーションエンジンが使用できない旨の警告が表示されていますが問題ありません）"
+msgstr ""
+
+#: ../../howto/howto-use.rst:129
+msgid "\"Keep Relative Attitude\"プロパティをtrueにしておくと、カメラの向きもロボットに追従します"
+msgstr ""
+
+#: ../../howto/howto-use.rst:192
+msgid "シミュレーションを実行したChoreonoidを一旦終了し、再度Choreonoidを起動します。"
+msgstr ""
+
+#: ../../howto/howto-use.rst:225
+msgid "ESCキー or 背景をダブルクリックでモードを切り替えることができます。"
+msgstr ""
+
+#: ../../howto/howto-use.rst:227
+msgid "エディットモードのときはマウスカーソルが手のアイコンになります"
+msgstr ""
+
+#: ../../howto/howto-use.rst:229
+msgid "視点を操作するつもりが物体を操作してしまうことを防ぐため、通常は閲覧モードにしておきます"
+msgstr ""
+
+#~ msgid "端末などでChoreonoidの実行ファイル「choreonoid」を実行します。"
+#~ msgstr ""
+
+#~ msgid "今回はサンプルプロジェクト「SR1Walk.cnoid」を同時に開くため、端末を開いて以下のコマンドを実行してください。"
+#~ msgstr ""
+
+#~ msgid "\"Keep Relative Attitude\"プロパティをtrueにしておくと、カメラの向きもロボットに追従する"
+#~ msgstr ""
+
+#~ msgid "ESCキー or 背景をダブルクリックで切り替え"
+#~ msgstr ""
+
+#~ msgid "エディットモードのときはマウスカーソルが手のアイコンになる"
+#~ msgstr ""
+
+#~ msgid "通常は閲覧モードにしておく"
+#~ msgstr ""

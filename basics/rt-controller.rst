@@ -4,23 +4,6 @@ Connecting a RT component
 
 This section explains how to connect Choreonoid and a RT component by developing an example component which read joint angles.
 
-Open a project file
--------------------
-
-Choreonoid を起動します。
-
-.. code-block:: bash
-
- $ choreonoid
-
-Open a project file by choosing "Open Project" menu of "File" menu. The file name is samples/tutorials/cnoid/sample1.cnoid.
-
-Add a controller
-----------------
-
-Select "JVRC" first in the item view.
-Then create a BodyRTC item by choosing "BodyRTC" menu followed by "File", "New..." menus.
-
 コントローラの雛形作成
 ----------------------
 
@@ -346,7 +329,23 @@ m_angleInで取得した値はm_angleで参照します。
      
    };
 
-これはコントローラの雛形なので、onExecute() コールバックなどに処理を追加します。
+コントローラのビルド
+--------------------
+
+コントローラの雛形が生成されましたので、この段階で一度ビルドできることを確認します。ビルドするにはRTコンポーネントのソースファイル一式が生成されたディレクトリで以下を実行します。
+
+.. code-block:: bash
+
+ $ cd $HOME/workspace/RobotControllerRTC
+ $ mkdir build
+ $ cd build
+ $ cmake ..
+ $ make
+
+コントローラの実装
+------------------
+
+生成されたのはコントローラの雛形で、このまま実行しても何も処理が行われません。onExecute() コールバックなどに処理を記述します。このチュートリアルでは関節角度を読みとって標準出力に表示する処理を実装します。
 
 雛形に追加するコードの差分(diff)は以下の通りです。
 
@@ -383,32 +382,18 @@ patch コマンドで差分を適用する場合は、こちらの
       return RTC::RTC_OK;
     }
 
-RobotControllerRTCのコンストラクタで、m_angleIn と m_angle を関連付けています。
-
-RTCの初期化時に呼ばれるonInitialize()で、m_angleInをRTCの入力ポートqと関連づけています。
-
 onExecute()はRTCの実行中に定期的に呼ばれます。
-ここでは関節角度を取得し標準出力に表示する処理を行っています。
+ここで関節角度を取得し標準出力に表示する処理を行います。
 m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。
 onExecute()の実行時にはデータが到着しているかどうかが分からないので、ここでチェックしています。
 新しいデータが来ていた場合にはm_angleIn.read()でデータを読み込みます。
 読み込んだデータは自動的にm_angleに格納され、m_angle.dataとして取得できます。
 m_angle.dataは各関節毎に配列の値となっています。
 
-コントローラのビルド
---------------------
+コントローラのインストール
+--------------------------
 
-RTコンポーネントのソースファイル一式が生成されたディレクトリで以下を実行します。CMakeを利用してビルド環境のConfigureを行ってから、makeを実行してビルドします。
-
-.. code-block:: bash
-
- $ cd $HOME/workspace/RobotControllerRTC
- $ mkdir build
- $ cd build
- $ cmake ..
- $ make
-
-ビルドに成功するとRTCコントローラモジュール「src/RobotControllerRTC.so」が生成されるので、以下を実行して配置します。
+RTコンポーネントの実装が終わったら、makeコマンドを実行して再度ビルドを行います。ビルドに成功するとRTCコントローラモジュール「src/RobotControllerRTC.so」が生成されるので、以下を実行してインストールします。
 
 .. code-block:: bash 
 
@@ -420,14 +405,51 @@ RTコンポーネントのソースファイル一式が生成されたディレ
   Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置するか、絶対パスで指定する必要があります。
 
 
+Open a project file
+-------------------
+
+Choreonoid を起動します。
+
+.. code-block:: bash
+
+ $ choreonoid
+
+Open a project file by choosing "Open Project" menu of "File" menu. The file name is samples/tutorials/cnoid/sample1.cnoid.
+
+Add a controller
+----------------
+
+Select "JVRC" first in the item view.
+Then create a BodyRTC item by choosing "BodyRTC" menu followed by "File", "New..." menus. 
+
+BodyRTCを作成することにより、シミュレーション世界に存在するロボットが1つのRTコンポーネントとなり、データポートを介してセンサ情報の取得やアクチュエータに対する指令を送信することができるようになります。
+
 コントローラの設定
 ------------------
 
 プロジェクト上でRTコンポーネント(RTC)を作成しただけでは、ロボットの制御を行うことができません。
 
-Choreonoidの操作画面に戻って、アイテムビューで「BodyRTC」を選択するとプロパティのタブ(プロパティビューと言います)にRTCの設定が表示されます。プロパティビューの「コントローラのモジュール名」を「RobotControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。さらに、プロパティビューの「自動ポート接続」を true にします。
+Choreonoidの操作画面に戻って、アイテムビューで「BodyRTC」を選択するとプロパティのタブ(プロパティビューと言います)にRTCの設定が表示されます。プロパティビューの「コントローラのモジュール名」を「RobotControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。さらに、プロパティビューの「自動ポート接続」を true にします。このプロパティがtrueの場合、BodyRTCとコントローラとして指定されたRobotControllerRTCのデータポートのうち、名称が同じポートについて自動的にポートの接続が行われます。
 
 .. image:: images/property_rtc.png
+
+「設定モード」プロパティが「標準ポートを作成」になっていますが、この場合、標準的なデータポート（カメラ、レンジセンサを除くセンサに対応する出力ポート、関節角度列の出力ポート、関節トルクの入力ポート）が自動的に生成されます。これをRTSystemEditorを使って確認してみましょう。次のコマンドを実行してOpenRTPを起動します。
+
+.. code-block:: bash
+
+ $ openrtp
+
+必要に応じてワークスペースの指定を行い、RTCBuilderの時と同じ手順でRTSystemEditorパースペックティブを開きます。以下のような画面となるはずです。
+
+.. image:: images/openrtp_rtse.png
+
+画面左にあるName Service Viewにネームサーバに登録されている情報が表示されます。「127.0.0.1」の左にある黒い三角印をクリックするとツリーを展開することができます。ツリーを展開すると「JVRC|rtc」というアイテムがあるはずです。
+
+.. image:: images/openrtp_name_service_view.png
+
+ツールバーにある「ON」と書かれたアイコンをクリックし、System Diagramを生成します。続いてName Service Viewに表示された「JVRC|rtc」をドラッグし、System Diagramにドロップすると次のようなRTCが表示され、センサに対応するデータポートや関節トルクの指令を入力するためのデータポートが生成されていることがわかります。
+
+.. image:: images/openrtp_rtc.png
 
 
 シミュレーションを実行する
@@ -436,6 +458,10 @@ Choreonoidの操作画面に戻って、アイテムビューで「BodyRTC」を
 シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行するとChoreonoidを実行している端末に関節角度(m_angle)の値が表示されるはずです。
 
 .. image:: images/output.png
+
+またRTSystemEditorのName Service ViewからRobotControllerRTC0|rtcもSystem Diagramにドラッグアンドドロップすると、2つのRTCが次の図のように接続されていることが確認できます。2つのRTCはともに「q」という名前がついたデータポートを持っているために、自動ポート接続機能によって自動的に接続されています。
+
+.. image:: images/openrtp_sample2.png
 
 このようにして得られる関節角度を基にトルクをロボットに入力することでロボットの制御を行うことができます。この後のサンプルで詳しく解説します。
 

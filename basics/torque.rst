@@ -4,17 +4,96 @@ Joint control using a RT component
 
 This section extentds the RT component developed in the previous section to keep the robot standing position.
 
+Create a pose sequence
+----------------------
 
-Open a project file
--------------------
+Since a joint conrol RT component is executed at 1000[Hz], set the internal framerate of Choreonoid to the same value, 1000In order to set a framerate of a motion pattern to the same value with execution period of a joint control RT component, set the value to 1000.
 
-Choreonoid を起動します。
+Open a configuration panel of the time bar.
 
-.. code-block:: bash
+.. image:: images/timebar.png
 
- $ choreonoid
+Set 1000 to the value of "Internal frame rate".
 
-Choose "Open..." in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample2.cnoid.
+.. image:: images/timebar_config_framerate.png
+
+This frame rate defines how many times computation is executed. If its value is 1000, computation is done every 1[ms] and if its value is 100, computation is done every 10[ms].
+
+Create a pose sequence item
+---------------------------
+
+Choose JVRC in the item view first. Then create a pose sequence item named SimpleMotion by choosing "PoseSeq" menu followed by "File", "New..." menus.
+
+.. image:: images/motion.png
+
+Then choose "Pose Roll" followed by "View", "Show View" menus. You will see a window as follows.
+
+.. image:: images/pose_role.png
+
+Choose "JVRC" in the item view and Press "Set the present initial pose to the selected bodies" button on the tool bar to make the robot to be in the initial posture.
+
+.. image:: images/pose_toolbar.png
+
+ポーズロールにおいて、1.0 を選択して「挿入」を押します。
+
+   .. image:: images/poserole_neck_01.png
+
+今回は首を左右に振る動作パターンを作成します。以下の手順でポーズを作成してください。
+
+1. ポーズロールにおいて 2.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 70.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_02.png
+
+2. ポーズロールにおいて 3.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 0.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_03.png
+
+3. ポーズロールにおいて 4.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を -70.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_04.png
+
+4. ポーズロールにおいて 5.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 0.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_05.png
+
+5. ポーズロールにおいて 6.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_R」を -50.0 にセットし、ポーズロールの「挿入」を押す。
+
+   .. image:: images/poserole_neck_06.png
+
+What we created using the pose roll are called key frames. They are used to generate a robot motion. Press "Generate body motions" button on the tool bar.
+
+.. image:: images/motion_toolbar.png
+
+It is possible to update the robot motion automatically when key frames are updated. It can be enabled by checking  "Automatic Balance Adjustment Mode" button on the tool bar.
+
+.. image:: images/motion_toolbar2.png
+
+You can find a "motion" item as a child of "SampleMotion" item. Select this item and save its contents by choosing "Save Selected Items As" menu.
+
+.. image:: images/item_motion.png
+
+「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに「RobotPattern.yaml」というファイルで保存します。
+
+同様に、SampleMotion を選択し名前を付けて保存ボタンを押します。
+
+.. image:: images/motion.png
+
+こちらは、「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/」ディレクトリに「SampleMotion.pseq」というファイルで保存します。
+
+RTコンポーネントの拡張
+----------------------
+関節のPD制御を行うために、前の節で作成したRTコンポーネントRobotControllerRTCを拡張します。PD制御を行うためには、関節へのトルク指令を出力する必要があるため、トルク指令用のデータポートをRTCBuilderを用いて追加します。追加するデータポートのプロファイルは次のようになります。
+
+* OutPort プロファイル:
+
+  =========  ==========================
+  ポート名:  u
+  データ型:  RTC::TimeDoubleSeq
+  変数名:    u
+  表示位置:  RIGHT
+  =========  ==========================
+
+データポートを追加し、再度コード生成を行ったら、ビルドができることを確認しておきます。
 
 Source code of a controller
 ---------------------------
@@ -261,89 +340,24 @@ Computation of joint torques is added to onExecute(). After reading joint angles
 
 You can find both of RobotTorqueCOntrollerRTC.h and RobotTorqueControllerRTC.cpp in samples/tutorials.
 
+
+Open a project file
+-------------------
+
+Choreonoid を起動します。
+
+.. code-block:: bash
+
+ $ choreonoid
+
+Choose "Open..." in "File" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample2.cnoid.
+
 Setup of the controller
 -----------------------
 
 Choose BodyRTC in the item view and change the value of "Controller module name" property to "RobotTorqueControllerRTC". This value corresponds to the filename of the RT component. Change the value of "Auto Connect" to "true".
 
 .. image:: images/property_torque.png
-
-Create a pose sequence
-----------------------
-
-Since a joint conrol RT component is executed at 1000[Hz], set the internal framerate of Choreonoid to the same value, 1000In order to set a framerate of a motion pattern to the same value with execution period of a joint control RT component, set the value to 1000.
-
-Open a configuration panel of the time bar.
-
-.. image:: images/timebar.png
-
-Set 1000 to the value of "Internal frame rate".
-
-.. image:: images/timebar_config_framerate.png
-
-This frame rate defines how many times computation is executed. If its value is 1000, computation is done every 1[ms] and if its value is 100, computation is done every 10[ms].
-
-Create a pose sequence item
----------------------------
-
-Choose JVRC in the item view first. Then create a pose sequence item named SimpleMotion by choosing "PoseSeq" menu followed by "File", "New..." menus.
-
-.. image:: images/motion.png
-
-Then choose "Pose Roll" followed by "View", "Show View" menus. You will see a window as follows.
-
-.. image:: images/pose_role.png
-
-Choose "JVRC" in the item view and Press "Set the present initial pose to the selected bodies" button on the tool bar to make the robot to be in the initial posture.
-
-.. image:: images/pose_toolbar.png
-
-ポーズロールにおいて、1.0 を選択して「挿入」を押します。
-
-   .. image:: images/poserole_neck_01.png
-
-今回は首を左右に振る動作パターンを作成します。以下の手順でポーズを作成してください。
-
-1. ポーズロールにおいて 2.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 70.0 にセットし、ポーズロールの「挿入」を押す。
-
-   .. image:: images/poserole_neck_02.png
-
-2. ポーズロールにおいて 3.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 0.0 にセットし、ポーズロールの「挿入」を押す。
-
-   .. image:: images/poserole_neck_03.png
-
-3. ポーズロールにおいて 4.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を -70.0 にセットし、ポーズロールの「挿入」を押す。
-
-   .. image:: images/poserole_neck_04.png
-
-4. ポーズロールにおいて 5.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 0.0 にセットし、ポーズロールの「挿入」を押す。
-
-   .. image:: images/poserole_neck_05.png
-
-5. ポーズロールにおいて 6.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_R」を -50.0 にセットし、ポーズロールの「挿入」を押す。
-
-   .. image:: images/poserole_neck_06.png
-
-What we created using the pose roll are called key frames. They are used to generate a robot motion. Press "Generate body motions" button on the tool bar.
-
-.. image:: images/motion_toolbar.png
-
-It is possible to update the robot motion automatically when key frames are updated. It can be enabled by checking  "Automatic Balance Adjustment Mode" button on the tool bar.
-
-.. image:: images/motion_toolbar2.png
-
-You can find a "motion" item as a child of "SampleMotion" item. Select this item and save its contents by choosing "Save Selected Items As" menu.
-
-.. image:: images/item_motion.png
-
-「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに「RobotPattern.yaml」というファイルで保存します。
-
-同様に、SampleMotion を選択し名前を付けて保存ボタンを押します。
-
-.. image:: images/motion.png
-
-こちらは、「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/」ディレクトリに「SampleMotion.pseq」というファイルで保存します。
-
 
 Build the controller
 --------------------

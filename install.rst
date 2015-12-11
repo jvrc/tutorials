@@ -9,11 +9,11 @@ This chapter explains how to install a software package, download a mode and sam
 
 .. note::
 
-  VMware, VirtualBox, Parallels 等の仮想マシンは、3Dグラフィックス周りの互換性が不十分なため、動作するが支障が生じる場合があります。
+  VMware, VirtualBox, Parallels 等の仮想マシンは、3Dグラフィックス周りの互換性が不十分なため、基本的には動作しまが一部機能が正常に動作しない場合があります。
 
 .. note::
 
-  nVIDIAのドライバはオープンソース版ではなくプロプライエタリ版を使用することを推奨します。(Ubuntuなど)
+  nVIDIAのドライバはオープンソース版ではなくプロプライエタリ版を使用することを推奨します。
   
 
 Installation of Choreonoid
@@ -25,11 +25,11 @@ Execute the following commands in gnome-terminal. Chorenoid and required package
 
  $ sudo add-apt-repository ppa:hrg/daily
  $ sudo apt-get update
- $ sudo apt-get install choreonoid libcnoid-dev openrtm-aist openrtm-aist-dev doxygen hrpsys-base
+ $ sudo apt-get install choreonoid libcnoid-dev openrtm-aist openrtm-aist-dev doxygen hrpsys-base libav-tools
 
 .. note:: GIOPメッセージサイズの変更
 
-  ポリゴン数の多いモデルやポイントクラウド等大きなデータを通信する場合、設定値よりも大きいと通信されないため、giopMaxMsgSize パラメータの値を大きな値に変更しておく必要があります。
+  ポリゴン数の多いモデルやポイントクラウド等大きなデータを通信する場合、設定値よりも大きいと通信されないため、giopMaxMsgSize パラメータの値を大きな値に変更しておく必要があります。デフォルト値は2MBですが、例えば以下のように200MBに設定します。
   
   .. code-block:: bash
 
@@ -54,23 +54,21 @@ The sample files can be downloaded by the next command.
 
 "samples" directory created by the command above contains a git repository for sample files.
 
-Downloading a model file
-------------------------
-
-Let's use a model file of JVRC-1 which is available on the official website of JVRC. Please download the model file from the follwing webpage and extract the file under samples/tutorials.
-
-  https://jvrc.org/download.html
-
-タスクモデルの取得
+JVRC-1のモデル、JVRCのタスクモデルの取得
 ------------------
 
-JVRC本競技時のシミュレーション設定は、タスクモデルと共に GitHub リポジトリにて配布されます。
-
-以下のコマンドを実行することで取得できます。
+本チュートリアルではJVRC(www.jvrc.org)で使用されたヒューマノイドロボットJVRC-1のモデル、JVRC本競技時のタスクモデル（競技環境のモデル）を使用します。これらのモデルは以下のコマンドを実行することで取得できます。
 
 .. code-block:: bash
 
  $ git clone https://github.com/jvrc/model
+
+サンプルファイルのいくつかがJVRC-1のモデルを相対パスで参照しているため、以下のようにシンボリックリンクを張っておきます。
+
+.. code-block:: bash
+
+ $ cd samples/tutorials
+ $ ln -s ../../model/JVRC-1 .
 
 OpenRTPのインストール
 ------------------------

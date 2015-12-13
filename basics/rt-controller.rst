@@ -137,7 +137,7 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
 
 次に、「言語・環境」タブを選択し、プログラミング言語を選択します。 ここでは、「C++」を選択します。なお、言語・環境はデフォルト等が設定されておらず、指定し忘れるとコード生成時にエラーになりますので、必ず言語の指定を行うようにしてください。
 
-また、C++の場合デフォルトではCMakeを利用してビルドすることになっていますが、旧式のVCのプロジェクトやソリューションを直接RTCBuilderが生成する方法を利用したい場合は Use old build environment をチェックしてください。
+.. また、C++の場合デフォルトではCMakeを利用してビルドすることになっていますが、旧式のVCのプロジェクトやソリューションを直接RTCBuilderが生成する方法を利用したい場合は Use old build environment をチェックしてください。
 
 .. image:: images/rtcbuilder_lang.png
 
@@ -402,7 +402,7 @@ RTコンポーネントの実装が終わったら、makeコマンドを実行�
 
 .. note::
    
-  Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置するか、絶対パスで指定する必要があります。
+  Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置するか、BodyRTCのプロパティで指定する際に絶対パスで指定する必要があります。
 
 
 Open a project file

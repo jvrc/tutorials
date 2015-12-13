@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: hrpsys tutorials 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-20 15:47+0900\n"
-"PO-Revision-Date: 2015-03-20 15:51+0900\n"
+"PO-Revision-Date: 2015-12-13 09:03+0900\n"
 "Last-Translator: Yosuke Matsusaka <yosuke.matsusaka@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgid ""
 "is Ubuntu 14.04LTS(64bit)."
 msgstr ""
 "この章では本チュートリアルで使用するソフトウェアやモデルファイルのインストール方法について解説します。 インストールを実行するのは Ubuntu "
-"14.04 x64 版とします。"
+"14.04LTS 64bit 版とします。"
 
 #: ../../install.rst:43
 msgid ""
@@ -82,12 +82,6 @@ msgstr ""
 msgid "以下のページを参考に OpenRTP (Open RT Platform) をインストールして下さい。"
 msgstr ""
 
-#: ../../install.rst:12
-msgid ""
-"VMware, VirtualBox, Parallels "
-"等の仮想マシンは、3Dグラフィックス周りの互換性が不十分なため、基本的には動作しまが一部機能が正常に動作しない場合があります。"
-msgstr ""
-
 #: ../../install.rst:16
 msgid "nVIDIAのドライバはオープンソース版ではなくプロプライエタリ版を使用することを推奨します。"
 msgstr ""
@@ -111,6 +105,17 @@ msgstr ""
 #: ../../install.rst:66
 msgid "サンプルファイルのいくつかがJVRC-1のモデルを相対パスで参照しているため、以下のようにシンボリックリンクを張っておきます。"
 msgstr ""
+
+#: ../../install.rst:12
+msgid ""
+"VMware, VirtualBox, Parallels "
+"等の仮想マシンは、3Dグラフィックス周りの互換性が不十分なため、基本的には動作しますが一部機能が正常に動作しない場合があります。"
+msgstr ""
+
+#~ msgid ""
+#~ "VMware, VirtualBox, Parallels "
+#~ "等の仮想マシンは、3Dグラフィックス周りの互換性が不十分なため、基本的には動作しまが一部機能が正常に動作しない場合があります。"
+#~ msgstr ""
 
 #~ msgid ""
 #~ "JVRC(www.jvrc.org)で使用されたヒューマノイドロボットJVRC-"

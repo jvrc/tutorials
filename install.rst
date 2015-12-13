@@ -9,7 +9,7 @@ This chapter explains how to install a software package, download a mode and sam
 
 .. note::
 
-  VMware, VirtualBox, Parallels 等の仮想マシンは、3Dグラフィックス周りの互換性が不十分なため、基本的には動作しまが一部機能が正常に動作しない場合があります。
+  VMware, VirtualBox, Parallels 等の仮想マシンは、3Dグラフィックス周りの互換性が不十分なため、基本的には動作しますが一部機能が正常に動作しない場合があります。
 
 .. note::
 

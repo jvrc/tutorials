@@ -192,18 +192,16 @@ A configuration file for RTC
 
 In the previous tutorials, data ports are connected automatically Choreonoid. But this function only works with simple port configurations.
 
-Since the port configuration of RTC used in this tutorials is complex, we need to create a configuration file. Please create a file that contains the following lines and name it "RobotJVRC.conf". And put it in /usr/share/choreonoid-1.5/rtc. ::
+Since the port configuration of RTC used in this tutorials is complex, we need to create a configuration file. Please create a file that contains the following lines and name it "RobotSensorsJVRC.conf". And put it in /usr/lib/choreonoid-1.5/rtc. ::
 
    out-port = q:JOINT_VALUE
-   out-port = gsensor:gsensor:ACCELERATION_SENSOR
-   out-port = gyrometer:gyrometer:RATE_GYRO_SENSOR
-   out-port = lfsensor:lfsensor:FORCE_SENSOR
-   out-port = rfsensor:rfsensor:FORCE_SENSOR
-   out-port = lhsensor:lhsensor:FORCE_SENSOR
-   out-port = rhsensor:rhsensor:FORCE_SENSOR
+   out-port = gsensor:ACCELERATION_SENSOR
+   out-port = gyrometer:RATE_GYRO_SENSOR
+   out-port = lfsensor:FORCE_SENSOR
+   out-port = rfsensor:FORCE_SENSOR
    out-port = rcamera:rcamera:CAMERA_IMAGE
    out-port = lcamera:lcamera:CAMERA_IMAGE
-   out-port = ranger:ranger:RANGE_SENSOR
+   out-port = ranger:RANGE_SENSOR
    in-port = u:JOINT_TORQUE
    connection = q:RobotControllerRTC0:q
    connection = u:RobotControllerRTC0:u
@@ -221,7 +219,7 @@ You can find details of the configuration file format in the following page.
 Setup the controller
 --------------------
 
-Select BodyRTC in the item view and set value of its property, "Controller module name" to RobotControllerRTC. This value corresponds to the filename of the RT component. Set values of properties, "Configuration mode" and "Configuration file name" to "Use Configuration File" and "RobotJVRC.conf" respectively.
+Select BodyRTC in the item view and set value of its property, "Configuration mode" and "Configuration file name" to "Use Configuration File" and "RobotSensorsJVRC.conf" respectively.
 
 .. image:: images/sensor_config.png
 

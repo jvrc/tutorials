@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: jvrc tutorials 0.0.1\n"
@@ -160,10 +160,6 @@ msgstr ""
 msgid "Choreonoidの基本操作"
 msgstr ""
 
-#: ../../howto/howto-use.rst:4
-msgid "この章ではサンプルプロジェクトを用いて、Choreonoidの基本的な操作方法について解説します。"
-msgstr ""
-
 #: ../../howto/howto-use.rst:8
 msgid "起動方法"
 msgstr ""
@@ -300,10 +296,6 @@ msgstr ""
 msgid "ロボットのカメラ"
 msgstr ""
 
-#: ../../howto/howto-use.rst:116
-msgid "ロボットのカメラは以下の形式でリストアップされます。"
-msgstr ""
-
 #: ../../howto/howto-use.rst:118
 msgid "<ロボット名>-<カメラ名>"
 msgstr ""
@@ -392,11 +384,6 @@ msgstr ""
 msgid "シミュレーション開始後"
 msgstr ""
 
-#: ../../howto/howto-use.rst:177
-msgid ""
-"各BodyMotionアイテムを選択状態にして（まとめて選択してもOK), メニューバーの「ファイル」⇒「名前を付けて選択アイテムを保存」で保存します。"
-msgstr ""
-
 #: ../../howto/howto-use.rst:181
 msgid "保存するファイルは各BodyMotionアイテム毎になりますので、どのアイテムのデータかがわかるようなファイル名にしておきます。"
 msgstr ""
@@ -411,11 +398,6 @@ msgstr ""
 
 #: ../../howto/howto-use.rst:190
 msgid "シミュレーション結果の読み込みと再生"
-msgstr ""
-
-#: ../../howto/howto-use.rst:198
-msgid ""
-"アイテムビューで該当するBodyItemを選択した状態で対応するファイルの読み込みを行います。読み込みは、メニューバーの「ファイル」⇒「読み込み」⇒「ボディモーション」で行います。"
 msgstr ""
 
 #: ../../howto/howto-use.rst:202
@@ -466,10 +448,6 @@ msgstr ""
 
 #: ../../howto/howto-use.rst:241
 msgid "動画にしたい動きをタイムバーの再生ボタンで再生できる状態にしておきます。"
-msgstr ""
-
-#: ../../howto/howto-use.rst:245
-msgid "メニューバーの「ツール」⇒「Movie Generator」を実行します。すると「動画用連番ファイルの作成」ダイアログが表示されます。"
 msgstr ""
 
 #: ../../howto/howto-use.rst:249
@@ -545,6 +523,47 @@ msgstr ""
 #: ../../howto/howto-use.rst:229
 msgid "視点を操作するつもりが物体を操作してしまうことを防ぐため、通常は閲覧モードにしておきます"
 msgstr ""
+
+#: ../../howto/howto-use.rst:4
+msgid "この節ではサンプルプロジェクトを用いて、Choreonoidの基本的な操作方法について解説します。"
+msgstr ""
+
+#: ../../howto/howto-use.rst:116
+msgid "ロボットにカメラが搭載されている場合、以下の形式でリストアップされます。"
+msgstr ""
+
+#: ../../howto/howto-use.rst:177
+msgid "各BodyMotionアイテムを選択状態にして（まとめて選択してもOK)、[ファイル]-[名前を付けて選択アイテムを保存]で保存します。"
+msgstr ""
+
+#: ../../howto/howto-use.rst:198
+msgid ""
+"アイテムビューで該当するBodyItemを選択した状態で対応するファイルの読み込みを行います。読み込みは、[ファイル]-[読み込み]-[ボディモーション]で行います。"
+msgstr ""
+
+#: ../../howto/howto-use.rst:245
+msgid "[ツール]-[Movie Generator]を実行します。すると「動画用連番ファイルの作成」ダイアログが表示されます。"
+msgstr ""
+
+#~ msgid ""
+#~ "アイテムビューで該当するBodyItemを選択した状態で対応するファイルの読み込みを行います。読み込みは、メニューバーの「ファイル」⇒「読み込み」⇒「ボディモーション」で行います。"
+#~ msgstr ""
+
+#~ msgid "メニューバーの「ツール」⇒「Movie Generator」を実行します。すると「動画用連番ファイルの作成」ダイアログが表示されます。"
+#~ msgstr ""
+
+#~ msgid "各BodyMotionアイテムを選択状態にして（まとめて選択してもOK)[ファイル]-[名前を付けて選択アイテムを保存]で保存します。"
+#~ msgstr ""
+
+#~ msgid "この章ではサンプルプロジェクトを用いて、Choreonoidの基本的な操作方法について解説します。"
+#~ msgstr ""
+
+#~ msgid "ロボットのカメラは以下の形式でリストアップされます。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "各BodyMotionアイテムを選択状態にして（まとめて選択してもOK), メニューバーの「ファイル」⇒「名前を付けて選択アイテムを保存」で保存します。"
+#~ msgstr ""
 
 #~ msgid "端末などでChoreonoidの実行ファイル「choreonoid」を実行します。"
 #~ msgstr ""

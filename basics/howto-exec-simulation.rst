@@ -55,11 +55,11 @@ Choose "World" item in the item view. Then create a "AISTSimulator" item by foll
 ロボットの位置・姿勢の初期状態を設定してプロジェクトに保存しておくことで、Choreonoidを起動し直してプロジェクトを読み込んだ際に設定していた初期状態からシミュレーションを開始することが可能です。
 初期状態の設定は以下の手順で行います。
 
-1. ボディ／リンクビューでルートリンクの位置・姿勢を編集する。
+1. ボディ／リンクビューでルートリンクの位置・姿勢を編集することができます。
 
    .. image:: images/body_link_view.png
 
-2. 関節スライダビューで関節の角度を編集する。
+2. 関節スライダビューで関節の角度を編集することができます。
 
    .. image:: images/joint_slider_view.png
 
@@ -83,11 +83,11 @@ Choose "World" item in the item view. Then create a "AISTSimulator" item by foll
 
 1[ms] を推奨します。時間刻みは計算速度とシミュレーション精度のトレードオフであり、コントローラの実行周期との兼ね合いも考慮して設定します。
 
-1. タイムバーの設定ダイアログをボタンをクリックする。
+1. タイムバーの設定ダイアログをボタンをクリックします。
 
    .. image:: images/timebar_config.png
 
-2. タイムバーの設定で、内部フレームレートの値を「1000」(1ms)に設定する。
+2. タイムバーの設定で、内部フレームレートの値を「1000」(1ms)に設定します。
        
    .. image:: images/timebar_config_framerate.png
 
@@ -96,21 +96,21 @@ Choose "World" item in the item view. Then create a "AISTSimulator" item by foll
 
 * 無制限
 
-  1. アイテムビュー上で "AISTSimulator" アイテムを選択状態にする。
+  1. アイテムビュー上で "AISTSimulator" アイテムを選択状態にします。
 
-  2. プロパティビューの時間範囲の値をダブルクリックして変更する。
+  2. プロパティビューの時間範囲の値をダブルクリックして変更します。
 
      .. image:: images/property_timerange.png
 
 * タイムバー範囲
 
-  1. アイテムビュー上で "AISTSimulator" アイテムを選択状態にする。
+  1. アイテムビュー上で "AISTSimulator" アイテムを選択状態にします。
 
-  2. プロパティビューの時間範囲の値をダブルクリックして変更する。
+  2. プロパティビューの時間範囲の値をダブルクリックして変更します。
 
      .. image:: images/property_timebarlimit.png
 
-  3. タイムバーの開始時間と終了時間を設定する。
+  3. タイムバーの開始時間と終了時間を設定します。
      
      .. image:: images/timebar_timelimit.png
 

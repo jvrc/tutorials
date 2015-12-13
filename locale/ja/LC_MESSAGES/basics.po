@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: jvrc software 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-31 17:58+0900\n"
-"PO-Revision-Date: 2015-12-11 15:10+0900\n"
+"PO-Revision-Date: 2015-12-13 22:25+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "シミュレーションを行うために、床(地面)を追加しま�
 msgid "Add a simulator item"
 msgstr "シミュレータアイテムを追加する"
 
-#: ../../basics/howto-exec-simulation.rst:127 ../../basics/torque.rst:381
+#: ../../basics/howto-exec-simulation.rst:127 ../../basics/torque.rst:346
 msgid "Run simulation"
 msgstr "シミュレーションを実行する"
 
@@ -57,6 +57,7 @@ msgid "Save a project"
 msgstr "プロジェクトの保存"
 
 #: ../../basics/howto-exec-simulation.rst:145
+#: ../../basics/rt-controller.rst:469
 msgid "A sample project used in this tutorial"
 msgstr "サンプルプロジェクトについて"
 
@@ -68,7 +69,7 @@ msgstr "シミュレーションの基本"
 msgid "Connecting a RT component"
 msgstr "RTコンポーネントのコントローラの接続"
 
-#: ../../basics/rt-controller.rst:409 ../../basics/torque.rst:345
+#: ../../basics/rt-controller.rst:409
 msgid "Open a project file"
 msgstr "プロジェクトを開く"
 
@@ -76,11 +77,11 @@ msgstr "プロジェクトを開く"
 msgid "Add a controller"
 msgstr "コントローラの追加"
 
-#: ../../basics/torque.rst:99
+#: ../../basics/torque.rst:23
 msgid "Source code of a controller"
 msgstr "コントローラのソースコード"
 
-#: ../../basics/torque.rst:363
+#: ../../basics/torque.rst:264
 msgid "Build the controller"
 msgstr "コントローラのビルド"
 
@@ -92,23 +93,15 @@ msgstr "RTコンポーネントにおけるトルク指令の入力"
 msgid "This section extentds the RT component developed in the previous section to keep the robot standing position."
 msgstr "ここでは、Choreonoidを用いて、ロボットの動作パターンを作成する方法、そのパターンをロボットで実行できるように前節で作成したRTコンポーネントを拡張する方法について解説します。"
 
-#: ../../basics/torque.rst:158
+#: ../../basics/torque.rst:81
 msgid "An output data port is added to output joint torques. `RTC::OutPort<RTC::TimedDoubleSeq>`  is the definition of the output port."
 msgstr "今回はトルクの出力をしなければならないので、出力ポートのための設定が増加しています。 `RTC::OutPort<RTC::TimedDoubleSeq>` はRTCの出力ポートを表す型であり、出力ポートを操作するにはこれを利用します。"
 
-#: ../../basics/torque.rst:335
+#: ../../basics/torque.rst:257
 msgid "The procedure to add an output port is similar to adding an input port."
 msgstr "出力ポートに関する設定は、入力ポートの場合と関数名が異なるだけでよく似ています。"
 
-#: ../../basics/torque.rst:12
-msgid "Open a configuration panel of the time bar."
-msgstr "タイムバーの設定画面を開きます。"
-
-#: ../../basics/torque.rst:20
-msgid "This frame rate defines how many times computation is executed. If its value is 1000, computation is done every 1[ms] and if its value is 100, computation is done every 10[ms]."
-msgstr "このフレームレートは1秒間に何回実行するかを表しています。 これが1000で1ミリ秒の間隔となり、100で10ミリ秒間隔となります。"
-
-#: ../../basics/torque.rst:23
+#: ../../basics/torque.rst:284
 msgid "Create a pose sequence item"
 msgstr "ポーズ列の追加"
 
@@ -124,36 +117,15 @@ msgstr "この節ではシミュレーションプロジェクトを作成する
 msgid "Because all joints are not controlled but free. We will control joints in the next section to keep the standing position."
 msgstr "これは全く関節の制御をしていないためです。 これからロボットを制御するプログラムを記述し、ロボットが崩れ落ちないようにしていきます。"
 
-#: ../../basics/torque.rst:337
+#: ../../basics/torque.rst:259
 msgid "Let's look at implementation of onActivated(). This function is called only once when a RT component is activated. This function reads RobotPattern.yaml in shared data directory of Choreonoid. This file contains joint angle trajectories and it can be loaded by calling `motion.loadStandardYAMLformat()`. onActivated() initializes other variables."
 msgstr "onActivated() のときの処理に注目しましょう。この関数はRTCが有効化された際に一度だけ呼ばれます。 ここで、Choreonoidの共有ディレクトリからRobotPattern.yamlを読み出しています。 これはロボットの全関節角度の軌道を記述した動作パターンファイルです。 `motion.loadStandardYAMLformat()` によりモーションデータに変換します。 onActivated()では初期値の設定も行っています。"
-
-#: ../../basics/torque.rst:8
-msgid "Create a pose sequence"
-msgstr "シミュレーション用動作パターンの作成"
-
-#: ../../basics/torque.rst:10
-msgid "Since a joint conrol RT component is executed at 1000[Hz], set the internal framerate of Choreonoid to the same value, 1000In order to set a framerate of a motion pattern to the same value with execution period of a joint control RT component, set the value to 1000."
-msgstr "ロボットの関節の制御を行うRTコンポーネントの実行周期に合わせて、ロボットの動作パターンを生成するための設定を行います。RTコンポーネントは1[ms]周期で実行されるので、Choreonoidの内部フレームレートを1000に設定します。"
 
 #: ../../basics/howto-exec-simulation.rst:147
 msgid "You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample1.cnoid."
 msgstr "このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」に保存されています。"
 
-#: ../../basics/rt-controller.rst:184
-msgid "Go to samples/tutorials/rtc directory and execute the following command."
-msgstr "「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。"
-
-#: ../../basics/torque.rst:341
-msgid "You can find both of RobotTorqueCOntrollerRTC.h and RobotTorqueControllerRTC.cpp in samples/tutorials."
-msgstr "これらのソースコードは 「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotTorqueControllerRTC.cpp」と 「samples/tutorials/rtc/RobotTorqueControllerRTC.h」に保存されています。"
-
-#: ../../basics/torque.rst:371
-msgid "This command generates RobotTorqueControllerRTC.so in samples/tutorials/rtc directory."
-msgstr "これにより、「samples/tutorials/rtc/」ディレクトリに「RobotTorqueControllerRTC.so」というファイルが作成されるはずです。"
-
-#: ../../basics/torque.rst:356
-#, fuzzy
+#: ../../basics/torque.rst:339
 msgid "Setup of the controller"
 msgstr "コントローラの設定"
 
@@ -161,25 +133,13 @@ msgstr "コントローラの設定"
 msgid "This section explains how to connect Choreonoid and a RT component by developing an example component which read joint angles."
 msgstr "ここではJVRC-1のモデルにRTコンポーネントのコントローラを接続し、ロボットの関節角度を取得できるようにします。"
 
-#: ../../basics/torque.rst:101
-msgid "A header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid."
-msgstr "コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。"
-
-#: ../../basics/torque.rst:160
+#: ../../basics/torque.rst:83
 msgid "Source codes of the controller are as follows. This file was created by modifying SR1WalkConrollerRTC.cpp which is included in Choreonoid."
 msgstr "コントローラのソースコードは以下になります。"
 
-#: ../../basics/torque.rst:339
+#: ../../basics/torque.rst:261
 msgid "Computation of joint torques is added to onExecute(). After reading joint angles, joint torques are computed and stored to m_torque.data[i]. In this tutorial, joint torques are computed by simple PD control. Position gains and derivative gains are defined at the top of the source code. If we can't control joints property, we need to adjust those values. Values stored in `m_torque.data`\" are output by calling `m_torqueOut.write()`."
 msgstr "onExecute()ではトルクの計算と出力の処理が追加されました。 関節角度を読み込む部分のコードはこれまでと同じですが、 `m_torque.data[i]` に計算したトルクの値を代入しています。 ここでは簡単なPD制御によりトルクの値を求めています。 各関節毎のPgainとDgainはソースコードの先頭付近に固定値で定義されています。 ロボットがうまく制御できない場合はこの値を調整する必要があります。 `m_torque.data` にセットした値は `m_torqueOut.write()` により実際のロボットの制御トルクとして出力されます。 出力ポートは値をセットするだけなので入力ポートよりも簡単です。"
-
-#: ../../basics/torque.rst:365
-msgid "Go to samples/tutorials/rtc directory and execute the following command."
-msgstr "「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。"
-
-#: ../../basics/torque.rst:373
-msgid "And then, execute the following command."
-msgstr "その後、次のコマンドを実行します。"
 
 #: ../../basics/howto-exec-simulation.rst:33
 msgid "When you check the checkbox named \"JVRC\", JVRC-1 will be displayed in the scene view as follows."
@@ -201,35 +161,23 @@ msgstr "シミュレーションの実行が終わったら、プロジェクト
 msgid "Open a project file by choosing \"Open Project\" menu of \"File\" menu. The file name is samples/tutorials/cnoid/sample1.cnoid."
 msgstr "「メニュー」の「プロジェクトの読み込み」からJVRC-1用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。"
 
-#: ../../basics/torque.rst:353
-msgid "Choose \"Open...\" in \"File\" menu and select a project file for JVRC-1. Its name is samples/tutorials/cnoid/sample2.cnoid."
-msgstr "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample2.cnoid」です。"
-
-#: ../../basics/torque.rst:358
-msgid "Choose BodyRTC in the item view and change the value of \"Controller module name\" property to \"RobotTorqueControllerRTC\". This value corresponds to the filename of the RT component. Change the value of \"Auto Connect\" to \"true\"."
-msgstr "アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotTorqueControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。 さらに、プロパティビューの「自動ポート接続」を true にします。"
-
-#: ../../basics/torque.rst:63
+#: ../../basics/torque.rst:324
 msgid "What we created using the pose roll are called key frames. They are used to generate a robot motion. Press \"Generate body motions\" button on the tool bar."
 msgstr "ポーズロールで作成したのはキーフレームと呼びます。これより、プログラムで使用するモーションを生成させます。 ツールバーから「ボディモーションの生成」ボタンを押します。"
 
-#: ../../basics/torque.rst:67
+#: ../../basics/torque.rst:328
 msgid "It is possible to update the robot motion automatically when key frames are updated. It can be enabled by checking  \"Automatic Balance Adjustment Mode\" button on the tool bar."
 msgstr "モーションはツールバーのボタンで手動で生成しなくても、キーフレームの更新時に自動生成することができます。 これを有効にするにはツールバーの「自動更新モード」のボタンをオンにしてください。"
 
-#: ../../basics/torque.rst:16
-msgid "Set 1000 to the value of \"Internal frame rate\"."
-msgstr "「内部フレームレート」の項目を下記のように「1000」に設定します。"
-
-#: ../../basics/torque.rst:29
+#: ../../basics/torque.rst:290
 msgid "Then choose \"Pose Roll\" followed by \"View\", \"Show View\" menus. You will see a window as follows."
-msgstr "次に、「表示」の「ビューの表示」から「ポーズロール」を選択します。次の画面が表示されるはずです。"
+msgstr "次に、[表示]-[ビューの表示]-[ポーズロール]を選択します。次の画面が表示されるはずです。"
 
-#: ../../basics/torque.rst:33
+#: ../../basics/torque.rst:294
 msgid "Choose \"JVRC\" in the item view and Press \"Set the present initial pose to the selected bodies\" button on the tool bar to make the robot to be in the initial posture."
 msgstr "基準の姿勢を作るため、アイテムビューで「JVRC」を選択し、ツールバーにある「選択ボディを初期姿勢に」のボタンを押します。"
 
-#: ../../basics/torque.rst:71
+#: ../../basics/torque.rst:332
 msgid "You can find a \"motion\" item as a child of \"SampleMotion\" item. Select this item and save its contents by choosing \"Save Selected Items As\" menu."
 msgstr "SampleMotion の子供に motion があるので、これを選択し名前を付けて保存ボタンを押します。"
 
@@ -241,7 +189,7 @@ msgstr "まず、[メニュー]-[ファイル]-[新規]-[ワールド]を選択�
 msgid "Choose \"World\" item in the item view. Then create a \"AISTSimulator\" item by following \"File\", \"New...\" menus."
 msgstr "アイテムビューで「World」を選択します。 次に、[メニュー]-[ファイル]-[新規]より「AISTシミュレータ」を選択し、AISTシミュレータ「AISTSimulator」を追加します。"
 
-#: ../../basics/torque.rst:25
+#: ../../basics/torque.rst:286
 msgid "Choose JVRC in the item view first. Then create a pose sequence item named SimpleMotion by choosing \"PoseSeq\" menu followed by \"File\", \"New...\" menus."
 msgstr "まずアイテムビューで「JVRC」を選択します。 次に、「メニュー」の「ファイル」「新規」より「ポーズ列」を選択し「SampleMotion」という名前で追加します。"
 
@@ -277,14 +225,6 @@ msgstr ""
 msgid "ロボットの位置・姿勢の初期状態を設定してプロジェクトに保存しておくことで、Choreonoidを起動し直してプロジェクトを読み込んだ際に設定していた初期状態からシミュレーションを開始することが可能です。 初期状態の設定は以下の手順で行います。"
 msgstr ""
 
-#: ../../basics/howto-exec-simulation.rst:58
-msgid "ボディ／リンクビューでルートリンクの位置・姿勢を編集する。"
-msgstr ""
-
-#: ../../basics/howto-exec-simulation.rst:62
-msgid "関節スライダビューで関節の角度を編集する。"
-msgstr ""
-
 #: ../../basics/howto-exec-simulation.rst:66
 msgid "シーンビュー上でインタラクティブに編集、逆運動学を用いた編集も可能です。 インタラクティブ編集はシーンビューを編集モード(「:ref:`howto-use_view_edit_mode_label`」参照)に切り替えて行います。"
 msgstr ""
@@ -309,14 +249,6 @@ msgstr ""
 msgid "1[ms] を推奨します。時間刻みは計算速度とシミュレーション精度のトレードオフであり、コントローラの実行周期との兼ね合いも考慮して設定します。"
 msgstr ""
 
-#: ../../basics/howto-exec-simulation.rst:86
-msgid "タイムバーの設定ダイアログをボタンをクリックする。"
-msgstr ""
-
-#: ../../basics/howto-exec-simulation.rst:90
-msgid "タイムバーの設定で、内部フレームレートの値を「1000」(1ms)に設定する。"
-msgstr ""
-
 #: ../../basics/howto-exec-simulation.rst:95
 msgid "シミュレーション時間"
 msgstr ""
@@ -325,22 +257,8 @@ msgstr ""
 msgid "無制限"
 msgstr ""
 
-#: ../../basics/howto-exec-simulation.rst:99
-#: ../../basics/howto-exec-simulation.rst:107
-msgid "アイテムビュー上で \"AISTSimulator\" アイテムを選択状態にする。"
-msgstr ""
-
-#: ../../basics/howto-exec-simulation.rst:101
-#: ../../basics/howto-exec-simulation.rst:109
-msgid "プロパティビューの時間範囲の値をダブルクリックして変更する。"
-msgstr ""
-
 #: ../../basics/howto-exec-simulation.rst:105
 msgid "タイムバー範囲"
-msgstr ""
-
-#: ../../basics/howto-exec-simulation.rst:113
-msgid "タイムバーの開始時間と終了時間を設定する。"
 msgstr ""
 
 #: ../../basics/rt-controller.rst:8
@@ -535,23 +453,23 @@ msgstr ""
 msgid "InPort プロファイル:"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:126 ../../basics/torque.rst:90
+#: ../../basics/rt-controller.rst:126 ../../basics/torque.rst:14
 msgid "ポート名:"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:127 ../../basics/torque.rst:91
+#: ../../basics/rt-controller.rst:127 ../../basics/torque.rst:15
 msgid "データ型:"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:127 ../../basics/torque.rst:91
+#: ../../basics/rt-controller.rst:127 ../../basics/torque.rst:15
 msgid "RTC::TimeDoubleSeq"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:128 ../../basics/torque.rst:92
+#: ../../basics/rt-controller.rst:128 ../../basics/torque.rst:16
 msgid "変数名:"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:129 ../../basics/torque.rst:93
+#: ../../basics/rt-controller.rst:129 ../../basics/torque.rst:17
 msgid "表示位置:"
 msgstr ""
 
@@ -559,7 +477,7 @@ msgstr ""
 msgid "LEFT"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:132 ../../basics/torque.rst:87
+#: ../../basics/rt-controller.rst:132 ../../basics/torque.rst:11
 msgid "OutPort プロファイル:"
 msgstr ""
 
@@ -569,10 +487,6 @@ msgstr ""
 
 #: ../../basics/rt-controller.rst:138
 msgid "次に、「言語・環境」タブを選択し、プログラミング言語を選択します。 ここでは、「C++」を選択します。なお、言語・環境はデフォルト等が設定されておらず、指定し忘れるとコード生成時にエラーになりますので、必ず言語の指定を行うようにしてください。"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:140
-msgid "また、C++の場合デフォルトではCMakeを利用してビルドすることになっていますが、旧式のVCのプロジェクトやソリューションを直接RTCBuilderが生成する方法を利用したい場合は Use old build environment をチェックしてください。"
 msgstr ""
 
 #: ../../basics/rt-controller.rst:144
@@ -663,84 +577,52 @@ msgstr ""
 msgid "シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行するとChoreonoidを実行している端末に関節角度(m_angle)の値が表示されるはずです。"
 msgstr ""
 
-#: ../../basics/torque.rst:37
+#: ../../basics/torque.rst:298
 msgid "ポーズロールにおいて、1.0 を選択して「挿入」を押します。"
 msgstr ""
 
-#: ../../basics/torque.rst:41
+#: ../../basics/torque.rst:302
 msgid "今回は首を左右に振る動作パターンを作成します。以下の手順でポーズを作成してください。"
 msgstr ""
 
-#: ../../basics/torque.rst:43
+#: ../../basics/torque.rst:304
 msgid "ポーズロールにおいて 2.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 70.0 にセットし、ポーズロールの「挿入」を押す。"
 msgstr ""
 
-#: ../../basics/torque.rst:47
+#: ../../basics/torque.rst:308
 msgid "ポーズロールにおいて 3.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 0.0 にセットし、ポーズロールの「挿入」を押す。"
 msgstr ""
 
-#: ../../basics/torque.rst:51
+#: ../../basics/torque.rst:312
 msgid "ポーズロールにおいて 4.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を -70.0 にセットし、ポーズロールの「挿入」を押す。"
 msgstr ""
 
-#: ../../basics/torque.rst:55
+#: ../../basics/torque.rst:316
 msgid "ポーズロールにおいて 5.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_Y」を 0.0 にセットし、ポーズロールの「挿入」を押す。"
 msgstr ""
 
-#: ../../basics/torque.rst:59
+#: ../../basics/torque.rst:320
 msgid "ポーズロールにおいて 6.0 を選択し、関節スライダにおいて首関節のヨー軸「NECK_R」を -50.0 にセットし、ポーズロールの「挿入」を押す。"
 msgstr ""
 
-#: ../../basics/torque.rst:75
-msgid "「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに「RobotPattern.yaml」というファイルで保存します。"
-msgstr ""
-
-#: ../../basics/torque.rst:77
-msgid "同様に、SampleMotion を選択し名前を付けて保存ボタンを押します。"
-msgstr ""
-
-#: ../../basics/torque.rst:81
-msgid "こちらは、「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/」ディレクトリに「SampleMotion.pseq」というファイルで保存します。"
-msgstr ""
-
-#: ../../basics/torque.rst:392
-msgid "シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、立ったままの状態になったはずです。また、先ほど作成した首振りのモーションを実行しているはずです。"
-msgstr ""
-
-#: ../../basics/torque.rst:398
-msgid "カメラ映像の表示"
-msgstr ""
-
-#: ../../basics/torque.rst:400
+#: ../../basics/torque.rst:354
 msgid "別のシーンビューを生成して、同時にカメラの映像を表示してみましょう。"
 msgstr ""
 
-#: ../../basics/torque.rst:402
+#: ../../basics/torque.rst:356
 msgid "メインメニュー「表示」の「ビューの生成」から「シーン」を選択します。次のウィンドウが表示されるので OK をクリックします。"
 msgstr ""
 
-#: ../../basics/torque.rst:406
+#: ../../basics/torque.rst:360
 msgid "新しいシーンビュー「シーン2」が生成されます。 「シーン2」タブをクリックして選択し、カメラの選択ボタンでロボットのカメラ「JVRC - rcamera」などに表示を切り替えます。"
 msgstr ""
 
-#: ../../basics/torque.rst:411
+#: ../../basics/torque.rst:365
 msgid "「シーン2」タブをドラッグして二つのシーンを同時に表示することもできます。"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:405
-msgid "Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置するか、絶対パスで指定する必要があります。"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:411 ../../basics/torque.rst:347
+#: ../../basics/rt-controller.rst:411
 msgid "Choreonoid を起動します。"
-msgstr ""
-
-#: ../../basics/torque.rst:383
-msgid "シミュレーションを実行するための Choreonoid を起動します。"
-msgstr ""
-
-#: ../../basics/torque.rst:389
-msgid "「メニュー」の「プロジェクトの読み込み」から、先ほど作成・保存してポーズデータファイル「SampleMotion.pseq」をデフォルトでロードするプロジェクトファイル sample3.cnoid を読み込みます。 プロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample3.cnoid」です。"
 msgstr ""
 
 #: ../../basics/rt-controller.rst:335
@@ -769,7 +651,7 @@ msgstr ""
 
 #: ../../basics/rt-controller.rst:422
 msgid "Select \"JVRC\" first in the item view. Then create a BodyRTC item by choosing \"BodyRTC\" menu followed by \"File\", \"New...\" menus."
-msgstr "まずアイテムビューで「JVRC」を選択します。 次に、「メニュー」の「ファイル」「新規」より「BodyRTC」を選択し「BodyRTC」という名前で追加します。"
+msgstr "まずアイテムビューで「JVRC」を選択します。 次に、[メニュー]-[ファイル]-[新規]-[BodyRTC]を選択し「BodyRTC」という名前で追加します。"
 
 #: ../../basics/rt-controller.rst:425
 msgid "BodyRTCを作成することにより、シミュレーション世界に存在するロボットが1つのRTコンポーネントとなり、データポートを介してセンサ情報の取得やアクチュエータに対する指令を送信することができるようになります。"
@@ -799,25 +681,238 @@ msgstr ""
 msgid "またRTSystemEditorのName Service ViewからRobotControllerRTC0|rtcもSystem Diagramにドラッグアンドドロップすると、2つのRTCが次の図のように接続されていることが確認できます。2つのRTCはともに「q」という名前がついたデータポートを持っているために、自動ポート接続機能によって自動的に接続されています。"
 msgstr ""
 
-#: ../../basics/torque.rst:84
+#: ../../basics/torque.rst:8
 msgid "RTコンポーネントの拡張"
 msgstr ""
 
-#: ../../basics/torque.rst:85
+#: ../../basics/torque.rst:9
 msgid "関節のPD制御を行うために、前の節で作成したRTコンポーネントRobotControllerRTCを拡張します。PD制御を行うためには、関節へのトルク指令を出力する必要があるため、トルク指令用のデータポートをRTCBuilderを用いて追加します。追加するデータポートのプロファイルは次のようになります。"
 msgstr ""
 
-#: ../../basics/torque.rst:90 ../../basics/torque.rst:92
+#: ../../basics/torque.rst:14
 msgid "u"
 msgstr ""
 
-#: ../../basics/torque.rst:93
+#: ../../basics/torque.rst:17
 msgid "RIGHT"
 msgstr ""
 
-#: ../../basics/torque.rst:96
+#: ../../basics/torque.rst:20
 msgid "データポートを追加し、再度コード生成を行ったら、ビルドができることを確認しておきます。"
 msgstr ""
+
+#: ../../basics/rt-controller.rst:471
+msgid "You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample2.cnoid."
+msgstr "このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample2.cnoid」に保存されています。"
+
+#: ../../basics/torque.rst:16
+msgid "torque"
+msgstr ""
+
+#: ../../basics/torque.rst:25
+msgid "A header file of the controller is as follows."
+msgstr "コントローラのヘッダファイルはいかのようになります。"
+
+#: ../../basics/torque.rst:266
+msgid "コントローラの実装ができたので、再度makeをし、前節と同じ場所にRTCをインストールします。"
+msgstr ""
+
+#: ../../basics/torque.rst:275
+msgid "Choreonoidの起動"
+msgstr ""
+
+#: ../../basics/torque.rst:277
+msgid "前節で作成したプロジェクトファイル、sample2.cnoidを開きます。"
+msgstr ""
+
+#: ../../basics/torque.rst:336
+msgid "ファイル名はRobotPattern.yamlとし、コントローラが参照するChoreonoidの共有ディレクトリ、/usr/share/choreonoid-1.5/motionに置いておきます。"
+msgstr ""
+
+#: ../../basics/torque.rst:341
+msgid "Choreonoidには1体のロボットに複数のコントローラを割り当てる機能があります。今JVRCの子アイテムとしてBodyRTCとSampleMotionの2つがありますが、これら2つのうちどちらをシミュレーション時に使用するかを指定する必要があります。ここではBodyRTCを使いますのでBodyRTCの方にチェックを入れておきます。"
+msgstr ""
+
+#: ../../basics/torque.rst:348
+msgid "シミュレーションを実行すると今度はロボットが崩れ落ちることなく、先ほど作成した首振りのモーションを実行しているはずです。この時RTSystemEditorでRTCの接続を確認すると、下図のようになっており、フィードバックループができていることが確認できます。"
+msgstr ""
+
+#: ../../basics/torque.rst:370
+msgid "サンプルファイルについて"
+msgstr ""
+
+#: ../../basics/howto-exec-simulation.rst:58
+msgid "ボディ／リンクビューでルートリンクの位置・姿勢を編集することができます。"
+msgstr ""
+
+#: ../../basics/howto-exec-simulation.rst:62
+msgid "関節スライダビューで関節の角度を編集することができます。"
+msgstr ""
+
+#: ../../basics/howto-exec-simulation.rst:86
+msgid "タイムバーの設定ダイアログをボタンをクリックします。"
+msgstr ""
+
+#: ../../basics/howto-exec-simulation.rst:90
+msgid "タイムバーの設定で、内部フレームレートの値を「1000」(1ms)に設定します。"
+msgstr ""
+
+#: ../../basics/howto-exec-simulation.rst:99
+#: ../../basics/howto-exec-simulation.rst:107
+msgid "アイテムビュー上で \"AISTSimulator\" アイテムを選択状態にします。"
+msgstr ""
+
+#: ../../basics/howto-exec-simulation.rst:101
+#: ../../basics/howto-exec-simulation.rst:109
+msgid "プロパティビューの時間範囲の値をダブルクリックして変更します。"
+msgstr ""
+
+#: ../../basics/howto-exec-simulation.rst:113
+msgid "タイムバーの開始時間と終了時間を設定します。"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:405
+msgid "Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置するか、BodyRTCのプロパティで指定する際に絶対パスで指定する必要があります。"
+msgstr ""
+
+#: ../../basics/torque.rst:372
+msgid "このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotTorqueControllerRTC.h, rtc/RobotTorqueControllerRTC.cppに収録されています。チュートリアルではRobotControllerRTCを拡張していきますが、サンプルファイルではファイル名が重複してしまうため、本チュートリアルで作成するコントローラはRobotTorqueControllerRTCという名称で収録しています。"
+msgstr ""
+
+#~ msgid ""
+#~ "このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotTorqueControllerRTC.h,"
+#~ " rtc/RobotTorqueControllerRTC.cppに収録されています。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置するか、絶対パスで指定する必要があります。"
+#~ msgstr ""
+
+#~ msgid "ボディ／リンクビューでルートリンクの位置・姿勢を編集する。"
+#~ msgstr ""
+
+#~ msgid "関節スライダビューで関節の角度を編集する。"
+#~ msgstr ""
+
+#~ msgid "タイムバーの設定ダイアログをボタンをクリックする。"
+#~ msgstr ""
+
+#~ msgid "タイムバーの設定で、内部フレームレートの値を「1000」(1ms)に設定する。"
+#~ msgstr ""
+
+#~ msgid "アイテムビュー上で \"AISTSimulator\" アイテムを選択状態にする。"
+#~ msgstr ""
+
+#~ msgid "プロパティビューの時間範囲の値をダブルクリックして変更する。"
+#~ msgstr ""
+
+#~ msgid "タイムバーの開始時間と終了時間を設定する。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "また、C++の場合デフォルトではCMakeを利用してビルドすることになっていますが、旧式のVCのプロジェクトやソリューションを直接RTCBuilderが生成する方法を利用したい場合は"
+#~ " Use old build environment をチェックしてください。"
+#~ msgstr ""
+
+#~ msgid "Open a configuration panel of the time bar."
+#~ msgstr "タイムバーの設定画面を開きます。"
+
+#~ msgid ""
+#~ "This frame rate defines how many times computation is executed. If its value"
+#~ " is 1000, computation is done every 1[ms] and if its value is 100, "
+#~ "computation is done every 10[ms]."
+#~ msgstr "このフレームレートは1秒間に何回実行するかを表しています。 これが1000で1ミリ秒の間隔となり、100で10ミリ秒間隔となります。"
+
+#~ msgid "Create a pose sequence"
+#~ msgstr "シミュレーション用動作パターンの作成"
+
+#~ msgid ""
+#~ "Since a joint conrol RT component is executed at 1000[Hz], set the internal "
+#~ "framerate of Choreonoid to the same value, 1000In order to set a framerate "
+#~ "of a motion pattern to the same value with execution period of a joint "
+#~ "control RT component, set the value to 1000."
+#~ msgstr ""
+#~ "ロボットの関節の制御を行うRTコンポーネントの実行周期に合わせて、ロボットの動作パターンを生成するための設定を行います。RTコンポーネントは1[ms]周期で実行されるので、Choreonoidの内部フレームレートを1000に設定します。"
+
+#~ msgid ""
+#~ "Go to samples/tutorials/rtc directory and execute the following command."
+#~ msgstr ""
+#~ "「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。"
+
+#~ msgid ""
+#~ "You can find both of RobotTorqueCOntrollerRTC.h and "
+#~ "RobotTorqueControllerRTC.cpp in samples/tutorials."
+#~ msgstr ""
+#~ "これらのソースコードは "
+#~ "「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/RobotTorqueControllerRTC.cpp」と"
+#~ " 「samples/tutorials/rtc/RobotTorqueControllerRTC.h」に保存されています。"
+
+#~ msgid ""
+#~ "This command generates RobotTorqueControllerRTC.so in samples/tutorials/rtc "
+#~ "directory."
+#~ msgstr ""
+#~ "これにより、「samples/tutorials/rtc/」ディレクトリに「RobotTorqueControllerRTC.so」というファイルが作成されるはずです。"
+
+#~ msgid ""
+#~ "A header file of the controller is as follows. This file was created by "
+#~ "modifying SR1WalkControllerRTC.h which is included in Choreonoid."
+#~ msgstr ""
+#~ "コントローラのヘッダのソースコードは以下になります。Choreonoidに含まれるサンプルのSR1WalkControllerRTC.hを基にしています。"
+
+#~ msgid ""
+#~ "Go to samples/tutorials/rtc directory and execute the following command."
+#~ msgstr ""
+#~ "「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに移動し、次のコマンドを実行します。"
+
+#~ msgid "And then, execute the following command."
+#~ msgstr "その後、次のコマンドを実行します。"
+
+#~ msgid ""
+#~ "Choose \"Open...\" in \"File\" menu and select a project file for JVRC-1. "
+#~ "Its name is samples/tutorials/cnoid/sample2.cnoid."
+#~ msgstr ""
+#~ "「メニュー」の「プロジェクトの読み込み」から JVRC モデルファイル用のプロジェク "
+#~ "トファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインス "
+#~ "トール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample2.cnoid」です。"
+
+#~ msgid ""
+#~ "Choose BodyRTC in the item view and change the value of \"Controller module "
+#~ "name\" property to \"RobotTorqueControllerRTC\". This value corresponds to "
+#~ "the filename of the RT component. Change the value of \"Auto Connect\" to "
+#~ "\"true\"."
+#~ msgstr ""
+#~ "アイテムビューで「BodyRTC」を選択し、プロパティビューの「コントローラのモジュール名」を「RobotTorqueControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。"
+#~ " さらに、プロパティビューの「自動ポート接続」を true にします。"
+
+#~ msgid "Set 1000 to the value of \"Internal frame rate\"."
+#~ msgstr "「内部フレームレート」の項目を下記のように「1000」に設定します。"
+
+#~ msgid ""
+#~ "「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/rtc/」ディレクトリに「RobotPattern.yaml」というファイルで保存します。"
+#~ msgstr ""
+
+#~ msgid "同様に、SampleMotion を選択し名前を付けて保存ボタンを押します。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "こちらは、「モデルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/」ディレクトリに「SampleMotion.pseq」というファイルで保存します。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行すると今度はなかなかロボットが崩れ落ちず、立ったままの状態になったはずです。また、先ほど作成した首振りのモーションを実行しているはずです。"
+#~ msgstr ""
+
+#~ msgid "カメラ映像の表示"
+#~ msgstr ""
+
+#~ msgid "シミュレーションを実行するための Choreonoid を起動します。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "「メニュー」の「プロジェクトの読み込み」から、先ほど作成・保存してポーズデータファイル「SampleMotion.pseq」をデフォルトでロードするプロジェクトファイル"
+#~ " sample3.cnoid を読み込みます。 "
+#~ "プロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample3.cnoid」です。"
+#~ msgstr ""
 
 #~ msgid ""
 #~ "またRTSystemEditorのName Service ViewからRobotControllerRTC0|rtcもSystem "
@@ -1006,12 +1101,6 @@ msgstr ""
 #~ "directory."
 #~ msgstr ""
 #~ "これにより、「samples/tutorials/rtc/」ディレクトリに「RobotControllerRTC.so」というファイルが作成されるはずです。"
-
-#~ msgid ""
-#~ "You can find a sample project file created by this tutorial in "
-#~ "samples/tutorials/cnoid/sample2.cnoid."
-#~ msgstr ""
-#~ "このサンプルのプロジェクトファイルは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample2.cnoid」に保存されています。"
 
 #~ msgid ""
 #~ "`RTC::TimedDoubleSeq` is a type which contains time and double precision "

@@ -84,6 +84,7 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Choreonoidの解説</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/index.html">Basic simulations</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced simulations</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="sensors.html">Connecting sensors</a></li>
@@ -239,19 +240,19 @@
 <td>関節トルク</td>
 </tr>
 <tr class="row-even"><td>EXTERNAL_FORCE</td>
-<td>yes(<a href="#id5"><span class="problematic" id="id6">*</span></a>1)/no</td>
+<td>yes <a class="footnote-reference" href="#f1" id="id5">[1]</a> /no</td>
 <td>TimedDoubleSeq</td>
 <td>6</td>
 <td>力(3次元ベクトル), トルク(3次元ベクトル)</td>
 </tr>
 <tr class="row-odd"><td>ABS_TRANSFORM</td>
-<td>yes(<a href="#id7"><span class="problematic" id="id8">*</span></a>1)/yes(<a href="#id9"><span class="problematic" id="id10">*</span></a>1)</td>
+<td>yes <a class="footnote-reference" href="#f1" id="id6">[1]</a> /yes <a class="footnote-reference" href="#f1" id="id7">[1]</a></td>
 <td>TimedDoubleSeq</td>
 <td>12</td>
 <td>ワールド座標系における位置姿勢(最初の3要素が位置ベクトル、9要素が姿勢行列)</td>
 </tr>
 <tr class="row-even"><td>ABS_VELOCITY</td>
-<td>yes(<a href="#id11"><span class="problematic" id="id12">*</span></a>1)/yes(<a href="#id13"><span class="problematic" id="id14">*</span></a>1)</td>
+<td>yes <a class="footnote-reference" href="#f1" id="id8">[1]</a> /yes <a class="footnote-reference" href="#f1" id="id9">[1]</a></td>
 <td>TimedDoubleSeq</td>
 <td>6</td>
 <td>ワールド座標系における速度(3次元ベクトル)と角速度(3次元ベクトル)</td>
@@ -275,58 +276,74 @@
 <td>加速度センサ</td>
 </tr>
 <tr class="row-even"><td>RANGE_SENSOR</td>
-<td>no/yes(<a href="#id15"><span class="problematic" id="id16">*</span></a>3)</td>
+<td>no/yes <a class="footnote-reference" href="#f3" id="id10">[3]</a></td>
 <td>RangeData</td>
 <td>&nbsp;</td>
 <td>レンジセンサ</td>
 </tr>
 <tr class="row-odd"><td>CONSTRAINT_FORCE</td>
-<td>no/yes(<a href="#id17"><span class="problematic" id="id18">*</span></a>2)</td>
+<td>no/yes <a class="footnote-reference" href="#f2" id="id11">[2]</a></td>
 <td>TimedDoubleSeq</td>
 <td>6*接触点数</td>
 <td>ワールド座標系における接触位置(3次元ベクトル)と力(3次元ベクトル)</td>
 </tr>
 <tr class="row-even"><td>RATE_GYRO_SENSOR2</td>
-<td>no/yes(<a href="#id19"><span class="problematic" id="id20">*</span></a>2)</td>
+<td>no/yes <a class="footnote-reference" href="#f2" id="id12">[2]</a></td>
 <td>TimedAngularVelocity3D</td>
 <td>&nbsp;</td>
 <td>ジャイロセンサ　TimedAngularVelocity3D型で出力</td>
 </tr>
 <tr class="row-odd"><td>ACCELERATION_SENSOR2</td>
-<td>no/yes(<a href="#id21"><span class="problematic" id="id22">*</span></a>2)</td>
+<td>no/yes <a class="footnote-reference" href="#f2" id="id13">[2]</a></td>
 <td>TimedAcceleration3D</td>
 <td>&nbsp;</td>
 <td>加速度センサ　TimedAcceleration3Dで出力</td>
 </tr>
 <tr class="row-even"><td>ABS_TRANSFORM2</td>
-<td>yes(<a href="#id23"><span class="problematic" id="id24">*</span></a>2)/yes(<a href="#id25"><span class="problematic" id="id26">*</span></a>2)</td>
+<td>yes <a class="footnote-reference" href="#f2" id="id14">[2]</a> /yes <a class="footnote-reference" href="#f2" id="id15">[2]</a></td>
 <td>TimedPose3D</td>
 <td>&nbsp;</td>
 <td>位置姿勢　TimedPose3Dで入出力</td>
 </tr>
 <tr class="row-odd"><td>LIGHT</td>
-<td>yes(<a href="#id27"><span class="problematic" id="id28">*</span></a>1)/yes(<a href="#id29"><span class="problematic" id="id30">*</span></a>1)</td>
+<td>yes <a class="footnote-reference" href="#f1" id="id16">[1]</a> /yes <a class="footnote-reference" href="#f1" id="id17">[1]</a></td>
 <td>TimedBooleanSeq</td>
 <td>1</td>
 <td>ライトOn/Offの制御と、状態出力</td>
 </tr>
 <tr class="row-even"><td>CAMERA_IMAGE</td>
-<td>no/yes(<a href="#id31"><span class="problematic" id="id32">*</span></a>3)</td>
+<td>no/yes <a class="footnote-reference" href="#f3" id="id18">[3]</a></td>
 <td>TimedCameraImage</td>
 <td>&nbsp;</td>
 <td>ビジョンセンサ</td>
 </tr>
 <tr class="row-odd"><td>CAMERA_RANGE</td>
-<td>no/yes(<a href="#id33"><span class="problematic" id="id34">*</span></a>3)</td>
+<td>no/yes <a class="footnote-reference" href="#f3" id="id19">[3]</a></td>
 <td>PointCloud</td>
 <td>&nbsp;</td>
 <td>ビジョンセンサ</td>
 </tr>
 </tbody>
 </table>
-<p>(<a href="#id35"><span class="problematic" id="id36">*</span></a>1) 識別名を指定した場合に有効。</p>
-<p>(<a href="#id37"><span class="problematic" id="id38">*</span></a>2) 識別名を一つ指定した場合に有効。</p>
-<p>(<a href="#id39"><span class="problematic" id="id40">*</span></a>3) 識別名を一つ指定するか、指定しない場合に有効。（指定しないと、Id=0のセンサを指定したことと同じになる。）</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id6">2</a>, <a class="fn-backref" href="#id7">3</a>, <a class="fn-backref" href="#id8">4</a>, <a class="fn-backref" href="#id9">5</a>, <a class="fn-backref" href="#id16">6</a>, <a class="fn-backref" href="#id17">7</a>)</em> 識別名を指定した場合に有効。</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id11">1</a>, <a class="fn-backref" href="#id12">2</a>, <a class="fn-backref" href="#id13">3</a>, <a class="fn-backref" href="#id14">4</a>, <a class="fn-backref" href="#id15">5</a>)</em> 識別名を一つ指定した場合に有効。</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td><em>(<a class="fn-backref" href="#id10">1</a>, <a class="fn-backref" href="#id18">2</a>, <a class="fn-backref" href="#id19">3</a>)</em> 識別名を一つ指定するか、指定しない場合に有効。（指定しないと、Id=0のセンサを指定したことと同じになる。）</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 

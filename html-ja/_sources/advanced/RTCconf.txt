@@ -114,17 +114,17 @@ RTCの設定ファイル
      - 1
      - 関節トルク
    * - EXTERNAL_FORCE
-     - yes(*1)/no
+     - yes [#f1]_ /no
      - TimedDoubleSeq
      - 6
      - 力(3次元ベクトル), トルク(3次元ベクトル)
    * - ABS_TRANSFORM
-     - yes(*1)/yes(*1)
+     - yes [#f1]_ /yes [#f1]_ 
      - TimedDoubleSeq
      - 12
      - ワールド座標系における位置姿勢(最初の3要素が位置ベクトル、9要素が姿勢行列)
    * - ABS_VELOCITY
-     - yes(*1)/yes(*1)
+     - yes [#f1]_ /yes [#f1]_ 
      - TimedDoubleSeq
      - 6
      - ワールド座標系における速度(3次元ベクトル)と角速度(3次元ベクトル)
@@ -144,52 +144,54 @@ RTCの設定ファイル
      - 3
      - 加速度センサ
    * - RANGE_SENSOR
-     - no/yes(*3)
+     - no/yes [#f3]_
      - RangeData
      - 
      - レンジセンサ
    * - CONSTRAINT_FORCE
-     - no/yes(*2)
+     - no/yes [#f2]_ 
      - TimedDoubleSeq
      - 6*接触点数
      - ワールド座標系における接触位置(3次元ベクトル)と力(3次元ベクトル)
    * - RATE_GYRO_SENSOR2
-     - no/yes(*2)
+     - no/yes [#f2]_ 
      - TimedAngularVelocity3D
      - 
      - ジャイロセンサ　TimedAngularVelocity3D型で出力
    * - ACCELERATION_SENSOR2
-     - no/yes(*2)
+     - no/yes [#f2]_ 
      - TimedAcceleration3D
      - 
      - 加速度センサ　TimedAcceleration3Dで出力
    * - ABS_TRANSFORM2
-     - yes(*2)/yes(*2)
+     - yes [#f2]_ /yes [#f2]_ 
      - TimedPose3D
      - 
      - 位置姿勢　TimedPose3Dで入出力
    * - LIGHT
-     - yes(*1)/yes(*1)
+     - yes [#f1]_ /yes [#f1]_ 
      - TimedBooleanSeq
      - 1
      - ライトOn/Offの制御と、状態出力
    * - CAMERA_IMAGE
-     - no/yes(*3)
+     - no/yes [#f3]_
      - TimedCameraImage
      - 
      - ビジョンセンサ
    * - CAMERA_RANGE
-     - no/yes(*3)
+     - no/yes [#f3]_
      - PointCloud
      - 
      - ビジョンセンサ
 
 
-(*1) 識別名を指定した場合に有効。
+.. rubric:: Footnotes
 
-(*2) 識別名を一つ指定した場合に有効。
+.. [#f1] 識別名を指定した場合に有効。
 
-(*3) 識別名を一つ指定するか、指定しない場合に有効。（指定しないと、Id=0のセンサを指定したことと同じになる。）
+.. [#f2] 識別名を一つ指定した場合に有効。
+
+.. [#f3] 識別名を一つ指定するか、指定しない場合に有効。（指定しないと、Id=0のセンサを指定したことと同じになる。）
 
 
 

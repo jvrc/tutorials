@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Choreonoidの基本操作 &mdash; jvrc tutorials 0.0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="jvrc tutorials 0.0.1 ドキュメント" href="../index.html"/>
+        <link rel="up" title="Choreonoidの解説" href="index.html"/>
+        <link rel="next" title="シミュレーションの基本" href="../basics/index.html"/>
+        <link rel="prev" title="Choreonoidについて" href="about.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> jvrc tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">インストール</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Choreonoidの解説</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="about.html">Choreonoidについて</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Choreonoidの基本操作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">起動方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">画面構成</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">メインメニュー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">ツールバー領域</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">ビュー領域</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">ステータスバー</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">視点操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">カメラの切り替え方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">デフォルトのカメラ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">ロボットのカメラ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">追跡カメラ</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">シミュレーションの開始、一時停止、停止方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">シミュレーション結果の保存、読み込み、再生方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id14">シミュレーション結果の保存</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">シミュレーション結果の読み込みと再生</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#howto-use-view-edit-mode-label">閲覧モードと編集モード</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">シミュレーション結果の動画作成方法</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">シミュレーションの基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">シミュレーションの応用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links.html">リンク</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">jvrc tutorials</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Choreonoidの解説</a> &raquo;</li>
+      
+    <li>Choreonoidの基本操作</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/howto/howto-use.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="choreonoid">
+<h1>Choreonoidの基本操作<a class="headerlink" href="#choreonoid" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>この節ではサンプルプロジェクトを用いて、Choreonoidの基本的な操作方法について解説します。</p>
+<div class="section" id="id1">
+<h2>起動方法<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サンプルプロジェクト「SR1Walk.cnoid」を起動と同時に開くため、端末を開いて以下のコマンドを実行してください。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>choreonoid /usr/share/choreonoid-1.5/project/SR1Walk.cnoid
+</pre></div>
+</div>
+<p>以下のような画面が表示されます。</p>
+<img alt="../_images/choreonoid_SR1Walk.png" src="../_images/choreonoid_SR1Walk.png" />
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>Choreonoidの起動と同時に、OpenHRP形式のモデルを開く場合には以下のようにオプションを指定して実行することが可能です。</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>choreonoid --hrpmodel /usr/share/choreonoid-1.5/model/SR1/SR1.wrl
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>RTミドルウェアのネームサーバ「omniNames」(ネットワーク上に分散するRTCがどこにあるかを管理する仕組み)は、PCのIPアドレスが変わると古い情報が残っているせいで挙動がおかしくなる場合があります。そのような場合には以下の手順で古い情報を消去すると問題を解消することができます。</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo /etc/init.d/omniorb4nameserver stop
+<span class="nv">$ </span>rm /var/lib/omniorb4/* /var/log/omniorb*
+<span class="nv">$ </span>sudo /etc/init.d/omniorb4nameserver start
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>画面構成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Choreonoidを起動すると表示される「メインウィンドウ」の構成は以下のようになっています。</p>
+<img alt="../_images/choreonoid_SR1Walk_comment.png" src="../_images/choreonoid_SR1Walk_comment.png" />
+<div class="section" id="id3">
+<h3>メインメニュー<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>この例ではメインメニューはウィンドウのタイトルバーの中に表示しています。
+Ubuntuの標準設定ではメニューバーの中ですが、[システム設定]-[外観]-[挙動]-[ウィンドウのメニューを表示]で変更可能です。</p>
+</div>
+<div class="section" id="id4">
+<h3>ツールバー領域<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各種ツールバーを表示します。表示するツールバーの種類は[メインメニュー]-[表示]-[ツールバーの表示]でOn/Offが可能です。</p>
+</div>
+<div class="section" id="id5">
+<h3>ビュー領域<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各種ビューを表示します。この例では「アイテム」「プロパティ」「リンク」「ボディ／リンク」「関節スライダ」「シーン」「メッセージ」「Pythonコンソール」のビューを表示しています。
+複数のビューを重ねてタブで切り替えることも可能です。</p>
+<p>表示するビューの種類は[メインメニュー]-[表示]-[ビューの生成]でOn/Offが可能で、[ビューの生成]で同じビューを複数表示することが可能です。例えば、シーンビューを複数表示して、複数視点のシミュレーション世界を表示したり、ロボットのカメラ映像などを表示することができます。</p>
+<p>この例ではメッセージビューに赤字のメッセージがいくつか表示されています。Choreonoidの機能が正常に動作しない場合は、警告やエラーメッセージがメッセージビューに表示されているかもしれませんので確認して見てください。（この例ではODEやBulletなどのシミュレーションエンジンが使用できない旨の警告が表示されていますが問題ありません）</p>
+</div>
+<div class="section" id="id6">
+<h3>ステータスバー<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>メインウィンドウ下部のステータスバーは、Choreonoid上で現在進行中の処理内容を簡潔なメッセージで知らせるための領域です。</p>
+<p>ステータスバーの領域は内部で２つに分かれており、基本的に左側では処理の開始や終了を告げるメッセージを表示し、右側では作業中のビューでマウスカーソルが指しているオブジェクトの状態を表示するようになっています。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">グラフィックスドライバとの相性問題により、まれにChoreonoid内の画面をクリックしても3D表示部分以外は反応がなくなる場合があります。そのような場合はChoreonoidのウィンドウを一旦全画面表示を解除し、再び全画面にする（あるいはその逆の手順を行う）と復活します。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>視点操作<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>シーンビューにマウスカーソルを合わせて、以下の操作を行うことによりシミュレーション世界の3Dグラフィックス表示を自在に操ることが可能です。</p>
+<ul class="simple">
+<li>左ボタンドラッグでクリックした点周りに回転</li>
+<li>中ボタンドラッグで並進</li>
+<li>ホイールで拡大縮小</li>
+<li>Shift+左ドラッグで真横、真上などにスナップ</li>
+</ul>
+<p>また、ツールバーの下記シーンバーにあるボタン(全ての物体が見えるように視点を移動)を押すことで全体を俯瞰する視点に設定することが可能です。
+視点位置がわからなくなった場合の初期化などに利用できます。</p>
+<img alt="../_images/scenebar_look_over_button.png" src="../_images/scenebar_look_over_button.png" />
+</div>
+<div class="section" id="id8">
+<h2>カメラの切り替え方法<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>シーンビューの表示に使用するカメラは、シーンバーのプルダウンで選択します。
+変更したいシーンビューをフォーカスしておき、プルダウンメニューから表示したいカメラを選択してください。</p>
+<img alt="../_images/scenebar_camera_select.png" src="../_images/scenebar_camera_select.png" />
+<div class="section" id="id9">
+<h3>デフォルトのカメラ<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>デフォルトでは以下のカメラが用意されています。</p>
+<ul class="simple">
+<li>System - Perspectiveは透視投影</li>
+<li>System - Orthographicは平行投影</li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h3>ロボットのカメラ<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ロボットにカメラが搭載されている場合、以下の形式でリストアップされます。</p>
+<ul class="simple">
+<li>&lt;ロボット名&gt;-&lt;カメラ名&gt;</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3>追跡カメラ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>カメラの視点をモデルに追従させたい場合などに、追跡視点に設定することが可能です。</p>
+<ol class="arabic simple">
+<li>追従させたいモデルのBodyItemの子アイテムとて、&#8221;BodyTrackingCameraItem&#8221;を生成し、チェックを入れる</li>
+<li>カメラ選択でこのアイテム名のカメラを選択</li>
+<li>&#8220;Keep Relative Attitude&#8221;プロパティをtrueにしておくと、カメラの向きもロボットに追従します</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>シミュレーションの開始、一時停止、停止方法<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>シミュレーションを開始するには、ツールバーの「シミュレーションバー」にある以下のボタンで行います。</p>
+<img alt="../_images/simulationbar.png" src="../_images/simulationbar.png" />
+<p>左からそれぞれ以下のボタンになっています。</p>
+<ul class="simple">
+<li>初期位置からのシミュレーションを開始</li>
+<li>現在位置からのシミュレーションを開始</li>
+<li>シミュレーションの一時停止</li>
+<li>シミュレーションの停止</li>
+</ul>
+<p>シミュレーションを一時停止しておき、タイムバーのスライダーやシミュレーション時間を直接入力してシミュレーション結果をみることができます。</p>
+<img alt="../_images/timebar_slider.png" src="../_images/timebar_slider.png" />
+<p>一時停止したシミュレーションを再開するには「シミュレーションの一時停止」ボタンをクリックします。</p>
+</div>
+<div class="section" id="id13">
+<h2>シミュレーション結果の保存、読み込み、再生方法<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Choreonoidでは、シミュレーション結果（動作軌道データ）を保存し、そのデータを使ってシミュレーション結果を再生することができます。
+以下ではサンプルプロジェクト「PA10Pickup.cnoid」を例に説明します。</p>
+<div class="section" id="id14">
+<h3>シミュレーション結果の保存<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Choreonoidを起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>choreonoid /usr/share/choreonoid-1.5/project/PA10Pickup.cnoid
+</pre></div>
+</div>
+</li>
+<li><p class="first">シミュレーションを開始すると、ロボット等、動く物体のBodyItemの下（あるいはコントローラの下）に “AISTSimulator-XXX” といった名前でBodyMotionアイテムが生成されます。これがシミュレーション結果を格納している動作軌道データです。以下の例では、&#8221;PA10&#8221;と&#8221;box3&#8221;アイテムにBodyMotionアイテムが生成されています。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>シミュレーション開始前</td>
+<td>シミュレーション開始後</td>
+</tr>
+<tr class="row-even"><td><img alt="../_images/motion-recording-1.png" class="first last" src="../_images/motion-recording-1.png" />
+</td>
+<td><img alt="../_images/motion-recording-2.png" class="first last" src="../_images/motion-recording-2.png" />
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">各BodyMotionアイテムを選択状態にして（まとめて選択してもOK)、[ファイル]-[名前を付けて選択アイテムを保存]で保存します。</p>
+<img alt="../_images/motion-recording-3.png" src="../_images/motion-recording-3.png" />
+<p>保存するファイルは各BodyMotionアイテム毎になりますので、どのアイテムのデータかがわかるようなファイル名にしておきます。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>アイテムビューで複数のBodyItemをまとめて選択するには、Ctrlキーを押しながらクリックして選択します。</p>
+<p class="last">Shiftキーを押しながらクリックすると、リストの始点・終点間を選択することができます。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="id15">
+<h3>シミュレーション結果の読み込みと再生<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">シミュレーションを実行したChoreonoidを一旦終了し、再度Choreonoidを起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>choreonoid /usr/share/choreonoid-1.5/project/PA10Pickup.cnoid
+</pre></div>
+</div>
+</li>
+<li><p class="first">アイテムビューで該当するBodyItemを選択した状態で対応するファイルの読み込みを行います。読み込みは、[ファイル]-[読み込み]-[ボディモーション]で行います。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>読み込み前(BodyItemを選択)</td>
+<td>読み込み後</td>
+</tr>
+<tr class="row-even"><td><img alt="../_images/motion-recording-4.png" class="first last" src="../_images/motion-recording-4.png" />
+</td>
+<td><img alt="../_images/motion-recording-5.png" class="first last" src="../_images/motion-recording-5.png" />
+</td>
+</tr>
+</tbody>
+</table>
+<p>同様に、他のBodyItemのデータを読み込みます。</p>
+</li>
+<li><p class="first">読み込んだ動作データを再生するには、それらを選択しておく必要があります。（複数物体がある場合は、全てのBodyMotionアイテムを選択します）</p>
+<img alt="../_images/motion-recording-6.png" src="../_images/motion-recording-6.png" />
+</li>
+<li><p class="first">タイムバーの「アニメーションを開始」ボタンでシミュレーション結果を再生できます。</p>
+<img alt="../_images/motion-recording-7.png" src="../_images/motion-recording-7.png" />
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="howto-use-view-edit-mode-label">
+<span id="id16"></span><h2>閲覧モードと編集モード<a class="headerlink" href="#howto-use-view-edit-mode-label" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>シーンビューでは、通常は閲覧モードでシミュレーション世界の3Dグラフィックス表示を操ることができますが、編集モードに切り替えてシミュレーション世界の物体を操作することができます。</p>
+<ul class="simple">
+<li>ESCキー or 背景をダブルクリックでモードを切り替えることができます。<ul>
+<li>エディットモードのときはマウスカーソルが手のアイコンになります</li>
+</ul>
+</li>
+<li>視点を操作するつもりが物体を操作してしまうことを防ぐため、通常は閲覧モードにしておきます</li>
+<li>編集モードの時は物体を引っ張ったりできる<ul>
+<li>初期状態の設定（シミュレーション前）</li>
+<li>ロボットに外力を加える（シミュレーション中）</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h2>シミュレーション結果の動画作成方法<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">動画にしたい動きをタイムバーの再生ボタンで再生できる状態にしておきます。</p>
+<img alt="../_images/motion-movie-1.png" src="../_images/motion-movie-1.png" />
+</li>
+<li><p class="first">[ツール]-[Movie Generator]を実行します。すると「動画用連番ファイルの作成」ダイアログが表示されます。</p>
+<img alt="../_images/motion-movie-2.png" src="../_images/motion-movie-2.png" />
+</li>
+<li><p class="first">各種パラメータを設定します。</p>
+<ol class="loweralpha simple">
+<li>対象とする「シーン」ビューをクリックして「対象ビュー」を設定</li>
+<li>「ディレクトリ」で連番画像ファイルを出力するディレクトリを設定</li>
+<li>「ベースファイル名」に連番画像ファイルのベースとなる名前を設定</li>
+<li>「開始時刻」、「終了時刻」を設定</li>
+<li>「FPS」にフレームレートを設定</li>
+<li>「画像サイズ」にチェックを入れると、画像サイズを指定できます。これについては、単に対象のビューの描画領域のサイズを一時的にそのサイズにするだけの機能です。このため注意として、もとのビューの大きさがここで指定する大きさ以上である必要があります。少し大きめにビューのサイズを変更してから実行するとよいかと思います。</li>
+</ol>
+<img alt="../_images/motion-movie-6.png" src="../_images/motion-movie-6.png" />
+</li>
+</ol>
+<ol class="arabic" start="9">
+<li><p class="first">「生成」ボタンを押して連番画像ファイルを出力します。
+指定したディレクトリに次のような連番画像ファイルが作成されます。</p>
+<img alt="../_images/motion-movie-7.png" src="../_images/motion-movie-7.png" />
+</li>
+<li><p class="first">連番画像ファイルから動画を生成するコマンドを使用して動画を生成します。</p>
+</li>
+</ol>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>avconv -i scene%08d.png -r <span class="m">30</span> -an -vcodec libx264 -pix_fmt yuv420p video.mp4
+</pre></div>
+</div>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../basics/index.html" class="btn btn-neutral float-right" title="シミュレーションの基本" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="about.html" class="btn btn-neutral" title="Choreonoidについて" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, AIST.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

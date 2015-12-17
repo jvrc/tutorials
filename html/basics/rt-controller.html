@@ -84,15 +84,28 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Choreonoidの解説</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Basic simulations</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="howto-exec-simulation.html">Creating a simulation project</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Connecting a RT component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">コントローラの雛形作成</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rtcbuilder">RTCBuilderの起動</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">新規プロジェクトの作成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">プロファイル情報入力とコードの生成</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">コントローラのソースコード</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">コントローラのヘッダファイル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">コントローラのソースコード</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">コントローラのビルド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">コントローラの実装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">コントローラのインストール</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#open-a-project-file">Open a project file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-a-controller">Add a controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#source-code-of-a-controller">Source code of a controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#setup-the-controller">Setup the controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#build-the-controller">Build the controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#run-simulation">Run simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">コントローラの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">シミュレーションを実行する</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a-sample-project-used-in-this-tutorial">A sample project used in this tutorial</a><ul class="simple">
 </ul>
 </li>
@@ -152,183 +165,546 @@
   <div class="section" id="connecting-a-rt-component">
 <h1>Connecting a RT component<a class="headerlink" href="#connecting-a-rt-component" title="Permalink to this headline">¶</a></h1>
 <p>This section explains how to connect Choreonoid and a RT component by developing an example component which read joint angles.</p>
+<div class="section" id="id1">
+<h2>コントローラの雛形作成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>RTCBuilderを使ってコントローラのソースコードの雛形を作成します。</p>
+<div class="section" id="rtcbuilder">
+<h3>RTCBuilderの起動<a class="headerlink" href="#rtcbuilder" title="Permalink to this headline">¶</a></h3>
+<p>以下を実行してRTCBuilder(OpenRTP, Eclipseベース)を起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>openrtp
+</pre></div>
+</div>
+<p>Eclipseが起動すると、ワークスペースの場所を尋ねられます。</p>
+<img alt="../_images/openrtp_make_workspace.png" src="../_images/openrtp_make_workspace.png" />
+<p>Eclipseでは、各種作業を行うフォルダを「ワークスペース」(Work Space)とよび、原則としてすべての生成物はこのフォルダの下に保存されます。ワークスペースはアクセスできるフォルダであれば、どこに作っても構いませんが、このチュートリアルでは「/home/&lt;ユーザ名&gt;/workspace」をワークスペースとします。</p>
+<p>そのままOKボタンを押してください。以下のようなWelcomeページが表示されます。</p>
+<img alt="../_images/openrtp_welcome.png" src="../_images/openrtp_welcome.png" />
+<p>Welcomeページはいまは必要ないので左上の「×」ボタンを押して閉じてください。</p>
+<img alt="../_images/openrtp_init_screen.png" src="../_images/openrtp_init_screen.png" />
+<p>右上の「パースペクティブを開く」ボタンを押し、プルダウンの「その他(O)…」ボタンを押します。</p>
+<img alt="../_images/openrtp_open_perspective.png" src="../_images/openrtp_open_perspective.png" />
+<p>「パースペクティブを開く」ダイアログが表示されるので、「RTC Builder」を選択してOKボタンを押すことで、RTCBuilderが起動します。メニューバーに「カナヅチとRT」のRTCBuilderのアイコンが現れます。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>RTCBuilderを起動する際に以下のエラーが生じることがあります。</p>
+<div class="highlight-bash"><div class="highlight"><pre>パースペクティブ <span class="s1">&#39;jp.go.aist.rtm.rtcbuilder.ui.perspective&#39;</span> のオープンで問題が発生しました。
+</pre></div>
+</div>
+<p>RTCBuilderを起動した端末には以下のメッセージが出ているかと思います。</p>
+<div class="highlight-bash"><div class="highlight"><pre>java.io.IOException: Couldn&#39;t get lock for rtcbuilder%u.log
+</pre></div>
+</div>
+<p>既知のバグが影響している可能性があるので、対処方法として以下を行ってください。</p>
+<ul class="last">
+<li><p class="first">logger.properties ファイルを作成して以下のようにログファイルパターンを記載しておく。</p>
+<div class="highlight-bash"><div class="highlight"><pre>jp.go.aist.rtm.rtcbuilder.RTCBLogHandler.pattern<span class="o">=</span>%h/.rtcb%u.log
+jp.go.aist.rtm.systemeditor.RTSELogHandler.pattern<span class="o">=</span>%h/.rtse%u.log
+</pre></div>
+</div>
+</li>
+<li><p class="first">起動時のオプションでこのファイルをロガークラスのコンフィギュレーションとして読み込ませて&#8221;openrtp&#8221;を起動する。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>openrtp -vmargs -Djava.util.logging.config.file<span class="o">=</span><span class="nv">$HOME</span>/workspace/logger.properties
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>新規プロジェクトの作成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>RTコンポーネントを作成するために、RTCBuilderで新規プロジェクトを作成する必要が有ります。プロジェクトを作成する方法は2種類あります。</p>
+<ol class="arabic">
+<li><p class="first">画面上部のメニューから[ファイル]－[新規]－[プロジェクト]を選択 (Eclipse共通)</p>
+<ul>
+<li><p class="first">「新規プロジェクト」画面において，[その他]－[RTC Builder]を選択し、[次へ]をクリック</p>
+<img alt="../_images/openrtp_new_project.png" src="../_images/openrtp_new_project.png" />
+</li>
+</ul>
+</li>
+<li><p class="first">メニューバーの「RTCBuilder」のアイコンをクリック</p>
+</li>
+</ol>
+<p>どちらの方法でも、次のようなプロジェクト作成ウィザードが開始されます。「プロジェクト名」欄に作成するプロジェクト名(ここでは&#8221;RobotControllerRTC&#8221;)を入力して「完了」を押します。</p>
+<img alt="../_images/openrtp_make_project.png" src="../_images/openrtp_make_project.png" />
+<p>指定した名称のプロジェクトが生成され、パッケージエクスプローラ内に追加されます。</p>
+<p>生成したプロジェクト内には、デフォルト値が設定されたRTCプロファイルXML(RTC.xml)が自動的に生成されます。</p>
+</div>
+<div class="section" id="id3">
+<h3>プロファイル情報入力とコードの生成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>RTCBuilderのエディタで、いちばん左の「基本」タブを選択し、基本情報を入力します。RTコンポーネントの仕様(名前)の他に、概要やバージョン等を入力します。ラベルが赤字の項目は必須項目です。その他はデフォルトで構いません。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>モジュール名:</td>
+<td>RobotControllerRTC</td>
+</tr>
+<tr class="row-even"><td>モジュール概要:</td>
+<td>Robot Controller component</td>
+</tr>
+<tr class="row-odd"><td>バージョン:</td>
+<td>1.0.0</td>
+</tr>
+<tr class="row-even"><td>ベンダ名:</td>
+<td>AIST</td>
+</tr>
+<tr class="row-odd"><td>モジュールカテゴリ:</td>
+<td>Generic</td>
+</tr>
+<tr class="row-even"><td>コンポーネント型:</td>
+<td>STATIC</td>
+</tr>
+<tr class="row-odd"><td>アクティビティ型:</td>
+<td>PERIODIC</td>
+</tr>
+<tr class="row-even"><td>コンポーネント種類:</td>
+<td>DataFlow</td>
+</tr>
+<tr class="row-odd"><td>最大インスタンス数:</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>実行型:</td>
+<td>PeriodicExecutionContext</td>
+</tr>
+<tr class="row-odd"><td>実行周期:</td>
+<td>1000.0</td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/rtcbuilder_basic.png" src="../_images/rtcbuilder_basic.png" />
+<p>次に「アクティビティ」タブを選択し、使用するアクションコールバックを指定します。</p>
+<p>本コンポーネントでは、onActivated(), onDeactivated(), onExecute() コールバックを使用します。下図のように(1)コールバックをクリック後に(2)のラジオボタン&#8221;ON&#8221;にチェックを入れます。使用するコールバックごとに同様の手順で&#8221;ON&#8221;にしていきます。</p>
+<img alt="../_images/rtcbuilder_activity.png" src="../_images/rtcbuilder_activity.png" />
+<p>さらに、「データポート」タブを選択し、データポートの情報を入力します。 以下のように入力します。なお、変数名や表示位置はオプションなのでデフォルトのままで構いません。</p>
+<ul>
+<li><p class="first">InPort プロファイル:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ポート名:</td>
+<td>q</td>
+</tr>
+<tr class="row-even"><td>データ型:</td>
+<td>RTC::TimeDoubleSeq</td>
+</tr>
+<tr class="row-odd"><td>変数名:</td>
+<td>angle</td>
+</tr>
+<tr class="row-even"><td>表示位置:</td>
+<td>LEFT</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">OutPort プロファイル:</p>
+<p>なし</p>
+</li>
+</ul>
+<img alt="../_images/rtcbuilder_dataport.png" src="../_images/rtcbuilder_dataport.png" />
+<p>次に、「言語・環境」タブを選択し、プログラミング言語を選択します。 ここでは、「C++」を選択します。なお、言語・環境はデフォルト等が設定されておらず、指定し忘れるとコード生成時にエラーになりますので、必ず言語の指定を行うようにしてください。</p>
+<img alt="../_images/rtcbuilder_lang.png" src="../_images/rtcbuilder_lang.png" />
+<p>最後に、「基本」タブにある「コード生成」ボタンをクリックし、コンポーネントの雛型を生成します。</p>
+<img alt="../_images/rtcbuilder_basic_generate.png" src="../_images/rtcbuilder_basic_generate.png" />
+<p>※ 生成されるコード群は、eclipse起動時に指定したワークスペースフォルダの中に生成されます。現在のワークスペースは、「ファイル(F)」 &gt; 「ワークスペースの切り替え(W)...」で確認することができます。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>コントローラのソースコード<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>コード作成操作により、コントローラのソースコード一式がワークスペース内の領域「$HOME/workspace/RobotControllerRTC/」に生成されます。</p>
+<div class="section" id="id5">
+<h3>コントローラのヘッダファイル<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>コントローラのヘッダファイルは以下になります。</p>
+<blockquote>
+<div>$HOME/workspace/include/RobotControllerRTC/RobotControllerRTC.h</div></blockquote>
+<p>※ 一部のコメント行は除去しています。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/*!</span>
+<span class="cm"> * @file  RobotControllerRTC.h</span>
+<span class="cm"> * @brief Robot Controller component</span>
+<span class="cm"> * @date  $Date$</span>
+<span class="cm"> *</span>
+<span class="cm"> * $Id$</span>
+<span class="cm"> */</span>
+
+<span class="cp">#ifndef ROBOTCONTROLLERRTC_H</span>
+<span class="cp">#define ROBOTCONTROLLERRTC_H</span>
+
+<span class="cp">#include &lt;rtm/idl/BasicDataTypeSkel.h&gt;</span>
+<span class="cp">#include &lt;rtm/idl/ExtendedDataTypesSkel.h&gt;</span>
+<span class="cp">#include &lt;rtm/idl/InterfaceDataTypesSkel.h&gt;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">RTC</span><span class="p">;</span>
+
+<span class="cp">#include &lt;rtm/Manager.h&gt;</span>
+<span class="cp">#include &lt;rtm/DataFlowComponentBase.h&gt;</span>
+<span class="cp">#include &lt;rtm/CorbaPort.h&gt;</span>
+<span class="cp">#include &lt;rtm/DataInPort.h&gt;</span>
+<span class="cp">#include &lt;rtm/DataOutPort.h&gt;</span>
+
+<span class="k">class</span> <span class="nc">RobotControllerRTC</span>
+  <span class="o">:</span> <span class="k">public</span> <span class="n">RTC</span><span class="o">::</span><span class="n">DataFlowComponentBase</span>
+<span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">RobotControllerRTC</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">);</span>
+    <span class="o">~</span><span class="n">RobotControllerRTC</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onInitialize</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onActivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onDeactivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onExecute</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
+
+ <span class="k">protected</span><span class="o">:</span>
+   <span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span> <span class="n">m_angle</span><span class="p">;</span>
+   <span class="n">InPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span><span class="o">&gt;</span> <span class="n">m_angleIn</span><span class="p">;</span>
+
+ <span class="k">private</span><span class="o">:</span>
+
+<span class="p">};</span>
+
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span>
+<span class="p">{</span>
+  <span class="n">DLL_EXPORT</span> <span class="kt">void</span> <span class="n">RobotControllerRTCInit</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cp">#endif </span><span class="c1">// ROBOTCONTROLLERRTC_H</span>
+</pre></div>
+</td></tr></table></div>
+<p>今回、ヘッダファイルは変更しません。</p>
+<p>RTC::TimedDoubleSeq というのは、時刻情報とdouble型の実際の値を持つOpenRTM固有の複合型です。
+SeqはOpenRTMにおける配列型のように扱います。
+OpenRTMにおけるdouble[]型と考えておけばよいでしょう。</p>
+<p>InPort&lt;RTC::TimedDoubleSeq&gt; はRTCの入力ポートを表す型であり、入力ポートを操作するにはこれを利用します。
+m_angleは入力ポートから関節角度を受けとるための変数です。
+m_angleInで取得した値はm_angleで参照します。</p>
+</div>
+<div class="section" id="id6">
+<h3>コントローラのソースコード<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>コントローラのソースコードは以下になります。</p>
+<blockquote>
+<div>$HOME/workspace/RobotControllerRTC/src/RobotControllerRTC.cpp</div></blockquote>
+<p>※ 一部のコメント行は除去しています。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/*!</span>
+<span class="cm"> * @file  RobotControllerRTC.cpp</span>
+<span class="cm"> * @brief Robot Controller component</span>
+<span class="cm"> * @date $Date$</span>
+<span class="cm"> *</span>
+<span class="cm"> * $Id$</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include &quot;RobotControllerRTC.h&quot;</span>
+
+<span class="c1">// Module specification</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">robotcontrollerrtc_spec</span><span class="p">[]</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="s">&quot;implementation_id&quot;</span><span class="p">,</span> <span class="s">&quot;RobotControllerRTC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;type_name&quot;</span><span class="p">,</span>         <span class="s">&quot;RobotControllerRTC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;description&quot;</span><span class="p">,</span>       <span class="s">&quot;Robot Controller component&quot;</span><span class="p">,</span>
+    <span class="s">&quot;version&quot;</span><span class="p">,</span>           <span class="s">&quot;1.0.0&quot;</span><span class="p">,</span>
+    <span class="s">&quot;vendor&quot;</span><span class="p">,</span>            <span class="s">&quot;AIST&quot;</span><span class="p">,</span>
+    <span class="s">&quot;category&quot;</span><span class="p">,</span>          <span class="s">&quot;Generic&quot;</span><span class="p">,</span>
+    <span class="s">&quot;activity_type&quot;</span><span class="p">,</span>     <span class="s">&quot;PERIODIC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;kind&quot;</span><span class="p">,</span>              <span class="s">&quot;DataFlowComponent&quot;</span><span class="p">,</span>
+    <span class="s">&quot;max_instance&quot;</span><span class="p">,</span>      <span class="s">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s">&quot;language&quot;</span><span class="p">,</span>          <span class="s">&quot;C++&quot;</span><span class="p">,</span>
+    <span class="s">&quot;lang_type&quot;</span><span class="p">,</span>         <span class="s">&quot;compile&quot;</span><span class="p">,</span>
+    <span class="s">&quot;&quot;</span>
+  <span class="p">};</span>
+
+<span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">RobotControllerRTC</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">RTC</span><span class="o">::</span><span class="n">DataFlowComponentBase</span><span class="p">(</span><span class="n">manager</span><span class="p">),</span>
+    <span class="n">m_angleIn</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angle</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="n">RobotControllerRTC</span><span class="o">::~</span><span class="n">RobotControllerRTC</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onInitialize</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angleIn</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onActivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onDeactivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onExecute</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span>
+<span class="p">{</span>
+
+  <span class="kt">void</span> <span class="n">RobotControllerRTCInit</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">coil</span><span class="o">::</span><span class="n">Properties</span> <span class="n">profile</span><span class="p">(</span><span class="n">robotcontrollerrtc_spec</span><span class="p">);</span>
+    <span class="n">manager</span><span class="o">-&gt;</span><span class="n">registerFactory</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span>
+                             <span class="n">RTC</span><span class="o">::</span><span class="n">Create</span><span class="o">&lt;</span><span class="n">RobotControllerRTC</span><span class="o">&gt;</span><span class="p">,</span>
+                             <span class="n">RTC</span><span class="o">::</span><span class="n">Delete</span><span class="o">&lt;</span><span class="n">RobotControllerRTC</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>コントローラのビルド<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>コントローラの雛形が生成されましたので、この段階で一度ビルドできることを確認します。ビルドするにはRTコンポーネントのソースファイル一式が生成されたディレクトリで以下を実行します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$HOME</span>/workspace/RobotControllerRTC
+<span class="nv">$ </span>mkdir build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>コントローラの実装<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>生成されたのはコントローラの雛形で、このまま実行しても何も処理が行われません。onExecute() コールバックなどに処理を記述します。このチュートリアルでは関節角度を読みとって標準出力に表示する処理を実装します。</p>
+<p>雛形に追加するコードの差分(diff)は以下の通りです。</p>
+<p>patch コマンドで差分を適用する場合は、こちらの
+<a class="reference download internal" href="../_downloads/RobotControllerRTC.cpp.diff"><code class="xref download docutils literal"><span class="pre">差分ファイル</span></code></a> を取得してご利用ください。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre>--- RobotControllerRTC.cpp.orig      2015-12-03 11:11:10.351220019 +0900
++++ RobotControllerRTC.cpp   2015-12-03 11:13:11.787219170 +0900
+@@ -8,6 +8,9 @@
+  */
+
+ #include &quot;RobotControllerRTC.h&quot;
++#include &lt;iostream&gt;
++
++using namespace std;
+
+ // Module specification
+ // &lt;rtc-template block=&quot;module_spec&quot;&gt;
+@@ -109,6 +112,14 @@
+
+ RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
+ {
++  if(m_angleIn.isNew()){
++    m_angleIn.read();
++  }
++
++  for(size_t i=0; i &lt; m_angle.data.length(); ++i){
++    cout &lt;&lt; &quot;m_angle.data[&quot; &lt;&lt; i &lt;&lt; &quot;] is &quot; &lt;&lt; m_angle.data[i] &lt;&lt; std::endl;
++  }
++
+   return RTC::RTC_OK;
+ }
+</pre></div>
+</td></tr></table></div>
+<p>onExecute()はRTCの実行中に定期的に呼ばれます。
+ここで関節角度を取得し標準出力に表示する処理を行います。
+m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。
+onExecute()の実行時にはデータが到着しているかどうかが分からないので、ここでチェックしています。
+新しいデータが来ていた場合にはm_angleIn.read()でデータを読み込みます。
+読み込んだデータは自動的にm_angleに格納され、m_angle.dataとして取得できます。
+m_angle.dataは各関節毎に配列の値となっています。</p>
+</div>
+<div class="section" id="id9">
+<h2>コントローラのインストール<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>RTコンポーネントの実装が終わったら、makeコマンドを実行して再度ビルドを行います。ビルドに成功するとRTCコントローラモジュール「src/RobotControllerRTC.so」が生成されるので、以下を実行してインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo mkdir -p /usr/lib/choreonoid-1.5/rtc
+<span class="nv">$ </span>sudo cp -p src/RobotControllerRTC.so /usr/lib/choreonoid-1.5/rtc
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Choreonoidでは読み込むRTCコントローラのモジュールは、Choreonoidのインストール先の共有ディレクトリ(/usr/lib/choreonoid-1.5/rtc)に配置するか、BodyRTCのプロパティで指定する際に絶対パスで指定する必要があります。</p>
+</div>
+</div>
 <div class="section" id="open-a-project-file">
 <h2>Open a project file<a class="headerlink" href="#open-a-project-file" title="Permalink to this headline">¶</a></h2>
+<p>Choreonoid を起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>choreonoid
+</pre></div>
+</div>
 <p>Open a project file by choosing &#8220;Open Project&#8221; menu of &#8220;File&#8221; menu. The file name is samples/tutorials/cnoid/sample1.cnoid.</p>
 </div>
 <div class="section" id="add-a-controller">
 <h2>Add a controller<a class="headerlink" href="#add-a-controller" title="Permalink to this headline">¶</a></h2>
 <p>Select &#8220;JVRC&#8221; first in the item view.
 Then create a BodyRTC item by choosing &#8220;BodyRTC&#8221; menu followed by &#8220;File&#8221;, &#8220;New...&#8221; menus.</p>
+<p>BodyRTCを作成することにより、シミュレーション世界に存在するロボットが1つのRTコンポーネントとなり、データポートを介してセンサ情報の取得やアクチュエータに対する指令を送信することができるようになります。</p>
 </div>
-<div class="section" id="source-code-of-a-controller">
-<h2>Source code of a controller<a class="headerlink" href="#source-code-of-a-controller" title="Permalink to this headline">¶</a></h2>
-<p>Contents of the header file of the controller is as follows. This file was created by modifying SR1WalkControllerRTC.h which is included in Choreonoid.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm">   Sample Robot motion controller for the JVRC robot model.</span>
-<span class="cm">   This program was ported from the &quot;SR1WalkControllerRTC.h&quot; sample of Choreonoid.</span>
-<span class="cm">*/</span>
-
-<span class="cp">#ifndef RobotControllerRTC_H</span>
-<span class="cp">#define RobotControllerRTC_H</span>
-
-<span class="cp">#include &lt;rtm/idl/BasicDataTypeSkel.h&gt;</span>
-<span class="cp">#include &lt;rtm/Manager.h&gt;</span>
-<span class="cp">#include &lt;rtm/DataFlowComponentBase.h&gt;</span>
-<span class="cp">#include &lt;rtm/CorbaPort.h&gt;</span>
-<span class="cp">#include &lt;rtm/DataInPort.h&gt;</span>
-<span class="cp">#include &lt;rtm/DataOutPort.h&gt;</span>
-<span class="cp">#include &lt;cnoid/MultiValueSeq&gt;</span>
-
-<span class="k">class</span> <span class="nc">RobotControllerRTC</span> <span class="o">:</span> <span class="k">public</span> <span class="n">RTC</span><span class="o">::</span><span class="n">DataFlowComponentBase</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">RobotControllerRTC</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">);</span>
-    <span class="o">~</span><span class="n">RobotControllerRTC</span><span class="p">();</span>
-
-    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onInitialize</span><span class="p">();</span>
-    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onActivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
-    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onDeactivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
-    <span class="k">virtual</span> <span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">onExecute</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">);</span>
-
-<span class="k">protected</span><span class="o">:</span>
-    <span class="c1">// DataInPort declaration</span>
-    <span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span> <span class="n">m_angle</span><span class="p">;</span>
-    <span class="n">RTC</span><span class="o">::</span><span class="n">InPort</span><span class="o">&lt;</span><span class="n">RTC</span><span class="o">::</span><span class="n">TimedDoubleSeq</span><span class="o">&gt;</span> <span class="n">m_angleIn</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">extern</span> <span class="s">&quot;C&quot;</span>
-<span class="p">{</span>
-    <span class="n">DLL_EXPORT</span> <span class="kt">void</span> <span class="n">RobotControllerRTCInit</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="cp">#endif</span>
-</pre></div>
-</div>
-<p><cite>RTC::TimedDoubleSeq</cite> is a type which contains time and double precision values. Seq means a sequence of values just like double[].</p>
-<p><cite>RTC::InPort&lt;RTC::TimedDoubleSeq&gt;</cite> defines an input data port. m_angle is a buffer to receive joint angles. Joint angles read through m_angleIn are stored in m_angle.</p>
-<p>The following shows source code of the controller. It was developed based on SR1WalkControllerRTC.cpp which is included in Choreonoid.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm">   Sample Robot motion controller for the JVRC robot model.</span>
-<span class="cm">   This program was ported from the &quot;SR1WalkControllerRTC.cpp&quot; sample of</span>
-<span class="cm">   Choreonoid.</span>
-<span class="cm">*/</span>
-
-<span class="cp">#include &quot;RobotControllerRTC.h&quot;</span>
-<span class="cp">#include &lt;cnoid/BodyMotion&gt;</span>
-<span class="cp">#include &lt;cnoid/ExecutablePath&gt;</span>
-<span class="cp">#include &lt;cnoid/FileUtil&gt;</span>
-<span class="cp">#include &lt;iostream&gt;</span>
-
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">cnoid</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="p">{</span>
-
-<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">samplepd_spec</span><span class="p">[]</span> <span class="o">=</span>
-<span class="p">{</span>
-    <span class="s">&quot;implementation_id&quot;</span><span class="p">,</span> <span class="s">&quot;RobotControllerRTC&quot;</span><span class="p">,</span>
-    <span class="s">&quot;type_name&quot;</span><span class="p">,</span>         <span class="s">&quot;RobotControllerRTC&quot;</span><span class="p">,</span>
-    <span class="s">&quot;description&quot;</span><span class="p">,</span>       <span class="s">&quot;Robot Controller component&quot;</span><span class="p">,</span>
-    <span class="s">&quot;version&quot;</span><span class="p">,</span>           <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
-    <span class="s">&quot;vendor&quot;</span><span class="p">,</span>            <span class="s">&quot;AIST&quot;</span><span class="p">,</span>
-    <span class="s">&quot;category&quot;</span><span class="p">,</span>          <span class="s">&quot;Generic&quot;</span><span class="p">,</span>
-    <span class="s">&quot;activity_type&quot;</span><span class="p">,</span>     <span class="s">&quot;DataFlowComponent&quot;</span><span class="p">,</span>
-    <span class="s">&quot;max_instance&quot;</span><span class="p">,</span>      <span class="s">&quot;10&quot;</span><span class="p">,</span>
-    <span class="s">&quot;language&quot;</span><span class="p">,</span>          <span class="s">&quot;C++&quot;</span><span class="p">,</span>
-    <span class="s">&quot;lang_type&quot;</span><span class="p">,</span>         <span class="s">&quot;compile&quot;</span><span class="p">,</span>
-    <span class="s">&quot;&quot;</span>
-<span class="p">};</span>
-<span class="p">}</span>
-
-
-<span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">RobotControllerRTC</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
-    <span class="o">:</span> <span class="n">RTC</span><span class="o">::</span><span class="n">DataFlowComponentBase</span><span class="p">(</span><span class="n">manager</span><span class="p">),</span>
-      <span class="n">m_angleIn</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angle</span><span class="p">)</span>
-<span class="p">{</span>
-
-<span class="p">}</span>
-
-<span class="n">RobotControllerRTC</span><span class="o">::~</span><span class="n">RobotControllerRTC</span><span class="p">()</span>
-<span class="p">{</span>
-
-<span class="p">}</span>
-
-
-<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onInitialize</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="c1">// Set InPort buffers</span>
-    <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angleIn</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onActivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onDeactivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onExecute</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">m_angleIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
-        <span class="n">m_angleIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m_angle</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;m_angle.data[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;] is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_angle</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="k">extern</span> <span class="s">&quot;C&quot;</span>
-<span class="p">{</span>
-    <span class="n">DLL_EXPORT</span> <span class="kt">void</span> <span class="n">RobotControllerRTCInit</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">coil</span><span class="o">::</span><span class="n">Properties</span> <span class="n">profile</span><span class="p">(</span><span class="n">samplepd_spec</span><span class="p">);</span>
-        <span class="n">manager</span><span class="o">-&gt;</span><span class="n">registerFactory</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span>
-                                 <span class="n">RTC</span><span class="o">::</span><span class="n">Create</span><span class="o">&lt;</span><span class="n">RobotControllerRTC</span><span class="o">&gt;</span><span class="p">,</span>
-                                 <span class="n">RTC</span><span class="o">::</span><span class="n">Delete</span><span class="o">&lt;</span><span class="n">RobotControllerRTC</span><span class="o">&gt;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-<p>m_angleIn and m_angle are associated by constructor of RobotControllerRTC.</p>
-<p>onInitialized is called right after a RT component is constructed. It registers the input port.</p>
-<p>onExecute() is a function called periodically. Its implementation of this tutorial just reads joint angles and outputs those values to standard output. m_angleIn.isNew() checks if new data arrived or not. If the arrival is detected, m_angleIn.read() reads data and stores values to m_angle. Joint angles are accesible through m_angle.data.</p>
-<p>These source codes are stored as samples/tutorials/rtc/RobotControllerRTC.cpp and samples/tutorials/rtc/RobotControllerRTC.h.</p>
-</div>
-<div class="section" id="setup-the-controller">
-<h2>Setup the controller<a class="headerlink" href="#setup-the-controller" title="Permalink to this headline">¶</a></h2>
-<p>To connect Choreonoid and the RT component we developed, we need to configure BodyRTC item.</p>
-<p>When you select BodyRTC item, its properties are displayed in the tab which is called &#8220;property view&#8221;. Set &#8220;RobotControllerRTC&#8221; to the value of &#8220;Controller module name&#8221;. This corresponds to the filename of the RT component. Set true to the value of &#8220;Auto Connect&#8221;.</p>
+<div class="section" id="id10">
+<h2>コントローラの設定<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>プロジェクト上でRTコンポーネント(RTC)を作成しただけでは、ロボットの制御を行うことができません。</p>
+<p>Choreonoidの操作画面に戻って、アイテムビューで「BodyRTC」を選択するとプロパティのタブ(プロパティビューと言います)にRTCの設定が表示されます。プロパティビューの「コントローラのモジュール名」を「RobotControllerRTC」とします。これは「コントローラのビルド」で作成したモジュールのパスと対応しています。さらに、プロパティビューの「自動ポート接続」を true にします。このプロパティがtrueの場合、BodyRTCとコントローラとして指定されたRobotControllerRTCのデータポートのうち、名称が同じポートについて自動的にポートの接続が行われます。</p>
 <img alt="../_images/property_rtc.png" src="../_images/property_rtc.png" />
-</div>
-<div class="section" id="build-the-controller">
-<h2>Build the controller<a class="headerlink" href="#build-the-controller" title="Permalink to this headline">¶</a></h2>
-<p>Go to samples/tutorials/rtc directory and execute the following command.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>make
+<p>「設定モード」プロパティが「標準ポートを作成」になっていますが、この場合、標準的なデータポート（カメラ、レンジセンサを除くセンサに対応する出力ポート、関節角度列の出力ポート、関節トルクの入力ポート）が自動的に生成されます。これをRTSystemEditorを使って確認してみましょう。次のコマンドを実行してOpenRTPを起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>openrtp
 </pre></div>
 </div>
-<p>This command generates RobotControllerRTC.so under samples/tutorials/rtc directory.</p>
-<p>Then execute the following command.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo make install <span class="nv">DESTDIR</span><span class="o">=</span>/usr
-</pre></div>
+<p>必要に応じてワークスペースの指定を行い、RTCBuilderの時と同じ手順でRTSystemEditorパースペックティブを開きます。以下のような画面となるはずです。</p>
+<img alt="../_images/openrtp_rtse.png" src="../_images/openrtp_rtse.png" />
+<p>画面左にあるName Service Viewにネームサーバに登録されている情報が表示されます。「127.0.0.1」の左にある黒い三角印をクリックするとツリーを展開することができます。ツリーを展開すると「JVRC|rtc」というアイテムがあるはずです。</p>
+<img alt="../_images/openrtp_name_service_view.png" src="../_images/openrtp_name_service_view.png" />
+<p>ツールバーにある「ON」と書かれたアイコンをクリックし、System Diagramを生成します。続いてName Service Viewに表示された「JVRC|rtc」をドラッグし、System Diagramにドロップすると次のようなRTCが表示され、センサに対応するデータポートや関節トルクの指令を入力するためのデータポートが生成されていることがわかります。</p>
+<img alt="../_images/openrtp_rtc.png" src="../_images/openrtp_rtc.png" />
 </div>
-<p>In order to use RT components from Choreonoid, we need to put them in the shared directory of Choreonoid(/usr/lib/choreonoid-1.5/rtc). &#8220;make install&#8221; command does this automatically.</p>
-</div>
-<div class="section" id="run-simulation">
-<h2>Run simulation<a class="headerlink" href="#run-simulation" title="Permalink to this headline">¶</a></h2>
-<p>Press &#8220;Start simulation from the beginning&#8221; button on the simulation tool bar. While the simulation is running, joint angles stored in m_angle are displayed in the terminal you launched Choreonoid.</p>
+<div class="section" id="id11">
+<h2>シミュレーションを実行する<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>シミュレーションツールバーの「シミュレーション開始ボタン」を押します。シミュレーションを実行するとChoreonoidを実行している端末に関節角度(m_angle)の値が表示されるはずです。</p>
 <img alt="../_images/output.png" src="../_images/output.png" />
-<p>Applying joint torques computed using joint angles, we can control joint positions. The next tutorial explains how to do that.</p>
+<p>またRTSystemEditorのName Service ViewからRobotControllerRTC0|rtcもSystem Diagramにドラッグアンドドロップすると、2つのRTCが次の図のように接続されていることが確認できます。2つのRTCはともに「q」という名前がついたデータポートを持っているために、自動ポート接続機能によって自動的に接続されています。</p>
+<img alt="../_images/openrtp_sample2.png" src="../_images/openrtp_sample2.png" />
+<p>このようにして得られる関節角度を基にトルクをロボットに入力することでロボットの制御を行うことができます。この後のサンプルで詳しく解説します。</p>
 </div>
 <div class="section" id="a-sample-project-used-in-this-tutorial">
 <h2>A sample project used in this tutorial<a class="headerlink" href="#a-sample-project-used-in-this-tutorial" title="Permalink to this headline">¶</a></h2>

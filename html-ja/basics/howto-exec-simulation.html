@@ -84,12 +84,19 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Choreonoidの解説</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">シミュレーションの基本</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">シミュレーションの実行</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#launch-choreonoid">Choreonoidの実行</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#open-a-model-file">モデルを開く</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-a-model-of-the-floor">床を追加する</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-a-simulator-item">シミュレータアイテムを追加する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">シミュレーションの初期状態を設定する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">シミュレーションの基本設定（時間刻み、シミュレーション時間）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">時間刻み</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">シミュレーション時間</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#run-simulation">シミュレーションを実行する</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#save-a-project">プロジェクトの保存</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a-sample-project-used-in-this-tutorial">サンプルプロジェクトについて</a><ul class="simple">
@@ -151,7 +158,7 @@
             
   <div class="section" id="creating-a-simulation-project">
 <h1>シミュレーションの実行<a class="headerlink" href="#creating-a-simulation-project" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>この節ではサンプルシミュレーションの実行方法について解説します。</p>
+<p>この節ではシミュレーションプロジェクトを作成する方法について解説します。</p>
 <div class="section" id="launch-choreonoid">
 <h2>Choreonoidの実行<a class="headerlink" href="#launch-choreonoid" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>まずはChoreonoidを実行します。端末を開いて以下のコマンドを実行してください。</p>
@@ -163,20 +170,88 @@
 </div>
 <div class="section" id="open-a-model-file">
 <h2>モデルを開く<a class="headerlink" href="#open-a-model-file" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>まず、「メニュー」の「ファイル」「新規」より「ワールド」を選択し、ワールドアイテム「World」を追加します。</p>
-<p>そのまま「メニュー」の「ファイル」「読み込み」より「OpenHRPモデルファイル」を選択し、JVRC-1のモデルファイルを読み込みます。ファイル名はsamples/tutorials/JVRC-1/main.wrlです。</p>
+<p>まず、[メニュー]-[ファイル]-[新規]-[ワールド]を選択し、ワールドアイテム「World」を追加します。</p>
+<p>そのまま[メニュー]-[ファイル]-[読み込み]-[OpenHRPモデルファイル]を選択し、JVRC-1のモデルファイルを読み込みます。ファイル名はsamples/tutorials/JVRC-1/main.wrlです。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">モデルファイルは &#8220;World&#8221; アイテム内(階層の下位)に読み込みます。
+アイテムビュー内での階層関係・位置はシミュレーションの動作に影響するので注意してください。
+位置が異なる場合は、アイテムビュー内のアイテムをドラッグして移動することが可能です。</p>
+</div>
 <p>モデルを読み込んだだけではロボットは表示されません。 「アイテム」と書かれたリストのJVRC-1にチェックを入れてください。 すると、以下のようにロボットが表示されるはずです。</p>
 <img alt="../_images/model.png" src="../_images/model.png" />
 </div>
 <div class="section" id="add-a-model-of-the-floor">
 <h2>床を追加する<a class="headerlink" href="#add-a-model-of-the-floor" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>シミュレーションを行うために、床(地面)を追加します。</p>
-<p>Choreonoid の画面にはアイテムと表示されている領域がありますが、これをアイテムビューと呼びます。 まずアイテムビューで「World」を選択します。 次に、「メニュー」の「ファイル」「読み込み」より「OpenHRPモデルファイル」を選択し、床のモデルファイルを開きます。ファイル名は「/usr/share/choreonoid-1.5/model/misc/floor.wrl」です。</p>
+<p>Choreonoid の画面にはアイテムと表示されている領域がありますが、これをアイテムビューと呼びます。 まずアイテムビューで「World」を選択します。 次に、[メニュー]-[ファイル]-[読み込み]-[OpenHRPモデルファイル]を選択し、床のモデルファイルを開きます。ファイル名は「/usr/share/choreonoid-1.5/model/misc/floor.wrl」です。</p>
 </div>
 <div class="section" id="add-a-simulator-item">
 <h2>シミュレータアイテムを追加する<a class="headerlink" href="#add-a-simulator-item" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>アイテムビューで「World」を選択します。 次に、「メニュー」の「ファイル」「新規」より「AISTシミュレータ」を選択し、AISTシミュレータ「AISTSimulator」を追加します。</p>
+<p>アイテムビューで「World」を選択します。 次に、[メニュー]-[ファイル]-[新規]より「AISTシミュレータ」を選択し、AISTシミュレータ「AISTSimulator」を追加します。</p>
 <img alt="../_images/aist_simulator.png" src="../_images/aist_simulator.png" />
+</div>
+<div class="section" id="id1">
+<h2>シミュレーションの初期状態を設定する<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ロボットの位置・姿勢の初期状態を設定してプロジェクトに保存しておくことで、Choreonoidを起動し直してプロジェクトを読み込んだ際に設定していた初期状態からシミュレーションを開始することが可能です。
+初期状態の設定は以下の手順で行います。</p>
+<ol class="arabic">
+<li><p class="first">ボディ／リンクビューでルートリンクの位置・姿勢を編集することができます。</p>
+<img alt="../_images/body_link_view.png" src="../_images/body_link_view.png" />
+</li>
+<li><p class="first">関節スライダビューで関節の角度を編集することができます。</p>
+<img alt="../_images/joint_slider_view.png" src="../_images/joint_slider_view.png" />
+</li>
+<li><p class="first">シーンビュー上でインタラクティブに編集、逆運動学を用いた編集も可能です。
+インタラクティブ編集はシーンビューを編集モード(「<a class="reference internal" href="../howto/howto-use.html#howto-use-view-edit-mode-label"><span>閲覧モードと編集モード</span></a>」参照)に切り替えて行います。</p>
+</li>
+<li><p class="first">最後にシミュレーションバーの「現在の状態をワールド初期状態に設定」ボタンを押して初期状態を設定し、</p>
+<img alt="../_images/simubar_save_world.png" src="../_images/simubar_save_world.png" />
+<p>ファイルバーの「プロジェクトを保存」するのを忘れないでください。</p>
+<img alt="../_images/filebar_save_project.png" src="../_images/filebar_save_project.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h2>シミュレーションの基本設定（時間刻み、シミュレーション時間）<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h3>時間刻み<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>1[ms] を推奨します。時間刻みは計算速度とシミュレーション精度のトレードオフであり、コントローラの実行周期との兼ね合いも考慮して設定します。</p>
+<ol class="arabic">
+<li><p class="first">タイムバーの設定ダイアログをボタンをクリックします。</p>
+<img alt="../_images/timebar_config.png" src="../_images/timebar_config.png" />
+</li>
+<li><p class="first">タイムバーの設定で、内部フレームレートの値を「1000」(1ms)に設定します。</p>
+<img alt="../_images/timebar_config_framerate.png" src="../_images/timebar_config_framerate.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="id4">
+<h3>シミュレーション時間<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p class="first">無制限</p>
+<ol class="arabic">
+<li><p class="first">アイテムビュー上で &#8220;AISTSimulator&#8221; アイテムを選択状態にします。</p>
+</li>
+<li><p class="first">プロパティビューの時間範囲の値をダブルクリックして変更します。</p>
+<img alt="../_images/property_timerange.png" src="../_images/property_timerange.png" />
+</li>
+</ol>
+</li>
+<li><p class="first">タイムバー範囲</p>
+<ol class="arabic">
+<li><p class="first">アイテムビュー上で &#8220;AISTSimulator&#8221; アイテムを選択状態にします。</p>
+</li>
+<li><p class="first">プロパティビューの時間範囲の値をダブルクリックして変更します。</p>
+<img alt="../_images/property_timebarlimit.png" src="../_images/property_timebarlimit.png" />
+</li>
+<li><p class="first">タイムバーの開始時間と終了時間を設定します。</p>
+<img alt="../_images/timebar_timelimit.png" src="../_images/timebar_timelimit.png" />
+</li>
+</ol>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="run-simulation">
 <h2>シミュレーションを実行する<a class="headerlink" href="#run-simulation" title="このヘッドラインへのパーマリンク">¶</a></h2>

@@ -179,7 +179,7 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
 
 コントローラのヘッダファイルは以下になります。
 
-  $HOME/workspace/include/RobotControllerRTC/RobotControllerRTC.h
+  $HOME/workspace/RobotControllerRTC/include/RobotControllerRTC.h
 
 ※ 一部のコメント行は除去しています。
 

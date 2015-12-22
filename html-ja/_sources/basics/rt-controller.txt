@@ -350,7 +350,7 @@ m_angleInで取得した値はm_angleで参照します。
 雛形に追加するコードの差分(diff)は以下の通りです。
 
 patch コマンドで差分を適用する場合は、こちらの
-:download:`差分ファイル <src/RobotControllerRTC.cpp.diff>` を取得してご利用ください。
+:download:`差分ファイル <src/RobotControllerRTC.cpp.diff>` を取得してご利用ください（同じファイルをsamples/tutorials/rtc/RobotControllerRTC.cpp.diffにも収録しております）。
 
 .. code-block:: cpp
    :linenos:

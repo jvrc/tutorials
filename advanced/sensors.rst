@@ -187,8 +187,8 @@ Select AISTSimulator in the item view and create a GLVisionSensorSimulator item 
 
   .. image:: images/vision_property.png
 
-A configuration file for RTC
-----------------------------
+A configuration file for BodyRTC
+--------------------------------
 
 In the previous tutorials, data ports are connected automatically Choreonoid. But this function only works with simple port configurations.
 

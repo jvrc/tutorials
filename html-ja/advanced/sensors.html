@@ -91,7 +91,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#open-a-project-file">プロジェクトを開く</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sensors-defined-in-jvrc-1-model">JVRC モデルのセンサ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#enable-cameras-and-range-sensors">カメラ、距離センサの有効化</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#a-configuration-file-for-rtc">RTCの設定ファイル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-configuration-file-for-bodyrtc">BodyRTCの設定ファイル</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setup-the-controller">コントローラの設定</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">ビューアコンポーネントの起動・接続</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#run-simulation">シミュレーションを実行する</a></li>
@@ -311,8 +311,8 @@ struct RangeData
 <img alt="../_images/vision_property.png" class="last" src="../_images/vision_property.png" />
 </div>
 </div>
-<div class="section" id="a-configuration-file-for-rtc">
-<h2>RTCの設定ファイル<a class="headerlink" href="#a-configuration-file-for-rtc" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="a-configuration-file-for-bodyrtc">
+<h2>BodyRTCの設定ファイル<a class="headerlink" href="#a-configuration-file-for-bodyrtc" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>これまではChoreonoidの自動設定の機能を用いてRTCのポートを生成していました。 しかし、これはサンプル実行用のもので、単純なRTCのポート定義にしか使えません。</p>
 <p>今回のロボット用のRTCは複雑なので、設定ファイルを用いて各種ポートを定義する必要があります。次のような設定ファイルを用意し、ファイル名を「RobotSensorsJVRC.conf」とします。これを「/usr/lib/choreonoid-1.5/rtc/」ディレクトリに置いておきます。</p>
 <div class="highlight-python"><div class="highlight"><pre>out-port = q:JOINT_VALUE

@@ -929,11 +929,6 @@ msgid ""
 "データポートを追加し、[基本]タブから再度コード生成([コード生成]と[Generate])を行ったら、ビルド(buildディレクトリにてmake)ができることを確認しておきます。"
 msgstr ""
 
-#: ../../basics/torque.rst:452
-msgid ""
-"このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotTorqueControllerRTC3に収録されています。"
-msgstr ""
-
 #: ../../basics/torque.rst:269
 msgid "CMakeLists.txtの編集"
 msgstr ""
@@ -960,6 +955,15 @@ msgstr ""
 #: ../../basics/rt-controller.rst:350
 msgid "実装したソースコードは以下の通りです（一部コメントは削除しています）。追記した部分をハイライトしています。"
 msgstr ""
+
+#: ../../basics/torque.rst:452
+msgid ""
+"このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotControllerRTC3に収録されています。"
+msgstr ""
+
+#~ msgid ""
+#~ "このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotTorqueControllerRTC3に収録されています。"
+#~ msgstr ""
 
 #~ msgid "雛形に追加するコードの差分(diff)は以下の通りです。"
 #~ msgstr ""

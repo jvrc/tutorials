@@ -449,7 +449,7 @@ Run simulation
 サンプルファイルについて
 ------------------------
 
-このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotTorqueControllerRTC3に収録されています。
+このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotControllerRTC3に収録されています。
 
 .. toctree::
    :maxdepth: 2

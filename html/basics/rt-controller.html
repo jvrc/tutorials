@@ -315,7 +315,7 @@ jp.go.aist.rtm.systemeditor.RTSELogHandler.pattern<span class="o">=</span>%h/.rt
 </div>
 <div class="section" id="id4">
 <h2>コントローラのソースコード<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>コード作成操作により、コントローラのソースコード一式がワークスペース内の領域「$HOME/workspace/RobotControllerRTC/」に生成されます。</p>
+<p>コード作成操作により、コントローラのソースコード一式がワークスペース内の領域「$HOME/workspace/RobotControllerRTC/」に生成されます（生成済みのソースコードをsamples/tutorials/rtc/RobotControllerRTC0に収録しています）。</p>
 <div class="section" id="id5">
 <h3>コントローラのヘッダファイル<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>コントローラのヘッダファイルは以下になります。</p>
@@ -592,9 +592,7 @@ m_angleInで取得した値はm_angleで参照します。</p>
 <div class="section" id="id8">
 <h2>コントローラの実装<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p>生成されたのはコントローラの雛形で、このまま実行しても何も処理が行われません。onExecute() コールバックなどに処理を記述します。このチュートリアルでは関節角度を読みとって標準出力に表示する処理を実装します。</p>
-<p>雛形に追加するコードの差分(diff)は以下の通りです。</p>
-<p>patch コマンドで差分を適用する場合は、こちらの
-<a class="reference download internal" href="../_downloads/RobotControllerRTC.cpp.diff"><code class="xref download docutils literal"><span class="pre">差分ファイル</span></code></a> を取得してご利用ください（同じファイルをsamples/tutorials/rtc/RobotControllerRTC.cpp.diffにも収録しております）。</p>
+<p>実装したソースコードは以下の通りです（一部コメントは削除しています）。追記した部分をハイライトしています。</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -620,34 +618,153 @@ m_angleInで取得した値はm_angleで参照します。</p>
 23
 24
 25
-26</pre></div></td><td class="code"><div class="highlight"><pre>--- RobotControllerRTC.cpp.orig      2015-12-03 11:11:10.351220019 +0900
-+++ RobotControllerRTC.cpp   2015-12-03 11:13:11.787219170 +0900
-@@ -8,6 +8,9 @@
-  */
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// -*- C++ -*-</span>
+<span class="cm">/*!</span>
+<span class="cm"> * @file  RobotControllerRTC.cpp</span>
+<span class="cm"> * @brief Robot Controller component</span>
+<span class="cm"> * @date $Date$</span>
+<span class="cm"> *</span>
+<span class="cm"> * $Id$</span>
+<span class="cm"> */</span>
 
- #include &quot;RobotControllerRTC.h&quot;
-+#include &lt;iostream&gt;
-+
-+using namespace std;
+<span class="cp">#include &quot;RobotControllerRTC.h&quot;</span>
+<span class="hll"><span class="cp">#include &lt;iostream&gt;</span>
+</span><span class="hll">
+</span><span class="hll"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span>
+<span class="c1">// Module specification</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">robotcontrollerrtc_spec</span><span class="p">[]</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="s">&quot;implementation_id&quot;</span><span class="p">,</span> <span class="s">&quot;RobotControllerRTC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;type_name&quot;</span><span class="p">,</span>         <span class="s">&quot;RobotControllerRTC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;description&quot;</span><span class="p">,</span>       <span class="s">&quot;Robot Controller component&quot;</span><span class="p">,</span>
+    <span class="s">&quot;version&quot;</span><span class="p">,</span>           <span class="s">&quot;1.0.0&quot;</span><span class="p">,</span>
+    <span class="s">&quot;vendor&quot;</span><span class="p">,</span>            <span class="s">&quot;AIST&quot;</span><span class="p">,</span>
+    <span class="s">&quot;category&quot;</span><span class="p">,</span>          <span class="s">&quot;Generic&quot;</span><span class="p">,</span>
+    <span class="s">&quot;activity_type&quot;</span><span class="p">,</span>     <span class="s">&quot;PERIODIC&quot;</span><span class="p">,</span>
+    <span class="s">&quot;kind&quot;</span><span class="p">,</span>              <span class="s">&quot;DataFlowComponent&quot;</span><span class="p">,</span>
+    <span class="s">&quot;max_instance&quot;</span><span class="p">,</span>      <span class="s">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s">&quot;language&quot;</span><span class="p">,</span>          <span class="s">&quot;C++&quot;</span><span class="p">,</span>
+    <span class="s">&quot;lang_type&quot;</span><span class="p">,</span>         <span class="s">&quot;compile&quot;</span><span class="p">,</span>
+    <span class="s">&quot;&quot;</span>
+  <span class="p">};</span>
 
- // Module specification
- // &lt;rtc-template block=&quot;module_spec&quot;&gt;
-@@ -109,6 +112,14 @@
+<span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">RobotControllerRTC</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">RTC</span><span class="o">::</span><span class="n">DataFlowComponentBase</span><span class="p">(</span><span class="n">manager</span><span class="p">),</span>
+    <span class="n">m_angleIn</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angle</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
 
- RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
- {
-+  if(m_angleIn.isNew()){
-+    m_angleIn.read();
-+  }
-+
-+  for(size_t i=0; i &lt; m_angle.data.length(); ++i){
-+    cout &lt;&lt; &quot;m_angle.data[&quot; &lt;&lt; i &lt;&lt; &quot;] is &quot; &lt;&lt; m_angle.data[i] &lt;&lt; std::endl;
-+  }
-+
-   return RTC::RTC_OK;
- }
+<span class="n">RobotControllerRTC</span><span class="o">::~</span><span class="n">RobotControllerRTC</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onInitialize</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">addInPort</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">,</span> <span class="n">m_angleIn</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onActivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onDeactivated</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="n">RTC</span><span class="o">::</span><span class="n">ReturnCode_t</span> <span class="n">RobotControllerRTC</span><span class="o">::</span><span class="n">onExecute</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">UniqueId</span> <span class="n">ec_id</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="hll">  <span class="k">if</span><span class="p">(</span><span class="n">m_angleIn</span><span class="p">.</span><span class="n">isNew</span><span class="p">()){</span>
+</span><span class="hll">    <span class="n">m_angleIn</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+</span><span class="hll">  <span class="p">}</span>
+</span><span class="hll">
+</span><span class="hll">  <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m_angle</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span><span class="hll">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;m_angle.data[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;] is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_angle</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span class="hll">  <span class="p">}</span>
+</span>
+  <span class="k">return</span> <span class="n">RTC</span><span class="o">::</span><span class="n">RTC_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span>
+<span class="p">{</span>
+
+  <span class="kt">void</span> <span class="n">RobotControllerRTCInit</span><span class="p">(</span><span class="n">RTC</span><span class="o">::</span><span class="n">Manager</span><span class="o">*</span> <span class="n">manager</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">coil</span><span class="o">::</span><span class="n">Properties</span> <span class="n">profile</span><span class="p">(</span><span class="n">robotcontrollerrtc_spec</span><span class="p">);</span>
+    <span class="n">manager</span><span class="o">-&gt;</span><span class="n">registerFactory</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span>
+                             <span class="n">RTC</span><span class="o">::</span><span class="n">Create</span><span class="o">&lt;</span><span class="n">RobotControllerRTC</span><span class="o">&gt;</span><span class="p">,</span>
+                             <span class="n">RTC</span><span class="o">::</span><span class="n">Delete</span><span class="o">&lt;</span><span class="n">RobotControllerRTC</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
 </pre></div>
 </td></tr></table></div>
+<p>編集済みのソースコードをsamples/tutorials/rtc/RobotControllerRTC1に収録していますので、samples/tutorials/rtc/RobotControllerRTC1/src/RobotControllerRTC.cppを$HOME/workspace/RobotControllerRTC/src/RobotControllerRTC.cppに上書きしてお使い頂くこともできます。</p>
 <p>onExecute()はRTCの実行中に定期的に呼ばれます。
 ここで関節角度を取得し標準出力に表示する処理を行います。
 m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。

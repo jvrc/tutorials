@@ -6,7 +6,7 @@ This section extentds the RT component developed in the previous section to keep
 
 RTコンポーネントの拡張
 ----------------------
-関節のPD制御を行うために、前の節で作成したRTコンポーネントRobotControllerRTCを拡張します。PD制御を行うためには、関節へのトルク指令を出力する必要があるため、トルク指令用のデータポートをRTCBuilderを用いて追加します。追加するデータポートのプロファイルは次のようになります。
+関節のPD制御を行うために、前の節で作成したRTコンポーネントRobotControllerRTCを拡張します。PD制御を行うためには、関節へのトルク指令を出力する必要があるため、トルク指令用のデータポートをRTCBuilderを用いて追加します。[RobotControllerRTC]の[データポート]タブから、追加([Add])するデータポートのプロファイルは次のようになります。
 
 * OutPort プロファイル:
 
@@ -17,7 +17,7 @@ RTコンポーネントの拡張
   表示位置:  RIGHT
   =========  ==========================
 
-データポートを追加し、再度コード生成を行ったら、ビルドができることを確認しておきます。
+データポートを追加し、[基本]タブから再度コード生成([コード生成]と[Generate])を行ったら、ビルド(buildディレクトリにてmake)ができることを確認しておきます。
 
 Source code of a controller
 ---------------------------
@@ -26,6 +26,7 @@ A header file of the controller is as follows.
 
 .. code-block:: cpp
    :linenos:
+   :emphasize-lines: 15-16,44-48
 
    /*!
     * @file  RobotControllerRTC.h
@@ -41,6 +42,8 @@ A header file of the controller is as follows.
    #include <rtm/idl/BasicDataTypeSkel.h>
    #include <rtm/idl/ExtendedDataTypesSkel.h>
    #include <rtm/idl/InterfaceDataTypesSkel.h>
+   #include <cnoid/MultiValueSeq>
+   #include <vector>
    
    using namespace RTC;
    
@@ -68,6 +71,11 @@ A header file of the controller is as follows.
       RTC::TimedCharSeq m_torque;
       OutPort<RTC::TimedCharSeq> m_torqueOut;
     private:
+      cnoid::MultiValueSeqPtr qseq;
+      std::vector<double> q0;
+      cnoid::MultiValueSeq::Frame oldFrame;
+      int currentFrame;
+      double timeStep_;
    
    };
    
@@ -84,6 +92,7 @@ Source codes of the controller are as follows. This file was created by modifyin
 
 .. code-block:: cpp
    :linenos:
+   :emphasize-lines: 11-13,16-43,85-114,131-149
 
    /*!
     * @file  RobotControllerRTC.cpp
@@ -94,6 +103,7 @@ Source codes of the controller are as follows. This file was created by modifyin
     */
    
    #include "RobotControllerRTC.h"
+   #include <iostream>
    #include <cnoid/BodyMotion>
    #include <cnoid/ExecutablePath>
    #include <cnoid/FileUtil>
@@ -126,6 +136,7 @@ Source codes of the controller are as follows. This file was created by modifyin
        100.0, 100.0, 100.0, 100.0, 100.0,
        100.0, 100.0, 100.0, 100.0,
        };
+   };
    
    // Module specification
    static const char* robotcontrollerrtc_spec[] =
@@ -213,13 +224,14 @@ Source codes of the controller are as follows. This file was created by modifyin
        m_angleIn.read();
      }
    
+     MultiValueSeq::Frame frame;
+  
      if(currentFrame > qseq->numFrames()){
-       m_torqueOut.write();
-       return RTC::RTC_OK;
+       frame = oldFrame;
+     }else{
+       frame = qseq->frame(currentFrame++);
      }
-   
-     MultiValueSeq::Frame frame = qseq->frame(currentFrame++);
-   
+  
      for(int i=0; i < frame.size(); i++){
        double q_ref = frame[i];
        double q = m_angle.data[i];
@@ -227,13 +239,6 @@ Source codes of the controller are as follows. This file was created by modifyin
        double dq = (q - q0[i]) / timeStep_;
        m_torque.data[i] = (q_ref - q) * pgain[i]/100.0 + (dq_ref - dq) * dgain[i]/100.0;
        q0[i] = q;
-   
-       cout << "i = " << i << " ";
-       cout << "q_ref = " << frame[i] << " ";
-       cout << "q = " << q << " ";
-       cout << "dq_ref = " << dq_ref << " ";
-       cout << "dq = " << dq << " ";
-       cout << "torque = " << m_torque.data[i] << endl;
      }
      oldFrame = frame;
    
@@ -260,10 +265,85 @@ Let's look at implementation of onActivated(). This function is called only once
 
 Computation of joint torques is added to onExecute(). After reading joint angles, joint torques are computed and stored to m_torque.data[i]. In this tutorial, joint torques are computed by simple PD control. Position gains and derivative gains are defined at the top of the source code. If we can't control joints property, we need to adjust those values. Values stored in `m_torque.data`" are output by calling `m_torqueOut.write()`.
 
+CMakeLists.txtの編集
+--------------------
+このコントローラはChoreonoidのライブラリが提供している機能を使用しているため、Choreonoidのライブラリをリンクする必要があります。そこでsrc/CMakeLists.txtを次のように編集します。
+
+.. code-block:: cpp
+   :linenos:
+   :emphasize-lines: 39-42,52,56
+
+   set(comp_srcs RobotControllerRTC.cpp )
+   set(standalone_srcs RobotControllerRTCComp.cpp)
+   
+   if (DEFINED OPENRTM_INCLUDE_DIRS)
+     string(REGEX REPLACE "-I" ";"
+       OPENRTM_INCLUDE_DIRS "${OPENRTM_INCLUDE_DIRS}")
+     string(REGEX REPLACE " ;" ";"
+       OPENRTM_INCLUDE_DIRS "${OPENRTM_INCLUDE_DIRS}")
+   endif (DEFINED OPENRTM_INCLUDE_DIRS)
+   
+   if (DEFINED OPENRTM_LIBRARY_DIRS)
+     string(REGEX REPLACE "-L" ";"
+       OPENRTM_LIBRARY_DIRS "${OPENRTM_LIBRARY_DIRS}")
+     string(REGEX REPLACE " ;" ";"
+       OPENRTM_LIBRARY_DIRS "${OPENRTM_LIBRARY_DIRS}")
+   endif (DEFINED OPENRTM_LIBRARY_DIRS)
+   
+   if (DEFINED OPENRTM_LIBRARIES)
+     string(REGEX REPLACE "-l" ";"
+       OPENRTM_LIBRARIES "${OPENRTM_LIBRARIES}")
+     string(REGEX REPLACE " ;" ";"
+       OPENRTM_LIBRARIES "${OPENRTM_LIBRARIES}")
+   endif (DEFINED OPENRTM_LIBRARIES)
+   
+   include_directories(${PROJECT_SOURCE_DIR}/include)
+   include_directories(${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME})
+   include_directories(${PROJECT_BINARY_DIR})
+   include_directories(${PROJECT_BINARY_DIR}/idl)
+   include_directories(${OPENRTM_INCLUDE_DIRS})
+   include_directories(${OMNIORB_INCLUDE_DIRS})
+   add_definitions(${OPENRTM_CFLAGS})
+   add_definitions(${OMNIORB_CFLAGS})
+   
+   MAP_ADD_STR(comp_hdrs "../" comp_headers)
+   
+   link_directories(${OPENRTM_LIBRARY_DIRS})
+   link_directories(${OMNIORB_LIBRARY_DIRS})
+   
+   include(FindPkgConfig)
+   pkg_check_modules(CNOID choreonoid-body-plugin)
+   include_directories(${CNOID_INCLUDE_DIRS})
+   link_directories(${CNOID_LIBRARY_DIRS})
+   
+   add_library(${PROJECT_NAME} ${LIB_TYPE} ${comp_srcs}
+     ${comp_headers} ${ALL_IDL_SRCS})
+   set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
+   set_source_files_properties(${ALL_IDL_SRCS} PROPERTIES GENERATED 1)
+   if(NOT TARGET ALL_IDL_TGT)
+     add_custom_target(ALL_IDL_TGT)
+   endif(NOT TARGET ALL_IDL_TGT)
+   add_dependencies(${PROJECT_NAME} ALL_IDL_TGT)
+   target_link_libraries(${PROJECT_NAME} ${OPENRTM_LIBRARIES} ${CNOID_LIBRARIES} boost_system boost_filesystem)
+   
+   add_executable(${PROJECT_NAME}Comp ${standalone_srcs}
+     ${comp_srcs} ${comp_headers} ${ALL_IDL_SRCS})
+   target_link_libraries(${PROJECT_NAME}Comp ${OPENRTM_LIBRARIES} ${CNOID_LIBRARIES} boost_system boost_filesystem)
+   
+   install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}Comp
+       EXPORT ${PROJECT_NAME}
+       RUNTIME DESTINATION ${BIN_INSTALL_DIR} COMPONENT component
+       LIBRARY DESTINATION ${LIB_INSTALL_DIR} COMPONENT component
+       ARCHIVE DESTINATION ${LIB_INSTALL_DIR} COMPONENT component)
+   install(EXPORT ${PROJECT_NAME}
+       DESTINATION ${LIB_INSTALL_DIR}/${PROJECT_NAME}
+       FILE ${PROJECT_NAME}Depends.cmake)
+
+
 Build the controller
 --------------------
 
-コントローラの実装ができたので、再度makeをし、前節と同じ場所にRTCをインストールします。
+buildディレクトリ内にて再度makeをし、前節と同じ場所にRTCをインストールします。
 
 .. code-block:: bash
 
@@ -369,7 +449,7 @@ Run simulation
 サンプルファイルについて
 ------------------------
 
-このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotTorqueControllerRTC.h, rtc/RobotTorqueControllerRTC.cppに収録されています。チュートリアルではRobotControllerRTCを拡張していきますが、サンプルファイルではファイル名が重複してしまうため、本チュートリアルで作成するコントローラはRobotTorqueControllerRTCという名称で収録しています。
+このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotTorqueControllerRTC3に収録されています。
 
 .. toctree::
    :maxdepth: 2

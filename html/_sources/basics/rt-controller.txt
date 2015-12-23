@@ -172,7 +172,7 @@ RTCBuilderのエディタで、いちばん左の「基本」タブを選択し�
 コントローラのソースコード
 --------------------------
 
-コード作成操作により、コントローラのソースコード一式がワークスペース内の領域「$HOME/workspace/RobotControllerRTC/」に生成されます。
+コード作成操作により、コントローラのソースコード一式がワークスペース内の領域「$HOME/workspace/RobotControllerRTC/」に生成されます（生成済みのソースコードをsamples/tutorials/rtc/RobotControllerRTC0に収録しています）。
 
 コントローラのヘッダファイル
 ############################
@@ -347,40 +347,99 @@ m_angleInで取得した値はm_angleで参照します。
 
 生成されたのはコントローラの雛形で、このまま実行しても何も処理が行われません。onExecute() コールバックなどに処理を記述します。このチュートリアルでは関節角度を読みとって標準出力に表示する処理を実装します。
 
-雛形に追加するコードの差分(diff)は以下の通りです。
-
-patch コマンドで差分を適用する場合は、こちらの
-:download:`差分ファイル <src/RobotControllerRTC.cpp.diff>` を取得してご利用ください（同じファイルをsamples/tutorials/rtc/RobotControllerRTC.cpp.diffにも収録しております）。
+実装したソースコードは以下の通りです（一部コメントは削除しています）。追記した部分をハイライトしています。
 
 .. code-block:: cpp
    :linenos:
+   :emphasize-lines: 11-13,63-69
 
-   --- RobotControllerRTC.cpp.orig	2015-12-03 11:11:10.351220019 +0900
-   +++ RobotControllerRTC.cpp	2015-12-03 11:13:11.787219170 +0900
-   @@ -8,6 +8,9 @@
-     */
+   // -*- C++ -*-
+   /*!
+    * @file  RobotControllerRTC.cpp
+    * @brief Robot Controller component
+    * @date $Date$
+    *
+    * $Id$
+    */
+   
+   #include "RobotControllerRTC.h"
+   #include <iostream>
+   
+   using namespace std;
+   
+   // Module specification
+   static const char* robotcontrollerrtc_spec[] =
+     {
+       "implementation_id", "RobotControllerRTC",
+       "type_name",         "RobotControllerRTC",
+       "description",       "Robot Controller component",
+       "version",           "1.0.0",
+       "vendor",            "AIST",
+       "category",          "Generic",
+       "activity_type",     "PERIODIC",
+       "kind",              "DataFlowComponent",
+       "max_instance",      "1",
+       "language",          "C++",
+       "lang_type",         "compile",
+       ""
+     };
+   
+   RobotControllerRTC::RobotControllerRTC(RTC::Manager* manager)
+     : RTC::DataFlowComponentBase(manager),
+       m_angleIn("q", m_angle)
+   {
+   }
+   
+   RobotControllerRTC::~RobotControllerRTC()
+   {
+   }
+   
+   RTC::ReturnCode_t RobotControllerRTC::onInitialize()
+   {
+     addInPort("q", m_angleIn);
+     
+     return RTC::RTC_OK;
+   }
+   
+   RTC::ReturnCode_t RobotControllerRTC::onActivated(RTC::UniqueId ec_id)
+   {
+     return RTC::RTC_OK;
+   }
+   
+   
+   RTC::ReturnCode_t RobotControllerRTC::onDeactivated(RTC::UniqueId ec_id)
+   {
+     return RTC::RTC_OK;
+   }
+   
+   
+   RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
+   {
+     if(m_angleIn.isNew()){
+       m_angleIn.read();
+     }
+   
+     for(size_t i=0; i < m_angle.data.length(); ++i){
+       cout << "m_angle.data[" << i << "] is " << m_angle.data[i] << std::endl;
+     }
+   
+     return RTC::RTC_OK;
+   }
+   
+   extern "C"
+   {
     
-    #include "RobotControllerRTC.h"
-   +#include <iostream>
-   +
-   +using namespace std;
-    
-    // Module specification
-    // <rtc-template block="module_spec">
-   @@ -109,6 +112,14 @@
-    
-    RTC::ReturnCode_t RobotControllerRTC::onExecute(RTC::UniqueId ec_id)
-    {
-   +  if(m_angleIn.isNew()){
-   +    m_angleIn.read();
-   +  }
-   +
-   +  for(size_t i=0; i < m_angle.data.length(); ++i){
-   +    cout << "m_angle.data[" << i << "] is " << m_angle.data[i] << std::endl;
-   +  }
-   +
-      return RTC::RTC_OK;
-    }
+     void RobotControllerRTCInit(RTC::Manager* manager)
+     {
+       coil::Properties profile(robotcontrollerrtc_spec);
+       manager->registerFactory(profile,
+                                RTC::Create<RobotControllerRTC>,
+                                RTC::Delete<RobotControllerRTC>);
+     }
+     
+   };
+
+編集済みのソースコードをsamples/tutorials/rtc/RobotControllerRTC1に収録していますので、samples/tutorials/rtc/RobotControllerRTC1/src/RobotControllerRTC.cppを$HOME/workspace/RobotControllerRTC/src/RobotControllerRTC.cppに上書きしてお使い頂くこともできます。
 
 onExecute()はRTCの実行中に定期的に呼ばれます。
 ここで関節角度を取得し標準出力に表示する処理を行います。

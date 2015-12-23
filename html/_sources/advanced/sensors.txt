@@ -249,7 +249,7 @@ Run simulation
 A sample project used in this tutorial
 --------------------------------------
 
-You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample3.cnoid.
+You can find a sample project file created by this tutorial in samples/tutorials/cnoid/sample4.cnoid.
 
 .. toctree::
    :maxdepth: 2

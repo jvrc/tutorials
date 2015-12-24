@@ -106,6 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#add-a-controller">コントローラの追加</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id10">コントローラの設定</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id11">シミュレーションを実行する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">プロジェクトの保存</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a-sample-project-used-in-this-tutorial">サンプルプロジェクトについて</a><ul class="simple">
 </ul>
 </li>
@@ -174,12 +175,12 @@
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>openrtp
 </pre></div>
 </div>
-<p>Eclipseが起動すると、ワークスペースの場所を尋ねられます。</p>
+<p>初めて起動した場合、またはデフォルトのワークスペースの場所を設定していない場合は次のようなダイアログが表示されます。</p>
 <img alt="../_images/openrtp_make_workspace.png" src="../_images/openrtp_make_workspace.png" />
-<p>Eclipseでは、各種作業を行うフォルダを「ワークスペース」(Work Space)とよび、原則としてすべての生成物はこのフォルダの下に保存されます。ワークスペースはアクセスできるフォルダであれば、どこに作っても構いませんが、このチュートリアルでは「/home/&lt;ユーザ名&gt;/workspace」をワークスペースとします。</p>
-<p>そのままOKボタンを押してください。以下のようなWelcomeページが表示されます。</p>
+<p>Eclipseでは、各種作業を行うフォルダを「ワークスペース」(Work Space)とよび、原則としてすべての生成物はこのフォルダの下に保存されます。ワークスペースはアクセスできるフォルダであれば、どこに作っても構いませんが、このチュートリアルでは「/home/&lt;ユーザ名&gt;/workspace」をワークスペースとしますのでそのままOKボタンを押してください。</p>
+<p>初めて起動した場合は以下のようなWelcomeページが表示されますので、左上の「×」ボタンを押して閉じてください。</p>
 <img alt="../_images/openrtp_welcome.png" src="../_images/openrtp_welcome.png" />
-<p>Welcomeページはいまは必要ないので左上の「×」ボタンを押して閉じてください。</p>
+<p>次のような画面が表示されます（前回終了時の状態に依存するため表示される画面は異なる場合があります）。</p>
 <img alt="../_images/openrtp_init_screen.png" src="../_images/openrtp_init_screen.png" />
 <p>右上の「パースペクティブを開く」ボタンを押し、プルダウンの「その他(O)…」ボタンを押します。</p>
 <img alt="../_images/openrtp_open_perspective.png" src="../_images/openrtp_open_perspective.png" />
@@ -791,7 +792,7 @@ m_angle.dataは各関節毎に配列の値となっています。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>choreonoid
 </pre></div>
 </div>
-<p>「メニュー」の「プロジェクトの読み込み」からJVRC-1用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。</p>
+<p>[メニュー]-[プロジェクトの読み込み]からJVRC-1用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。</p>
 </div>
 <div class="section" id="add-a-controller">
 <h2>コントローラの追加<a class="headerlink" href="#add-a-controller" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -821,6 +822,10 @@ m_angle.dataは各関節毎に配列の値となっています。</p>
 <p>またRTSystemEditorのName Service ViewからRobotControllerRTC0|rtcもSystem Diagramにドラッグアンドドロップすると、2つのRTCが次の図のように接続されていることが確認できます。2つのRTCはともに「q」という名前がついたデータポートを持っているために、自動ポート接続機能によって自動的に接続されています。</p>
 <img alt="../_images/openrtp_sample2.png" src="../_images/openrtp_sample2.png" />
 <p>このようにして得られる関節角度を基にトルクをロボットに入力することでロボットの制御を行うことができます。この後のサンプルで詳しく解説します。</p>
+</div>
+<div class="section" id="id12">
+<h2>プロジェクトの保存<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>シミュレーションの実行が終わったら、プロジェクトを保存しておきましょう。[ファイル]-[名前を付けてプロジェクトを保存]を選択し、ファイル名をsample2.cnoidとして保存します。</p>
 </div>
 <div class="section" id="a-sample-project-used-in-this-tutorial">
 <h2>サンプルプロジェクトについて<a class="headerlink" href="#a-sample-project-used-in-this-tutorial" title="このヘッドラインへのパーマリンク">¶</a></h2>

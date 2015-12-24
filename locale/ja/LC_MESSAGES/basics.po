@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: jvrc software 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-31 17:58+0900\n"
-"PO-Revision-Date: 2015-12-23 08:56+0900\n"
+"PO-Revision-Date: 2015-12-24 22:54+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgid "Save a project"
 msgstr "プロジェクトの保存"
 
 #: ../../basics/howto-exec-simulation.rst:145
-#: ../../basics/rt-controller.rst:528
+#: ../../basics/rt-controller.rst:532
 msgid "A sample project used in this tutorial"
 msgstr "サンプルプロジェクトについて"
 
@@ -212,14 +212,14 @@ msgid ""
 "After running simulation, let's save the project. Choose \"Save Project As\""
 " menu in \"File\" menu and name the project file."
 msgstr ""
-"シミュレーションの実行が終わったら、プロジェクトを保存しておきましょう。「ファイル」の「名前を付けてプロジェクトを保存」を選択し、適当なファイル名を付けて保存します。"
+"シミュレーションの実行が終わったら、プロジェクトを保存しておきましょう。[ファイル]-[名前を付けてプロジェクトを保存]を選択し、ファイル名をsample1.cnoidとして保存します。"
 
 #: ../../basics/rt-controller.rst:476
 msgid ""
 "Open a project file by choosing \"Open Project\" menu of \"File\" menu. The "
 "file name is samples/tutorials/cnoid/sample1.cnoid."
 msgstr ""
-"「メニュー」の「プロジェクトの読み込み」からJVRC-"
+"[メニュー]-[プロジェクトの読み込み]からJVRC-"
 "1用のプロジェクトファイルを読み込みます。プロジェクトファイル名は「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」です。"
 
 #: ../../basics/torque.rst:404
@@ -380,24 +380,6 @@ msgstr ""
 
 #: ../../basics/rt-controller.rst:15
 msgid "以下を実行してRTCBuilder(OpenRTP, Eclipseベース)を起動します。"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:21
-msgid "Eclipseが起動すると、ワークスペースの場所を尋ねられます。"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:25
-msgid ""
-"Eclipseでは、各種作業を行うフォルダを「ワークスペース」(Work "
-"Space)とよび、原則としてすべての生成物はこのフォルダの下に保存されます。ワークスペースはアクセスできるフォルダであれば、どこに作っても構いませんが、このチュートリアルでは「/home/<ユーザ名>/workspace」をワークスペースとします。"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:27
-msgid "そのままOKボタンを押してください。以下のようなWelcomeページが表示されます。"
-msgstr ""
-
-#: ../../basics/rt-controller.rst:31
-msgid "Welcomeページはいまは必要ないので左上の「×」ボタンを押して閉じてください。"
 msgstr ""
 
 #: ../../basics/rt-controller.rst:35
@@ -836,7 +818,7 @@ msgstr ""
 msgid "RIGHT"
 msgstr ""
 
-#: ../../basics/rt-controller.rst:530
+#: ../../basics/rt-controller.rst:534
 msgid ""
 "You can find a sample project file created by this tutorial in "
 "samples/tutorials/cnoid/sample2.cnoid."
@@ -876,7 +858,7 @@ msgid ""
 "シミュレーションを実行すると今度はロボットが崩れ落ちることなく、先ほど作成した首振りのモーションを実行しているはずです。この時RTSystemEditorでRTCの接続を確認すると、下図のようになっており、フィードバックループができていることが確認できます。"
 msgstr ""
 
-#: ../../basics/torque.rst:450
+#: ../../basics/torque.rst:454
 msgid "サンプルファイルについて"
 msgstr ""
 
@@ -956,10 +938,56 @@ msgstr ""
 msgid "実装したソースコードは以下の通りです（一部コメントは削除しています）。追記した部分をハイライトしています。"
 msgstr ""
 
-#: ../../basics/torque.rst:452
+#: ../../basics/torque.rst:456
 msgid ""
 "このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotControllerRTC3に収録されています。"
 msgstr ""
+
+#: ../../basics/rt-controller.rst:21
+msgid "初めて起動した場合、またはデフォルトのワークスペースの場所を設定していない場合は次のようなダイアログが表示されます。"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:25
+msgid ""
+"Eclipseでは、各種作業を行うフォルダを「ワークスペース」(Work "
+"Space)とよび、原則としてすべての生成物はこのフォルダの下に保存されます。ワークスペースはアクセスできるフォルダであれば、どこに作っても構いませんが、このチュートリアルでは「/home/<ユーザ名>/workspace」をワークスペースとしますのでそのままOKボタンを押してください。"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:27
+msgid "初めて起動した場合は以下のようなWelcomeページが表示されますので、左上の「×」ボタンを押して閉じてください。"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:31
+msgid "次のような画面が表示されます（前回終了時の状態に依存するため表示される画面は異なる場合があります）。"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:528 ../../basics/torque.rst:450
+msgid "プロジェクトの保存"
+msgstr ""
+
+#: ../../basics/rt-controller.rst:529
+msgid ""
+"シミュレーションの実行が終わったら、プロジェクトを保存しておきましょう。[ファイル]-[名前を付けてプロジェクトを保存]を選択し、ファイル名をsample2.cnoidとして保存します。"
+msgstr ""
+
+#: ../../basics/torque.rst:451
+msgid ""
+"シミュレーションの実行が終わったら、プロジェクトを保存しておきましょう。[ファイル]-[名前を付けてプロジェクトを保存]を選択し、ファイル名をsample3.cnoidとして保存します。"
+msgstr ""
+
+#~ msgid "Eclipseが起動すると、ワークスペースの場所を尋ねられます。"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Eclipseでは、各種作業を行うフォルダを「ワークスペース」(Work "
+#~ "Space)とよび、原則としてすべての生成物はこのフォルダの下に保存されます。ワークスペースはアクセスできるフォルダであれば、どこに作っても構いませんが、このチュートリアルでは「/home/<ユーザ名>/workspace」をワークスペースとします。"
+#~ msgstr ""
+
+#~ msgid "そのままOKボタンを押してください。以下のようなWelcomeページが表示されます。"
+#~ msgstr ""
+
+#~ msgid "Welcomeページはいまは必要ないので左上の「×」ボタンを押して閉じてください。"
+#~ msgstr ""
 
 #~ msgid ""
 #~ "このチュートリアルで作成されるプロジェクトファイルはcnoid/sample3.cnoidに、コントローラのソースコードはrtc/RobotTorqueControllerRTC3に収録されています。"

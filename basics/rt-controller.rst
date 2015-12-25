@@ -348,6 +348,8 @@ m_angleInで取得した値はm_angleで参照します。
 生成されたのはコントローラの雛形で、このまま実行しても何も処理が行われません。onExecute() コールバックなどに処理を記述します。このチュートリアルでは関節角度を読みとって標準出力に表示する処理を実装します。
 
 実装したソースコードは以下の通りです（一部コメントは削除しています）。追記した部分をハイライトしています。
+（編集済みのファイルをsamples/tutorials/rtc/RobotControllerRTC1/src/RobotControllerRTC.cppに収録しています）
+
 
 .. code-block:: cpp
    :linenos:
@@ -438,8 +440,6 @@ m_angleInで取得した値はm_angleで参照します。
      }
      
    };
-
-編集済みのソースコードをsamples/tutorials/rtc/RobotControllerRTC1に収録していますので、samples/tutorials/rtc/RobotControllerRTC1/src/RobotControllerRTC.cppを$HOME/workspace/RobotControllerRTC/src/RobotControllerRTC.cppに上書きしてお使い頂くこともできます。
 
 onExecute()はRTCの実行中に定期的に呼ばれます。
 ここで関節角度を取得し標準出力に表示する処理を行います。

@@ -413,7 +413,11 @@ You can find a "motion" item as a child of "SampleMotion" item. Select this item
 
 .. image:: images/item_motion.png
 
-ファイル名はRobotPattern.yamlとし、コントローラが参照するChoreonoidの共有ディレクトリ、/usr/share/choreonoid-1.5/motionに置いておきます。
+ファイル名はRobotPattern.yamlとし、適当なディレクトリ（例えば/tmp）に保存します。その後でコントローラが参照するChoreonoidの共有ディレクトリに次のコマンドで移動します。
+
+.. code-block:: bash
+
+   $ sudo mv RobotPattern.yaml /usr/share/choreonoid-1.5/motion
 
 Setup of the controller
 -----------------------

@@ -822,9 +822,12 @@ install(EXPORT ${PROJECT_NAME}
 <img alt="../_images/motion_toolbar.png" src="../_images/motion_toolbar.png" />
 <p>モーションはツールバーのボタンで手動で生成しなくても、キーフレームの更新時に自動生成することができます。 これを有効にするにはツールバーの「自動更新モード」のボタンをオンにしてください。</p>
 <img alt="../_images/motion_toolbar2.png" src="../_images/motion_toolbar2.png" />
-<p>SampleMotion の子供に motion があるので、これを選択し名前を付けて保存ボタンを押します。</p>
+<p>SampleMotion の子供に motion があるので、これを選択し[ファイル]-[名前を付けて選択アイテムを保存]します。</p>
 <img alt="../_images/item_motion.png" src="../_images/item_motion.png" />
-<p>ファイル名はRobotPattern.yamlとし、コントローラが参照するChoreonoidの共有ディレクトリ、/usr/share/choreonoid-1.5/motionに置いておきます。</p>
+<p>ファイル名はRobotPattern.yamlとし、適当なディレクトリ（例えば/tmp）に保存します。その後でコントローラが参照するChoreonoidの共有ディレクトリに次のコマンドで移動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo mv RobotPattern.yaml /usr/share/choreonoid-1.5/motion
+</pre></div>
+</div>
 </div>
 <div class="section" id="setup-of-the-controller">
 <h2>コントローラの設定<a class="headerlink" href="#setup-of-the-controller" title="このヘッドラインへのパーマリンク">¶</a></h2>

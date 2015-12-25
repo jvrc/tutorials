@@ -824,7 +824,10 @@ install(EXPORT ${PROJECT_NAME}
 <img alt="../_images/motion_toolbar2.png" src="../_images/motion_toolbar2.png" />
 <p>You can find a &#8220;motion&#8221; item as a child of &#8220;SampleMotion&#8221; item. Select this item and save its contents by choosing &#8220;Save Selected Items As&#8221; menu.</p>
 <img alt="../_images/item_motion.png" src="../_images/item_motion.png" />
-<p>ファイル名はRobotPattern.yamlとし、コントローラが参照するChoreonoidの共有ディレクトリ、/usr/share/choreonoid-1.5/motionに置いておきます。</p>
+<p>ファイル名はRobotPattern.yamlとし、適当なディレクトリ（例えば/tmp）に保存します。その後でコントローラが参照するChoreonoidの共有ディレクトリに次のコマンドで移動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo mv RobotPattern.yaml /usr/share/choreonoid-1.5/motion
+</pre></div>
+</div>
 </div>
 <div class="section" id="setup-of-the-controller">
 <h2>Setup of the controller<a class="headerlink" href="#setup-of-the-controller" title="Permalink to this headline">¶</a></h2>

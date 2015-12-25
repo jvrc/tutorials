@@ -267,7 +267,7 @@ Computation of joint torques is added to onExecute(). After reading joint angles
 
 CMakeLists.txtの編集
 --------------------
-このコントローラはChoreonoidのライブラリが提供している機能を使用しているため、Choreonoidのライブラリをリンクする必要があります。そこでsrc/CMakeLists.txtを次のように編集します。
+このコントローラはChoreonoidのライブラリが提供している機能を使用しているため、Choreonoidのライブラリをリンクする必要があります。そこで$HOME/workspace/RobotControllerRTC/src/CMakeLists.txtを次のように編集します。（編集済みのファイルはsamples/tutorials/rtc/RobotControllerRTC3/src/CMakeLists.txtに収録されています）
 
 .. code-block:: cpp
    :linenos:

@@ -187,7 +187,7 @@
 </div>
 <div class="section" id="source-code-of-a-controller">
 <h2>コントローラのソースコード<a class="headerlink" href="#source-code-of-a-controller" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>コントローラのヘッダファイル(RobotControllerRTC.h)は以下のようになります。(ファイルは ~/workspace/RobotControllerRTC/include/ 内)</p>
+<p>コントローラのヘッダファイル($HOME/workspace/RobotControllerRTC/include/RobotControllerRTC.h)は以下のようになります。（編集済みのサンプルファイルはsamples/tutorials/rtc/RobotControllerRTC3/include/RobotControllerRTC.hに収録されています）</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -304,7 +304,7 @@
 </pre></div>
 </td></tr></table></div>
 <p>今回はトルクの出力をしなければならないので、出力ポートのための設定が増加しています。 <cite>RTC::OutPort&lt;RTC::TimedDoubleSeq&gt;</cite> はRTCの出力ポートを表す型であり、出力ポートを操作するにはこれを利用します。</p>
-<p>コントローラのソースコード(RobotControllerRTC.cpp)は以下になります。(ファイルは samples/tutorials/rtc/RobotControllerRTC3/src/RobotControllerRTC.cppに収録されています)</p>
+<p>コントローラのソースコード($HOME/workspace/RobotControllerRTC/src/RobotControllerRTC.cpp)は以下のようになります。(編集済みのファイルは samples/tutorials/rtc/RobotControllerRTC3/src/RobotControllerRTC.cppに収録されています)</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
@@ -640,7 +640,7 @@
 </div>
 <div class="section" id="cmakelists-txt">
 <h2>CMakeLists.txtの編集<a class="headerlink" href="#cmakelists-txt" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>このコントローラはChoreonoidのライブラリが提供している機能を使用しているため、Choreonoidのライブラリをリンクする必要があります。そこでsrc/CMakeLists.txtを次のように編集します。</p>
+<p>このコントローラはChoreonoidのライブラリが提供している機能を使用しているため、Choreonoidのライブラリをリンクする必要があります。そこで$HOME/workspace/RobotControllerRTC/src/CMakeLists.txtを次のように編集します。（編集済みのファイルはsamples/tutorials/rtc/RobotControllerRTC3/src/CMakeLists.txtに収録されています）</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

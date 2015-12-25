@@ -593,7 +593,8 @@ m_angleInで取得した値はm_angleで参照します。</p>
 <div class="section" id="id8">
 <h2>コントローラの実装<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>生成されたのはコントローラの雛形で、このまま実行しても何も処理が行われません。onExecute() コールバックなどに処理を記述します。このチュートリアルでは関節角度を読みとって標準出力に表示する処理を実装します。</p>
-<p>実装したソースコードは以下の通りです（一部コメントは削除しています）。追記した部分をハイライトしています。</p>
+<p>実装したソースコードは以下の通りです（一部コメントは削除しています）。追記した部分をハイライトしています。
+（編集済みのファイルをsamples/tutorials/rtc/RobotControllerRTC1/src/RobotControllerRTC.cppに収録しています）</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -765,7 +766,6 @@ m_angleInで取得した値はm_angleで参照します。</p>
 <span class="p">};</span>
 </pre></div>
 </td></tr></table></div>
-<p>編集済みのソースコードをsamples/tutorials/rtc/RobotControllerRTC1に収録していますので、samples/tutorials/rtc/RobotControllerRTC1/src/RobotControllerRTC.cppを$HOME/workspace/RobotControllerRTC/src/RobotControllerRTC.cppに上書きしてお使い頂くこともできます。</p>
 <p>onExecute()はRTCの実行中に定期的に呼ばれます。
 ここで関節角度を取得し標準出力に表示する処理を行います。
 m_angleIn.isNew()とは新しいデータが到着しているか確認する関数です。
@@ -792,7 +792,7 @@ m_angle.dataは各関節毎に配列の値となっています。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>choreonoid
 </pre></div>
 </div>
-<p>[メニュー]-[プロジェクトの読み込み]から前のチュートリアルで作成したプロジェクトファイル、sample1.cnoidを読み込みます。もしくは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」でも構いません。</p>
+<p>[メニュー]-[プロジェクトの読み込み]から前節のチュートリアルで作成したプロジェクトファイル、sample1.cnoidを読み込みます。もしくは「サンプルファイルのインストール」でダウンロードしたリポジトリの「samples/tutorials/cnoid/sample1.cnoid」でも構いません。</p>
 </div>
 <div class="section" id="add-a-controller">
 <h2>コントローラの追加<a class="headerlink" href="#add-a-controller" title="このヘッドラインへのパーマリンク">¶</a></h2>

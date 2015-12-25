@@ -354,7 +354,7 @@ buildディレクトリ内にて再度makeをし、前節と同じ場所にRTC�
 Choreonoidの起動
 ----------------
 
-前節で作成したプロジェクトファイル、sample2.cnoidを開きます。
+前節で作成したプロジェクトファイル、sample2.cnoidを開きます。もしくは、samples/tutorials/cnoid/sample2.cnoidでも構いません。
 
 .. code-block:: bash
 
